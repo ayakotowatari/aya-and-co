@@ -9,7 +9,7 @@
           <v-col>
               <div>
                   <p class="key-message">
-                    心地よい時間をつくる<br class="sm">一瓶のマーマレード。<br>
+                    心地よい時間をつくらない<br class="sm">一瓶のマーマレード。<br>
                     目を覚ます。<br>
                     ほっとする。<br>
                     自分をねぎらう。<br>
