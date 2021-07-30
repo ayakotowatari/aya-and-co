@@ -13,18 +13,18 @@ class UserTypesTableSeeder extends Seeder
     {
         //
         $data = [
-            // [
-            //     "name" => 'one-time',
-            //     "created_at" => now(),
-            //     "updated_at" => now(),
-            //     "deleted_at" => NULL
-            // ],
-            // [
-            //     "name" => 'subscriber',
-            //     "created_at" => now(),
-            //     "updated_at" => now(),
-            //     "deleted_at" => NULL
-            // ],
+            [
+                "name" => 'one-time',
+                "created_at" => now(),
+                "updated_at" => now(),
+                "deleted_at" => NULL
+            ],
+            [
+                "name" => 'subscriber',
+                "created_at" => now(),
+                "updated_at" => now(),
+                "deleted_at" => NULL
+            ],
             [
                 "name" => NULL,
                 "created_at" => now(),
