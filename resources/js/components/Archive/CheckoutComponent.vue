@@ -1,0 +1,357 @@
+<template>
+  <v-container>
+        <thankyou-component
+            v-bind:dialog='dialog'
+            v-bind:user='user'
+        ></thankyou-component>
+        <v-row>
+            <v-col cols="12" sm="12" md="12">
+                <div class="heading-group">
+                    <div class="page-heading">
+                        Checkout
+                    </div>
+                    <div class="page-subtitle grey--text text--darken-3">
+                        お支払いの手続き
+                    </div>
+                </div>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12" sm="12" md="4">
+                 <h4 class="jp-font grey--text text--darken-2 mb24 marginminus">クレジットカードによるお支払い</h4>
+            </v-col>
+            <v-col cols="12" sm="12" md="8">
+                <v-row justify="start">
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div class="totalprice grey--text text--darken-3">
+                            商品小計（税込）
+                        </div>
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div v-text="cartTotal" class="totalprice">
+                        </div>
+                    </v-col>
+                </v-row>
+                <v-row justify="start">
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div class="totalprice grey--text text--darken-3">
+                            送料
+                        </div>
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div class="totalprice">
+                            {{formatPrice(deliveryAddress.postage)}}
+                        </div>
+                    </v-col>
+                </v-row>
+                <v-row justify="start">
+                    <v-col cols="12" sm="12" md="12">
+                        <v-divider></v-divider>
+                    </v-col>
+                </v-row>
+                <v-row justify="start" class="mb-4">
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div class="charge grey--text text--darken-3">
+                            ご請求額
+                        </div>
+                    </v-col>
+                    <v-col cols="6" sm="6" md="4" class="py-1">
+                        <div v-text="totalPrice" class="charge">
+                        </div>
+                    </v-col>
+                </v-row>
+                <!-- <v-row justify="center">
+                    <v-col cols="12" sm="12" md="4">
+                        {{user.name}} 様のご購入手続き
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="12" md="4">
+                        <span>
+                            合計金額（税込・送料別）：
+                        </span>
+                        <span v-text="cartTotal"></span>
+                    </v-col>
+                </v-row> -->
+                <v-row justify="start">
+                    <v-col cols="12" sm="12" md="12">
+                        <v-card
+                            max-width=420
+                            class="pa-6"
+                        >
+                        <v-form>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="12" md="12">
+                                    <label for="card-number" class="card-info-title">カード番号</label>
+                                    <!-- <div id="card-element"></div> -->
+                                    <div class="card-info" id="card-number"></div>
+                                    <v-divider></v-divider>
+                                    <div id="card-error" v-if="cardNumberError">{{ cardNumberError }}</div>
+                                </v-col>
+                            </v-row>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="12" md="12">
+                                    <label for="card-expiry" class="card-info-title">有効期限</label>
+                                    <div class="card-info" id="card-expiry"></div>
+                                    <v-divider></v-divider>
+                                    <div id="card-error" v-if="cardExpiryError">{{ cardExpiryError }}</div>
+                                </v-col>
+                            </v-row>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="12" md="12">
+                                    <label for="card-cvc" class="card-info-title">3桁のセキュリティコード</label>
+                                    <div class="card-info" id="card-cvc"></div>
+                                    <v-divider></v-divider>
+                                    <div id="card-error" v-if="cardCvcError">{{ cardCvcError }}</div>
+                                </v-col>
+                            </v-row>
+                            <v-row justify="center">
+                                <v-col cols="12" sm="12" md="12">
+                                    <v-btn
+                                        color="primary"
+                                        block
+                                        dark
+                                        @click="processPayment"
+                                        :loading="loading"
+                                    >
+                                        支払いをする
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-form>
+                        </v-card>
+                    </v-col>
+                </v-row>
+         </v-col>
+         </v-row>
+        {{message}}
+  </v-container>
+</template>
+
+<script>
+import { mapState, mapActions } from 'vuex';
+
+import ThankYou from './ThankYouDialogComponent';
+
+import { loadStripe } from '@stripe/stripe-js';
+
+export default {
+    component: {
+        ThankYou,
+    },
+    props: {
+
+    },
+    data: function(){
+        return{
+            stripe: {},
+            // cardElement: {},
+            cardNumber: {},
+            cardExpiry: {},
+            cardCvc: {},
+            cardNumberError: null,
+            cardExpiryError: null,
+            cardCvcError: null,
+            message: "",
+            customer: {
+                name: '',
+                email: '',
+                address: '',
+                city: '',
+                state: '',
+                zip_code: '',
+                address_id: '',
+                delivery_time: '',
+            },
+            paymentProcessing: false,
+            loading: false,
+        }
+    
+    },
+    async mounted(){
+        this.stripe = await loadStripe('pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO');
+
+        let elements = this.stripe.elements();
+       
+        let elementStyles = {
+            base: {
+                color: "#32325D",
+                fontWeight: 500,
+                fontFamily: "Inter, Open Sans, Segoe UI, sans-serif",
+                fontSize: "16px",
+                fontSmoothing: "antialiased",
+
+                "::placeholder": {
+                // color: "#CFD7DF"
+                color: "#717171",
+                }
+            },
+            invalid: {
+                color: "#E25950"
+            }
+        };
+
+        let elementClasses = {
+            focus: 'focus',
+            empty: 'empty',
+            invalid: 'invalid',
+        };
+
+        this.cardNumber = elements.create('cardNumber', {
+            // classes: {
+            //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
+            // }       
+            style: elementStyles,
+            classes: elementClasses,
+        });
+        this.cardNumber.mount('#card-number');
+
+        this.listenForErrorsCardNumber();
+
+        this.cardExpiry = elements.create('cardExpiry', {
+            style: elementStyles,
+            classes: elementClasses,
+            // classes: {
+            //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
+            // } 
+        });
+        this.cardExpiry.mount('#card-expiry');
+
+        this.listenForErrorsCardExpiry();
+
+        this.cardCvc = elements.create('cardCvc', {
+            style: elementStyles,
+            classes: elementClasses,
+            // classes: {
+            //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
+            // } 
+        });
+        this.cardCvc.mount('#card-cvc');
+
+        this.listenForErrorsCardCvc();
+
+        // registerElements([this.cardNumber, this.cardExpiry, this.cardCvc], 'card');
+    },
+    created(){
+
+    },
+    computed: {
+        ...mapState([
+            'user',
+            'cart',
+            'dialog',
+            'deliveryAddress',
+        ]),
+        cartTotal(){
+            let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+
+            console.log(amount);
+            return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+        },
+        totalPrice(){
+            let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+            let totalAmount = amount + this.deliveryAddress.postage
+
+            return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+        }
+    },
+    methods: {
+        ...mapActions([
+            'clearCart',
+        ]),
+        formatPrice(value){
+          let amount = value;
+
+          return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+        },
+        listenForErrorsCardNumber(){
+            const vm = this;
+
+            this.cardNumber.addEventListener('change', (event)=>{
+                vm.cardNumberError = event.error ? event.error.message: null;
+            })
+        },
+        listenForErrorsCardExpiry(){
+            const vm = this;
+
+            this.cardExpiry.addEventListener('change', (event)=>{
+                vm.cardExpiryError = event.error ? event.error.message: null;
+            })
+        },
+        listenForErrorsCardCvc(){
+            const vm = this;
+
+            this.cardCvc.addEventListener('change', (event)=>{
+                vm.cardCvcError = event.error ? event.error.message: null;
+            })
+        },
+        async processPayment(){
+            
+            this.paymentProcessing = true;
+            this.loading = true;
+
+            this.customer.name = this.user.name;
+            this.customer.email = this.user.email;
+            this.customer.address = this.user.address_1 + ' ' + this.user.building;
+            this.customer.city = this.user.city;
+            this.customer.state = this.user.prefecture;
+            this.customer.zip_code = this.user.zipcode;
+            // this.customer.address_id = this.guest.id;
+            this.customer.delivery_time = this.deliveryAddress.delivery_time;
+            this.customer.delivery_address = this.deliveryAddress.id;
+
+
+            const {paymentMethod, error} = await this.stripe.createPaymentMethod(
+                'card', this.cardNumber, {
+                    billing_details: {
+                        name: this.customer.name,
+                        email: this.customer.email,
+                        address: {
+                            line1: this.customer.address,
+                            city: this.customer.city,
+                            state: this.customer.prefecture,
+                            zipcode: this.customer.zipcode,
+                        }
+                    }
+                }
+            );
+
+            if(error) {
+                this.paymentProcessing = false; 
+                console.error(error);
+            }else{
+                console.log(paymentMethod);
+                this.customer.payment_method_id = paymentMethod.id;
+                this.customer.amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                this.customer.cart = JSON.stringify(this.$store.state.cart);
+            }
+
+            axios.post('/purchase', this.customer)
+            .then((response) => {
+                this.paymentProcessing = false;
+                console.log(response);
+
+                this.$store.commit('updateOrder', response.data);
+                this.$store.dispatch('clearCart');
+                this.$store.dispatch('clearDeliveryAddress');
+                this.loading = false;
+                this.$store.dispatch('showDialog');
+                // this.$router.push({ name: 'order-summary'})
+            })
+            .catch((error) => {
+                this.paymentProcessing = false;
+                this.loading = false;
+                console.error(error);
+                this.message = error.response.data.message;
+            })
+        },
+    },
+}
+</script>
+
+<style>
+.marginminus{
+    margin-top: -12px;
+}
+
+</style>
