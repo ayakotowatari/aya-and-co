@@ -717,44 +717,7 @@ export default new Vuex.Store({
         commit('removeProduct', payload);
 
     },
-    // async addGuest({commit}, payload){
-
-    //     // commit('setLoading', true);
-        
-    //     let deliveryAddress = {};
-    //     let guest = {};
-    //     let allerror = [];
-
-    //     await axios
-    //     .post("/guest/add", {
-    //         name: payload.name,
-    //         kana: payload.kana,
-    //         zipcode: payload.zipcode,
-    //         prefecture: payload.prefecture,
-    //         city: payload.city,
-    //         address_1: payload.address_1,
-    //         building: payload.building,
-    //         phone: payload.phone,
-    //         email: payload.email,
-    //         delivery_time: payload.delivery_time
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //         guest = res.data.guest;
-    //         deliveryAddress = res.data.deliveryAddress
-    //         commit('setGuest', guest);
-    //         commit('updateDeliveryAddress', deliveryAddress);
-    //         commit('setDisabled', true);
-    //         commit('updateDisableContinue1', false);
-    //         // commit('setLoading', false);
-    //     })
-    //     .catch(error => {
-    //         commit('setLoading', false);
-    //         allerror = error.response.data.errors,
-    //         commit('setallErrors', allerror)
-    //     })
-
-    // },
+   
     async addGuest({commit}, payload){
 
         // commit('setLoading', true);
@@ -837,86 +800,7 @@ export default new Vuex.Store({
         })
 
     },
-    // async addGuestAndOtherAddress({commit}, payload){
-
-    //     // commit('setLoading', true);
-        
-    //     let deliveryAddress = {};
-    //     let guest = {};
-    //     let allerror = [];
-
-    //     await axios
-    //     .post("/guest/add-otheraddress", {
-    //         deliveryName: payload.deliveryName,
-    //         deliveryKana: payload.deliveryKana,
-    //         deliveryZipcode: payload.deliveryZipcode,
-    //         deliveryPrefecture: payload.deliveryPrefecture,
-    //         deliveryCity: payload.deliveryCity,
-    //         deliveryAddress_1: payload.deliveryAddress_1,
-    //         deliveryBuilding: payload.deliveryBuilding,
-    //         deliveryPhone: payload.deliveryPhone,
-    //         deliveryDeliveryTime: payload.deliveryDeliveryTime,
-    //         name: payload.name,
-    //         kana: payload.kana,
-    //         zipcode: payload.zipcode,
-    //         prefecture: payload.prefecture,
-    //         city: payload.city,
-    //         address_1: payload.address_1,
-    //         building: payload.building,
-    //         phone: payload.phone,
-    //         email: payload.email,
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //         guest = res.data.guest;
-    //         deliveryAddress = res.data.deliveryAddress
-    //         commit('setGuest', guest);
-    //         commit('updateDeliveryAddress', deliveryAddress);
-    //         commit('setDisabled', true);
-    //         commit('updateDisableContinue1', false);
-    //         // commit('setLoading', false);
-    //         // router.push({ name: 'guestOrder-confirmation'});
-    //     })
-    //     .catch(error => {
-    //         commit('setLoading', false);
-    //         allerror = error.response.data.errors,
-    //         commit('setallErrors', allerror)
-    //     })
-
-    // },
-    // async addDeliveryAddress({commit}, payload){
-        
-    //     let allerror = [];
-    //     let deliveryAddress = [];
-
-    //     await axios
-    //     .post("/add-address", {
-    //         name: payload.name,
-    //         kana: payload.kana,
-    //         zipcode: payload.zipcode,
-    //         prefecture: payload.prefecture,
-    //         city: payload.city,
-    //         address_1: payload.address_1,
-    //         building: payload.building,
-    //         phone: payload.phone,
-    //         delivery_time: payload.delivery_time
-    //     })
-    //     .then(res => {
-    //         console.log(res)
-    //         deliveryAddress = res.data.deliveryAddress;
-    //         commit('setDeliveryAddress', deliveryAddress);
-    //         commit('setDisabled', true);
-    //         commit('updateDisableContinue1', false);
-    //         // commit('setLoading', false);
-    //         // router.push({ name: 'order-confirmation'});
-    //     })
-    //     .catch(error => {
-    //         commit('setLoading', false);
-    //         allerror = error.response.data.errors,
-    //         commit('setallErrors', allerror)
-    //     })
-
-    // },
+   
     async setPostage({commit}){
 
         let allerror = [];
@@ -1106,45 +990,7 @@ export default new Vuex.Store({
             commit('setallErrors', allerror)
         })
     },
-    // async fetchPostage({commit}){
-
-    //     let payload = [];
-
-    //     await axios
-    //     .get("/postage")
-    //     .then(res => {
-    //         payload = res.data.postage;
-    //         console.log('result', payload)
-    //         commit('setPostage', payload);
-    //         // commit('setDeliveryAddress', payload);
-    //     })
-    //     .catch(error => {
-    //         // commit('setLoading', false);
-    //         allerror = error.response.data.errors,
-    //         commit('setallErrors', allerror)
-    //     })
-        
-    // },
-
-    // async fetchOrders({commit}){
-
-    //     let payload = [];
-
-    //     await axios
-    //     .get("/order-summary")
-    //     .then(res => {
-    //         payload = res.data.orders;
-    //         console.log('result', payload)
-    //         commit('setOrders', payload);
-    //         // commit('setDeliveryAddress', payload);
-    //     })
-    //     .catch(error => {
-    //         // commit('setLoading', false);
-    //         allerror = error.response.data.errors,
-    //         commit('setallErrors', allerror)
-    //     })
-        
-    // },
+   
     showDialog({commit}){
         commit('setDialog', true);
     },

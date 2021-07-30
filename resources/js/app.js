@@ -31,9 +31,7 @@ Vue.use(Vuetify);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 
-// Vue.component('navbar-component', require('./components/parts/NavbarComponent.vue').default);
 Vue.component('navbar-component', require('./components/parts/NavbarComponent.vue').default);
-// Vue.component('navbartwo-component', require('./components/parts/NavbarComponentTwo.vue').default);
 Vue.component('footer-component', require('./components/parts/FooterComponent.vue').default);
 
 //user
@@ -70,12 +68,6 @@ Vue.component('register-component', require('./components/RegisterComponent.vue'
 //icons
 import BasketIcon from "./components/icons/BasketIconComponent"
 
-// //admin
-// Vue.component('shipmentschedule-component', require('./components/admin/ShipmentScheduleDialogComponent.vue').default);
-// Vue.component('updateshipmentschedule-component', require('./components/admin/UpdateShipmentScheduleDialogComponent.vue').default);
-// Vue.component('updatestatusdialog-component', require('./components/admin/UpdateStatusDialogComponent.vue').default);
-// Vue.component('eachorder-component', require('./components/admin/EachOrderComponent.vue').default);
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -110,7 +102,6 @@ const app = new Vue({
     store,
     components: {
         "app-component": AppComponent,
-        // "requestreset-component": RequestReset
     },
     created(){
         store.dispatch('fetchCategories')

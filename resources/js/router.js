@@ -168,42 +168,6 @@ const routes = [
         component: EditAddress
     },
 
-    // {
-    //     path: "/new-adress" ,
-    //     name: "new-address" ,
-    //     component: NewAddress
-    // },
-
-    // {
-    //     path: "/order-confirmation" ,
-    //     name: "order-confirmation" ,
-    //     component: OrderConfirmation
-    // },
-
-    // {
-    //     path: "/change-address",
-    //     name: "change-address",
-    //     component: ChangeAddress
-    // },
-
-    // {
-    //     path: "/guest/order-confirmation" ,
-    //     name: "guestOrder-confirmation" ,
-    //     component: GuestOrderConfirmation
-    // },
-
-    // {
-    //     path: "/checkout" ,
-    //     name: "checkout" ,
-    //     component: Checkout
-    // },
-
-    // {
-    //     path: "/guest/checkout" ,
-    //     name: "guest-checkout" ,
-    //     component: GuestCheckout
-    // },
-
     {
         path: "/member/summary" ,
         name: "order-summary" ,
@@ -222,11 +186,6 @@ const routes = [
         component: GuestRegister
     },
 
-    // {
-    //     path: "/reset-form" ,
-    //     name: "reset-form" ,
-    //     component: ResetForm
-    // },
 
     {
         path: "/request-reset" ,
