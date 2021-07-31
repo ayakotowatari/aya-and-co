@@ -13,7 +13,7 @@ class AdminsTableSeeder extends Seeder
     {
         //
         $data = [
-            [
+            //[
                 // "user_type_id" => 6,
                 // "name" => "戸渡文子",
                 // "email" => "test@ayako.com",
@@ -24,7 +24,7 @@ class AdminsTableSeeder extends Seeder
                 // "created_at" => now(),
                 // "updated_at" => now(),
                 // "deleted_at" => NULL
-            ],
+            //],
             // [
             //     "user_type_id" => 5,
             //     "name" => "上田恭太",
