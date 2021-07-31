@@ -44,7 +44,7 @@
                                 color="grey"
                             >
                                 <v-img
-                                    src="../assets/img/IMG_9502.JPG"
+                                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
                                 ></v-img>
                             </v-list-item-avatar>
                             </v-list-item>

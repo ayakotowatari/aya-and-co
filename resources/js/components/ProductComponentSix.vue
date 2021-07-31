@@ -52,7 +52,7 @@
                   <div class="message mb-3">
                     商品のご購入は、シーズンまでしばらくお待ちください。
                   </div>
-                  <div class="message mb-2">
+                  <div class="message mb-6">
                     公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
                   </div>
                   <div>
