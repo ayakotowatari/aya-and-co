@@ -14,6 +14,9 @@ import Cart from "./components/CartComponent";
 // import Product from "./components/ProductComponent";
 import Product from "./components/ProductComponentSix";
 import Sustainability from "./components/SustainabilityComponent";
+import Faq from "./components/FaqComponent";
+import Policy from "./components/PolicyComponent";
+import Contact from "./components/ContactComponent";
 
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
 // import CheckAddress from "./components/user/CheckAddressComponent";
@@ -51,32 +54,50 @@ const routes = [
     // },
     
     {
-        path: "/" ,
-        name: "home" ,
+        path: "/",
+        name: "home",
         component: Home
     },
 
     {
-        path: "/sample" ,
+        path: "/sample",
         name: "sample" ,
         component: Sample
     },
 
     {
-        path: "/guest/register" ,
-        name: "register" ,
+        path: "/faq",
+        name: "faq",
+        component: Faq
+    },
+
+    {
+        path: "/contact",
+        name: "contact" ,
+        component: Contact
+    },
+
+    {
+        path: "/policy",
+        name: "policy",
+        component: Policy
+    },
+
+    {
+        path: "/guest/register",
+        name: "register",
         component: Register
     },
 
     {
-        path: "/guest/login" ,
-        name: "login" ,
+        path: "/guest/login",
+        name: "login",
         component: Login
     },
 
     {
-        path: "/cart" ,
-        name: "cart" ,
+        path: "/cart",
+        name: "cart",
         component: Cart
     },
 
@@ -87,14 +108,14 @@ const routes = [
     // },
 
     {
-        path: "/products/:id" ,
-        name: "products" ,
+        path: "/products/:id",
+        name: "products",
         component: Product
     },
 
     {
-        path: "/sustainability" ,
-        name: "sustainability" ,
+        path: "/sustainability",
+        name: "sustainability",
         component: Sustainability
     },
 
@@ -125,14 +146,14 @@ const routes = [
     // },
 
     {
-        path: "/member/order" ,
-        name: "order" ,
+        path: "/member/order",
+        name: "order",
         component: Order
     },
 
     {
-        path: "/guest/order" ,
-        name: "guest-order" ,
+        path: "/guest/order",
+        name: "guest-order",
         component: GuestOrder
     },
 
@@ -163,33 +184,33 @@ const routes = [
     // },
 
     {
-        path: "/edit-home" ,
-        name: "edit-home" ,
+        path: "/edit-home",
+        name: "edit-home",
         component: EditAddress
     },
 
     {
-        path: "/member/summary" ,
-        name: "order-summary" ,
+        path: "/member/summary",
+        name: "order-summary",
         component: OrderSummary
     },
 
     {
-        path: "/member/order-details/:id" ,
-        name: "order-details" ,
+        path: "/member/order-details/:id",
+        name: "order-details",
         component: OrderDetails
     },
 
     {
-        path: "/guest-register" ,
-        name: "guest-register" ,
+        path: "/guest-register",
+        name: "guest-register",
         component: GuestRegister
     },
 
 
     {
-        path: "/request-reset" ,
-        name: "request-reset" ,
+        path: "/request-reset",
+        name: "request-reset",
         component: RequestReset
     },
 
@@ -199,7 +220,7 @@ const routes = [
 
 export default new VueRouter ({
     //URLに#をつけなくする
-    mode: "history" ,
+    mode: "history",
     routes,
     scrollBehavior () {
         return { x: 0, y: 0 }

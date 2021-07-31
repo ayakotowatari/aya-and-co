@@ -16,7 +16,7 @@
             <v-toolbar-title>
                 <v-img
                     max-width=120
-                    src="../../assets/img/logo_1.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg"
                     >
                 </v-img>
             </v-toolbar-title>
@@ -40,7 +40,7 @@
             <v-col cols="12" align="center" class="my-5">
                 <v-img
                     max-width=90
-                    src="../assets/img/orange.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange.png"
                 >
                 </v-img>
             </v-col>

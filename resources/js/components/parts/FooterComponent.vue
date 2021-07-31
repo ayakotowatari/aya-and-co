@@ -6,16 +6,18 @@
         color="white"
     >
      
-        <v-card-text>
-            <v-btn
+        <v-card-text
             v-for="icon in icons"
-            :key="icon"
-            class="mx-4 grey--text text--darken-1"
-            icon
+            :key="icon.mark">
+            <v-btn
+                class="mx-4 grey--text text--darken-1"
+                icon
+                :href="icon.link"
+                target="_blank"       
             >
-            <v-icon size="24px">
-                {{ icon }}
-            </v-icon>
+                <v-icon size="48px">
+                    {{ icon.mark }}
+                </v-icon>
             </v-btn>
         </v-card-text>
 
@@ -36,10 +38,10 @@ export default {
     data: function(){
         return {
             icons: [
-                'mdi-facebook',
-                'mdi-twitter',
-                'mdi-linkedin',
-                'mdi-instagram',
+                // 'mdi-facebook',
+                // 'mdi-twitter',
+                // 'mdi-linkedin',
+                { mark: 'mdi-instagram', link: 'https://www.instagram.com/ayako.towatari/' },
             ],
         }
     },

@@ -4,13 +4,13 @@
             <v-img
                 max-width=1137
                 max-height=636
-                src="../assets/img/IMG_7735.png"
+                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/kirigamine.png"
                 class="hidden-sm-and-down"
             ></v-img>
             <v-img
                 max-width=327
                 max-height=183
-                src="../assets/img/IMG_7735.png"
+                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/kirigamine.png"
                 class="hidden-md-and-up"
             ></v-img>
         </div>

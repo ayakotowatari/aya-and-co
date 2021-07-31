@@ -6,7 +6,7 @@
             <v-toolbar-title>
                 <v-img
                     max-width=120
-                    src="../assets/img/logo_1.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg"
                 ></v-img>
             </v-toolbar-title>
             <!-- <v-spacer></v-spacer>

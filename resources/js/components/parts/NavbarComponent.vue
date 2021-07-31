@@ -45,7 +45,7 @@
             <v-col cols="12" align="center" class="mt-5">
                 <v-img
                     max-width=90
-                    src="../assets/img/orange.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange.png"
                 >
                 </v-img>
             </v-col>
@@ -191,6 +191,7 @@ import { mapState } from 'vuex'
       items:  [
         {title: 'お問い合わせ', route: '/contact'},
         {title: 'よくある質問', route: "/faq"},
+        {title: '特定商取引法に基づく表記', route:"/policy"}
       ],
       closeOnContentClick: true,
     }),
