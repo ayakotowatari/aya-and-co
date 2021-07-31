@@ -1,3 +1,3 @@
 <template>
-    <v-img src="../assets/img/basket.svg"></v-img>
+    <v-img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/basket.svg"></v-img>
 </template>

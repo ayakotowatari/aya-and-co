@@ -2,7 +2,7 @@
   <v-container>
       <div class="key-visual">
         <v-img
-            src="../assets/img/IMG_9503.JPG"
+            src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/key_bagel.JPG"
         ></v-img>
       </div>
       <v-row>
@@ -24,7 +24,7 @@
          <v-img
              max-width=90
              class="mx-auto"
-             src="../assets/img/spoon.jpeg"
+             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/spoon.jpeg"
           ></v-img>
       </div>
       <div class="heading">
@@ -53,7 +53,7 @@
               >
                 <v-img
                     height="150"
-                    src="../assets/img/IMG_9502.JPG"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
                 > 
                 </v-img>
                 <v-card-text>
@@ -193,60 +193,7 @@ export default {
         //         this.products = res.data.products;
         //     })
         // },
-        //ここはもうプロダクトが一つ選ばれている状態から、カートに入れられる。一つ一つ入っていく。
-
-        // addToCart(id){
-        //     axios.post("/cart", {
-        //       product_id: id,
-        //       quantity: 2,
-        //     })
-        //     .then(res => {
-        //       // this.$router.push({name: 'cart-component'})
-        //       console.log("added successfully");
-        //     })
-        //     .catch(err => {
-        //       this.message = err;
-        //     })
-
-        // }
        
-      // fetchUser: function() {
-      //     axios.get("/inst/fetch-user").then(res => {
-      //       this.user = res.data.user;
-      //     });
-      // },
-
-      // fetchInst: function() {
-      //     axios.get("/inst/fetch-inst").then(res => {
-      //       this.inst = res.data.inst;
-      //     });
-      // },
-
-      // fetchInitials: function() {
-      //     axios.get("/inst/fetch-initials").then(res => {
-      //       this.initials = res.data.initials;
-      //     });
-      // },
-      // fetchEvents: function() {
-      //     axios.get("/inst/fetch-events").then(res => {
-      //       this.events = res.data.events;
-      //     })
-      // },
-      // fetchLevels: function() {
-      //     axios.get("/inst/fetch-levels").then(res => {
-      //       this.levels = res.data.levels;
-      //     })
-      // },
-      // fetchSubjects: function() {
-      //     axios.get("/inst/fetch-subjects").then(res => {
-      //       this.subjects = res.data.subjects;
-      //     })
-      // },
-      // fetchRegions: function() {
-      //     axios.get("/inst/fetch-regions").then(res => {
-      //       this.regions = res.data.regions;
-      //     })
-      // },
     }
 
 }

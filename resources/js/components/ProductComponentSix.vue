@@ -2,7 +2,7 @@
   <v-container>
       <div class="page-visual">
           <v-img
-              src="../assets/img/bread.jpg"
+              src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
           ></v-img>
       </div>
       <v-row>
@@ -98,7 +98,7 @@
                                           color="grey"
                                       >
                                           <v-img
-                                          src="../assets/img/IMG_9502.JPG"
+                                          src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
                                           ></v-img>
                                       </v-list-item-avatar>
                                       </v-list-item>
@@ -147,7 +147,7 @@
          <v-img
              max-width=90
              class="mx-auto"
-             src="../assets/img/lemon.png"
+             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/lemon.png"
           ></v-img>
         </div>
         <div class="subheading">
@@ -166,7 +166,7 @@
               >
                 <v-img
                     height="150"
-                    src="../assets/img/IMG_9502.JPG"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
                 > 
                 </v-img>
                 <v-card-text>
