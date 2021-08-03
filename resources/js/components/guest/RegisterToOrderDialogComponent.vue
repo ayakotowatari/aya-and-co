@@ -3,17 +3,20 @@
         <v-row justify="center">
             <v-dialog 
                 v-model="dialogRegisterToOrder" 
-                max-width=560
+                max-width=640
             >
                 <v-card>
                     <v-container>
                     <v-row justify="center">
-                        <v-col cols="12" sm="12" md="8">
+                        <v-col cols="10" sm="10" md="8">
                             <v-row>
                                 <v-col cols="12" sm="12" md="12">
                                     <v-row justify="center">
                                         <v-col cols="12" sm="12" md="12">
-                                            <div class="jp-font-400 grey--text text--darken-4 mt48 mb48">会員登録をする</div>
+                                            <div class="page-heading">
+                                                Register
+                                            </div>
+                                            <div class="jp-font-400 grey--text text--darken-4 mb48">会員登録をする</div>
                                         </v-col>
                                     </v-row>
                                     <v-form 
@@ -44,7 +47,6 @@
                                                 ></v-text-field>
                                                 <v-text-field
                                                     v-model="zipcode"
-                                                    :counter="7"
                                                     label="郵便番号"
                                                     outlined
                                                     required
@@ -141,7 +143,6 @@
                                                 ></v-text-field>
 
                                                 <v-btn 
-                                                    block 
                                                     dark 
                                                     color="primary" 
                                                     class="mb-2" 
@@ -149,6 +150,14 @@
                                                     :looading="loading"
                                                 >
                                                     登録する
+                                                </v-btn>
+                                                 <v-btn 
+                                                    outlined
+                                                    color="primary" 
+                                                    class="mb-2" 
+                                                    @click="close()"
+                                                >
+                                                    もどる
                                                 </v-btn>
                                                 <!-- <v-btn text color="primary" class="pa-0" @click.stop="toLogin()">ログインする</v-btn> -->
                                             </v-col>
@@ -290,6 +299,9 @@ export default {
                 })
             }
         }, 
+        close(){
+            this.$store.commit('setDialogRegisterToOrder', false);
+        }
     }
 
 
