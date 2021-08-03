@@ -82,7 +82,6 @@
                                     ></v-text-field>
                                     <v-text-field
                                         v-model="zipcode"
-                                        :counter="7"
                                         label="郵便番号"
                                         outlined
                                         required

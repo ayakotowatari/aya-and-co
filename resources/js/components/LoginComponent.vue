@@ -151,6 +151,9 @@ export default {
         toReset(){
             // window.location.href = "/password/reset";
             this.$router.push({name: 'request-reset'});
+        },
+        toRegister(){
+            this.$router.push({name: 'register'});
         }
         // reset(){
         //     this.$refs.form.reset();
