@@ -21,6 +21,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '11月から4月初旬',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -33,6 +34,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '11月から4月初旬',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -45,6 +47,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '12月から3月',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -57,6 +60,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '12月から3月',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -69,6 +73,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '11月から3月',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -81,6 +86,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '8月から10月',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL
@@ -93,6 +99,7 @@ class CategoriesTableSeeder extends Seeder
                 "season" => '8月から10月',
                 "ingredients" => NULL,
                 "image" => NULL,
+                "status_id" => 1,
                 "created_at" => now(),
                 "updated_at" => now(),
                 "deleted_at" => NULL

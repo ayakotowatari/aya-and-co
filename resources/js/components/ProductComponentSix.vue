@@ -69,7 +69,7 @@
               <div v-if="product.length >= 1">
                 <v-list-item-group v-model="itemGroup">
                     <v-row>
-                        <v-col cols="12" sm="12" md="5">
+                        <v-col cols="12" sm="12" md="6">
                             <v-list-item v-for="(item, index) in product" :key="item.id" :value='item'>
                                 <v-card
                                       :class="{'elevation-6': activeIndex === index}"
