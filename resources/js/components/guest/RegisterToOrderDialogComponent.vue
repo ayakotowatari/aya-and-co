@@ -145,7 +145,7 @@
                                                 <v-btn 
                                                     dark 
                                                     color="primary" 
-                                                    class="mb-2" 
+                                                    class="mb-2 mr-2" 
                                                     @click="goRegister()"
                                                     :looading="loading"
                                                 >
@@ -157,7 +157,7 @@
                                                     class="mb-2" 
                                                     @click="close()"
                                                 >
-                                                    もどる
+                                                    戻る
                                                 </v-btn>
                                                 <!-- <v-btn text color="primary" class="pa-0" @click.stop="toLogin()">ログインする</v-btn> -->
                                             </v-col>
