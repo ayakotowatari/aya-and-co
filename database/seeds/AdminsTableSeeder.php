@@ -13,30 +13,18 @@ class AdminsTableSeeder extends Seeder
     {
         //
         $data = [
-            //[
-                // "user_type_id" => 6,
-                // "name" => "戸渡文子",
-                // "email" => "test@ayako.com",
-                // "email_verified_at" => NULL,
-                // "password" => Hash::make('testayako'),
-                // "life" => 1,
-                // "remember_token" => "1234567890abcdefg",
-                // "created_at" => now(),
-                // "updated_at" => now(),
-                // "deleted_at" => NULL
-            //],
-            // [
-            //     "user_type_id" => 5,
-            //     "name" => "上田恭太",
-            //     "email" => "test@kyota.com",
-            //     "email_verified_at" => NULL,
-            //     "password" => Hash::make('testkyota'),
-            //     "life" => 1,
-            //     "remember_token" => "1234567890abcdefg",
-            //     "created_at" => now(),
-            //     "updated_at" => now(),
-            //     "deleted_at" => NULL
-            // ],
+            [
+                "user_type_id" => 6,
+                "name" => "戸渡文子",
+                "email" => "",//githubで削除
+                "email_verified_at" => NULL,
+                "password" => Hash::make(''),//githubで削除
+                "life" => 1,
+                "remember_token" => "1234567890abcdefg",
+                "created_at" => now(),
+                "updated_at" => now(),
+                "deleted_at" => NULL
+            ],
            
         ];
            
