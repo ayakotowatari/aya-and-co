@@ -53,7 +53,7 @@
               >
                 <v-img
                     height="150"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                    :src="category.absolute_path"
                 > 
                 </v-img>
                 <v-card-text>
