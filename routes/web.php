@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::post('/admin/edit-description', 'CategoriesController@editDescription')->name('admin.edit.description');
     Route::post('/admin/edit-season', 'CategoriesController@editSeason')->name('admin.edit.season');
     Route::post('/admin/edit-ingredients', 'CategoriesController@editIngredients')->name('admin.edit.ingredients');
+    Route::post('/admin/edit-image', 'CategoriesController@editImage')->name('admin.edit.image');
     Route::post('/admin/update-inventory', 'ProductsController@updateInventory')->name('admin.update.inventory');
     Route::post('/admin/create-inventory', 'CategoriesController@store')->name('admin.category.create');
     Route::get('/admin/fetch-statuses', 'CategoriesController@fetchCategoryStatuses')->name('admin.category.statuses');

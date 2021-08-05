@@ -550,7 +550,7 @@ export const admin = {
             let newImage = "";
 
             await axios
-                .post('/admin/edit-ingredients', {
+                .post('/admin/edit-image', {
                     id: payload.id,
                     image: payload.image
                 })
