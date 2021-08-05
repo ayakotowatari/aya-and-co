@@ -560,7 +560,9 @@ export const admin = {
 
             console.log('payload', payload)
 
-            let newImage = "";
+            // let newImage = "";
+            // let absolutePath = "";
+            let category={};
             let allerror = [];
 
             let data = new FormData();
@@ -572,8 +574,13 @@ export const admin = {
             await axios
                 .post('/admin/edit-image', data, config)
                 .then(response => {
-                    newImage = response.data.image;
-                    commit('setCategoryImage', newImage);
+                    // newImage = response.data.image;
+                    // absolutePath = response.data.absolute_path;
+                    // console.log('image', newImage);
+                    // console.log('absolute', absolutePath);
+                    category = response.data.category;
+                    // commit('setCategoryImage', newImage);
+                    commit('setCategory', category);
                     commit('setShowEditImage', false);
                 })
                 .catch(error => {

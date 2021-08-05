@@ -181,10 +181,12 @@ class CategoriesController extends Controller
 
         $category->save();
 
-        $newImage = Category::find($id)->image;
+        // $newImage = Category::find($id)->image;
 
-        // return response() -> json(['category' => $category]);
-        return response() -> json(['image' => $newImage]);
+        $newCategory = Category::find($id);
+        
+        return response() -> json(['category' => $category]);
+        // return response() -> json(['image' => $newImage]);
 
     }
 
