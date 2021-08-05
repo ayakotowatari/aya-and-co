@@ -53,7 +53,7 @@ class CategoriesController extends Controller
                             'categories.image',
                             'statuses.status'
                         )                
-                        ->first($id);
+                        ->first();
 
         return response() -> json(['category' => $category]);
     }
@@ -183,9 +183,22 @@ class CategoriesController extends Controller
 
         // $newImage = Category::find($id)->image;
 
-        $newCategory = Category::find($id);
+        $newCategory = Category::join('statuses', 'statuses.id', '=', 'categories.status_id')
+                            ->where('categories.id', $id)
+                            ->select(
+                                'categories.id', 
+                                'categories.name',
+                                'categories.subtitle',
+                                'categories.details', 
+                                'categories.description', 
+                                'categories.season',
+                                'categories.ingredients',
+                                'categories.image',
+                                'statuses.status'
+                            )          
+                            ->first();
         
-        return response() -> json(['category' => $category]);
+        return response() -> json(['category' => $newCategory]);
         // return response() -> json(['image' => $newImage]);
 
     }
