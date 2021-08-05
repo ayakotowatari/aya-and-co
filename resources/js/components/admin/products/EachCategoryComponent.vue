@@ -77,7 +77,7 @@
                             <div class="mb-10">
                                 <v-img
                                     max-width=240
-                                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                                    :src="category.absolute_path"
                                 >
                                 </v-img>
                             </div>
