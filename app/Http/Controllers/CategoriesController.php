@@ -170,7 +170,8 @@ class CategoriesController extends Controller
         // [Tips]設定をすれば下記に書き換えるだけでS3に保存できる
         $disk = Storage::disk('s3');
     
-        $path = $disk->putFile('category', $image, 'public');
+        // $path = $disk->putFile('category', $image, 'public');
+        $path = $disk->putFile('category', $image);
         // $filename = ltrim($path, 'public/');
     
         $category->image = $path;
