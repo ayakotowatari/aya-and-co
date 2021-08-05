@@ -173,6 +173,9 @@ class CategoriesController extends Controller
         $path = $disk->putFile('category', $image, 'public');
         // $path = $disk->putFile('category', $image);
         // $filename = ltrim($path, 'public/');
+
+        $id = request('id');
+        $category = Category::find($id);
     
         $category->image = $path;
 
