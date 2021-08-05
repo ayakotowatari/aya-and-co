@@ -325,7 +325,8 @@ export const admin = {
         },
         async scheduleShipment({state, commit}, payload){
 
-            let date= ""
+            let date= "";
+            let allerror = [];
 
             console.log('date', payload.date);
 
@@ -352,6 +353,7 @@ export const admin = {
         async updateScheduleShipment({state, commit}, payload){
 
             let date= ""
+            let allerror = [];
 
             console.log('date', payload.date);
 
@@ -375,6 +377,7 @@ export const admin = {
         async fetchStatuses({state, commit}){
 
             let statuses = [];
+            let allerror = [];
 
             await axios
                 .get('/fetch-statuses')
@@ -390,6 +393,7 @@ export const admin = {
         async updateStatus({state, commit}, payload){
 
             let status = ""
+            let allerror = [];
 
             await axios
                 .post('/update-status', {
@@ -426,6 +430,7 @@ export const admin = {
         async fetchCategory({state, commit}, payload){
 
             let category = {};
+            let allerror = [];
 
             await axios
                 .get('/admin/fetch-category/' + payload.id)
@@ -443,6 +448,7 @@ export const admin = {
             console.log('payload', payload)
 
             let newSubtitle = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/edit-subtitle', {
@@ -464,6 +470,7 @@ export const admin = {
             console.log('payload', payload)
 
             let newDetails = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/edit-details', {
@@ -485,6 +492,7 @@ export const admin = {
             console.log('payload', payload)
 
             let newDescription = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/edit-description', {
@@ -506,6 +514,7 @@ export const admin = {
             console.log('payload', payload)
 
             let newSeason = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/edit-season', {
@@ -527,6 +536,7 @@ export const admin = {
             console.log('payload', payload)
 
             let newIngredients = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/edit-ingredients', {
@@ -548,12 +558,16 @@ export const admin = {
             console.log('payload', payload)
 
             let newImage = "";
+            let allerror = [];
+
+            let data = new FormData();
+            data.append("image", payload.image);
+            data.append("id", payload.id)
+
+            let config = {headers: {'Content-Type': 'multipart/form-data'}};
 
             await axios
-                .post('/admin/edit-image', {
-                    id: payload.id,
-                    image: payload.image
-                })
+                .post('/admin/edit-image', data, config)
                 .then(response => {
                     newImage = response.data.image;
                     commit('setCategoryImage', newImage);
