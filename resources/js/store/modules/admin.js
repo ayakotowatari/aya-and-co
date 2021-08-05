@@ -651,17 +651,20 @@ export const admin = {
 
             let category = {};
 
+            let data = new FormData();
+            data.append("name", payload.name);
+            data.append("subtitle", payload.subtitle);
+            data.append("details", payload.details);
+            data.append("description", payload.description);
+            data.append("season", payload.season);
+            data.append("ingredients", payload.ingredients);
+            data.append("image", payload.image);
+            data.append("status_id", payload.status_id)
+
+            let config = {headers: {'Content-Type': 'multipart/form-data'}};
+
             await axios
-                .post('/admin/create-category', {
-                    name: payload.name,
-                    subtitle: payload.subtitle,
-                    details: payload.details,
-                    description: payload.description,
-                    season: payload.season,
-                    ingredients: payload.ingredients,
-                    image: payload.image,
-                    status_id: payload.status_id
-                })
+                .post('/admin/create-category', data, config)
                 .then(response => {
                     // category = response.data.category;
                     // commit('setCategory', category);
