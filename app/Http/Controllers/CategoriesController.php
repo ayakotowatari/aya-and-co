@@ -228,7 +228,7 @@ class CategoriesController extends Controller
         }else{
             $disk = Storage::disk('s3');
 
-            $path = $disk->putFile('category', $image, 'public');
+            $path = $disk->putFile('event', $image, 'public');
             // $filename = ltrim($path, 'public/');
 
             $category->image = $path;
