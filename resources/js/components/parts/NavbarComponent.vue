@@ -173,11 +173,11 @@ import { mapState } from 'vuex'
       products: [
         { title: 'Vintage', route: '/products/1' },
         { title: 'Morning', route: '/products/2' },
-        { title: 'Serenity', route: '/products/5' },
-        { title: 'Blush', route: '/products/6' },
-        { title: 'Miss You', route: '/products/9' },
-        { title: 'Praise', route: '/products/12' },
-        { title: 'Twilight', route: '/products/13' },
+        { title: 'Serenity', route: '/products/3' },
+        { title: 'Blush', route: '/products/4' },
+        { title: 'Miss You', route: '/products/5' },
+        { title: 'Praise', route: '/products/6' },
+        { title: 'Lemonade', route: '/products/7' },
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},
