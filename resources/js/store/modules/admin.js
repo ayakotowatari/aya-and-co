@@ -88,6 +88,9 @@ export const admin = {
         setCategory(state, payload){
             state.category = payload
         },
+        setCategoryImage(state, payload){
+            state.category.image = payload;
+        },
         setProducts(state, payload){
             state.products = payload
         },
