@@ -6,6 +6,7 @@ use App\Models\Guest;
 use App\Models\GuestAddress;
 use App\Models\Postage;
 use App\Models\ProductInventory;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Notifications\GuestOrderNotify;
 use Notification;
@@ -182,16 +183,20 @@ class GuestsController extends Controller
 
     public function purchase(Request $request){
 
-        $guest = Guest::firstOrCreate(
+        // $guest = Guest::firstOrCreate(
 
-            [
-                'email' => $request->input('email')
-            ],
-            [
-                'name' => $request->input('name')
-                // 'password' => Hash::make(Str::random(12))
-            ]
-        );
+        //     [
+        //         'email' => $request->input('email')
+        //     ],
+        //     [
+        //         'name' => $request->input('name')
+        //         // 'password' => Hash::make(Str::random(12))
+        //     ]
+        // );
+
+        $guest_id = request('guest_id');
+
+        $guest = Guest::find($guest_id);
 
         try {
             $payment = $guest->charge(
@@ -288,11 +293,13 @@ public function orderConfirm (Request $request)
     // DD($order);
 
     $guest_id = $order['guest_id'];
+
+    // DD($guest_id);
     
     $guest = Guest::where('id', $guest_id)
                     ->first();
 
-
+    // DD($guest);
     // DD($guest);
 
     // DD($order);

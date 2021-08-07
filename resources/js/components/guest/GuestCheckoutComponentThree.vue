@@ -327,6 +327,7 @@ export default {
             let total = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0) + this.deliveryAddress.postage
             console.log('total', total);
 
+            this.customer.guest_id = this.guest.id;
             this.customer.name = this.guest.name;
             this.customer.email = this.guest.email;
             this.customer.address = this.guest.address_1 + ' ' + this.guest.building;
