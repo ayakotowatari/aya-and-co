@@ -14,6 +14,19 @@ class CategoriesTableSeeder extends Seeder
         //
         $data = [
             [
+                "name" => 'Summer Meets Autumn',
+                "subtitle" => 'Summer Meets Autumn＝夏から秋へ',
+                "details" => '夏の終わりを告げるレモンマーマレードと、訪れる秋を迎えるいちじくジャム。限られた季節だけのセット。',
+                "description" => NULL,
+                "season" => '8月中旬から9月初旬',
+                "ingredients" => NULL,
+                "image" => NULL,
+                "status_id" => 1,
+                "created_at" => now(),
+                "updated_at" => now(),
+                "deleted_at" => NULL
+            ],
+            [
                 "name" => 'Vintage',
                 "subtitle" => 'ビンテージ＝時を超えて価値のあるもの',
                 "details" => '厚めのピールが大人向けの、熟成されたビンテージのような味わいのビターオレンジマーマレード',
