@@ -162,6 +162,7 @@ export default {
         return{
             stripe: {},
             // cardElement: {},
+            publicKey: process.env.MIX_STRIPE_KEY,
             cardNumber: {},
             cardExpiry: {},
             cardCvc: {},
@@ -194,7 +195,9 @@ export default {
     
     },
     async mounted(){
-        this.stripe = await loadStripe('pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO');
+       
+        //this.stripe = await loadStripe(`${process.env.MIX_STRIPE_KEY}`);
+        this.stripe = await loadStripe(this.publicKey);
 
         let elements = this.stripe.elements();
        
