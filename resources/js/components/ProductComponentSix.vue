@@ -48,7 +48,7 @@
                   購入したい商品をタップして、数量を選び、カートに入れてください。
               </div>
               <v-row v-if="product.length <= 0">
-                <v-col>
+                <v-col v-if="category.id !== 7 && category.id !== 8">
                   <div class="message mb-3">
                     商品のご購入は、シーズンまでしばらくお待ちください。
                   </div>
@@ -62,6 +62,20 @@
                         color="primary"
                     >
                       LINEに友だち追加する
+                    </v-btn>
+                  </div>
+                </v-col>
+                <v-col v-if="category.id == 7 || category.id == 8">
+                  <div class="message mb-3">
+                    この商品は、Summer Meets Autumn（PraiseとLemonade）のセットとしてご購入いただけます。
+                  </div>
+                  <div>
+                    <v-btn
+                        text
+                        color="primary"
+                        @click="toSet()"
+                    >
+                      Summer Meets Autumnのセットへ
                     </v-btn>
                   </div>
                 </v-col>
@@ -334,6 +348,9 @@ export default {
         },
         updateQuantity(item, value){
             item.quantity = value
+        },
+        toSet(){
+          this.$router.push({name: 'products', params: {id: 1}})
         }
     }
 
@@ -442,6 +459,13 @@ export default {
 
 .v-list-item--link:before{
   background-color: transparent !important;
+}
+
+@media(max-width:780px){
+    .page-heading{
+      font-size:32px;
+    }
+    
 }
 
 </style>
