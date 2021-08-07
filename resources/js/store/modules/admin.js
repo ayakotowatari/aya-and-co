@@ -157,7 +157,7 @@ export const admin = {
         setShowEditImage(state, payload){
             state.showEditImage= payload
         },
-        setCategoryIngredients(state, payload){
+        setCategoryImage(state, payload){
             state.category.image = payload
         },
         setShowUpdateInventory(state, payload){

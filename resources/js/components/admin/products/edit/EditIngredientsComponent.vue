@@ -10,7 +10,7 @@
                 counter
                 label="原材料"
                 outlined
-                rows="1"
+                rows="3"
                 :rules="textareaRules"
                 :error="allerror.ingredients ? true : false"
                 :error-messages="allerror.ingredients"
@@ -38,7 +38,7 @@ export default {
         return {
             valid: true,
             ingredients: "",
-            textareaRules: [v => v.length <= 100 || 'Max 100 characters'],
+            textareaRules: [v => v.length <= 200 || 'Max 200 characters'],
         }
     },
     mounted(){

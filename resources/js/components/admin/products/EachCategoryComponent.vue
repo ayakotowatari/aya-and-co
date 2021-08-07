@@ -54,9 +54,9 @@
                                     >更新</v-btn>
                                 </div>
                                 <div v-if="showUpdateCategoryStatus == true">
-                                    <updatedcategorystatus-component
+                                    <updatecategorystatus-component
                                         v-bind:category="category"
-                                    ></updatedcategorystatus-component>
+                                    ></updatecategorystatus-component>
                                 </div>
                             </v-col>
                         </v-row>

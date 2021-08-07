@@ -16,7 +16,7 @@
             <v-btn 
                 outlined
                 @click="update"
-                class="mr-2"
+                class="mb-2"
             >
                 更新する
             </v-btn>
