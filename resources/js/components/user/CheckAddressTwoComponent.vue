@@ -109,7 +109,7 @@ export default {
     data: function(){
         return{
             tab: null,
-            items: ["9:00-12:00", "12:00-14:00", "14:00-16:00"],
+            items: ["希望なし", "9:00-12:00", "12:00-14:00", "14:00-16:00"],
             deliveryTime: '',
         }
     },

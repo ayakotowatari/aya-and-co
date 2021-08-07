@@ -64,7 +64,7 @@
             <v-stepper-content step="1">
                 <checkaddress-component></checkaddress-component>
                 <v-row justify="end">
-                    <v-col cols="4" sm="4" md="1">
+                    <v-col cols="4" sm="4" md="2">
                         <v-btn
                             block
                             color="primary"

@@ -148,7 +148,7 @@ export default {
         return {
             addressGroup: null,
             deliveryTime: '',
-            items: ["9:00-12:00", "12:00-14:00", "14:00-16:00"],
+            items: ["希望なし", "9:00-12:00", "12:00-14:00", "14:00-16:00"],
             address: {},
         }
     },
