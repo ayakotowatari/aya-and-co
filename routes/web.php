@@ -69,14 +69,20 @@ Route::group(['middleware' => ['auth:admin', 'can:super-admin']], function(){
 Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::get('/admin/user', 'AdminsController@index')->name('admin.user');
     Route::get('/orders-shipment', 'OrdersController@shipmentList')->name('admin.shipment.orders');
+    Route::get('/orders-guestshipment', 'OrdersController@guestShipmentList')->name('admin.guestshipment.orders');
     Route::get('/fetch-order/{id}', 'OrdersController@eachOrder')->name('admin.each.order');
+    Route::get('/fetch-guestorder/{id}', 'OrdersController@eachGuestOrder')->name('admin.each.guestorder');
     Route::get('/fetch-orders', 'OrdersController@index')->name('admin.orders');
+    Route::get('/fetch-guestorders', 'OrdersController@guestOrders')->name('admin.guest.orders');
     Route::get('/fetch-shipment/{id}', 'OrdersController@shipmentDetails')->name('admin.orders');
     Route::post('/schedule-shipment', 'OrdersController@scheduleShipment')->name('admin.schedule.shipment');
     Route::post('/update-shipment', 'OrdersController@updateShipment')->name('admin.update.shipment');
     Route::get('/fetch-statuses', 'OrdersController@statuses')->name('admin.statuses');
     Route::post('/update-status', 'OrdersController@updateStatus')->name('admin.update.status');
     Route::post('/input-actualdate', 'OrdersController@actualDate')->name('admin.actual.shipment');
+    Route::post('/update-actualdate', 'OrdersController@updateActualDate')->name('admin.update.actualdate');
+    Route::post('/update-delivereddate', 'OrdersController@updateDeliveredDate')->name('admin.update.delivereddate');
+    Route::post('/input-delivereddate', 'OrdersController@deliveredDate')->name('admin.delivered.date');
     Route::get('/admin/fetch-categories', 'CategoriesController@fetchCategories')->name('admin.fetch.categories');
     Route::get('/admin/fetch-category/{id}', 'CategoriesController@fetchEachCategory')->name('admin.fetch.category');
     Route::get('/admin/fetch-products', 'ProductsController@fetchProducts')->name('admin.fetch.products');

@@ -32,6 +32,9 @@ export const admin = {
        dialogUpdateShipment: false,
        dialogUpdateStatus: false,
        dialogActualDate: false,
+       dialogUpdateActualDate: false,
+       dialogDeliveredDate: false,
+       dialogUpdateDeliveredDate: false,
        statuses: [],
        categoryStatuses: [],
        showEditSubtitle: false,
@@ -112,6 +115,15 @@ export const admin = {
         },
         dialogActualDate(state, payload){
             state.dialogActualDate = payload
+        },
+        dialogUpdateActualDate(state, payload){
+            state.dialogUpdateActualDate = payload
+        },
+        dialogDeliveredDate(state, payload){
+            state.dialogDeliveredDate = payload
+        },
+        dialogUpdateDeliveredDate(state, payload){
+            state.dialogUpdateDeliveredDate = payload
         },
         setStatuses(state, payload){
             state.statuses = payload
@@ -294,6 +306,26 @@ export const admin = {
                     commit('setallErrors', allerror)
                 })
         },
+        async fetchGuestOrder({state, commit}, payload){
+
+            console.log(payload.id);
+
+            let order = {};
+            let products = [];
+
+            await axios
+                .get('/fetch-guestorder/' + payload.id)
+                .then(response => {
+                    order = response.data.order;
+                    products = response.data.products;
+                    commit('setOrder', order);
+                    commit('setOrderedProducts', products);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
         async fetchShipment({state, commit}, payload){
 
             let scheduled_date = "";
@@ -321,6 +353,21 @@ export const admin = {
 
             await axios
                 .get('/orders-shipment')
+                .then(response => {
+                    orders = response.data.orders;
+                    commit('setShipmentOrders', orders);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async fetchGuestShipmentOrders({state, commit}){
+
+            let orders = [];
+
+            await axios
+                .get('/orders-guestshipment')
                 .then(response => {
                     orders = response.data.orders;
                     commit('setShipmentOrders', orders);
@@ -373,6 +420,50 @@ export const admin = {
                     date = res.data.date
                     commit('setPlannedShipmentDate', date)
                     commit('dialogUpdateShipment', false)
+                    // commit('setLoading', false);
+                    // router.push({path: '/check-address'});
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async updateActualDate({state, commit}, payload){
+
+            let date= ""
+            let allerror = [];
+
+            await axios
+                .post('/update-actualdate', {
+                    id: payload.id,
+                    date: payload.updatedActualDate,
+                })
+                .then(res => {
+                    date = res.data.actualDate
+                    commit('setActualShipmentDate', date)
+                    commit('dialogUpdateActualDate', false)
+                    // commit('setLoading', false);
+                    // router.push({path: '/check-address'});
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async updateDeliveredDate({state, commit}, payload){
+
+            let date= ""
+            let allerror = [];
+
+            await axios
+                .post('/update-delivereddate', {
+                    id: payload.id,
+                    date: payload.updatedDeliveredDate,
+                })
+                .then(res => {
+                    date = res.data.deliveredDate
+                    commit('setDeliveredDate', date)
+                    commit('dialogUpdateDeliveredDate', false)
                     // commit('setLoading', false);
                     // router.push({path: '/check-address'});
                 })
@@ -435,6 +526,46 @@ export const admin = {
                     commit('dialogActualDate', false)
                     // commit('setLoading', false);
                     // router.push({path: '/check-address'});
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async inputDeliveredDate({state, commit}, payload){
+
+            let deliveredDate = ""
+            let allerror = [];
+
+            console.log('date', payload.delivered_date);
+            console.log('id', payload.id);
+
+            await axios
+                .post('/input-delivereddate', {
+                    id: payload.id,
+                    delivered_date: payload.delivered_date,
+                })
+                .then(res => {
+                    deliveredDate = res.data.deliveredDate
+                    commit('setDeliveredDate', deliveredDate)
+                    commit('dialogDeliveredDate', false)
+                    // commit('setLoading', false);
+                    // router.push({path: '/check-address'});
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async fetchGuestOrders({state, commit}, payload){
+
+            let orders = [];
+
+            await axios
+                .get('/fetch-guestorders')
+                .then(response => {
+                    orders = response.data.orders;
+                    commit('setOrders', orders)
                 })
                 .catch(error => {
                     allerror = error.response.data.errors,

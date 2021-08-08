@@ -40,7 +40,7 @@
  Vue.component('shipmentschedule-component', require('./components/admin/orders/ShipmentScheduleDialogComponent.vue').default);
  Vue.component('updateshipmentschedule-component', require('./components/admin/orders/UpdateShipmentScheduleDialogComponent.vue').default);
  Vue.component('updatestatusdialog-component', require('./components/admin/orders/UpdateStatusDialogComponent.vue').default);
- Vue.component('eachorder-component', require('./components/admin/orders/EachOrderComponent.vue').default);
+//  Vue.component('eachorder-component', require('./components/admin/orders/EachOrderComponent.vue').default);
  Vue.component('adminlogin-component', require('./components/admin/AdminLoginComponent.vue').default);
  Vue.component('adminregister-component', require('./components/admin/AdminRegisterComponent.vue').default);
  Vue.component('editsubtitle-component', require('./components/admin/products/edit/EditSubtitleComponent.vue').default);
@@ -53,6 +53,9 @@
  Vue.component('updatecategorystatus-component', require('./components/admin/products/edit/UpdateCategoryStatusComponent.vue').default);
  Vue.component('updateproductstatus-component', require('./components/admin/products/edit/UpdateProductStatusComponent.vue').default);
  Vue.component('inputactualdatedialog-component', require('./components/admin/orders/InputActualDateDialogComponent.vue').default);
+ Vue.component('inputdelivereddatedialog-component', require('./components/admin/orders/InputDeliveredDateDialogComponent.vue').default);
+ Vue.component('updateactualdatedialog-component', require('./components/admin/orders/UpdateActualDateDialogComponent.vue').default);
+ Vue.component('updatedelivereddatedialog-component', require('./components/admin/orders/UpdateDeliveredDateDialogComponent.vue').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

@@ -7,7 +7,10 @@ Vue.use(VueRouter);
 import AdminHome from "./components/admin/orders/OrdersListComponent";
 import OrdersList from "./components/admin/orders/OrdersListComponent";
 import ShipmentsList from "./components/admin/orders/ShipmentsListComponent";
+import GuestOrdersList from "./components/admin/orders/GuestOrdersListComponent";
+import GuestShipmentsList from "./components/admin/orders/GuestShipmentsListComponent";
 import EachOrder from "./components/admin/orders/EachOrderComponent";
+import EachGuestOrder from "./components/admin/orders/EachGuestOrderComponent";
 import EachCategory from "./components/admin/products/EachCategoryComponent";
 import EachProduct from "./components/admin/products/EachProductComponent";
 import ProductsList from "./components/admin/products/ProductsListComponent";
@@ -32,12 +35,6 @@ const routes = [
         name: "admin-home" ,
         component: AdminHome
     },
-    
-    {
-        path: "/admin/orders-list" ,
-        name: "orders-list" ,
-        component: OrdersList
-    },
 
     {
         path: "/admin/register" ,
@@ -51,8 +48,13 @@ const routes = [
         component: AdminLogin
     },
 
+    {
+        path: "/admin/orders-list" ,
+        name: "orders-list" ,
+        component: OrdersList
+    },
 
-      {
+    {
         path: "/admin/shipments-list" ,
         name: "shipments-list" ,
         component: ShipmentsList
@@ -62,6 +64,24 @@ const routes = [
         path: "/admin/each-order/:id" ,
         name: "each-order" ,
         component: EachOrder
+    },
+
+    {
+        path: "/admin/each-guestorder/:id" ,
+        name: "each-guestorder" ,
+        component: EachGuestOrder
+    },
+
+    {
+        path: "/admin/guestorders-list" ,
+        name: "guestorders-list" ,
+        component: GuestOrdersList
+    },
+
+    {
+        path: "/admin/guestshipments-list" ,
+        name: "guestshipments-list" ,
+        component: GuestShipmentsList
     },
 
     {

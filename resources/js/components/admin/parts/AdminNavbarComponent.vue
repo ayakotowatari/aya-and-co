@@ -126,8 +126,10 @@ import { mapState } from 'vuex'
         group3: null,
         // itemNumber: 0,
       links: [
-        { title: '全注文リスト', route: '/admin/orders-list' },
-        { title: '発送リスト', route: '/admin/shipments-list' },
+        { title: '顧客注文リスト', route: '/admin/orders-list' },
+        { title: '顧客発送リスト', route: '/admin/shipments-list' },
+        { title: 'ゲスト注文リスト', route: '/admin/guestorders-list' },
+        { title: 'ゲスト発送リスト', route: '/admin/guestshipments-list' },
         {title: 'お問い合わせ', route: '/admin/enquiries'}
        ],
       lists: [

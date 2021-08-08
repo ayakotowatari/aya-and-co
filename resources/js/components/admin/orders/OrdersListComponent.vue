@@ -4,10 +4,10 @@
             <v-col cols="12" sm="12" md="12">
                 <div class="heading-group">
                     <div class="page-heading">
-                        Orders List
+                        Customer Orders List
                     </div>
                     <div class="page-subtitle grey--text text--darken-3">
-                        注文リスト
+                        顧客注文リスト
                     </div>
                 </div>
             </v-col>

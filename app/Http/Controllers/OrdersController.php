@@ -41,6 +41,25 @@ class OrdersController extends Controller
 
     }
 
+    public function guestOrders()
+    {
+        $orders = Order::join('guests', 'guests.id', '=', 'orders.guest_id')
+                    ->join('statuses', 'statuses.id', '=', 'orders.status_id')
+                    ->select(
+                        'orders.id',
+                        'orders.created_at',
+                        'guests.id as guest_id',
+                        'guests.name as guest_name',
+                        'guests.email as guest_email',
+                        'guests.phone as guest_phone',
+                        'statuses.status',
+                    )
+                    ->get();
+        // DD($orders);
+        return response() -> json(['orders' => $orders]);  
+
+    }
+
     //adminのために各注文詳細を取得
     public function eachOrder(Request $request, $id)
     {
@@ -64,6 +83,64 @@ class OrdersController extends Controller
                         'users.city as user_city',
                         'users.address_1 as user_address_1',
                         'users.building as user_building',
+                        'orders.delivery_name',
+                        'orders.delivery_zipcode',
+                        'orders.delivery_prefecture',
+                        'orders.delivery_city',
+                        'orders.delivery_address_1',
+                        'orders.delivery_building',
+                        'orders.delivery_phone',
+                        'orders.delivery_time',
+                        'orders.postage',
+                        'orders.total',
+                        'statuses.status',
+                        // 'shipments.scheduled_date',
+                        // 'shipments.actual_date'
+                    )
+                    ->first();
+
+        // DD($order);
+
+        $products = Product::join('order_product', 'order_product.product_id', '=', 'products.id')
+                        ->join('orders', 'orders.id', '=', 'order_product.order_id')
+                        ->where('orders.id', $order_id)
+                        ->select(
+                            'products.name', 
+                            'products.size', 
+                            'products.price',
+                            'order_product.quantity',
+                            'orders.postage',
+                            'orders.total'
+                        )
+                        ->get();
+       
+        // DD($orders);
+        return response() -> json(['order' => $order, 'products' => $products]);  
+
+    }
+
+    public function eachGuestOrder(Request $request, $id)
+    {
+        $order_id = $id;
+        
+        // DD($order_id);
+        
+        $order = Order::join('guests', 'guests.id', '=', 'orders.guest_id')
+                    ->join('statuses', 'statuses.id', '=', 'orders.status_id')
+                    // ->join('shipments', 'shipments.order_id', '=', 'orders.id')
+                    ->where('orders.id', $order_id)
+                    ->select(
+                        'orders.id',
+                        'orders.created_at',
+                        'guests.id as guest_id',
+                        'guests.name as guest_name',
+                        'guests.email as guest_email',
+                        'guests.phone as guest_phone',
+                        'guests.zipcode as guest_zipcode',
+                        'guests.prefecture as guest_prefecture',
+                        'guests.city as guest_city',
+                        'guests.address_1 as guests_address_1',
+                        'guests.building as guests_building',
                         'orders.delivery_name',
                         'orders.delivery_zipcode',
                         'orders.delivery_prefecture',
@@ -149,6 +226,40 @@ class OrdersController extends Controller
 
     }
 
+    public function guestShipmentList()
+    {
+        $orders = Order::join('guests', 'guests.id', '=', 'orders.guest_id')
+                    ->join('shipments', 'shipments.order_id', '=', 'orders.id')
+                    ->join('statuses', 'statuses.id', '=', 'orders.status_id')
+                    ->where('orders.status_id', '=', 3)
+                    ->orWhere('orders.status_id', '=', 5)
+                    ->select(
+                        'orders.id',
+                        'orders.delivery_name', 
+                        'orders.delivery_zipcode', 
+                        'orders.delivery_prefecture',
+                        'orders.delivery_city',
+                        'orders.delivery_address_1',
+                        'orders.delivery_building',
+                        'orders.delivery_phone',
+                        'orders.delivery_time',
+                        'statuses.status',
+                        'shipments.scheduled_date',
+                        'guests.id as guest_id',
+                        'guests.name as guest_name',
+                        'guests.zipcode',
+                        'guests.prefecture',
+                        'guests.city',
+                        'guests.address_1',
+                        'guests.building',
+                        'guests.phone',
+                    )
+                    ->get();
+        // DD($orders);
+        return response() -> json(['orders' => $orders]);  
+
+    }
+
     public function scheduleShipment(Request $request)
     {
         $request->validate([
@@ -206,6 +317,66 @@ class OrdersController extends Controller
         $date = $shipment->actual_date;
 
         return response() -> json(['actualDate' => $date]); 
+        
+    }
+
+    public function updateActualDate (Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required',
+            'date' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $shipment = Shipment::where('order_id', $id)->first();
+        $shipment->actual_date = request('date');
+        $shipment->update();
+
+        $date = $shipment->actual_date;
+
+        return response() -> json(['actualDate' => $date]); 
+        
+    }
+
+    public function updateDeliveredDate (Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required',
+            'date' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $shipment = Shipment::where('order_id', $id)->first();
+        $shipment->delivered_date = request('date');
+        $shipment->update();
+
+        $date = $shipment->delivered_date;
+
+        return response() -> json(['deliveredDate' => $date]); 
+        
+    }
+
+    public function deliveredDate (Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required',
+            'delivered_date' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $shipment = Shipment::where('order_id', $id)->first();
+        $shipment->delivered_date = request('delivered_date');
+        $shipment->update();
+
+        $date = $shipment->delivered_date;
+
+        return response() -> json(['deliveredDate' => $date]); 
         
     }
 

@@ -88,6 +88,13 @@
                                 @click="inputActualDate"
                             >設定</v-btn>
                         </div>
+                        <div v-if="actualShipmentDate !== null">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                @click="updateActualDate"
+                            >更新</v-btn>
+                        </div>
                     </div>
                     <div>
                         <div class="item-content">
@@ -98,6 +105,20 @@
                         </div>
                         <div class="item-title" v-if="deliveredDate === null">
                             未配達
+                        </div>
+                        <div v-if="deliveredDate === null">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                @click="inputDeliveredDate"
+                            >設定</v-btn>
+                        </div>
+                        <div v-if="deliveredDate !== null">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                @click="updateDeliveredDate"
+                            >更新</v-btn>
                         </div>
                     </div>
                 </v-col>
@@ -220,7 +241,7 @@
                             </v-card>
                         </v-col>
                     </v-row>
-                    <h4 class="jp-font grey--text text--darken-3 mb-4">送付先</h4>
+                    <h4 class="jp-font grey--text text--darken-3 mb-10">送付先</h4>
                     <v-row>
                         <v-col cols="12" sm="12" md="6">
                             <v-card
@@ -238,6 +259,9 @@
                                         </v-list-item-title>
                                         <v-list-item-title v-if="order.user_building !== null" class="jp-font-400">
                                             {{order.delivery_building}}
+                                        </v-list-item-title>
+                                        <v-list-item-title class="jp-font-400">
+                                            {{order.delivery_name}}様
                                         </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -283,6 +307,18 @@
             v-bind:dialogActualDate="dialogActualDate"
             v-bind:order="order"
         ></inputactualdatedialog-component>
+        <updateactualdatedialog-component
+            v-bind:dialogUpdateActualDate="dialogUpdateActualDate"
+            v-bind:order="order"
+        ></updateactualdatedialog-component>
+        <inputdelivereddatedialog-component
+            v-bind:dialogDeliveredDate="dialogDeliveredDate"
+            v-bind:order="order"
+        ></inputdelivereddatedialog-component>
+        <updatedelivereddatedialog-component
+            v-bind:dialogUpdateDeliveredDate="dialogUpdateDeliveredDate"
+            v-bind:order="order"
+        ></updatedelivereddatedialog-component>
     </div>
 </template>
 
@@ -317,6 +353,9 @@ export default {
             'dialogUpdateShipment',
             'dialogUpdateStatus',
             'dialogActualDate',
+            'dialogUpdateActualDate',
+            'dialogDeliveredDate',
+            'dialogUpdateDeliveredDate',
             'plannedShipmentDate',
             'actualShipmentDate',
             'deliveredDate',
@@ -347,6 +386,15 @@ export default {
         },
         inputActualDate(){
             this.$store.commit('admin/dialogActualDate', true)
+        },
+        updateActualDate(){
+            this.$store.commit('admin/dialogUpdateActualDate', true)
+        },
+        inputDeliveredDate(){
+            this.$store.commit('admin/dialogDeliveredDate', true)
+        },
+        updateDeliveredDate(){
+            this.$store.commit('admin/dialogUpdateDeliveredDate', true)
         },
         formatPrice(value){
           let price = value;
