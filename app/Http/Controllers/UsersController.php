@@ -305,12 +305,20 @@ public function purchase(Request $request){
 
     $user = Auth::user();
 
+    // $payment_method_id = request('payment_method_id');
+    // $payment_method_id = $request->input('payment_method_id');
+    // DD($payment_method_id);
+
+    // DD($user);
+
     try {
 
         $payment = $user->charge(
             $request->input('amount'),
             $request->input('payment_method_id')
         );
+
+        // DD($payment);
 
         $payment = $payment->asStripePaymentIntent();
 
