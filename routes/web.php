@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::post('/update-shipment', 'OrdersController@updateShipment')->name('admin.update.shipment');
     Route::get('/fetch-statuses', 'OrdersController@statuses')->name('admin.statuses');
     Route::post('/update-status', 'OrdersController@updateStatus')->name('admin.update.status');
+    Route::post('/input-actualdate', 'OrdersController@actualDate')->name('admin.actual.shipment');
     Route::get('/admin/fetch-categories', 'CategoriesController@fetchCategories')->name('admin.fetch.categories');
     Route::get('/admin/fetch-category/{id}', 'CategoriesController@fetchEachCategory')->name('admin.fetch.category');
     Route::get('/admin/fetch-products', 'ProductsController@fetchProducts')->name('admin.fetch.products');

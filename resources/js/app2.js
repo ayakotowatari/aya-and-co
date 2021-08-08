@@ -52,6 +52,7 @@
  Vue.component('updateinventory-component', require('./components/admin/products/UpdateInventoryComponent.vue').default);
  Vue.component('updatecategorystatus-component', require('./components/admin/products/edit/UpdateCategoryStatusComponent.vue').default);
  Vue.component('updateproductstatus-component', require('./components/admin/products/edit/UpdateProductStatusComponent.vue').default);
+ Vue.component('inputactualdatedialog-component', require('./components/admin/orders/InputActualDateDialogComponent.vue').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

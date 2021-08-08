@@ -31,6 +31,7 @@ export const admin = {
        dialogShipment: false,
        dialogUpdateShipment: false,
        dialogUpdateStatus: false,
+       dialogActualDate: false,
        statuses: [],
        categoryStatuses: [],
        showEditSubtitle: false,
@@ -108,6 +109,9 @@ export const admin = {
         },
         dialogUpdateStatus(state, payload){
             state.dialogUpdateStatus = payload
+        },
+        dialogActualDate(state, payload){
+            state.dialogActualDate = payload
         },
         setStatuses(state, payload){
             state.statuses = payload
@@ -407,6 +411,28 @@ export const admin = {
                     status = res.data.status
                     commit('updateOrderStatus', status)
                     commit('dialogUpdateStatus', false)
+                    // commit('setLoading', false);
+                    // router.push({path: '/check-address'});
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        async inputActualDate({state, commit}, payload){
+
+            let actualDate = ""
+            let allerror = [];
+
+            await axios
+                .post('/input-actualdate', {
+                    id: payload.id,
+                    actual_date: payload.actual_date,
+                })
+                .then(res => {
+                    actualDate = res.data.actualDate
+                    commit('setActualShipmentDate', actualDate)
+                    commit('dialogActualDate', false)
                     // commit('setLoading', false);
                     // router.push({path: '/check-address'});
                 })

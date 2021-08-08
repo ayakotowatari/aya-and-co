@@ -21,6 +21,12 @@
                                     >
                                         設定する
                                     </v-btn>
+                                    <v-btn 
+                                        outlined
+                                        @click="this.$store.commit('admin/dialogShipment', false)"
+                                    >
+                                        戻る
+                                    </v-btn>
                                 </v-form>
                             </v-col>
                         </v-row>

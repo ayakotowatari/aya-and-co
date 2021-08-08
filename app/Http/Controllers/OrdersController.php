@@ -20,6 +20,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::join('users', 'users.id', '=', 'orders.user_id')
+                    // ->join('guests', 'guests.id', '=', 'orders.guest_id')
                     ->join('statuses', 'statuses.id', '=', 'orders.status_id')
                     ->select(
                         'orders.id',
@@ -28,6 +29,10 @@ class OrdersController extends Controller
                         'users.name as user_name',
                         'users.email as user_email',
                         'users.phone as user_phone',
+                        // 'guests.id as guest_id',
+                        // 'guests.name as guest_name',
+                        // 'guests.email as guest_email',
+                        // 'guests.phone as guest_phone',
                         'statuses.status',
                     )
                     ->get();
@@ -182,6 +187,26 @@ class OrdersController extends Controller
         $date = $shipment->scheduled_date;
 
         return response() -> json(['date' => $date]); 
+    }
+
+    public function actualDate (Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required',
+            'actual_date' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $shipment = Shipment::where('order_id', $id)->first();
+        $shipment->actual_date = request('actual_date');
+        $shipment->update();
+
+        $date = $shipment->actual_date;
+
+        return response() -> json(['actualDate' => $date]); 
+        
     }
 
     //会員のために各注文詳細を取得

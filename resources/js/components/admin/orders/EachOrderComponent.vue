@@ -81,6 +81,13 @@
                         <div class="item-title" v-if="actualShipmentDate === null">
                             未発送
                         </div>
+                        <div v-if="actualShipmentDate === null">
+                            <v-btn
+                                color="primary"
+                                outlined
+                                @click="inputActualDate"
+                            >設定</v-btn>
+                        </div>
                     </div>
                     <div>
                         <div class="item-content">
@@ -261,17 +268,21 @@
             </v-row>
         </v-container> 
         <shipmentschedule-component
-                v-bind:dialogShipment="dialogShipment"
-                v-bind:order="order"
-            ></shipmentschedule-component>
-            <updateshipmentschedule-component
-                v-bind:dialogUpdateShipment="dialogUpdateShipment"
-                v-bind:order="order"
-            ></updateshipmentschedule-component>
-            <updatestatusdialog-component
-                v-bind:dialogUpdateStatus="dialogUpdateStatus"
-                v-bind:order="order"
-            ></updatestatusdialog-component>
+            v-bind:dialogShipment="dialogShipment"
+            v-bind:order="order"
+        ></shipmentschedule-component>
+        <updateshipmentschedule-component
+            v-bind:dialogUpdateShipment="dialogUpdateShipment"
+            v-bind:order="order"
+        ></updateshipmentschedule-component>
+        <updatestatusdialog-component
+            v-bind:dialogUpdateStatus="dialogUpdateStatus"
+            v-bind:order="order"
+        ></updatestatusdialog-component>
+        <inputactualdatedialog-component
+            v-bind:dialogActualDate="dialogActualDate"
+            v-bind:order="order"
+        ></inputactualdatedialog-component>
     </div>
 </template>
 
@@ -305,6 +316,7 @@ export default {
             'dialogShipment',
             'dialogUpdateShipment',
             'dialogUpdateStatus',
+            'dialogActualDate',
             'plannedShipmentDate',
             'actualShipmentDate',
             'deliveredDate',
@@ -332,6 +344,9 @@ export default {
         },
         updateDate(){
             this.$store.commit('admin/dialogUpdateShipment', true)
+        },
+        inputActualDate(){
+            this.$store.commit('admin/dialogActualDate', true)
         },
         formatPrice(value){
           let price = value;
