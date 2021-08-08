@@ -69,6 +69,13 @@
                         </v-row>
                     </v-col>
                 </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="12" md="6">
+                        <div class="totalprice grey--text text--darken-2">
+                            お支払いには、Stripeの決済プラットフォームを使用しています。本サイトにはお客様のクレジットカード番号は保存されませんので、安心してご利用ください。
+                        </div>
+                    </v-col>
+                </v-row>
                 <!-- <v-row justify="center">
                     <v-col cols="12" sm="12" md="4">
                         {{user.name}} 様のご購入手続き
@@ -274,7 +281,7 @@ export default {
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(cartAmount);
+            //console.log(cartAmount);
             return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         // totalPrice(){
@@ -335,10 +342,10 @@ export default {
             this.loading = true;
 
             let itemTotal = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-            console.log('itemTotal', itemTotal);
+            //console.log('itemTotal', itemTotal);
 
             let total = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0) + this.deliveryAddress.postage
-            console.log('total', total);
+            //console.log('total', total);
 
             this.customer.name = this.user.name;
             this.customer.email = this.user.email;
@@ -380,21 +387,21 @@ export default {
 
             if(error) {
                 this.paymentProcessing = false; 
-                console.error(error);
+                //console.error(error);
             }else{
-                console.log('paymentMethod', paymentMethod);
+                //console.log('paymentMethod', paymentMethod);
                 this.customer.payment_method_id = paymentMethod.id;
                 // this.customer.amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
                 this.customer.amount = total;
                 this.customer.cart = JSON.stringify(this.$store.state.cart);
 
-                console.log('cart', this.customer.cart);
+                //console.log('cart', this.customer.cart);
             }
 
             axios.post('/purchase', this.customer)
             .then((response) => {
                 this.paymentProcessing = false;
-                console.log('response', response);
+                //console.log('response', response);
 
                 this.$store.commit('updateOrder', response.data);
                 this.$store.dispatch('showDialogThankYou');
@@ -408,23 +415,23 @@ export default {
             .catch((error) => {
                 this.paymentProcessing = false;
                 this.loading = false;
-                console.error(error);
+                //console.log(error);
                 this.message = error.response.data.message;
                 this.$store.commit('setCheckoutErrorMessage', this.message);
                 this.$store.commit('setCheckoutSnackbar', true);
             })
         },
-        async test(){
+        // async test(){
 
-            this.customer.cart = JSON.stringify(this.$store.state.cart);
-            console.log(this.customer.cart)
+        //     this.customer.cart = JSON.stringify(this.$store.state.cart);
+        //     //console.log(this.customer.cart)
 
-            axios.post('/test', this.customer)
-            .then((response) => {
-                console.log(response)
-            })
+        //     axios.post('/test', this.customer)
+        //     .then((response) => {
+        //         console.log(response)
+        //     })
 
-        }
+        // }
     },
 }
 </script>

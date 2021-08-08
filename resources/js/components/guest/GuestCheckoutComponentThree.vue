@@ -262,7 +262,7 @@ export default {
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(cartAmount);
+            //console.log(cartAmount);
             return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         // totalPrice(){
@@ -323,10 +323,10 @@ export default {
             this.loading = true;
 
             let itemTotal = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-            console.log('itemTotal', itemTotal);
+            //console.log('itemTotal', itemTotal);
 
             let total = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0) + this.deliveryAddress.postage
-            console.log('total', total);
+            //console.log('total', total);
 
             this.customer.guest_id = this.guest.id;
             this.customer.name = this.guest.name;
@@ -369,7 +369,7 @@ export default {
 
             if(error) {
                 this.paymentProcessing = false; 
-                console.error(error);
+                //console.error(error);
             }else{
                 console.log('paymentMethod', paymentMethod);
                 this.customer.payment_method_id = paymentMethod.id;
@@ -381,7 +381,7 @@ export default {
             axios.post('/guest/purchase', this.customer)
             .then((response) => {
                 this.paymentProcessing = false;
-                console.log('response', response);
+                //console.log('response', response);
 
                 this.$store.commit('updateOrder', response.data);
                 this.$store.dispatch('showDialogThankYouGuest');
@@ -395,7 +395,7 @@ export default {
             .catch((error) => {
                 this.paymentProcessing = false;
                 this.loading = false;
-                console.error(error);
+                //console.error(error);
                 this.message = error.response.data.message;
                 this.$store.commit('setCheckoutErrorMessage', this.message);
                 this.$store.commit('setCheckoutSnackbar', true);
