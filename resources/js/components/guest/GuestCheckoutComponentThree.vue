@@ -371,7 +371,7 @@ export default {
                 this.paymentProcessing = false; 
                 console.error(error);
             }else{
-                console.log(paymentMethod);
+                console.log('paymentMethod', paymentMethod);
                 this.customer.payment_method_id = paymentMethod.id;
                 // this.customer.amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
                 this.customer.amount = total;
@@ -381,7 +381,7 @@ export default {
             axios.post('/guest/purchase', this.customer)
             .then((response) => {
                 this.paymentProcessing = false;
-                console.log(response);
+                console.log('response', response);
 
                 this.$store.commit('updateOrder', response.data);
                 this.$store.dispatch('showDialogThankYouGuest');
