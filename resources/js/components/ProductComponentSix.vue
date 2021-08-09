@@ -29,7 +29,7 @@
               </div>
               <div class="mb-6">
                 <div class="season-title">
-                  主原材料
+                  原材料
                 </div>
                 <div v-html="category.ingredients" class="item-content">
                 </div>
@@ -180,7 +180,7 @@
               >
                 <v-img
                     height="150"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                    :src="otherCategory.absolute_path"
                 > 
                 </v-img>
                 <v-card-text>
@@ -370,6 +370,10 @@ export default {
   margin-top: 24px;
 }
 
+.lg{
+  display: block;
+}
+
 .message{
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 400;
@@ -465,6 +469,11 @@ export default {
     .page-heading{
       font-size:32px;
     }
+
+    .lg{
+      display: none;
+    }
+
     
 }
 
