@@ -21,7 +21,7 @@
                     このページは、ただいま準備中です。
                 </div>
                 <div class="jp-font-400 grey--text text--darken-2">
-                    お問い合わせは、ayaandco.info@gmail.com までお送りください。
+                    準備のあいだ、<a href="https://forms.gle/kSJ8nj9ennqwvvai8" target="_blank" rel="noopener noreferrer">こちらのフォーム</a>よりお問い合わせをお送りください。                
                 </div>
             </v-col>
         </v-row>
@@ -55,5 +55,8 @@ export default {
 </script>
 
 <style>
+a{
+    text-decoration: none;
+}
 
 </style>

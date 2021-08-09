@@ -17,6 +17,7 @@ import Sustainability from "./components/SustainabilityComponent";
 import Faq from "./components/FaqComponent";
 import Policy from "./components/PolicyComponent";
 import Contact from "./components/ContactComponent";
+import Postages from "./components/PostagesComponent";
 
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
 // import CheckAddress from "./components/user/CheckAddressComponent";
@@ -81,6 +82,12 @@ const routes = [
         path: "/policy",
         name: "policy",
         component: Policy
+    },
+
+    {
+        path: "/postages",
+        name: "postages",
+        component: Postages
     },
 
     {
