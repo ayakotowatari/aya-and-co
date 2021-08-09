@@ -10,7 +10,7 @@
                 counter
                 label="説明文"
                 outlined
-                rows="3"
+                rows="10"
                 :rules="textareaRules"
                 :error="allerror.description ? true : false"
                 :error-messages="allerror.description"
@@ -38,7 +38,7 @@ export default {
         return {
             valid: true,
             description: "",
-            textareaRules: [v => v.length <= 100 || 'Max 100 characters'],
+            textareaRules: [v => v.length <= 400 || 'Max 400 characters'],
         }
     },
     mounted(){

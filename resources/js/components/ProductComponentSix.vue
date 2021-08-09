@@ -2,7 +2,7 @@
   <v-container>
       <div class="page-visual">
           <v-img
-              src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+              :src="category.absolute_path"
           ></v-img>
       </div>
       <v-row>
@@ -112,7 +112,7 @@
                                           color="grey"
                                       >
                                           <v-img
-                                          src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                                          :src="category.absolute_path"
                                           ></v-img>
                                       </v-list-item-avatar>
                                       </v-list-item>
