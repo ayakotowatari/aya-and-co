@@ -16,7 +16,14 @@
             <v-toolbar-title>
                 <v-img
                     max-width=120
+                    v-if="$vuetify.breakpoint.md || $vuetify.breakpoint.lg || $vuetify.breakpoint.sm"
                     src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg"
+                >
+                </v-img>
+                <v-img
+                    max-width=120
+                    v-if="$vuetify.breakpoint.xs"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.png"
                 >
                 </v-img>
             </v-toolbar-title>
@@ -171,13 +178,14 @@ import { mapState } from 'vuex'
         { title: '環境にやさしい包装について', route: '/sustainability'},
        ],
       products: [
-        { title: 'Vintage', route: '/products/1' },
-        { title: 'Morning', route: '/products/2' },
-        { title: 'Serenity', route: '/products/3' },
-        { title: 'Blush', route: '/products/4' },
-        { title: 'Miss You', route: '/products/5' },
-        { title: 'Praise', route: '/products/6' },
-        { title: 'Lemonade', route: '/products/7' },
+        { title: 'Summer Meets Autumn', route: '/products/1' },
+        { title: 'Vintage', route: '/products/2' },
+        { title: 'Morning', route: '/products/3' },
+        { title: 'Serenity', route: '/products/4' },
+        { title: 'Blush', route: '/products/5' },
+        { title: 'Miss You', route: '/products/6' },
+        { title: 'Praise', route: '/products/7' },
+        { title: 'Lemonade', route: '/products/8' },
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},
@@ -263,6 +271,10 @@ import { mapState } from 'vuex'
 }
 .v-toolbar__content{
     margin-bottom: 40px;
+}
+
+@media(max-width:780px){
+    
 }
 
 </style>

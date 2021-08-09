@@ -179,7 +179,7 @@
                 
               >
                 <v-img
-                    height="150"
+                    max-height="200"
                     :src="otherCategory.absolute_path"
                 > 
                 </v-img>
