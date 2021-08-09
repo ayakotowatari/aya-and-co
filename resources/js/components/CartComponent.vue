@@ -157,9 +157,9 @@
         </div>
         <div class="divider-image">
          <v-img
-             max-width=90
+             max-width=120
              class="mx-auto"
-             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/lemon.png"
+             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange_2.png"
           ></v-img>
         </div>
         <div class="subheading">

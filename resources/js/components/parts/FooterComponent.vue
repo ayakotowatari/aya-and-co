@@ -69,7 +69,7 @@ export default {
     font-family: mrs-eaves, serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 32px;
+    font-size: 24px;
 }
 
 </style>
