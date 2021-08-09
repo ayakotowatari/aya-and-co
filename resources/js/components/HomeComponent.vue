@@ -52,7 +52,7 @@
                 
               >
                 <v-img
-                    height="150"
+                    max-height="200"
                     :src="category.absolute_path"
                 > 
                 </v-img>
