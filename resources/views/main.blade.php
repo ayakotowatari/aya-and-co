@@ -6,6 +6,19 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>aya & co.</title>
+        <meta name="description" content="心地よい時間をつくる、一瓶のマーマレード。">
+        <link rel="canonical" href="https://www.ayaandco.com/">
+        <meta property="og:title" content="aya & co.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.ayaandco.com/">
+        <meta property="og:image" content="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/key_bagel.JPG">
+        <meta property="og:site_name" content="aya & co.">
+        <meta property="og:description" content="心地よい時間をつくる、一瓶のマーマレード">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="aya & co.">
+        <meta name="twitter:description" content="心地よい時間をつくる、一瓶のマーマレード">
+        <meta name="twitter:image" content="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/key_bagel.JPG">
+        <meta name="format-detection" content="telephone=no">
 
         <!--favicon -->
         <!-- <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
