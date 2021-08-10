@@ -274,6 +274,9 @@ import { mapState } from 'vuex'
 }
 
 @media(max-width:780px){
+    .v-navigation-drawer{
+        display: list-item;
+    }
     
 }
 
