@@ -20,16 +20,9 @@
                 <div class="jp-font-400 grey--text text--darken-2 mb-4">
                     ご購入いただいた商品の発送には、１件につき、以下の日本郵便による送料がかかります。
                 </div>
-                <div class="divider-image">
+                <div class="divider-image delivery-image">
                     <v-img
-                        v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md || $vuetify.breakpoint.lg"
                         max-width=120
-                        class="mx-auto"
-                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/delivery.png"
-                    ></v-img>
-                    <v-img
-                        v-if="$vuetify.breakpoint.xs"
-                        max-width=180
                         class="mx-auto"
                         src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/delivery.png"
                     ></v-img>
@@ -94,4 +87,9 @@ export default {
     text-decoration: none;
 }
 
+@media(max-width:780px){
+   .delivery-image{
+       max-width: 100px;
+   }
+}
 </style>
