@@ -85,7 +85,7 @@ const routes = [
     },
 
     {
-        path: "/postages",
+        path: "/postage",
         name: "postages",
         component: Postages
     },

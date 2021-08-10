@@ -44,6 +44,7 @@ Route::get('/fetch-product/{id}', 'ProductsController@show')->name('product');
 Route::get('/fetch-categories', 'CategoriesController@index')->name('categories');
 Route::get('/ajax/zipcode/{val}', 'OrdersController@zipcode')->name('zipcode');
 Route::get('/fetch-inventory/{id}', 'ProductsController@inventory')->name('inventory.quantity');
+Route::get('/fetch-postages', 'OrdersController@postage')->name('postages');
 
 // Route::get('/cart', 'ProductsController@addToCart')->name('add.cart');
 

@@ -55,7 +55,7 @@
                     </div>
                     <div class="item-title">
                         送料<br>
-                        日本郵便の運賃によります。詳しくは、<router-link to="/postages">送料のページ</router-link>をご覧ください。
+                        日本郵便の運賃によります。詳しくは、<router-link to="/postage">送料のページ</router-link>をご覧ください。
                     </div>
                 </div>
                 <div class="mb-6">

@@ -16,7 +16,21 @@
             <v-col cols="12" sm="12" md="4" class="hidden-sm-and-down">
 
             </v-col>
-            <v-col cols="12" sm="12" md="8">
+            <v-col cols="12" sm="12" md="8" v-for="item in items" :key="item.title">
+                <!-- <div>
+                    {{ item.title }}
+                </div>
+                <div>
+                    {{ item.text }}
+                </div>
+                <v-row>
+                    <v-col md="4">
+                        {{ item.title }}
+                    </v-col>
+                    <v-col md="8">
+                        {{ item.text }}
+                    </v-col>
+                </v-row> -->
                 <div class="jp-font-400 grey--text text--darken-2 mb-4">
                     このページは、ただいま準備中です。
                 </div>
@@ -29,6 +43,9 @@
 export default {
     data: function(){
         return {
+            // items:  [
+            //     {title: '送料はいくらですか？', text: '<router-link to:"/postage">こちらのページ</router-link>でご覧いただけます。'},
+            // ],
             
         }
     },

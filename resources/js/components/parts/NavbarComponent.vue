@@ -198,6 +198,7 @@ import { mapState } from 'vuex'
       ],
       items:  [
         {title: 'お問い合わせ', route: '/contact'},
+        {title: '送料について', route: '/postage'},
         {title: 'よくある質問', route: "/faq"},
         {title: '特定商取引法に基づく表記', route:"/policy"}
       ],

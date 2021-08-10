@@ -80,47 +80,47 @@
                   </div>
                 </v-col>
               </v-row>
-              <div v-if="product.length >= 1">
-                <v-list-item-group v-model="itemGroup">
-                    <v-row>
-                        <v-col cols="12" sm="12" md="6">
-                            <v-list-item v-for="(item, index) in product" :key="item.id" :value='item'>
-                                <v-card
-                                      :class="{'elevation-6': activeIndex === index}"
-                                      class="mx-auto mb-6"
-                                      outlined
-                                      @click="inventory(item.id, index)"
-                                  >   
-                                      <v-list-item three-line>
-                                      <v-list-item-content>
-                                          <div class="product-name mb-1">
-                                          {{item.name}}
-                                          </div>
-                                          <div class="product-size mb-4">
-                                          {{item.size}}
-                                          </div>
-                                          <div class="product-price mb-6">
-                                          {{formatPrice(item.price)}} <span class="jp-font-300 tax">（税込）</span>
-                                          </div>
-                                          <div v-if="item.inventory <= 5" class="stock jp-font-400 grey--text text--darken-2">
-                                            残り{{item.inventory}}個
-                                          </div>
-                                      </v-list-item-content>
-                                      <v-list-item-avatar
-                                          tile
-                                          size="80"
-                                          color="grey"
-                                      >
-                                          <v-img
-                                          :src="category.absolute_path"
-                                          ></v-img>
-                                      </v-list-item-avatar>
-                                      </v-list-item>
-                          </v-card>
-                            </v-list-item>
-                        </v-col>
-                    </v-row>
-                </v-list-item-group>
+              <div v-if="product.length >= 1 && category.id !== 25">
+                    <v-list-item-group v-model="itemGroup">
+                        <v-row>
+                            <v-col cols="12" sm="12" md="6">
+                                <v-list-item v-for="(item, index) in product" :key="item.id" :value='item'>
+                                    <v-card
+                                          :class="{'elevation-6': activeIndex === index}"
+                                          class="mx-auto mb-6"
+                                          outlined
+                                          @click="inventory(item.id, index)"
+                                      >   
+                                          <v-list-item three-line>
+                                          <v-list-item-content>
+                                              <div class="product-name mb-1">
+                                              {{item.name}}
+                                              </div>
+                                              <div class="product-size mb-4">
+                                              {{item.size}}
+                                              </div>
+                                              <div class="product-price mb-6">
+                                              {{formatPrice(item.price)}} <span class="jp-font-300 tax">（税込・送料別）</span>
+                                              </div>
+                                              <div v-if="item.inventory <= 5" class="stock jp-font-400 grey--text text--darken-2">
+                                                残り{{item.inventory}}個
+                                              </div>
+                                          </v-list-item-content>
+                                          <v-list-item-avatar
+                                              tile
+                                              size="80"
+                                              color="grey"
+                                          >
+                                              <v-img
+                                              :src="category.absolute_path"
+                                              ></v-img>
+                                          </v-list-item-avatar>
+                                          </v-list-item>
+                                    </v-card>
+                                </v-list-item>
+                            </v-col>
+                        </v-row>
+                    </v-list-item-group>
                     <v-row>
                         <v-col cols="4" sm="4" md="2">
                             <v-select
@@ -131,33 +131,103 @@
                             ></v-select>
                         </v-col>
                     </v-row>
-                        <div class="mb48">
-                            <v-btn
-                                outlined
-                                text
-                                @click="add()">
-                                カートに入れる
-                            </v-btn>
-                            <v-btn
-                                v-if="cart !== null"
-                                outlined
-                                text
-                                @click="$router.push({name: 'cart'})"
-                            >
-                                カートをみる
-                            </v-btn>
-                        </div>
-                  
+                    <div class="mb24">
+                        <v-btn
+                            outlined
+                            text
+                            @click="add()">
+                            カートに入れる
+                        </v-btn>
+                        <v-btn
+                            v-if="cart !== null"
+                            outlined
+                            text
+                            @click="$router.push({name: 'cart'})"
+                        >
+                            カートをみる
+                        </v-btn>
                     </div>
+                </div>
+                <div v-if="product.length >= 1 && category.id == 25">
+                    <v-list-item-group v-model="itemGroup">
+                        <v-row>
+                            <v-col cols="12" sm="12" md="6">
+                                <v-list-item v-for="(item, index) in product" :key="item.id" :value='item'>
+                                    <v-card
+                                          :class="{'elevation-6': activeIndex === index}"
+                                          class="mx-auto mb-6"
+                                          outlined
+                                          @click="inventory(item.id, index)"
+                                      >   
+                                          <v-list-item three-line>
+                                          <v-list-item-content>
+                                              <div class="product-name mb-1">
+                                              {{item.name}}
+                                              </div>
+                                              <div class="product-size mb-4">
+                                              {{item.size}}
+                                              </div>
+                                              <div class="product-price mb-6">
+                                              {{formatPrice(item.price)}} <span class="jp-font-300 tax">（税込・送料別）</span>
+                                              </div>
+                                              <div v-if="item.inventory <= 5" class="stock jp-font-400 grey--text text--darken-2">
+                                                残り{{item.inventory}}個
+                                              </div>
+                                          </v-list-item-content>
+                                          <v-list-item-avatar
+                                              tile
+                                              size="80"
+                                              color="grey"
+                                          >
+                                              <v-img
+                                              :src="category.absolute_path"
+                                              ></v-img>
+                                          </v-list-item-avatar>
+                                          </v-list-item>
+                                    </v-card>
+                                </v-list-item>
+                            </v-col>
+                        </v-row>
+                    </v-list-item-group>
                     <v-row>
-                        <v-col cols="12" sm="12" md="12">
-                          <div v-html="category.description" class="description mt24">
-                          </div>
+                        <v-col cols="4" sm="4" md="2">
+                            <v-select
+                                v-model="selectedQuantity"
+                                :items="selectableNumbers"
+                                label="数量"
+                                required
+                            ></v-select>
                         </v-col>
                     </v-row>
-                    <div v-if="category.id == 1" class="item-content">
-                        <p>こちらの商品は、一回のご注文につき、1点までのご購入とさせていただいております。</p>
+                    <div class="mb48">
+                        <v-btn
+                            outlined
+                            text
+                            @click="addOne()">
+                            カートに入れる
+                        </v-btn>
+                        <v-btn
+                            v-if="cart !== null"
+                            outlined
+                            text
+                            @click="$router.push({name: 'cart'})"
+                        >
+                            カートをみる
+                        </v-btn>
                     </div>
+                    <div v-if="cartMessage !== null" class="item-content">
+                        <p>{{ cartMessage }}</p>
+                    </div>
+                </div>
+                <v-row>
+                    <v-col cols="12" sm="12" md="12">
+                      <div v-html="category.description" class="description mt24">
+                      </div>
+                    </v-col>
+                </v-row>
+                <div v-if="category.id == 25" class="item-content">
+                    <p>こちらの商品は、一回のご注文につき、1点までのご購入とさせていただいております。</p>
+                </div>
               </v-col>
         </v-row>
         <div class="divider-image">
@@ -258,6 +328,7 @@ export default {
           'categories',
           'user',
           'cart',
+          'cartMessage',
           'inventoryQuantity',
           'selectableNumbers',
           'productQuantity',
@@ -314,6 +385,7 @@ export default {
     methods: {
         ...mapActions([
           'addToCart',
+          'addOneToCart',
           'fetchInventory'
         ]),
         inventory(id, index){
@@ -334,6 +406,13 @@ export default {
             console.log('item', cartItem)
             let cartQuantity = this.selectedQuantity
             this.$store.commit('addToCart', {cartItem, cartQuantity})
+            this.$store.commit('setProductQuantity', 1);
+        },
+        addOne(){
+            let cartItem = this.itemGroup;
+            console.log('item', cartItem)
+            let cartQuantity = this.selectedQuantity
+            this.$store.commit('addOneToCart', {cartItem, cartQuantity})
             this.$store.commit('setProductQuantity', 1);
         },
         formatPrice(value){

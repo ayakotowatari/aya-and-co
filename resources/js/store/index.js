@@ -81,9 +81,11 @@ export default new Vuex.Store({
     //   itemGroup: {},
       firstItem: {},
       cart: [],
+      cartMessage: null,
       orders: {},
       order: {},
       orderedProducts: [],
+      postages: [],
       plannedShipmentDate: null,
       actualShipmentDate: null,
       deliveredDate: null,
@@ -310,6 +312,31 @@ export default new Vuex.Store({
             let originalQuantity = state.cart[productInCartIndex].quantity
             state.cart[productInCartIndex].quantity = Number(originalQuantity) + newQuantity
             // state.cart[productInCartIndex].quantity++;
+            state.cart = JSON.parse(JSON.stringify(state.cart));
+            //return;
+        }else{
+            product.quantity = newQuantity;
+            state.cart.push(product);
+        }
+
+        // state.disableSelectAmount = false;
+
+        console.log('cart',state.cart);
+    },
+    addOneToCart(state, payload){
+
+        let product = payload.cartItem
+        let newQuantity = payload.cartQuantity
+
+        console.log('newQuantity', newQuantity)
+        console.log('slug', product.slug)
+
+        let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
+        if(productInCartIndex !== -1){
+            //let originalQuantity = state.cart[productInCartIndex].quantity
+            //state.cart[productInCartIndex].quantity = Number(originalQuantity) + newQuantity
+            // state.cart[productInCartIndex].quantity++;
+            state.cartMessage = "カートにすでに商品が入っております。この商品は一度のご注文につき、1点までのご購入となります。"
             return;
         }else{
             product.quantity = newQuantity;
@@ -346,6 +373,11 @@ export default new Vuex.Store({
         console.log('productInCard', productInCartIndex);
         
         state.cart.splice(productInCartIndex, 1);
+
+        if(state.cartMessage !== null){
+            state.cartMessage = null
+        }
+
         console.log(state.cart);
 
     },
@@ -366,6 +398,9 @@ export default new Vuex.Store({
     },
     setOrderedProducts(state, payload){
         state.orderedProducts = payload
+    },
+    setPostages(state, payload){
+        state.postages = payload
     },
     setPlannedShipmentDate(state, payload){
         // console.log('payload', payload)
@@ -1123,6 +1158,17 @@ export default new Vuex.Store({
                 // commit('setDisableInputEmail', false);
                 // commit('setDisabled', true);
             })
+    },
+    async fetchPostages({ commit }){
+        let payload = {};
+
+        await axios
+            .get("/fetch-postages")
+            .then(res => {
+                payload = res.data.postages;
+                commit('setPostages', payload);
+                // commit('setDeliveryAddress', payload);
+        });
     },
 
   },

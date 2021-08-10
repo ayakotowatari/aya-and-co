@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Shipment;
 use App\Models\Status;
+use App\Models\Postage;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -533,6 +534,13 @@ class OrdersController extends Controller
 
         return response() -> json(['status' => $status->status]);   
 
+    }
+
+    public function postage()
+    {
+        $postages = Postage::get();
+
+        return response() -> json(['postages' => $postages]);   
     }
 
     /**

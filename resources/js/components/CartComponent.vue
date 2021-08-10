@@ -25,7 +25,7 @@
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
                     <v-row justify="start">
-                        <v-col cols="12" sm="12" md="6" v-for="(item, index) in cart" :key="item.id">
+                        <v-col cols="12" sm="12" md="6" v-for="(item) in cart" :key="item.id">
                             <v-card
                                 class="mx-auto"
                                 max-width="390"
@@ -48,7 +48,7 @@
                                             <label for="">数量</label>
                                         </v-col>
                                         <v-col cols="2" sm="2" md="4">
-                                            <select :value="`${item.quantity}`" class="select-box" @change="updateCartQuantity(index, $event.target.value)">
+                                            <!-- <select :value="`${item.quantity}`" class="select-box" @change="updateCartQuantity(index, $event.target.value)">
                                                 <option value=1>1</option>
                                                 <option value=2>2</option>
                                                 <option value=3>3</option>
@@ -58,7 +58,8 @@
                                                 <option value=7>7</option>
                                                 <option value=8>8</option>
                                                 <option value=9>9</option>
-                                            </select>
+                                            </select> -->
+                                            {{ item.quantity }}
                                         </v-col>
                                     </v-row>
                                     <div class="text-overline mb-4">
