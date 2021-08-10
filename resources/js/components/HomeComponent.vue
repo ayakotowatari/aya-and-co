@@ -24,7 +24,7 @@
          <v-img
              max-width=90
              class="mx-auto"
-             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/spoon.jpeg"
+             src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/spoon.png"
           ></v-img>
       </div>
       <div class="heading">

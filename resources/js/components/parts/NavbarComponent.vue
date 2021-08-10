@@ -52,7 +52,7 @@
             <v-col cols="12" align="center" class="mt-5">
                 <v-img
                     max-width=90
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/tree.png"
                 >
                 </v-img>
             </v-col>
