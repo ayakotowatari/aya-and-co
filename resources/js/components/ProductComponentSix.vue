@@ -80,7 +80,7 @@
                   </div>
                 </v-col>
               </v-row>
-              <div v-if="product.length >= 1 && category.id !== 25">
+              <div v-if="product.length >= 1 && category.id !== 1">
                     <v-list-item-group v-model="itemGroup">
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
@@ -148,7 +148,7 @@
                         </v-btn>
                     </div>
                 </div>
-                <div v-if="product.length >= 1 && category.id == 25">
+                <div v-if="product.length >= 1 && category.id == 1">
                     <v-list-item-group v-model="itemGroup">
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
@@ -225,7 +225,7 @@
                       </div>
                     </v-col>
                 </v-row>
-                <div v-if="category.id == 25" class="item-content">
+                <div v-if="category.id == 1" class="item-content">
                     <p>こちらの商品は、一回のご注文につき、1点までのご購入とさせていただいております。</p>
                 </div>
               </v-col>
