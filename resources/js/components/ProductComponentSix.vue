@@ -121,42 +121,45 @@
                         </v-col>
                     </v-row>
                 </v-list-item-group>
-              <v-row>
-                  <v-col cols="4" sm="4" md="2">
-                      <v-select
-                          v-model="selectedQuantity"
-                          :items="selectableNumbers"
-                          label="数量"
-                          required
-                      ></v-select>
-                  </v-col>
-              </v-row>
-              <div class="mb48">
-                  <v-btn
-                      outlined
-                      text
-                      @click="add()">
-                      カートに入れる
-                  </v-btn>
-                  <v-btn
-                      v-if="cart !== null"
-                      outlined
-                      text
-                      @click="$router.push({name: 'cart'})"
-                  >
-                      カートをみる
-                  </v-btn>
-              </div>
-             
-              </div>
-              <v-row>
-                  <v-col cols="12" sm="12" md="12">
-                    <div v-html="category.description" class="description mt24">
+                    <v-row>
+                        <v-col cols="4" sm="4" md="2">
+                            <v-select
+                                v-model="selectedQuantity"
+                                :items="selectableNumbers"
+                                label="数量"
+                                required
+                            ></v-select>
+                        </v-col>
+                    </v-row>
+                        <div class="mb48">
+                            <v-btn
+                                outlined
+                                text
+                                @click="add()">
+                                カートに入れる
+                            </v-btn>
+                            <v-btn
+                                v-if="cart !== null"
+                                outlined
+                                text
+                                @click="$router.push({name: 'cart'})"
+                            >
+                                カートをみる
+                            </v-btn>
+                        </div>
+                  
                     </div>
-                  </v-col>
-              </v-row>
-            </v-col>
-      </v-row>
+                    <v-row>
+                        <v-col cols="12" sm="12" md="12">
+                          <div v-html="category.description" class="description mt24">
+                          </div>
+                        </v-col>
+                    </v-row>
+                    <div v-if="category.id == 1" class="item-content">
+                        <p>こちらの商品は、一回のご注文につき、1点までのご購入とさせていただいております。</p>
+                    </div>
+              </v-col>
+        </v-row>
         <div class="divider-image">
          <v-img
              max-width=90

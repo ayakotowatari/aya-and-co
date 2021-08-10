@@ -75,7 +75,8 @@ export default new Vuex.Store({
       categories: [],
     //   disableSelectAmount: true,
       inventoryQuantity: null,
-      selectableNumbers:[1, 2, 3, 4, 5, 6],
+      //selectableNumbers:[1, 2, 3, 4, 5, 6],
+      selectableNumbers: [1],
       productQuantity: 1,
     //   itemGroup: {},
       firstItem: {},
@@ -655,7 +656,7 @@ export default new Vuex.Store({
                 inventory = res.data.inventory;
                 firstItem = res.data.item;
                 commit('setProduct', product)
-                commit('setSelectableNumbers', inventory)
+                //commit('setSelectableNumbers', inventory)
                 commit('setFirstItem', firstItem)
             })
     },
