@@ -156,7 +156,7 @@
                 </v-col>
             </v-row>
         </div>
-        <div class="divider-image">
+        <div class="divider-image orage-image">
          <v-img
              max-width=120
              class="mx-auto"
@@ -341,6 +341,12 @@ export default {
     font-style: normal;
     font-size: 16px;
     letter-spacing: 0.03em;
+}
+
+@media(max-width:780px){
+   .orange-image{
+       max-width: 100px;
+   }
 }
 
 </style>
