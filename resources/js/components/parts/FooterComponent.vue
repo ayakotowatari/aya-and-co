@@ -41,7 +41,7 @@ export default {
                 // 'mdi-facebook',
                 // 'mdi-twitter',
                 // 'mdi-linkedin',
-                { mark: 'mdi-instagram', link: 'https://www.instagram.com/ayako.towatari/' },
+                { mark: 'mdi-instagram', link: 'https://www.instagram.com/ayaandco.jp/' },
             ],
         }
     },

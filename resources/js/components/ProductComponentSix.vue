@@ -49,15 +49,15 @@
               </div>
               <v-row v-if="product.length <= 0">
                 <v-col v-if="category.id !== 7 && category.id !== 8">
-                  <div class="message mb-3">
+                  <div class="message grey--text text--darken-3 mb-3">
                     商品のご購入は、シーズンまでしばらくお待ちください。
                   </div>
-                  <div class="message mb-6">
+                  <div class="message grey--text text--darken-3 mb-6">
                     公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
                   </div>
                   <div>
                     <v-btn
-                        href = "https://line.me/ti/p/_1TaWf8NcA"
+                        href = "https://lin.ee/1RJJ9C3"
                         outlined
                         color="primary"
                     >
@@ -226,7 +226,7 @@
                     </v-col>
                 </v-row>
                 <div v-if="category.id == 1" class="item-content">
-                    <p>こちらの商品は、一回のご注文につき、1点までのご購入とさせていただいております。</p>
+                    <p>こちらの商品は限定数の販売のため、一回のご注文手続きにつき、セット1点までのご購入とさせていただいております。</p>
                 </div>
               </v-col>
         </v-row>
