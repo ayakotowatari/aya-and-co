@@ -16,7 +16,7 @@
             <v-col cols="12" sm="12" md="4" class="hidden-sm-and-down">
 
             </v-col>
-            <v-col cols="12" sm="12" md="8" v-for="item in items" :key="item.title">
+            <v-col cols="12" sm="12" md="8">
                 <!-- <div>
                     {{ item.title }}
                 </div>

@@ -22,7 +22,14 @@
                 </div>
                 <div class="divider-image">
                     <v-img
+                        v-if="$vuetify.breakpoint.sm || $vuetify.breakpoint.md || $vuetify.breakpoint.lg"
                         max-width=120
+                        class="mx-auto"
+                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/delivery.png"
+                    ></v-img>
+                    <v-img
+                        v-if="$vuetify.breakpoint.xs"
+                        max-width=180
                         class="mx-auto"
                         src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/delivery.png"
                     ></v-img>
