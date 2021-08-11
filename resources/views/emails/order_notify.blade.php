@@ -190,6 +190,11 @@ td.align-right{
                 aya & co. 宛
             </p>
         </div>
+        <div class="mb20">
+            <p>LINE公式アカウント:<br>
+               https://lin.ee/1RJJ9C3
+            </p>
+        </div>
     </div>
     
 </body>

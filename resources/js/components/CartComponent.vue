@@ -156,7 +156,7 @@
                 </v-col>
             </v-row>
         </div>
-        <div class="divider-image orage-image">
+        <div class="divider-image orange-image">
          <v-img
              max-width=120
              class="mx-auto"
@@ -345,7 +345,7 @@ export default {
 
 @media(max-width:780px){
    .orange-image{
-       max-width: 100px;
+       max-width: 80px;
    }
 }
 
