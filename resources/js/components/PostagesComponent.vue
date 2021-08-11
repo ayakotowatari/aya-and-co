@@ -39,7 +39,7 @@
                             <div class="item-content">{{ postage.prefecture}}</div>
                         </v-col>
                         <v-col cols="6" sm="6" md="2">
-                            <div>{{ formatPrice(postage.postage)}}</div>
+                            <div class="grey--text text--darken-3">{{ formatPrice(postage.postage)}}</div>
                         </v-col>
                     </v-row>
                 </div>
