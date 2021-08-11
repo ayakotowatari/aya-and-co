@@ -345,7 +345,7 @@ export default {
 
 @media(max-width:780px){
    .orange-image{
-       max-width: 80px;
+       max-width: 70px;
    }
 }
 

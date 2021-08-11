@@ -81,7 +81,7 @@
                     <v-img
                         max-width=120
                         class="mx-auto"
-                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/bird.png"
+                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/birds.jpg"
                     ></v-img>
                 </div>
                 <div>
@@ -189,7 +189,7 @@ export default {
 
 @media(max-width:780px){
    .bird-image{
-       max-width: 90px;
+       max-width: 100px;
    }
 }
 
