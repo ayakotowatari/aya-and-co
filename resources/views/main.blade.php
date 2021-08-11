@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="aya & co.">
         <meta name="twitter:description" content="心地よい時間をつくる、一瓶のマーマレード">
-        <meta name="twitter:image" content="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG">
+        <meta name="twitter:image" content="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/key_bagel.JPG">
         <meta name="format-detection" content="telephone=no">
 
         <!--favicon -->
