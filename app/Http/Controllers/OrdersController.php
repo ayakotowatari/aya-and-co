@@ -427,14 +427,13 @@ class OrdersController extends Controller
 
         $products = Product::join('order_product', 'order_product.product_id', '=', 'products.id')
                         ->join('orders', 'orders.id', '=', 'order_product.order_id')
-                        ->join('categories', 'categories.id', '=', 'products.category_id')
                         ->where('orders.id', $order_id)
                         ->select(
                             'products.name', 
                             'products.size', 
                             'products.price',
+                            'products.image',
                             'order_product.quantity',
-                            'categories.image',
                             // 'orders.postage',
                             // 'orders.total'
                         )

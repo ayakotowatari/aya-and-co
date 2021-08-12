@@ -80,7 +80,7 @@
                                     color="grey"
                                 >
                                     <v-img
-                                        :src="product.absolute_path"
+                                        :src="`https://s3-ap-northeast-1.amazonaws.com/aya-and-co/${product.image}`"
                                     ></v-img>
                                 </v-list-item-avatar>
                                 </v-list-item>
