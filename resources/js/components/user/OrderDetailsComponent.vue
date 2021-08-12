@@ -80,7 +80,7 @@
                                     color="grey"
                                 >
                                     <v-img
-                                        src="../../assets/img/IMG_9502.JPG"
+                                        :src="product.absolute_path"
                                     ></v-img>
                                 </v-list-item-avatar>
                                 </v-list-item>

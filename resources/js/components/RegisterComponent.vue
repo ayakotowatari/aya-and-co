@@ -26,7 +26,7 @@
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
                         <span>
-                            ご注文時に、登録されているご住所の入力の手間が省けます。
+                            ご注文時に、登録されているご住所（ご自宅・それ以外）の入力の手間が省けます。
                         </span>
                     </div>
                     <div>
@@ -34,7 +34,7 @@
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
                         <span>
-                            過去のご注文の履歴が確認できます。
+                            ご注文の履歴が確認できます。発送予定日・発送日をご確認いただけます。
                         </span>
                     </div>
                     <div>

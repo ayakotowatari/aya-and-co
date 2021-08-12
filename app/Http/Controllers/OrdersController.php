@@ -426,12 +426,14 @@ class OrdersController extends Controller
 
         $products = Product::join('order_product', 'order_product.product_id', '=', 'products.id')
                         ->join('orders', 'orders.id', '=', 'order_product.order_id')
+                        ->join('categories', 'categories.id', '=', 'products.category_id')
                         ->where('orders.id', $order_id)
                         ->select(
                             'products.name', 
                             'products.size', 
                             'products.price',
                             'order_product.quantity',
+                            'categories.image',
                             // 'orders.postage',
                             // 'orders.total'
                         )
@@ -491,8 +493,18 @@ class OrdersController extends Controller
 
         $orders = Order::join('order_product', 'orders.id', '=', 'order_product.order_id')
                     ->join('products', 'order_product.product_id', '=', 'products.id')
+                    ->join('categories', 'categories.id', '=', 'products.category_id')
                     ->where('orders.user_id', $user_id)
-                    ->select('orders.id as order_id', 'order_product.id', 'products.name', 'products.slug', 'products.size', 'order_product.quantity', 'orders.updated_at')
+                    ->select(
+                        'orders.id as order_id', 
+                        'order_product.id', 
+                        'products.name', 
+                        'products.slug', 
+                        'products.size', 
+                        'order_product.quantity', 
+                        'orders.updated_at',
+                        'categories.image'
+                    )
                     ->orderBy('updated_at', 'desc')
                     ->paginate(3);
                     // ->get();
