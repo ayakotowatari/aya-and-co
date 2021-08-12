@@ -126,7 +126,7 @@
                                     color="grey"
                                 >
                                     <v-img
-                                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                                        :src="product.absolute_path"
                                     ></v-img>
                                 </v-list-item-avatar>
                                 </v-list-item>

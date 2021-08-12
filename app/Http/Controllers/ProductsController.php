@@ -139,6 +139,7 @@ class ProductsController extends Controller
                             'products.size',
                             'products.price',
                             'products.inventory',
+                            'products.image',
                             'statuses.status',
                         )
                         ->first();
