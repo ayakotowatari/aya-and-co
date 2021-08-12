@@ -31,4 +31,14 @@ class Product extends Model
     //     return $this->hasMany('App\Models\Order')
     //         ->withPivot('quantity');
     // }
+
+    // public function getAbsolutePathAttribute()
+    // {
+    //     if(!$this->image) {
+    //         return null;
+    //     }
+
+    //     // return env('AWS_URL').'/'.$this->image;
+    //     return config('s3.aws_url').'/'.$this->image;
+    // }
 }

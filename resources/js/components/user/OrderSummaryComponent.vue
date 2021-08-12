@@ -49,7 +49,7 @@
                                                         color="grey"
                                                     >
                                                         <v-img
-                                                            :src="item.absolute_path"
+                                                            :src="`${publicAWS}.'/'.${item.image}`"
                                                         ></v-img>
                                                     </v-avatar>
                                                 </v-badge>
@@ -117,6 +117,7 @@ export default {
      data: function(){
         return {
             page: 1,
+            publicAWS: process.env.MIX_AWS_URL,
             
         }
     },
