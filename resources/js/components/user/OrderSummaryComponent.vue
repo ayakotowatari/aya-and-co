@@ -49,7 +49,7 @@
                                                         color="grey"
                                                     >
                                                         <v-img
-                                                            :src="item.absolute_path"
+                                                            :src="`https://s3-ap-northeast-1.amazonaws.com/aya-and-co/${item.image}`"
                                                         ></v-img>
                                                     </v-avatar>
                                                 </v-badge>
