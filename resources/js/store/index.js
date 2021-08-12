@@ -649,6 +649,8 @@ export default new Vuex.Store({
             })
             .catch(error => {
                 allerror = error.response.data.errors
+                // commit('setLoading', false);
+                // commit('setDisabled', true);
                 commit('setallRegisterErrors', allerror)
             })
     },

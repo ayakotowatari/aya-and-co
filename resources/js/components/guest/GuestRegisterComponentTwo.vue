@@ -73,12 +73,33 @@
                                         block 
                                         dark 
                                         color="primary" 
-                                        class="mb-2" 
+                                        class="mb-4" 
                                         @click="goRegister()"
                                         :loading="loading"
+                                        :disabled="disabled"
                                     >
                                             登録する
                                     </v-btn>
+                                    <div v-if="allRegisterError.email !== null">
+                                        <p class="error-message grey--text text--grey-4" >
+                                            {{allRegisterError.email[0]}}
+                                        </p>
+                                        <!-- <v-btn
+                                            color="primary"
+                                            outlined
+                                            @click="resetForm"
+                                            class="mr-2"
+                                        >
+                                            リセットする
+                                        </v-btn> -->
+                                        <v-btn
+                                            color="primary"
+                                            outlined
+                                            @click="toRegister"
+                                        >
+                                            最初から登録しなおす
+                                        </v-btn>
+                                    </div>
                                     <!-- <v-btn text color="primary" class="pa-0" @click="toLogin()">login</v-btn> -->
                                 </v-col>
                             </v-row>
@@ -104,13 +125,13 @@ export default {
             valid: true,
             password: '',
             passwordRules: [
-                (v) => !!v || 'Password is required',
-                (v) => v.length >= 8 || 'Minimum 8 characters'
+                (v) => !!v || 'パスワードを入力してください。',
+                (v) => v.length >= 8 || '最低8文字が必要です。'
             ],
             password_confirmation: '',
             confirmPasswordRules: [
-                (v) => !!v || 'Confirmation Password is required',
-                (v) => v == this.password || 'Password must match'
+                (v) => !!v || 'パスワードを再度入力してください。',
+                (v) => v == this.password || 'パスワードが一致しません。'
             ],      
             // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
             showPassword: false,
@@ -150,6 +171,16 @@ export default {
             }
            
         }, 
+        toRegister(){
+            window.location = '/guest/register';
+            this.$store.commit('setallRegisterErrors', null);
+        },
+        // resetForm(){
+        //     this.$store.commit('setLoading', false);
+        //     this.$refs.form.reset();
+        //     // this.$store.commit('setDisabled', false);
+        //     //this.$store.commit('setallRegisterErrors', null);
+        // }
         // toLogin(){
         //     this.$router.push({name: 'student-login'});
         // }
@@ -160,5 +191,12 @@ export default {
 </script>
 
 <style>
+.error-message{
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+}
 
 </style>
