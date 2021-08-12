@@ -69,6 +69,20 @@
                         </v-row>
                     </v-col>
                 </v-row>
+                 <v-row justify="center">
+                    <v-col cols="12" sm="12" md="6">
+                        <div class="totalprice grey--text text--darken-2">
+                            お支払いには、Stripeの決済プラットフォームを使用しています。本サイトにはお客様のクレジットカード番号は保存されませんので、安心してご利用ください。
+                        </div>
+                    </v-col>
+                </v-row>
+                <v-row justify="center">
+                    <v-col cols="12" sm="12" md="6">
+                        <div class="totalprice grey--text text--darken-2">
+                            納品書兼領収書は、発送の時点で、お客様のメールアドレスまで、PDF文書でお送りさせていただきます。
+                        </div>
+                    </v-col>
+                </v-row>
                 <!-- <v-row justify="center">
                     <v-col cols="12" sm="12" md="4">
                         {{user.name}} 様のご購入手続き
