@@ -558,6 +558,7 @@ class OrdersController extends Controller
                         'users.city',
                         'users.address_1',
                         'users.building',
+                        'orders.id as order_id',
                         'orders.postage',
                         'orders.item_total',
                         'orders.total'
@@ -600,6 +601,8 @@ class OrdersController extends Controller
         // $pdf = PDF::loadHTML('<h1>こんにちは</h1>');
 
         // return $pdf->download('領収書.pdf');
+
+
         $user = Order::join('guests', 'guests.id', '=', 'orders.guest_id')
                     ->where('orders.id', $id)
                     ->select(
@@ -609,6 +612,7 @@ class OrdersController extends Controller
                         'guests.city',
                         'guests.address_1',
                         'guests.building',
+                        'orders.id as order_id',
                         'orders.postage',
                         'orders.item_total',
                         'orders.total'

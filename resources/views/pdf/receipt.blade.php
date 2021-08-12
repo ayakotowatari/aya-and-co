@@ -201,12 +201,18 @@ td.align-right{
 
     <hr>
 
-    <div>
+    <div class="mb20">
         <p class="subheading">お問い合わせ先</p>
             <p>
                 メールアドレス: ayaandco.info@gmail.com<br>
                 LINE公式アカウント: https://lin.ee/1RJJ9C3
             </p>
+    </div>
+
+    <div>
+        <p class="mb20">
+            備考　注文ID：{{ $user -> order_id}}
+        </p>
     </div>
     
 </body>
