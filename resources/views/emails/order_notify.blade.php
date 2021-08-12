@@ -186,8 +186,8 @@ td.align-right{
         
                 〒216-0003<br>
                 神奈川県川崎市宮前区有馬1-6-1-505<br>
-                上田方<break>
-                aya & co. 宛
+                aya & co. <br>
+                代表　上田文子
             </p>
         </div>
         <div class="mb20">

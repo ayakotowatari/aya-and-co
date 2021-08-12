@@ -36,7 +36,7 @@
       </p>    -->
       <v-row>
           <v-col cols="12" sm="12" md="4">
-              <p class="item-title">自然な緩衝材</p>
+              <p class="item-title">自然の緩衝材</p>
           </v-col>
           <v-col cols="12" sm="12" md="8">
               <p class="description">
@@ -52,6 +52,13 @@
                   まず挑戦しているのは、緩衝材としてプラスチックや紙の個別の箱を使用しないこと。<br class="lg">
                   試行錯誤した結果、「木綿（もくめん）」といって、天然の木材からできた緩衝材を使用してみることにしました。<br>
               </p>
+              <div class="divider-image pine-image">
+            <v-img
+                max-width=90
+                class="mx-auto"
+                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/pine_tree.png"
+            ></v-img>
+            </div>
               <p class="description">
                   <!-- <v-img
                       max-width=300
@@ -111,6 +118,12 @@ export default {
 .mb60 {
   margin-bottom: 60px;
 
+}
+
+@media(max-width:780px){
+    .pine-image{
+      max-width: 90px;
+    }
 }
 
 </style>
