@@ -81,7 +81,7 @@
                                     color="grey"
                                 >
                                     <v-img
-                                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/vintage_sample.JPG"
+                                        :src="`https://s3-ap-northeast-1.amazonaws.com/aya-and-co/${item.image}`"
                                     ></v-img>
                                 </v-list-item-avatar>
                                 </v-list-item>
