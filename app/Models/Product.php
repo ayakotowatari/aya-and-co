@@ -32,13 +32,13 @@ class Product extends Model
     //         ->withPivot('quantity');
     // }
 
-    // public function getAbsolutePathAttribute()
-    // {
-    //     if(!$this->image) {
-    //         return null;
-    //     }
+    public function getAbsolutePathAttribute()
+    {
+        if(!$this->image) {
+            return null;
+        }
 
-    //     // return env('AWS_URL').'/'.$this->image;
-    //     return config('s3.aws_url').'/'.$this->image;
-    // }
+        // return env('AWS_URL').'/'.$this->image;
+        return config('s3.aws_url').'/'.$this->image;
+    }
 }

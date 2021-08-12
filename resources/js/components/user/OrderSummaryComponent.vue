@@ -49,7 +49,7 @@
                                                         color="grey"
                                                     >
                                                         <v-img
-                                                            :src="`${publicAWS}.'/'.${item.image}`"
+                                                            :src="item.absolute_path"
                                                         ></v-img>
                                                     </v-avatar>
                                                 </v-badge>

@@ -494,7 +494,7 @@ class OrdersController extends Controller
 
         $orders = Order::join('order_product', 'orders.id', '=', 'order_product.order_id')
                     ->join('products', 'order_product.product_id', '=', 'products.id')
-                    ->join('categories', 'categories.id', '=', 'products.category_id')
+                    // ->join('categories', 'categories.id', '=', 'products.category_id')
                     ->where('orders.user_id', $user_id)
                     ->select(
                         'orders.id as order_id', 
@@ -502,9 +502,10 @@ class OrdersController extends Controller
                         'products.name', 
                         'products.slug', 
                         'products.size', 
+                        'products.image',
                         'order_product.quantity', 
                         'orders.updated_at',
-                        'categories.image'
+                        // 'categories.image'
                     )
                     ->orderBy('updated_at', 'desc')
                     ->paginate(3);

@@ -211,7 +211,16 @@ class ProductsController extends Controller
         $product->inventory = request('inventory');
         $product->status_id = request('status_id');
 
+        $category_id = request('category_id');
+
+        $image = Category::where('id', $category_id)->image->first();
+
+        $product->image = $image;
+
         $product-> save();
+
+        
+        
 
         // $newCategory = $category->status()->first();
 
