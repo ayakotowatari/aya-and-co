@@ -9,6 +9,7 @@ use App\Models\Status;
 use App\Models\Postage;
 use Illuminate\Http\Request;
 use Auth;
+use PDF;
 
 class OrdersController extends Controller
 {
@@ -541,6 +542,108 @@ class OrdersController extends Controller
         $postages = Postage::get();
 
         return response() -> json(['postages' => $postages]);   
+    }
+
+    public function createUserReceipt($id)
+    {
+        // $pdf = PDF::loadHTML('<h1>こんにちは</h1>');
+
+        // return $pdf->download('領収書.pdf');
+        $user = Order::join('users', 'users.id', '=', 'orders.user_id')
+                    ->where('orders.id', $id)
+                    ->select(
+                        'users.name',
+                        'users.zipcode', 
+                        'users.prefecture',
+                        'users.city',
+                        'users.address_1',
+                        'users.building',
+                        'orders.postage',
+                        'orders.item_total',
+                        'orders.total'
+                    )
+                    ->first();
+
+        $orders = Order::join('order_product', 'order_product.order_id', '=', 'orders.id')
+                    ->join('products', 'products.id', '=', 'order_product.product_id')
+                    ->where('orders.id', $id)
+                    ->select(
+                        'products.name',
+                        'products.size',
+                        'products.price as unit_price',
+                        'order_product.quantity',
+                        'order_product.price as item_price'
+                    )
+                    ->get();
+
+        $pdf = PDF::loadView('pdf/receipt', [
+
+            'user' => $user,
+            'orders' => $orders,
+
+        ]);
+
+        $date = \Carbon\Carbon::now()->format("Ymj");
+
+        //DD($pdf);
+
+        //return $pdf->stream();
+
+        /*   ダウンロードさせる場合はこっちを記載する。
+*    画面遷移は起こらずダウンロードが開始する
+// */      return $pdf->download('納品書兼領収書_'.$user->name.'様_'.$date.'.pdf');
+
+    }
+
+    public function createGuestReceipt($id)
+    {
+        // $pdf = PDF::loadHTML('<h1>こんにちは</h1>');
+
+        // return $pdf->download('領収書.pdf');
+        $user = Order::join('guests', 'guests.id', '=', 'orders.guest_id')
+                    ->where('orders.id', $id)
+                    ->select(
+                        'guests.name',
+                        'guests.zipcode', 
+                        'guests.prefecture',
+                        'guests.city',
+                        'guests.address_1',
+                        'guests.building',
+                        'orders.postage',
+                        'orders.item_total',
+                        'orders.total'
+                    )
+                    ->first();
+
+        $orders = Order::join('order_product', 'order_product.order_id', '=', 'orders.id')
+                    ->join('products', 'products.id', '=', 'order_product.product_id')
+                    ->where('orders.id', $id)
+                    ->select(
+                        'products.name',
+                        'products.size',
+                        'products.price as unit_price',
+                        'order_product.quantity',
+                        'order_product.price as item_price'
+                    )
+                    ->get();
+
+        $pdf = PDF::loadView('pdf/receipt', [
+
+            'user' => $user,
+            'orders' => $orders,
+
+        ]);
+
+        $date = \Carbon\Carbon::now()->format("Ymj");
+
+        //DD($pdf);
+
+        //return $pdf->stream();
+
+        /*   ダウンロードさせる場合はこっちを記載する。
+*    画面遷移は起こらずダウンロードが開始する
+// */      return $pdf->download('納品書兼領収書_'.$user->name.'様_'.$date.'.pdf');
+
     }
 
     /**

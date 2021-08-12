@@ -351,10 +351,14 @@ public function purchase(Request $request){
 
         foreach(json_decode(request('cart'), true) as $item) {
 
-            // $price = $item['quantity'] * $item['price'];
+            $price = $item['quantity'] * $item['price'];
+            //DD($price);
 
             $order->products()
-            ->attach($item['id'], ['quantity' => $item['quantity']]);
+            //->attach($item['id'], ['quantity' => $item['quantity']], ['price' => $item['quantity']*$item['price']]);
+            ->attach($item['id'], ['quantity' => $item['quantity'], 'price' => $price]);
+
+            $order->products()->price = $price;
 
             $id = $item['id'];
             $quantity = $item['quantity'];
