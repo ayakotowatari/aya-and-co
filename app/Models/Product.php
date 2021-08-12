@@ -9,6 +9,11 @@ class Product extends Model
     //
     protected $guarded =[];
 
+    protected $appends = [
+        
+        'absolute_path'
+    ];
+
     public function orders(){
 
         return $this->belongsToMany('App\Models\Order');
