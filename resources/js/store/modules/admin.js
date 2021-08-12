@@ -101,7 +101,7 @@ export const admin = {
         setProduct(state, payload){
             state.product = payload
         },
-        setallError(state, payload){
+        setallErrors(state, payload){
             state.allerror = payload
         },
         dialogShipment(state, payload){
@@ -910,6 +910,23 @@ export const admin = {
                     console.log('response', status)
                     commit('setProductStatus', status);
                     commit('setShowUpdateProductStatus', false)
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        async createUserReceipt({commit}, payload){
+
+            let allerror=""
+
+            await axios
+                .get('/admin/create-receipt/' + payload.id)
+                .then(response => {
+                    // products = response.data.products;
+                    // commit('setProducts', products)
+                    console.log(response)
                 })
                 .catch(error => {
                     allerror = error.response.data.errors,

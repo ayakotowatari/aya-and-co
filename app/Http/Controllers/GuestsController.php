@@ -227,8 +227,11 @@ class GuestsController extends Controller
                 ]);
 
             foreach(json_decode(request('cart'), true) as $item) {
+
+                $price = $item['quantity'] * $item['price'];
+
                 $order->products()
-                ->attach($item['id'], ['quantity' => $item['quantity']]);
+                ->attach($item['id'], ['quantity' => $item['quantity'], 'price' => $price]);
 
                 $id = $item['id'];
                 $quantity = $item['quantity'];

@@ -96,7 +96,7 @@
                             >更新</v-btn>
                         </div>
                     </div>
-                    <div>
+                    <div class="mb-8">
                         <div class="item-content">
                         配達日
                         </div>
@@ -120,6 +120,24 @@
                                 @click="updateDeliveredDate"
                             >更新</v-btn>
                         </div>
+                    </div>
+                    <div class="mb-8">
+                        <v-btn
+                            color="primary"
+                            dark
+                            @click="create(order.id)"
+                        >
+                            Create Receipt
+                        </v-btn>
+                    </div>
+                    <div>
+                        <v-btn
+                            color="primary"
+                            outlined
+                            @click="$router.push({name: 'orders-list'})"
+                        >
+                            リストへもどる
+                        </v-btn>
                     </div>
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
@@ -360,6 +378,7 @@ export default {
             'actualShipmentDate',
             'deliveredDate',
             'orderStatus',
+            'allerror',
         ]),
         cartTotal(){
             let amount = this.orderedProducts.reduce((acc,item) => acc + (item.price * item.quantity), 0);
@@ -375,6 +394,9 @@ export default {
     
     },
     methods: {
+        ...mapActions('admin', [
+            'createUserReceipt'
+        ]),
         updateStatus(){
             this.$store.commit('admin/dialogUpdateStatus', true)
         },
@@ -401,6 +423,15 @@ export default {
 
           return price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
+        create(id){
+
+            window.location.href='/admin/create-receipt/'+ id;
+            
+            // this.createUserReceipt({
+            //     id: id
+            // })
+
+        }
         
     }
 

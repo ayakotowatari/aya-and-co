@@ -96,7 +96,7 @@
                             >更新</v-btn>
                         </div>
                     </div>
-                    <div>
+                    <div class="mb-8">
                         <div class="item-content">
                         配達日
                         </div>
@@ -120,6 +120,24 @@
                                 @click="updateDeliveredDate"
                             >更新</v-btn>
                         </div>
+                    </div>
+                     <div class="mb-8">
+                        <v-btn
+                            color="primary"
+                            dark
+                            @click="create(order.id)"
+                        >
+                            Create Receipt
+                        </v-btn>
+                    </div>
+                    <div>
+                        <v-btn
+                            color="primary"
+                            outlined
+                            @click="$router.push({name: 'guestorders-list'})"
+                        >
+                            リストへもどる
+                        </v-btn>
                     </div>
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
@@ -401,6 +419,15 @@ export default {
 
           return price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
+         create(id){
+
+            window.location.href='/admin/create-guestreceipt/'+ id;
+            
+            // this.createUserReceipt({
+            //     id: id
+            // })
+
+        }
         
     }
 

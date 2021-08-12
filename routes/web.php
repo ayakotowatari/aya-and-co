@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::post('/admin/create-category', 'CategoriesController@store')->name('admin.create.category');
     Route::post('/admin/create-product', 'ProductsController@store')->name('admin.create.product');
     Route::post('/admin/update-productstatus', 'ProductsController@updateStatus')->name('admin.update.product.status');
+    Route::get('/admin/create-receipt/{id}', 'OrdersController@createUserReceipt')->name('admin.create.userreceipt');
+    Route::get('/admin/create-guestreceipt/{id}', 'OrdersController@createGuestReceipt')->name('admin.create.guestreceipt');
 });
 
 //test
