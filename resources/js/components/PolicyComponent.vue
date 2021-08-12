@@ -87,7 +87,7 @@
                         お支払い方法
                     </div>
                     <div class="item-title grey--text text--darken-3">
-                        Stripeの決済プラットフォームを使用した、クレジットカードでのお支払いとなります。
+                        クレジットカードでのお支払いとなります。
                     </div>
                 </div>
                 <div class="mb-6">

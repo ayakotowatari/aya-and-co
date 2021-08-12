@@ -106,10 +106,16 @@
                         </p>
                     </div>
                     <div class="jobtitle mb-2">Contact</div>
-                    <div class="jp-sanserif-400-14 mb-6">
+                    <div class="jp-sanserif-400-14 mb-10">
                         <p>
                             お問い合わせは、<a href="https://forms.gle/kSJ8nj9ennqwvvai8" target="_blank" rel="noopener noreferrer">メールフォーム</a>、
                             もしくは<a href="https://lin.ee/1RJJ9C3" target="_blank" rel="noopener noreferrer">LINE公式アカウント</a>よりお願いいたします。
+                        </p>
+                    </div>
+                    <div class="jobtitle mb-8">
+                        <p>
+                            Website designed and developed by Ayako Towatari.<br>
+                            Special thanks to Yu Fujisawa for the lovely photographs. 
                         </p>
                     </div>
                 </div>
