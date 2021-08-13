@@ -115,7 +115,7 @@
                     <div class="jobtitle mb-8">
                         <p>
                             Website designed and developed by Ayako Towatari.<br>
-                            Special thanks to Yu Fujisawa for the lovely photographs. 
+                            Special thanks to Yuka Fujisawa for taking lovely photos of the jars. 
                         </p>
                     </div>
                 </div>
