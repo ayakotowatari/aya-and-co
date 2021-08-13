@@ -19,6 +19,7 @@ import Policy from "./components/PolicyComponent";
 import Contact from "./components/ContactComponent";
 import Postages from "./components/PostagesComponent";
 import About from "./components/AboutComponent";
+import Privacy from "./components/PrivacyComponent";
 
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
 // import CheckAddress from "./components/user/CheckAddressComponent";
@@ -95,6 +96,12 @@ const routes = [
         path: "/about",
         name: "about",
         component: About
+    },
+
+    {
+        path: "/privacy-policy",
+        name: "privacy",
+        component: Privacy
     },
 
     {

@@ -528,7 +528,7 @@ export default {
   font-style: normal;
   font-size: 16px;
   letter-spacing: 0.03em;
-  line-height: 1.5;
+  line-height: 1.8;
 }
 
 .tax{

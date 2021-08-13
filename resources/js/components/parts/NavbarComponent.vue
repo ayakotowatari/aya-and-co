@@ -201,6 +201,7 @@ import { mapState } from 'vuex'
         {title: '送料について', route: '/postage'},
         //{title: 'よくある質問', route: "/faq"},
         {title: '特定商取引法に基づく表記', route:"/policy"},
+        {title: 'プライバシーポリシー', route:"/privacy-policy"},
         {title: 'ABOUT', route:"/about"}
       ],
       closeOnContentClick: true,
