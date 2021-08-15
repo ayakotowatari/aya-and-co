@@ -86,6 +86,7 @@ class OrdersController extends Controller
                         'users.city as user_city',
                         'users.address_1 as user_address_1',
                         'users.building as user_building',
+                        'users.life as user_life',
                         'orders.delivery_name',
                         'orders.delivery_zipcode',
                         'orders.delivery_prefecture',

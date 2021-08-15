@@ -131,6 +131,7 @@ class UsersController extends Controller
 
         Auth::logout();
 
+        $user->life = 0;
         $user->delete();
 
         // $deleted = $user->deleted_at;

@@ -247,12 +247,23 @@
                                         <v-list-item-subtitle class="jp-font-400">
                                             ご住所
                                         </v-list-item-subtitle>
-                                        <v-list-item-title class="jp-font-400">
-                                            〒{{order.user_zipcode}}<br>
-                                            {{order.user_prefecture}}{{order.user_city}} {{order.user_address_1}}<br>
+                                        <div class="mb-4">
+                                            <v-list-item-title class="jp-font-400">
+                                                〒{{order.user_zipcode}}<br>
+                                                {{order.user_prefecture}}{{order.user_city}} {{order.user_address_1}}<br>
+                                            </v-list-item-title>
+                                            <v-list-item-title v-if="order.user_building !== null" class="jp-font-400">
+                                                {{order.user_building}}
+                                            </v-list-item-title>
+                                        </div>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            ステータス
+                                        </v-list-item-subtitle>
+                                        <v-list-item-title v-if="order.user_life === 1">
+                                            有効
                                         </v-list-item-title>
-                                        <v-list-item-title v-if="order.user_building !== null" class="jp-font-400">
-                                            {{order.user_building}}
+                                        <v-list-item-title v-if="order.user_life === 0">
+                                            削除ずみ
                                         </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
