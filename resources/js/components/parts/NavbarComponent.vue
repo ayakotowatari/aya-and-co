@@ -189,7 +189,7 @@ import { mapState } from 'vuex'
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},
-        {title: 'プロフィール編集', route: "/member/profile"},
+        {title: 'アカウント情報の編集', route: "/member/profile"},
         //{title: '配送先の編集', route: "/member/addresses"},
       ],
       guests: [
