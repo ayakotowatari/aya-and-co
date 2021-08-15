@@ -38,17 +38,17 @@ class UsersController extends Controller
         $id = $user->id;
 
         $request->validate([
-            'name' => 'required',
-            'kana' => 'required',
-            'zipcode' => 'required | min:7',
-            "prefecture" => 'required',
-            "city" => 'required',
-            "address_1" => 'required',
-            "phone" => 'required',
+            // 'name' => 'required',
+            // 'kana' => 'required',
+            'zipcode' => ['required', 'integer'],
+            'prefecture' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'address_1' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string'],
         ]);
 
-        $user->name = request('name');
-        $user->kana = request('kana');
+        // $user->name = request('name');
+        // $user->kana = request('kana');
         $user->zipcode = request('zipcode');
         $user->prefecture = request('prefecture');
         $user->city = request('city');
@@ -60,6 +60,62 @@ class UsersController extends Controller
         return response()->json(['user'=>$user],200);
 
     }
+
+    public function updateName(Request $request)
+    {
+        $user = Auth::user();
+        $id = $user->id;
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'kana' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user->name = request('name');
+        $user->name = request('kana');
+        $user->update();
+
+        $name = $user->name; 
+        $kana = $user->kana;
+
+        return response()->json(['name'=>$name, 'kana'=>$kana],200);
+
+    }
+
+    public function updateEmail(Request $request)
+    {
+        $user = Auth::user();
+        $id = $user->id;
+
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+        ]);
+
+        $user->email = request('email');
+        $user->update();
+
+        $email = $user->email; 
+
+        return response()->json(['email'=>$email],200);
+
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $user = Auth::user();
+        $id = $user->id;
+
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user->password = Hash::make(request('password'));
+        $user->update();
+
+        return response()->json(['user'=>$user],200);
+
+    }
+
 
     public function postage()
     {
@@ -456,7 +512,6 @@ public function purchase(Request $request){
         $user->sendOrderNotify($user, $order);
 
     }
-
     /**
      * Show the form for creating a new resource.
      *

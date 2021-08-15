@@ -21,6 +21,7 @@ import Postages from "./components/PostagesComponent";
 import About from "./components/AboutComponent";
 import Privacy from "./components/PrivacyComponent";
 
+//user
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
 // import CheckAddress from "./components/user/CheckAddressComponent";
 // import HomeAddress from "./components/user/HomeAddressComponent";
@@ -28,10 +29,10 @@ import Privacy from "./components/PrivacyComponent";
 // import ChangeAddress from "./components/ChangeAddressComponent";
 // import Checkout from "./components/user/CheckoutComponent";
 import OrderSummary from "./components/user/OrderSummaryComponent";
-import EditAddress from "./components/user/EditAddressComponent";
 // import NewAddress from "./components/user/NewAddressComponent";
 import Order from "./components/user/OrderComponent";
 import OrderDetails from "./components/user/OrderDetailsComponent";
+import Profile from "./components/user/edit/EditProfileComponent";
 
 //guest
 import GuestCheckAddress from "./components/guest/GuestCheckAddressComponent";
@@ -204,11 +205,11 @@ const routes = [
     //         ]
     // },
 
-    {
-        path: "/edit-home",
-        name: "edit-home",
-        component: EditAddress
-    },
+    // {
+    //     path: "/edit-home",
+    //     name: "edit-home",
+    //     component: EditAddress
+    // },
 
     {
         path: "/member/summary",
@@ -233,6 +234,12 @@ const routes = [
         path: "/request-reset",
         name: "request-reset",
         component: RequestReset
+    },
+
+    {
+        path: "/member/profile",
+        name: "profile",
+        component: Profile
     },
 
   

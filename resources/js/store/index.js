@@ -102,6 +102,11 @@ export default new Vuex.Store({
       disableInputEmail: true,
       loading: false,
       isAddingAddress: false,
+      isEditingName: false,
+      isEditingEmail: false,
+      isEditingPassword: false,
+      isEditingAddress: false,
+      isEditingDeliveryTime: false,
       allerror: [],
       allLoginError: {
         email: null,
@@ -159,6 +164,9 @@ export default new Vuex.Store({
     },
     updateUserPhone(state, payload){
         state.user.phone = payload
+    },
+    updateUserEmail(state, payload){
+        state.user.email = payload
     },
     setHomeAddress(state,payload){
         state.homeAddress = payload
@@ -477,7 +485,22 @@ export default new Vuex.Store({
     },
     setLastPage(state, payload){
         state.lastPage = payload
-    }
+    },
+    setIsEditingName(state, payload){
+        state.isEditingName = payload
+    },
+    setIsEditingEmail(state, payload){
+        state.isEditingEmail = payload
+    },
+    setIsEditingPassword(state, payload){
+        state.isEditingPassword = payload
+    },
+    setIsEditingAddress(state, payload){
+        state.isEditingAddress = payload
+    },
+    setIsEditingDeliveryTime(state, payload){
+        state.isEditingDeliveryTime = payload
+    },
     
   },
   
@@ -729,7 +752,7 @@ export default new Vuex.Store({
             })
             .catch(error => {
                 allerror = error.response.data.errors
-                commit('setAllErrors', allerror)
+                commit('setallErrors', allerror)
             })
     },
     async sendOrderNotify({commit}, payload) {
@@ -745,7 +768,7 @@ export default new Vuex.Store({
             })
             .catch(error => {
                 allerror = error.response.data.errors
-                commit('setAllErrors', allerror)
+                commit('setallErrors', allerror)
             })
     },
     removeProduct({commit}, payload) {
@@ -896,8 +919,8 @@ export default new Vuex.Store({
 
         await axios
         .post("/update-address", {
-            name: payload.name,
-            kana: payload.kana,
+            // name: payload.name,
+            // kana: payload.kana,
             zipcode: payload.zipcode,
             prefecture: payload.prefecture,
             city: payload.city,
@@ -919,6 +942,7 @@ export default new Vuex.Store({
         })
 
     },
+
     async addOtherAddress({commit}, payload){
         
         let allerror = [];
@@ -1171,6 +1195,107 @@ export default new Vuex.Store({
                 commit('setPostages', payload);
                 // commit('setDeliveryAddress', payload);
         });
+    },
+    async updateUserName({state, commit}, payload){
+    
+        let allerror = [];
+        let name = "";
+
+        await axios
+            .post('/member/update-name', {
+                id: payload.id,
+                name: payload.name
+            })
+            .then(response => {
+                name = response.data.name;
+                kana = response.data.kana;
+                commit('updateUserName', name)
+                commit('updateUserKana', kana)
+                commit('setIsEditingName', false);
+            })
+            .catch(error => {
+                allerror = error.response.data.errors;
+                commit('setallErrors', allerror);
+            })
+    },
+    async updateUserAddress({commit}, payload){
+        
+        let allerror = [];
+        let user = {};
+
+        await axios
+        .post("/update-address", {
+            // name: payload.name,
+            // kana: payload.kana,
+            zipcode: payload.zipcode,
+            prefecture: payload.prefecture,
+            city: payload.city,
+            address_1: payload.address_1,
+            building: payload.building,
+            phone: payload.phone,
+        })
+        .then(res => {
+            user = res.data.user;
+            commit('updateUser', user);
+            commit('setIsEditingAddress', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
+    },
+    async updateUserEmail({commit}, payload){
+        
+        let allerror = [];
+        let email ="";
+
+        await axios
+        .post("/member/update-email", {
+            // name: payload.name,
+            // kana: payload.kana,
+            email: payload.email,
+        })
+        .then(res => {
+            email = res.data.email;
+            commit('updateUserEmail', email);
+            commit('setIsEditingEmail', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
+    },
+    async updateUserPassword({commit}, payload){
+        
+        let allerror = [];
+        let user = {};
+
+        await axios
+        .post("/member/update-password", {
+            // name: payload.name,
+            // kana: payload.kana,
+            password: payload.password,
+            password_confirmation: payload.password_confirmation
+
+        })
+        .then(res => {
+            user = res.data.user;
+            commit('updateUser', user);
+            commit('setIsEditingPassword', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
     },
 
   },

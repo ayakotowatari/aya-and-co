@@ -81,14 +81,14 @@ td.align-right{
 </style>
 <body>
 
-    <div class="header">
+    <!-- <div class="header">
         <img src="/assets/img/logo_1.png" alt="logo" class="logo">
-    </div>
+    </div> -->
 
     <h2 class="mb">パスワードリセット</h2>
 
     <p class="mobild">このメールは、お客様からパスワードリセットの申請があったため、お送りしています。</p>
-    <p class="mb20">下記のボタンをクリックし、パスワードリセットの手続きへお進みください。</p>
+    <p class="mb20">下記のリンクをクリックし、パスワードリセットの手続きへお進みください。</p>
 
     <p id="button" class="mb20">
         <a href="{{$reset_url}}">パスワードリセット</a>
@@ -96,7 +96,7 @@ td.align-right{
 
     <p>このパスワードリセット用のリンクは、60分で失効します。</p>
 
-    <p>上記のボタンが作動しない場合は、以下のURLをブラウザーにコピーペーストしてパスワードリセットの手続きへお進みください：</p>
+    <p>上記のリンクが作動しない場合は、以下のURLをブラウザーにコピーペーストしてパスワードリセットの手続きへお進みください：</p>
 
     <p>{{ $reset_url }}</p>
 
@@ -111,7 +111,7 @@ td.align-right{
         <div class="mb20">
             <p>
                 メールアドレス:<br>
-                aya-and-co@gmail.com
+                ayaandco.info@gmail.com
             </p>
         </div>
         <div class="mb20">
@@ -119,8 +119,8 @@ td.align-right{
         
                 〒216-0003<br>
                 神奈川県川崎市宮前区有馬1-6-1-505<br>
-                上田方<break>
-                aya & co. 宛
+                aya & co.<br>
+                代表　上田文子 宛
             </p>
         </div>
         <!-- <table>

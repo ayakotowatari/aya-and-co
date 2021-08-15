@@ -51,6 +51,10 @@ Vue.component('thankyou-component', require('./components/user/ThankYouDialogCom
 // Vue.component('linksentsnackbar-component', require('./components/user/password/LinkSentSnackbarComponent.vue').default);
 Vue.component('resetform-component', require('./components/user/password/ResetFormComponent.vue').default);
 Vue.component('linksentdialog-component', require('./components/user/password/LinkSentDialogComponent.vue').default);
+Vue.component('editname-component', require('./components/user/edit/EditNameComponent.vue').default);
+Vue.component('editaddress-component', require('./components/user/edit/EditAddressComponent.vue').default);
+Vue.component('editemail-component', require('./components/user/edit/EditEmailComponent.vue').default);
+Vue.component('editpassword-component', require('./components/user/edit/EditPasswordComponent.vue').default);
 
 //guest
 Vue.component('guestcheckaddress-component', require('./components/guest/GuestCheckAddressComponent.vue').default);

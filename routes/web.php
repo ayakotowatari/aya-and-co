@@ -122,6 +122,9 @@ Route::group(['middleware' => ['auth', 'can:normal-user']], function(){
     Route::post('/member/order-confirmation', 'UsersController@orderConfirm')->name('order.confirm');
     Route::get('/member/fetch-order/{id}', 'OrdersController@fetchOrder')->name('order.details');
     Route::get('/member/fetch-shipment/{id}', 'OrdersController@fetchShipment')->name('order.shipment');
+    Route::post('/member/update-name', 'UsersController@updateName')->name('member.update.name');
+    Route::post('/member/update-email', 'UsersController@updateEmail')->name('member.update.email');
+    Route::post('/member/update-password', 'UsersController@updatePassword')->name('member.update.password');
 });
 
 Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){

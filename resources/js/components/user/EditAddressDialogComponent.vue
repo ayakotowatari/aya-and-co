@@ -21,7 +21,7 @@
                                         v-model="valid"
                                         lazy-validation
                                     >
-                                        <v-text-field
+                                        <!-- <v-text-field
                                             v-model="name"
                                             label="お名前"
                                             outlined
@@ -39,7 +39,7 @@
                                             :rules="kanaRules"
                                             :error="allerror.kana ? true : false"
                                             :error-messages="allerror.kana"
-                                        ></v-text-field>
+                                        ></v-text-field> -->
                                         <v-text-field
                                             v-model="zipcode"
                                             :counter="7"
@@ -146,12 +146,12 @@ export default {
     data: function(){
         return {
             valid: true,
-            nameRules: [
-                v => !!v || 'お名前を入力してください。',
-            ],
-            kanaRules: [
-                v => !!v || 'フリガナを入力してください。',
-            ],
+            // nameRules: [
+            //     v => !!v || 'お名前を入力してください。',
+            // ],
+            // kanaRules: [
+            //     v => !!v || 'フリガナを入力してください。',
+            // ],
             zipcodeRules: [
                 v => !!v || '郵便番号を入力してください。',
                 v => v.length == 7 || 'ハイフンなしで、数字7桁を入力してください。'
@@ -202,22 +202,22 @@ export default {
             'loading',
             'user',
         ]),
-        name: {
-            get(){                
-                return this.user.name
-            },
-            set (value) {
-                this.$store.commit('updateUserName', value)
-            }
-        },
-        kana: {
-            get(){                
-                return this.user.kana
-            },
-            set (value) {
-                this.$store.commit('updateUserKana', value)
-            }
-        },
+        // name: {
+        //     get(){                
+        //         return this.user.name
+        //     },
+        //     set (value) {
+        //         this.$store.commit('updateUserName', value)
+        //     }
+        // },
+        // kana: {
+        //     get(){                
+        //         return this.user.kana
+        //     },
+        //     set (value) {
+        //         this.$store.commit('updateUserKana', value)
+        //     }
+        // },
         zipcode: {
             get(){                
                 return this.user.zipcode
@@ -280,8 +280,8 @@ export default {
             if(this.$refs.form.validate()){
 
                 this.updateAddress({
-                    name: this.name,
-                    kana: this.kana,
+                    // name: this.name,
+                    // kana: this.kana,
                     zipcode: this.zipcode,
                     prefecture: this.state,
                     city: this.city,
