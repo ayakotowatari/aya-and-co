@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Str;
 use Notification;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -72,7 +73,7 @@ class UsersController extends Controller
         ]);
 
         $user->name = request('name');
-        $user->name = request('kana');
+        $user->kana = request('kana');
         $user->update();
 
         $name = $user->name; 
@@ -88,7 +89,8 @@ class UsersController extends Controller
         $id = $user->id;
 
         $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->whereNull('deleted_at'),],
         ]);
 
         $user->email = request('email');
@@ -114,6 +116,28 @@ class UsersController extends Controller
 
         return response()->json(['user'=>$user],200);
 
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $user = Auth::user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        // $deleted = $user->deleted_at;
+
+        // if($deleted) {
+        //     return redirect ('/');
+        // }else{
+        //     Auth::login($user);
+
+        //     $message = 'アカウント削除に失敗しました。';
+
+        //     return response()->json(['message'=>$message],200);
+            
+        // }
     }
 
 

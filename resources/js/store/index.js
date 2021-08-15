@@ -97,6 +97,7 @@ export default new Vuex.Store({
       dialogRemoveAddress: false,
       dialogRegisterToOrder: false,
       dialogLinkSent: false,
+      dialogDeleteUser: false,
       disabled: false,
       disableContinue1: true,
       disableInputEmail: true,
@@ -459,6 +460,9 @@ export default new Vuex.Store({
     },
     setDisableInputEmail(state, payload){
         state.disableInputEmail = payload
+    },
+    setDialogDeleteUser(state, payload){
+        state.dialogDeleteUser = payload
     },
     setallErrors(state, payload){
         state.allerror = payload
@@ -1200,11 +1204,13 @@ export default new Vuex.Store({
     
         let allerror = [];
         let name = "";
+        let kana ="";
 
         await axios
             .post('/member/update-name', {
                 id: payload.id,
-                name: payload.name
+                name: payload.name,
+                kana: payload.kana
             })
             .then(response => {
                 name = response.data.name;
@@ -1288,6 +1294,29 @@ export default new Vuex.Store({
             user = res.data.user;
             commit('updateUser', user);
             commit('setIsEditingPassword', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
+    },
+
+    async deleteUser({commit}, payload){
+        
+        let allerror = [];
+
+        await axios
+        .post("/member/delete-user", {
+            // name: payload.name,
+            // kana: payload.kana,
+            id: payload.id,
+        })
+        .then(res => {
+            commit('setDialogDeleteUser', false);
+            window.location = '/';
             // commit('setLoading', false);
             // router.push({path: '/check-address'});
         })

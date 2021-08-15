@@ -125,6 +125,7 @@ Route::group(['middleware' => ['auth', 'can:normal-user']], function(){
     Route::post('/member/update-name', 'UsersController@updateName')->name('member.update.name');
     Route::post('/member/update-email', 'UsersController@updateEmail')->name('member.update.email');
     Route::post('/member/update-password', 'UsersController@updatePassword')->name('member.update.password');
+    Route::post('/member/delete-user', 'UsersController@deleteUser')->name('member.delete.user');
 });
 
 Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
