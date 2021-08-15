@@ -53,8 +53,15 @@ class UsersController extends Controller
         $user->zipcode = request('zipcode');
         $user->prefecture = request('prefecture');
         $user->city = request('city');
+        $user->building = request('building');
         $user->address_1 = request('address_1');
         $user->phone = request('phone');
+
+        // if(request('building')){
+        //     $user->building = request('building');
+        // }else{
+        //     $user->building = null;
+        // }
 
         $user->update();
 
