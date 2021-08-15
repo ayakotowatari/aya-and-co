@@ -8,7 +8,7 @@
             <v-col cols="12" sm="12" md="6">
                 <v-text-field 
                     v-model="password"
-                    label="パスワード" 
+                    label="新しいパスワード" 
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="showPassword ? 'text' : 'password'"
                     outlined
@@ -20,7 +20,7 @@
                 ></v-text-field>
                 <v-text-field 
                     v-model="password_confirmation"
-                    label="パスワードの確認" 
+                    label="新しいパスワードの確認" 
                     :append-icon="showPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
                     :type="showPassword2 ? 'text' : 'password'"
                     outlined
