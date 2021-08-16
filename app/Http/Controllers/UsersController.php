@@ -273,8 +273,14 @@ class UsersController extends Controller
 
         $address->save();
 
-        $addresses = $user->addresses()
-                        ->get();
+        // $addresses = $user->addresses()->orderBy('created_at', 'DESC')
+        //                 ->get();
+
+        // $addresses = Address::where('user_id', $id)
+        //                     ->where('life', 1)
+        //                     ->get();
+
+        $addresses = $user->addresses()->where('life', 1)->orderBy('created_at', 'DESC')->get();
 
         return response()->json(['deliveryAddress'=>$address, 'otherAddresses'=>$addresses],200);
     }
@@ -289,6 +295,7 @@ class UsersController extends Controller
                         ->where('user_id', $id)
                         ->where('type', 1)
                         ->where('life', 1)
+                        ->orderBy('created_at', 'DESC')
                         ->get();
 
         return response() -> json(['addresses' => $addresses]);
@@ -308,12 +315,14 @@ class UsersController extends Controller
                     ->first();
 
         $address -> life = 0;
+        $address->delete();
 
         $address -> save();
 
         $addresses = $user->addresses()
                         ->where('type', 1)
                         ->where('life', 1)
+                        ->orderBy('created_at', 'DESC')
                         ->get();
 
         return response() -> json(['otherAddresses' => $addresses]);

@@ -16,7 +16,11 @@
                                             <div class="jp-font-400 grey--text text--darken-4 mt48 mb48">新しいお届け先を追加する</div>
                                         </v-col>
                                     </v-row>
-                                    <v-form>
+                                    <v-form
+                                        ref="form"
+                                        v-model="valid"
+                                        lazy-validation
+                                    >
                                         <v-text-field
                                             v-model="name"
                                             :counter="10"
@@ -148,6 +152,7 @@ export default {
     },
     data: function(){
         return {
+            valid: true,
             name: '',
             nameRules: [
                 v => !!v || 'お名前を入力してください。',
@@ -219,17 +224,20 @@ export default {
             'addOtherAddress',
         ]),
         add(){
-            this.addOtherAddress({
-                name: this.name,
-                kana: this.kana,
-                zipcode: this.zipcode,
-                prefecture: this.state,
-                city: this.city,
-                address_1: this.address1,
-                building: this.building,
-                phone: this.phone,
-                // delivery_time: this.deliveryTime
-            })
+
+            if(this.$refs.form.validate()){
+                this.addOtherAddress({
+                    name: this.name,
+                    kana: this.kana,
+                    zipcode: this.zipcode,
+                    prefecture: this.state,
+                    city: this.city,
+                    address_1: this.address1,
+                    building: this.building,
+                    phone: this.phone,
+                    // delivery_time: this.deliveryTime
+                })
+            }
         },
         back(){
             this.$store.dispatch("dialogNewAddress", false);

@@ -12,7 +12,7 @@
                 <v-col cols="12" sm="12" md="12">
                     <h4 class="jp-font grey--text text--darken-3 mb24">Step 1: 配送先の住所を選択する</h4>
                     <div class="jp-font-400 grey--text text--darken-2 mb24">住所をクリックして選択してください。</div>
-                    <v-item-group v-model="addressGroup" mandatory>
+                    <v-item-group v-model="addressGroup">
                         <v-row>
                             <v-col cols="12" sm="12" md="12">
                                 <v-item v-slot="{active, toggle}" v-for="address in otherAddresses" :key="address.id" :value='address'>
