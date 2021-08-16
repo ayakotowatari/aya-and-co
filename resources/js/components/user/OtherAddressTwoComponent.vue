@@ -8,92 +8,94 @@
             v-bind:address="address"
         ></removeaddressdialog-component>
         <div v-if="otherAddresses.length >= 1">
-        <v-row>
-            <v-col cols="12" sm="12" md="12">
-                <h4 class="jp-font grey--text text--darken-3 mb24">Step 1: 配送先の住所を選択する</h4>
-                <v-item-group v-model="addressGroup" mandatory>
-                    <v-row>
-                        <v-col cols="12" sm="12" md="12">
-                            <v-item v-slot="{active, toggle}" v-for="address in otherAddresses" :key="address.id" :value='address'>
-                                <v-card
-                                    :elevation = "active ? '6' : ''"
-                                    class="mx-auto mb-6"
-                                    outlined
-                                    @click="toggle"
-                                    max-width=560
-                                >   
-                                    <v-row align="center">
-                                    <v-col cols="9" sm="9" md="9">
-                                        <v-list-item three-line>
-                                        <v-list-item-content>
-                                            <div>
-                                                {{address.prefecture}}{{address.city}}{{address.address_1}}
-                                            </div>
-                                            <div v-if="address.building !== null">
-                                                {{address.building}}
-                                            </div>
-                                            <div>
-                                                {{address.name}}様
-                                            </div>
-                                        </v-list-item-content>
-                                        </v-list-item>
-                                    </v-col>
-
-                                    <v-col cols="3" sm="3" md="3">
-                                    <v-card-actions>
-                                        <v-btn
-                                            rounded
-                                            outlined
-                                            color="grey"
-                                            @click.stop="remove(address)"
-                                        >
-                                            削除する
-                                        </v-btn>
-                                    </v-card-actions>
-                                    </v-col>
-                                    </v-row>
-                                </v-card>
-                            </v-item>
-                        </v-col>
-                    </v-row>
-                </v-item-group>
-                <!-- <v-form v-if="otherAddresses !== null">
-                    <v-radio-group v-model="radioGroup">
-                        <template v-slot:label>
-                            <div>登録されたご自宅以外の住所</div>
-                        </template>
-                        <v-radio
-                            v-for="address in otherAddresses" :key="address.id"
-                            :label="`${address.prefecture} ${address.city} ${address.address_1} ${address.name}様`"
-                            :value="address" 
-                            class="jp-font grey--text text--darken-4 mb-3"
-                        ></v-radio>
-                    </v-radio-group>
-                    <v-btn
-                        block
-                        @click="select"
-                    >
-                        この住所に送る   
-                    </v-btn>
-                </v-form> -->
-            </v-col>
-        </v-row>
-        <v-row>
-            <v-col cols="12" sm="12" md="12">
-                <v-btn
-                    color="primary"
-                    outlined
-    
-                    @click="newAddress"
-                >
-                    新しい住所を追加する
-                </v-btn>
-            </v-col>
-        </v-row>
-        <v-divider class="my-8"></v-divider>
-        <v-row>
+            <v-row>
                 <v-col cols="12" sm="12" md="12">
-                     <h4 class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配達時間を指定する</h4>
+                    <h4 class="jp-font grey--text text--darken-3 mb24">Step 1: 配送先の住所を選択する</h4>
+                    <div class="jp-font-400 grey--text text--darken-2 mb24">住所をクリックして選択してください。</div>
+                    <v-item-group v-model="addressGroup" mandatory>
+                        <v-row>
+                            <v-col cols="12" sm="12" md="12">
+                                <v-item v-slot="{active, toggle}" v-for="address in otherAddresses" :key="address.id" :value='address'>
+                                    <v-card
+                                        :elevation = "active ? '6' : ''"
+                                        class="mx-auto mb-6"
+                                        outlined
+                                        @click="toggle"
+                                        max-width=560
+                                    >   
+                                        <v-row align="center">
+                                        <v-col cols="9" sm="9" md="9">
+                                            <v-list-item three-line>
+                                            <v-list-item-content>
+                                                <div>
+                                                    {{address.prefecture}}{{address.city}}{{address.address_1}}
+                                                </div>
+                                                <div v-if="address.building !== null">
+                                                    {{address.building}}
+                                                </div>
+                                                <div>
+                                                    {{address.name}}様
+                                                </div>
+                                            </v-list-item-content>
+                                            </v-list-item>
+                                        </v-col>
+
+                                        <v-col cols="3" sm="3" md="3">
+                                        <v-card-actions>
+                                            <v-btn
+                                                rounded
+                                                outlined
+                                                color="grey"
+                                                @click.stop="remove(address)"
+                                            >
+                                                削除する
+                                            </v-btn>
+                                        </v-card-actions>
+                                        </v-col>
+                                        </v-row>
+                                    </v-card>
+                                </v-item>
+                            </v-col>
+                        </v-row>
+                    </v-item-group>
+                    <!-- <v-form v-if="otherAddresses !== null">
+                        <v-radio-group v-model="radioGroup">
+                            <template v-slot:label>
+                                <div>登録されたご自宅以外の住所</div>
+                            </template>
+                            <v-radio
+                                v-for="address in otherAddresses" :key="address.id"
+                                :label="`${address.prefecture} ${address.city} ${address.address_1} ${address.name}様`"
+                                :value="address" 
+                                class="jp-font grey--text text--darken-4 mb-3"
+                            ></v-radio>
+                        </v-radio-group>
+                        <v-btn
+                            block
+                            @click="select"
+                        >
+                            この住所に送る   
+                        </v-btn>
+                    </v-form> -->
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12" sm="12" md="12">
+                    <div class="jp-font-400 grey--text text--darken-2 mb24">まだ登録されていない住所を追加しますか？</div>
+                    <v-btn
+                        color="primary"
+                        outlined
+        
+                        @click="newAddress"
+                    >
+                        新しい住所を追加する
+                    </v-btn>
+                </v-col>
+            </v-row>
+            <v-divider class="my-8"></v-divider>
+            <v-row>
+                <v-col cols="12" sm="12" md="12">
+                    <h4 class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配達時間を指定する</h4>
                     <v-form>
                         <v-select
                             v-model="deliveryTime"

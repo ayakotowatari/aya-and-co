@@ -184,9 +184,9 @@ export default new Vuex.Store({
         console.log('id', id)
 
         let addressInOtherAddressIndex = state.otherAddresses.findIndex(item => item.id === id)
-        console.log('addressInOtherAddressIndex', addressInOtherAddressIndex)
+        //console.log('addressInOtherAddressIndex', addressInOtherAddressIndex)
         let address = state.otherAddresses[addressInOtherAddressIndex]
-        console.log('address', address)
+        //console.log('address', address)
 
         state.deliveryAddress = address
         state.deliveryAddress.delivery_time = delivery_time
