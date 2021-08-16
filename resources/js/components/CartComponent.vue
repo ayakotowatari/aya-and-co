@@ -158,7 +158,7 @@
         </div>
         <div class="divider-image orange-image">
          <v-img
-             max-width=120
+             max-width=100
              class="mx-auto"
              src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange.png"
           ></v-img>
