@@ -144,7 +144,8 @@ class ProductsController extends Controller
                         )
                         ->first();
 
-        $total = $product->orders()->count();
+        //$total = $product->orders('quantity')->count();
+        $total = $product->orders('quantity')->sum('quantity');
 
         // DD($total);
 
