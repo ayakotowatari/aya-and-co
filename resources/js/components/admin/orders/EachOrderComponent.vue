@@ -78,7 +78,7 @@
                         <div class="item-title" v-if="actualShipmentDate !== null">
                             {{actualShipmentDate}}
                         </div>
-                        <div class="item-title" v-if="actualShipmentDate === null">
+                        <div class="item-title mb-2" v-if="actualShipmentDate === null">
                             未発送
                         </div>
                         <div v-if="actualShipmentDate === null">
@@ -103,7 +103,7 @@
                         <div class="item-title" v-if="deliveredDate !== null">
                             {{deliveredDate}}
                         </div>
-                        <div class="item-title" v-if="deliveredDate === null">
+                        <div class="item-title mb-2" v-if="deliveredDate === null">
                             未配達
                         </div>
                         <div v-if="deliveredDate === null">
@@ -119,6 +119,45 @@
                                 outlined
                                 @click="updateDeliveredDate"
                             >更新</v-btn>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <div class="item-content">
+                            備考
+                        </div>
+                        <div class="item-title mb-2" v-if="order.note !== null">
+                            {{order.note}} 
+                        </div>
+                        <div class="item-title mb-2" v-if="order.note === null">
+                            未記入
+                        </div>
+                        <div class="mb-2">
+                            <div v-if="order.note === null">
+                                <v-btn
+                                    color="primary"
+                                    outlined
+                                    @click="inputNote"
+                                >記入</v-btn>
+                            </div>
+                            <div v-if="order.note !== null">
+                                <v-btn
+                                    color="primary"
+                                    outlined
+                                    @click="updateNote"
+                                >更新</v-btn>
+                            </div>
+                        </div>
+                        <div v-if="inputOrderNote == true">
+                            <inputordernote-component
+                                v-bind:inputOrderNote="inputOrderNote"
+                                v-bind:order="order"
+                            ></inputordernote-component>
+                        </div>
+                        <div v-if="updateOrderNote == true">
+                            <updateordernote-component
+                                v-bind:updateOrderNote="updateOrderNote"
+                                v-bind:order="order"
+                            ></updateordernote-component>
                         </div>
                     </div>
                     <div class="mb-8">
@@ -314,6 +353,21 @@
                                         </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            ギフトカード
+                                        </v-list-item-subtitle>
+                                        <div v-if="order.delivery_carduse === '利用する'">
+                                            <v-list-item-title class="jp-font-400">
+                                                メッセージ：{{order.delivery_cardmessage}}
+                                            </v-list-item-title>
+                                             <v-list-item-title class="jp-font-400">
+                                                差出人名の表記：{{order.delivery_cardname}}
+                                            </v-list-item-title>
+                                        </div>
+                                    </v-list-item-content>
+                                </v-list-item>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -387,6 +441,8 @@ export default {
             'dialogUpdateDeliveredDate',
             'plannedShipmentDate',
             'actualShipmentDate',
+            'inputOrderNote',
+            'updateOrderNote',
             'deliveredDate',
             'orderStatus',
             'allerror',
@@ -428,6 +484,12 @@ export default {
         },
         updateDeliveredDate(){
             this.$store.commit('admin/dialogUpdateDeliveredDate', true)
+        },
+        inputNote(){
+            this.$store.commit('admin/setInputOrderNote', true)
+        },
+        updateNote(){
+            this.$store.commit('admin/setUpdateOrderNote', true)
         },
         formatPrice(value){
           let price = value;

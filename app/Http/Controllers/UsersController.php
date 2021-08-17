@@ -432,6 +432,9 @@ public function purchase(Request $request){
                 'delivery_building' => $request->input('deliveryBuilding'),
                 'delivery_phone' => $request->input('deliveryPhone'),
                 'delivery_time' => $request->input('deliveryTime'),
+                'delivery_carduse' => $request->input('deliveryCardUse'),
+                'delivery_cardmessage' => $request->input('deliveryCardMessage'),
+                'delivery_cardname' => $request->input('deliveryCardName'),
                 'postage' => $request->input('deliveryPostage'),
                 'item_total' => $request->input('itemTotal'),
                 'status_id' => 1

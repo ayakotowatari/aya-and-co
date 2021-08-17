@@ -95,8 +95,12 @@ class OrdersController extends Controller
                         'orders.delivery_building',
                         'orders.delivery_phone',
                         'orders.delivery_time',
+                        'orders.delivery_carduse',
+                        'orders.delivery_cardmessage',
+                        'orders.delivery_cardname',
                         'orders.postage',
                         'orders.total',
+                        'orders.note',
                         'statuses.status',
                         // 'shipments.scheduled_date',
                         // 'shipments.actual_date'
@@ -155,6 +159,7 @@ class OrdersController extends Controller
                         'orders.delivery_time',
                         'orders.postage',
                         'orders.total',
+                        'orders.note',
                         'statuses.status',
                         // 'shipments.scheduled_date',
                         // 'shipments.actual_date'
@@ -384,6 +389,80 @@ class OrdersController extends Controller
         
     }
 
+    public function inputUserOrderNote(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'note' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $order = Order::find($id);
+        $order->note = request('note');
+        $order->save();
+
+        $note = $order->note;
+
+        return response() -> json(['note' => $note]);
+    }
+
+    public function updateUserOrderNote(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'note' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $order = Order::find($id);
+        $order->note = request('note');
+        $order->update();
+
+        $note = $order->note;
+
+        return response() -> json(['note' => $note]);
+    }
+
+    public function inputGuestOrderNote(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'note' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $order = Order::find($id);
+        $order->note = request('note');
+        $order->save();
+
+        $note = $order->note;
+
+        return response() -> json(['note' => $note]);
+    }
+
+    public function updateGuestOrderNote(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'note' => 'required',
+        ]);
+
+        $id = request('id');
+
+        $order = Order::find($id);
+        $order->note = request('note');
+        $order->update();
+
+        $note = $order->note;
+
+        return response() -> json(['note' => $note]);
+    }
+
+
+
     //会員のために各注文詳細を取得
     public function fetchOrder($id)
     {
@@ -415,6 +494,9 @@ class OrdersController extends Controller
                         'orders.delivery_building',
                         'orders.delivery_phone',
                         'orders.delivery_time',
+                        'orders.delivery_carduse',
+                        'orders.delivery_cardmessage',
+                        'orders.delivery_cardname',
                         'orders.postage',
                         'orders.item_total',
                         'orders.total',

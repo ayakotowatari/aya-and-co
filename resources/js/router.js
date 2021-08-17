@@ -20,6 +20,7 @@ import Contact from "./components/ContactComponent";
 import Postages from "./components/PostagesComponent";
 import About from "./components/AboutComponent";
 import Privacy from "./components/PrivacyComponent";
+import MessageService from "./components/MessageServiceComponent";
 
 //user
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
@@ -103,6 +104,12 @@ const routes = [
         path: "/privacy-policy",
         name: "privacy",
         component: Privacy
+    },
+
+    {
+        path: "/message-service",
+        name: "message-service",
+        component: MessageService
     },
 
     {

@@ -193,6 +193,9 @@
                                         <v-list-item-title v-if="order.user_building !== null" class="jp-font-400">
                                             {{order.delivery_building}}
                                         </v-list-item-title>
+                                        <v-list-item-title class="jp-font-400">
+                                            {{order.delivery_name}}様
+                                        </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
                                 <v-list-item>
@@ -205,6 +208,26 @@
                                         </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            カードメッセージ
+                                        </v-list-item-subtitle>
+                                        <div v-if="order.delivery_carduse === '利用しない'">
+                                            <v-list-item-title class="jp-font-400">
+                                                利用なし
+                                            </v-list-item-title>
+                                        </div>
+                                        <div v-if="order.delivery_carduse === '利用する'">
+                                            <v-list-item-title class="jp-font-400">
+                                                メッセージ：{{order.delivery_cardmessage}}
+                                            </v-list-item-title>
+                                            <v-list-item-title class="jp-font-400">
+                                                差出人お名前の表記：{{order.delivery_cardname}}
+                                            </v-list-item-title>
+                                        </div>
+                                    </v-list-item-content>
+                                </v-list-item>
                             </v-card>
                         </v-col>
                     </v-row>
@@ -214,7 +237,7 @@
                         @click="$router.push({name: 'order-summary'})"
                         class="hidden-sm-and-down"
                     >
-                        注文履歴へ戻る
+                        注文履歴リストへ戻る
                     </v-btn>
                     <v-btn
                         color="primary"
@@ -223,7 +246,7 @@
                         @click="$router.push({name: 'order-summary'})"
                         class="hidden-md-and-up"
                     >
-                        注文履歴へ戻る
+                        注文履歴リストへ戻る
                     </v-btn>
                 </v-col>
             </v-row>

@@ -54,7 +54,13 @@ export default new Vuex.Store({
           email: '',
           delivery_time: '',
           postage: '',
+        //   delivery_cardmessage: '',
+        //   delivery_cardname: '',
+        //   delivery_carduse: ''
       },
+      deliveryCardUse: '',
+      deliveryCardMessage: '',
+      deliveryCardName: '',
       postages: {
           
       },
@@ -108,6 +114,8 @@ export default new Vuex.Store({
       isEditingPassword: false,
       isEditingAddress: false,
       isEditingDeliveryTime: false,
+      selectCard: false,
+    //   disabledSelectCard: false,
       allerror: [],
       allLoginError: {
         email: null,
@@ -181,6 +189,9 @@ export default new Vuex.Store({
         
         let id = payload.address.id
         let delivery_time = payload.delivery_time
+        let delivery_cardmessage = payload.delivery_cardmessage
+        let delivery_cardname = payload.delivery_cardname
+        let delivery_carduse = payload.delivery_carduse
         console.log('id', id)
 
         let addressInOtherAddressIndex = state.otherAddresses.findIndex(item => item.id === id)
@@ -190,10 +201,27 @@ export default new Vuex.Store({
 
         state.deliveryAddress = address
         state.deliveryAddress.delivery_time = delivery_time
+        // state.deliveryAddress.delivery_cardmessage = delivery_cardmessage
+        // state.deliveryAddress.delivery_cardname = delivery_cardname
+        // state.deliveryAddress.delivery_carduse = delivery_carduse
+        state.deliveryCardUse = delivery_carduse
+        state.deliveryCardMessage = delivery_cardmessage
+        state.deliveryCardName = delivery_cardname
 
     },
     setDeliveryAddress(state, payload){
         state.deliveryAddress = payload
+    },
+    updateGuestDeliveryAddress(state, payload){
+        state.deliveryAddress.name = payload.name
+        state.deliveryAddress.kana = payload.kana
+        state.deliveryAddress.zipcode = payload.zipcode
+        state.deliveryAddress.prefecture = payload.prefecture
+        state.deliveryAddress.city = payload.city
+        state.deliveryAddress.address_1 = payload.address_1
+        state.deliveryAddress.building = payload.building
+        state.deliveryAddress.phone = payload.phone
+        state.deliveryAddress.delivery_time = payload.delivery_time
     },
     updateDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
@@ -205,6 +233,10 @@ export default new Vuex.Store({
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
         state.deliveryAddress.delivery_time = payload.delivery_time
+
+        state.deliveryCardUse = payload.delivery_carduse
+        state.deliveryCardMessage = payload.delivery_cardmessage
+        state.deliveryCardName = payload.delivery_cardname
     },
     updateDeliveryName(state,payload){
         state.deliveryAddress.name = payload
@@ -505,12 +537,26 @@ export default new Vuex.Store({
     setIsEditingDeliveryTime(state, payload){
         state.isEditingDeliveryTime = payload
     },
+    setSelectCard(state, payload){
+        state.selectCard = payload
+    },
+    // disableSelectCard(state, payload){
+    //     state.disabledSelectCard = payload
+    // }
     
   },
   
   // ゲッター
   getters: {
-    
+     deliveryCardUse(state){
+        return state.deliveryAddress.delivery_carduse;
+     },
+     deliveryCardMessage(state){
+        return state.deliveryAddress.delivery_cardmessage;
+     },
+     deliveryCardName(state){
+        return state.deliveryAddress.delivery_carename;
+     }
   },
   
   // アクション
@@ -811,7 +857,7 @@ export default new Vuex.Store({
             deliveryAddress = res.data.deliveryAddress
             postage = res.data.postage
             commit('setGuest', guest);
-            commit('updateDeliveryAddress', guest);
+            commit('updateGuestDeliveryAddress', guest);
             commit('setPostage', postage);
             commit('setDisabled', true);
             commit('updateDisableContinue1', false);

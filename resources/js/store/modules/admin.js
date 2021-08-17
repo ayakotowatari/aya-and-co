@@ -35,6 +35,10 @@ export const admin = {
        dialogUpdateActualDate: false,
        dialogDeliveredDate: false,
        dialogUpdateDeliveredDate: false,
+       inputOrderNote: false,
+       updateOrderNote: false,
+       inputGuestNote: false,
+       updateGuestNote: false,
        statuses: [],
        categoryStatuses: [],
        showEditSubtitle: false,
@@ -60,8 +64,8 @@ export const admin = {
             state.orders = payload
         },
         setOrder(state, payload){
-            console.log('setOrder')
-            console.log(payload)
+            //console.log('setOrder')
+            //console.log(payload)
             state.order = payload
             state.orderStatus = payload.status
         },
@@ -130,6 +134,21 @@ export const admin = {
         },
         setCategoryStatuses(state, payload){
             state.categoryStatuses = payload
+        },
+        setInputOrderNote(state, payload){
+            state.inputOrderNote = payload
+        },
+        setUpdateOrderNote(state, payload){
+            state.updateOrderNote = payload
+        },
+        setInputGuestNote(state, payload){
+            state.inputGuestNote = payload
+        },
+        setUpdateGuestNote(state, payload){
+            state.updateGuestNote = payload
+        },
+        setOrderNote(state, payload){
+            state.order.note = payload
         },
         setCategoryStatus(state, payload){
             state.category.status = payload
@@ -247,7 +266,7 @@ export const admin = {
                     password: payload.password,
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response);
                     // router.push({path: '/student/main'});
                     // commit('setLoading', false);
                     user = response.data.user
@@ -288,7 +307,7 @@ export const admin = {
         },
         async fetchOrder({state, commit}, payload){
 
-            console.log(payload.id);
+            //console.log(payload.id);
 
             let order = {};
             let products = [];
@@ -308,7 +327,7 @@ export const admin = {
         },
         async fetchGuestOrder({state, commit}, payload){
 
-            console.log(payload.id);
+            //console.log(payload.id);
 
             let order = {};
             let products = [];
@@ -382,7 +401,7 @@ export const admin = {
             let date= "";
             let allerror = [];
 
-            console.log('date', payload.date);
+            //console.log('date', payload.date);
 
             await axios
                 .post('/schedule-shipment', {
@@ -393,7 +412,7 @@ export const admin = {
                 })
                 .then(res => {
                     date = res.data.date
-                    console.log('res', date)
+                    //console.log('res', date)
                     commit('setPlannedShipmentDate', date)
                     commit('dialogShipment', false)
                     // commit('setLoading', false);
@@ -409,7 +428,7 @@ export const admin = {
             let date= ""
             let allerror = [];
 
-            console.log('date', payload.date);
+            //console.log('date', payload.date);
 
             await axios
                 .post('/update-shipment', {
@@ -537,8 +556,8 @@ export const admin = {
             let deliveredDate = ""
             let allerror = [];
 
-            console.log('date', payload.delivered_date);
-            console.log('id', payload.id);
+            //console.log('date', payload.delivered_date);
+            //console.log('id', payload.id);
 
             await axios
                 .post('/input-delivereddate', {
@@ -605,7 +624,7 @@ export const admin = {
         },
         async editSubtitle({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let newSubtitle = "";
             let allerror = [];
@@ -627,7 +646,7 @@ export const admin = {
         },
         async editDetails({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let newDetails = "";
             let allerror = [];
@@ -649,7 +668,7 @@ export const admin = {
         },
         async editDescription({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let newDescription = "";
             let allerror = [];
@@ -671,7 +690,7 @@ export const admin = {
         },
         async editSeason({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let newSeason = "";
             let allerror = [];
@@ -693,7 +712,7 @@ export const admin = {
         },
         async editIngredients({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let newIngredients = "";
             let allerror = [];
@@ -715,7 +734,7 @@ export const admin = {
         },
         async editImage({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             // let newImage = "";
             // let absolutePath = "";
@@ -804,7 +823,7 @@ export const admin = {
         },
         async createCategory({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let category = {};
 
@@ -841,7 +860,7 @@ export const admin = {
                 .get('/admin/fetch-statuses')
                 .then(response => {
                     statuses = response.data.statuses;
-                    console.log('response', statuses)
+                    //console.log('response', statuses)
                     commit('setCategoryStatuses', statuses);
                 })
                 .catch(error => {
@@ -860,7 +879,7 @@ export const admin = {
                 })
                 .then(response => {
                     status = response.data.status;
-                    console.log('response', status)
+                    //console.log('response', status)
                     commit('setCategoryStatus', status);
                     commit('setShowUpdateCategoryStatus', false)
                 })
@@ -871,7 +890,7 @@ export const admin = {
         },
         async createProduct({state, commit}, payload){
 
-            console.log('payload', payload)
+            //console.log('payload', payload)
 
             let category = {};
 
@@ -907,7 +926,7 @@ export const admin = {
                 })
                 .then(response => {
                     status = response.data.status;
-                    console.log('response', status)
+                    //console.log('response', status)
                     commit('setProductStatus', status);
                     commit('setShowUpdateProductStatus', false)
                 })
@@ -926,13 +945,98 @@ export const admin = {
                 .then(response => {
                     // products = response.data.products;
                     // commit('setProducts', products)
-                    console.log(response)
+                    //console.log(response)
                 })
                 .catch(error => {
                     allerror = error.response.data.errors,
                     commit('setallErrors', allerror)
                 })
         },
+
+        async inputUserOrderNote({state, commit}, payload){
+
+            let note = "";
+
+            await axios
+                .post('/admin/input-userordernote', {
+                    id: payload.id,
+                    note: payload.note
+                })
+                .then(response => {
+                    note = response.data.note;
+                    //console.log('response', note)
+                    commit('setOrderNote', note);
+                    commit('setInputOrderNote', false)
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        async updateUserOrderNote({state, commit}, payload){
+
+            let note = "";
+
+            await axios
+                .post('/admin/update-userordernote', {
+                    id: payload.id,
+                    note: payload.note
+                })
+                .then(response => {
+                    note = response.data.note;
+                    //console.log('response', note)
+                    commit('setOrderNote', note);
+                    commit('setUpdateOrderNote', false)
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        async inputGuestOrderNote({state, commit}, payload){
+
+            let note = "";
+
+            await axios
+                .post('/admin/input-guestordernote', {
+                    id: payload.id,
+                    note: payload.note
+                })
+                .then(response => {
+                    note = response.data.note;
+                    //console.log('response', note)
+                    commit('setOrderNote', note);
+                    commit('setInputGuestNote', false)
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        async updateGuestOrderNote({state, commit}, payload){
+
+            let note = "";
+
+            await axios
+                .post('/admin/update-guestordernote', {
+                    id: payload.id,
+                    note: payload.note
+                })
+                .then(response => {
+                    note = response.data.note;
+                    //console.log('response', note)
+                    commit('setOrderNote', note);
+                    commit('setUpdateGuestNote', false)
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+        
         
 
 
