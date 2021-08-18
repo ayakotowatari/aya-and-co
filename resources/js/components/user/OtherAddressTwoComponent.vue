@@ -95,7 +95,11 @@
             <v-divider class="my-8"></v-divider>
             <v-row>
                 <v-col cols="12" sm="12" md="12">
-                    <v-form>
+                    <v-form
+                        ref="form"
+                        v-model="valid"
+                        lazy-validation
+                    >
                         <div class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配達時間を指定する</div>
                         <v-select
                             v-model="deliveryTime"
@@ -104,6 +108,9 @@
                             label="ご希望の配達時間帯"
                             required
                             class="mb24"
+                            :rules="deliveryTimeRules" 
+                            :error="allerror.delivery_time"
+                            :error-messages="allerror.delivery_time"
                         ></v-select>
 
                          <v-divider class="mt-4 mb-8"></v-divider>
@@ -131,6 +138,9 @@
                             :items = "useCard"
                             label="ギフトカードの利用"
                             required
+                            :rules="deliveryCardUseRules" 
+                            :error="allerror.delivery_carduse"
+                            :error-messages="allerror.delivery_carduse"
                             class="mb24"
                          ></v-select>
                          <div v-if="this.deliveryCardUse === '利用する'">
@@ -205,8 +215,12 @@ export default {
     },
     data: function(){
         return {
+            valid: true,
             addressGroup: null,
             deliveryTime: '',
+            deliveryTimeRules: [
+                v => !!v || 'ご希望の配達時間を選択してください。',
+            ],
             deliveryCardMessage: '',
             deliveryCardName: '',
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
@@ -214,6 +228,9 @@ export default {
             displayName: ['姓・名両方', '下のお名前のみ'],
             address: {},
             deliveryCardUse: '',
+            deliveryCardUseRules: [
+                v => !!v || 'カードメッセージのご利用の有無を選択してください。',
+            ],
             useCard: ['利用する', '利用しない']
         }
     },
@@ -301,23 +318,29 @@ export default {
         // },
         select(){
 
-            if(this.deliveryCardUse == '利用しない'){
-                this.selectAddress({
-                    address: this.addressGroup,
-                    delivery_time: this.deliveryTime,
-                    delivery_cardmessage: '',
-                    delivery_cardname: '',
-                    delivery_carduse: this.deliveryCardUse
-                })
-            }else{
-                this.selectAddress({
-                    address: this.addressGroup,
-                    delivery_time: this.deliveryTime,
-                    delivery_cardmessage: this.deliveryCardMessage,
-                    delivery_cardname: this.deliveryCardName,
-                    delivery_carduse: this.deliveryCardUse
-                })
+            if(this.$refs.form.validate()){
+
+                if(this.deliveryCardUse == '利用しない'){
+                    this.selectAddress({
+                        address: this.addressGroup,
+                        delivery_time: this.deliveryTime,
+                        delivery_cardmessage: '',
+                        delivery_cardname: '',
+                        delivery_carduse: this.deliveryCardUse
+                    })
+                }else{
+                    this.selectAddress({
+                        address: this.addressGroup,
+                        delivery_time: this.deliveryTime,
+                        delivery_cardmessage: this.deliveryCardMessage,
+                        delivery_cardname: this.deliveryCardName,
+                        delivery_carduse: this.deliveryCardUse
+                    })
+                 }
+
             }
+
+            
             
         },
         newAddress(){

@@ -75,7 +75,6 @@
                         :rules="deliveryTimeRules" 
                         :error="allerror.delivery_time"
                         :error-messages="allerror.delivery_time"
-
                     ></v-select>
 
                     <v-divider class="mt-4 mb-8"></v-divider>
@@ -105,6 +104,9 @@
                         label="カードメッセージの利用"
                         required
                         class="mb24"
+                        :rules="deliveryCardUseRules" 
+                        :error="allerror.delivery_carduse"
+                        :error-messages="allerror.delivery_carduse"
                     ></v-select>
                     <div v-if="this.deliveryCardUse === '利用する'">
                         <div class="jp-font grey--text text--darken-3 mb24">カードのメッセージを選択してください。</div>
@@ -153,6 +155,9 @@ export default {
             useCard: ['利用する', '利用しない'],
             cards: ["Happy Birthday", "Take Care", "Get Well Soon", "With Love"],
             deliveryCardUse: '',
+            deliveryCardUseRules: [
+                v => !!v || 'カードメッセージのご利用の有無を選択してください。',
+            ],
             deliveryCardMessage: '',
         }
     },
