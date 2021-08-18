@@ -50,11 +50,11 @@
                   aya & co.では、ご注文時に、商品の発送時に同封されるカードのメッセージをお選びいただき、<br class="lg">
                   さらに、ギフトとして贈られる場合は、カードの差出人としてお客様のお名前を印字するサービスを、2021年12月末まで無料で提供しています。ぜひご利用ください。<br class="lg">
               </p>
-              <div class="divider-image pine-image">
+              <div class="divider-image pine-image balloon-image">
                     <v-img
                         max-width=90
                         class="mx-auto"
-                        src="../image/balloon.jpeg"
+                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/balloon.png"
                     ></v-img>
               </div>
               <!-- <div class="my-4">
@@ -197,6 +197,11 @@ export default {
     background-size: 3px 1px;
     background-repeat: repeat-x; */
 
+}
+
+.balloon-image{
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 @media(max-width:780px){
