@@ -18,7 +18,7 @@
             </v-col>
             <v-col cols="12" sm="12" md="8">
                 <div class="mb-6">
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         aya & co.（以下、当社）は、 個人情報保護の重要性に鑑み、本ウェブサイト上で提供するサービス（以下「本サービス」）における個人情報の取扱いについて，プライバシーポリシー（個人情報保護方針）を定めます。個人情報保護の仕組みを構築し、個人情報保護の重要性の認識と取組みを徹底させることにより、個人情報の保護を行ってまいります。
                     </div>
                 </div>
