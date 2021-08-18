@@ -152,6 +152,9 @@
                                 label="メッセージを選択する"
                                 required
                                 class="mb48"
+                                :rules="deliveryCardMessageRules" 
+                                :error="allerror.delivery_cardmessage"
+                                :error-messages="allerror.delivery_cardmessage"
                             ></v-select>
                             <div class="jp-font grey--text text--darken-3 mb24">カードの差出人として、あなたのお名前をどのように表記しますか？</div>
                             <v-select
@@ -161,6 +164,9 @@
                                 label="表記を選択"
                                 required
                                 class="mb48"
+                                :rules="deliveryCardNameRules" 
+                                :error="allerror.delivery_cardname"
+                                :error-messages="allerror.delivery_cardname"
                             ></v-select>
                             <div class="jp-font grey--text text--darken-3 mb24">ギフトカード作成にあたってのご留意事項</div>
                                 <div class="jp-font grey--text text--darken-2 mb24">
@@ -222,7 +228,13 @@ export default {
                 v => !!v || 'ご希望の配達時間を選択してください。',
             ],
             deliveryCardMessage: '',
+            deliveryCardMessageRules: [
+                v => !!v || 'メッセージを選択してください。',
+            ],
             deliveryCardName: '',
+            deliveryCardNameRules: [
+                v => !!v || 'お名前の表記方法を選択してください。',
+            ],
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
             cards: ["Thank You", "Happy Birthday", "Take Care", "Get Well Soon", "With Love"],
             displayName: ['姓・名両方', '下のお名前のみ'],

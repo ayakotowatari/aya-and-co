@@ -117,6 +117,9 @@
                                 label="メッセージを選択する"
                                 required
                                 class="mb48"
+                                :rules="deliveryCardMessageRules" 
+                                :error="allerror.delivery_cardmessage"
+                                :error-messages="allerror.delivery_cardmessage"
                             ></v-select>
                     </div>
                     <v-btn
@@ -159,6 +162,9 @@ export default {
                 v => !!v || 'カードメッセージのご利用の有無を選択してください。',
             ],
             deliveryCardMessage: '',
+            deliveryCardMessageRules: [
+                v => !!v || 'カードメッセージを選択してください。',
+            ],
         }
     },
     watch: {
