@@ -99,7 +99,7 @@
                     <div class="item-content line-height policy-title mb-4">
                         カスタムプリントされるお名前
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             ギフトとしてお贈りされる場合は、お客様のお名前をカードの差出人として英字で印字いたしますので、パーソナライズされたカードをお贈りいただけます。
                             以下の2種類のなかから、表記をお選びいただけます。
