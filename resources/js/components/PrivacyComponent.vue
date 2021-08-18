@@ -26,7 +26,7 @@
                     <div class="item-content policy-title">
                         第1条 個人情報とは
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.「個人情報」とは，個人情報保護法にある「個人情報」を指すものとし、生存する個人に関する情報であり、当該情報に含まれる氏名、住所、電話番号、連絡先、その他の記述等により特定の個人を識別できる情報を指します。
                         </p>
@@ -39,7 +39,7 @@
                     <div class="item-content policy-title">
                         第2条 個人情報の取得方法
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.本サービスでは、ユーザーが利用登録をする際に氏名、生年月日、住所、電話番号、メールアドレスなどの個人情報をお尋ねすることがあります。
                         </p>
@@ -52,7 +52,7 @@
                     <div class="item-content policy-title">
                         第3条 個人情報を取得・利用する目的
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             本サービスにおいて、個人情報を取得・利用する目的は以下のとおりです。
                         </p>
@@ -83,7 +83,7 @@
                     <div class="item-content policy-title">
                         第4条 個人情報の管理
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         お客様の個人情報を正確かつ最新の状態に保ち、個人情報への不正アクセス・紛失・破損・改ざん・漏洩などを防止するため、セキュリティシステムの維持・管理体制の整備・社員教育の徹底等の必要な措置を講じ、安全対策を実施し、個人情報の厳重な管理を行ないます。
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="item-content policy-title">
                         第5条 個人情報の開示
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.お客様ご自身から個人情報の開示を求められた場合、お客様に対してのみ、遅滞なくこれを開示します。ただし、開示することにより次のいずれかに該当する場合は、その全部または一部を開示しない場合もあり、開示しない決定をした場合には、その旨を遅滞なく通知します。<br>
                             お客様ご自身または第三者の生命、身体、財産その他の権利利益を害するおそれがある場合<br>
@@ -107,7 +107,7 @@
                     <div class="item-content policy-title">
                         第6条 個人情報の第三者への提供
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.お客様よりお預かりした個人情報は適切に管理し、次のいずれかに該当する場合を除き、あらかじめお客様の同意を得ることなく、第三者に提供することはありません。ただし、個人情報保護法やその他の法令で認められる場合を除きます。<br>
 
@@ -134,7 +134,7 @@
                     <div class="item-content policy-title">
                         第7条 個人情報の安全対策
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         本サービスでは、個人情報の正確性及び安全性確保のために、セキュリティに万全の対策を講じております。<br>
                         個人情報の保護に関する情報収集を常に行い、最新のセキュリティ対策を行うよう努めます。<br>
                     </div>
@@ -143,7 +143,7 @@
                     <div class="item-content policy-title">
                         第8条 個人情報の訂正および削除
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.お客様は本サービスが保有している自己の個人情報が誤った情報である場合、本サービスが定める手続きにより、個人情報の訂正または削除を請求することができます。
                         </p>
@@ -156,7 +156,7 @@
                     <div class="item-content policy-title">
                         第9条 個人情報の利用停止等
                     </div>
-                    <div class="item-title grey--text text--darken-3 mb-6">
+                    <div class="item-title line-height grey--text text--darken-3 mb-6">
                         お客様より個人情報が利用目的の範囲を超えて取り扱われているという理由、または不正に取得されたものであるという理由により、利用の停止または消去（以下「利用停止等」）を求められた場合には、遅滞なく必要な調査を行い、その結果に基づき、個人情報の利用停止等を行い、その旨をお客様に通知します。ただし、個人情報の利用停止等に多額の費用を有する場合、または利用停止等を行うことが困難な場合は、これに代わるべき措置を講じます。
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                     <div class="item-content policy-title">
                         第10条 法令、規範の遵守とプライバシーポリシーの変更
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             1.本サービスでは、保有する個人情報に関して適用される日本の法令、その他規範を遵守いたします。
                         </p>
@@ -180,7 +180,7 @@
                     <div class="item-content policy-title">
                         第11条 個人情報管理責任者
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         aya & co. 代表　上田文子
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                     <div class="item-content policy-title">
                         第12条 お問い合わせ
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             本サービスにおけるプライバシーポリシーおよび個人情報の取り扱いに関するお問い合わせは、下記窓口までご連絡ください。
                         </p>

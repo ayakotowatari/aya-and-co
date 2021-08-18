@@ -39,14 +39,14 @@
               <p class="item-title">マーマレードに気持ちを添えて</p>
           </v-col>
           <v-col cols="12" sm="12" md="8">
-              <p class="item-title">
+              <p class="description">
                   マーマレードを手にとっていただくのは、<br class="lg">
                   頑張ったご自身へのねぎらいの贈り物であったり、<br class="lg">
                   少し疲れた時に勇気づけるためかもしれません。<br>
                   あるいは、もうすぐ誕生日を迎えるご家族やご友人のことを想っていたり、<br class="lg">
                   感謝の気持ちを誰かに伝えたくて、マーマレードを選んでいただくのかもしれません。<br class="lg">
                   自分にとって大切な人に愛情を贈ろうとされている方もいらっしゃると思います。<br>
-              <p class="item-title">
+              <p class="description">
                   aya & co.では、ご注文時に、商品の発送時に同封されるカードのメッセージをお選びいただき、<br class="lg">
                   さらに、ギフトとして贈られる場合は、カードの差出人としてお客様のお名前を印字するサービスを、2021年12月末まで無料で提供しています。ぜひご利用ください。<br class="lg">
               </p>
@@ -68,7 +68,7 @@
                     <div class="item-content policy-title mb-4">
                         選べるメッセージ
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>現在、メッセージは、以下のなかからお選びいただけます。</p>
                         <p>
                             Thank You（ありがとう）<br>
@@ -96,7 +96,7 @@
                 </v-row>
 
                 <div class="mb-8">
-                    <div class="item-content policy-title mb-4">
+                    <div class="item-content line-height policy-title mb-4">
                         カスタムプリントされるお名前
                     </div>
                     <div class="item-title grey--text text--darken-3">
@@ -124,7 +124,7 @@
                     <div class="item-content policy-title mb-4">
                         お申し込み方法
                     </div>
-                    <div class="item-title grey--text text--darken-3">
+                    <div class="item-title line-height grey--text text--darken-3">
                         <p>
                             選べるカードメッセージサービスは、現在のところ、会員登録をしていただいたお客様限定でご利用いただけます。
                             <router-link to="/guest/register">会員登録</router-link>をしていただいてから、ログインした状態でご注文のお手続きへお進みください。
@@ -205,6 +205,10 @@ export default {
 .balloon-image{
     margin-top: 60px;
     margin-bottom: 60px;
+}
+
+.line-height{
+    line-height: 1.8;
 }
 
 @media(max-width:780px){
