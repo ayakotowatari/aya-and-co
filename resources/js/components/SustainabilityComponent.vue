@@ -53,12 +53,12 @@
                   試行錯誤した結果、「木綿（もくめん）」という、国産の木材からできた緩衝材を<br class="lg">使用してみることにしました。<br>
               </p>
               <div class="divider-image pine-image">
-            <v-img
-                max-width=90
-                class="mx-auto"
-                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/pine_tree.png"
-            ></v-img>
-            </div>
+                    <v-img
+                        max-width=90
+                        class="mx-auto"
+                        src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/pine_tree.png"
+                    ></v-img>
+              </div>
               <p class="description">
                   <!-- <v-img
                       max-width=300

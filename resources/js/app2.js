@@ -56,6 +56,10 @@
  Vue.component('inputdelivereddatedialog-component', require('./components/admin/orders/InputDeliveredDateDialogComponent.vue').default);
  Vue.component('updateactualdatedialog-component', require('./components/admin/orders/UpdateActualDateDialogComponent.vue').default);
  Vue.component('updatedelivereddatedialog-component', require('./components/admin/orders/UpdateDeliveredDateDialogComponent.vue').default);
+ Vue.component('inputordernote-component', require('./components/admin/orders/InputOrderNoteComponent.vue').default);
+ Vue.component('updateordernote-component', require('./components/admin/orders/UpdateOrderNoteComponent.vue').default);
+ Vue.component('inputguestordernote-component', require('./components/admin/orders/InputGuestOrderNoteComponent.vue').default);
+ Vue.component('updateguestordernote-component', require('./components/admin/orders/UpdateGuestOrderNoteComponent.vue').default);
  
  /**
   * Next, we will create a fresh Vue application instance and attach it to

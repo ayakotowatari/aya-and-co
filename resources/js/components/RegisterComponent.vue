@@ -42,6 +42,14 @@
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
                         <span>
+                            「選べるカードメッセージサービス」をご利用いただけます（2021年12月末までの実施）。
+                        </span>
+                    </div>
+                    <div>
+                        <span class="mr-2">
+                            <v-icon color="primary">mdi-check</v-icon>
+                        </span>
+                        <span>
                             ご希望のお客様には、先行予約等、商品に関するお知らせをお送りさせていただきます。
                         </span>
                     </div>

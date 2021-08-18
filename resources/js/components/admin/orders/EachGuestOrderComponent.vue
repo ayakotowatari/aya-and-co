@@ -121,6 +121,45 @@
                             >更新</v-btn>
                         </div>
                     </div>
+                    <div class="mb-8">
+                        <div class="item-content">
+                            備考
+                        </div>
+                        <div class="item-title mb-2" v-if="order.note !== null">
+                            {{order.note}} 
+                        </div>
+                        <div class="item-title mb-2" v-if="order.note === null">
+                            未記入
+                        </div>
+                        <div class="mb-2">
+                            <div v-if="order.note === null">
+                                <v-btn
+                                    color="primary"
+                                    outlined
+                                    @click="inputGNote"
+                                >記入</v-btn>
+                            </div>
+                            <div v-if="order.note !== null">
+                                <v-btn
+                                    color="primary"
+                                    outlined
+                                    @click="updateGNote"
+                                >更新</v-btn>
+                            </div>
+                        </div>
+                        <div v-if="inputGuestNote == true">
+                            <inputguestordernote-component
+                                v-bind:inputGuestNote="inputGuestNote"
+                                v-bind:order="order"
+                            ></inputguestordernote-component>
+                        </div>
+                        <div v-if="updateGuestNote == true">
+                            <updateguestordernote-component
+                                v-bind:updateGuestNote="updateGuestNote"
+                                v-bind:order="order"
+                            ></updateguestordernote-component>
+                        </div>
+                    </div>
                      <div class="mb-8">
                         <v-btn
                             color="primary"
@@ -378,6 +417,8 @@ export default {
             'actualShipmentDate',
             'deliveredDate',
             'orderStatus',
+            'inputGuestNote',
+            'updateGuestNote'
         ]),
         cartTotal(){
             let amount = this.orderedProducts.reduce((acc,item) => acc + (item.price * item.quantity), 0);
@@ -413,6 +454,12 @@ export default {
         },
         updateDeliveredDate(){
             this.$store.commit('admin/dialogUpdateDeliveredDate', true)
+        },
+        inputGNote(){
+            this.$store.commit('admin/setInputGuestNote', true)
+        },
+        updateGNote(){
+            this.$store.commit('admin/setUpdateGuestNote', true)
         },
         formatPrice(value){
           let price = value;

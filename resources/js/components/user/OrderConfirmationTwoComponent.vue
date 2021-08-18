@@ -97,7 +97,7 @@
                 </v-row>
                 <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所等</h4>
                 <v-row>
-                    <v-col cols="12" sm="12" md="6">
+                    <v-col cols="12" sm="12" md="8">
                         <v-card
                             max-width="480"
                             outlined
@@ -137,6 +137,32 @@
                                     <v-list-item-title class="jp-font-400">
                                         {{deliveryAddress.delivery_time}}
                                     </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-subtitle class="jp-font-400">
+                                        カードメッセージのご利用
+                                    </v-list-item-subtitle>
+                                    <!-- <div>
+                                        <v-list-item-title class="jp-font-400">
+                                            メッセージ：{{deliveryCardMessage}}
+                                        </v-list-item-title>
+                                        <v-list-item-title class="jp-font-400">
+                                            差出人名の表記：{{deliveryCardName}}
+                                        </v-list-item-title>
+                                    </div> -->
+                                    <div v-if="deliveryCardUse === '利用しない'">
+                                        利用なし
+                                    </div>
+                                    <div v-if="deliveryCardUse === '利用する'">
+                                        <v-list-item-title class="jp-font-400">
+                                            メッセージ：{{deliveryCardMessage}}
+                                        </v-list-item-title>
+                                        <v-list-item-title class="jp-font-400">
+                                            差出人名の表記：{{deliveryCardName}}
+                                        </v-list-item-title>
+                                    </div>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-card>
@@ -195,6 +221,7 @@ export default {
         
     },
     created(){
+        // this.$store.commit('selectAddress');
 
     },
     computed: {
@@ -202,7 +229,19 @@ export default {
             'user',
             'cart',
             'deliveryAddress',
+            'deliveryCardUse',
+            'deliveryCardMessage',
+            'deliveryCardName'
         ]),
+        // deliveryCardUse(){
+        //     return this.$store.getters.deliveryCardUse
+        // },
+        // deliveryCardMessage(){
+        //     return this.$store.getters.deliveryCardMessage
+        // },
+        // deliveryCardName(){
+        //     return this.$store.getters.deliveryCardName
+        // },
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 

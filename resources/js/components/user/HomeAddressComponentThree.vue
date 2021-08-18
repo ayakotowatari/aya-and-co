@@ -9,10 +9,10 @@
             </v-col>
         </v-row>
         <v-row justify="center">
-            <v-col cols="12" sm="12" md="8">
+            <v-col cols="12" sm="12" md="12">
                  <v-card
                     class="mb24"
-                    max-width="480"
+                    max-width="560"
                     outlined
 
                 >
@@ -58,18 +58,14 @@
             </v-col>
         </v-row>
                
-        <v-row>
-            <v-col cols="12" sm="12" md="12">
-                <h4 class="jp-font grey--text text--darken-3">Step 2: ご希望の配達時間を指定する</h4>
-            </v-col>
-        </v-row>
         <v-row justify="center">
-            <v-col cols="12" sm="12" md="8">
+            <v-col cols="12" sm="12" md="12">
                  <v-form 
                     ref="form"
                     v-model="valid"
                     lazy-validation
                 >
+                    <h4 class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配達時間を指定する</h4>
                     <v-select
                         v-model="deliveryTime"
                         :items = "items"
@@ -81,6 +77,46 @@
                         :error-messages="allerror.delivery_time"
 
                     ></v-select>
+
+                    <v-divider class="mt-4 mb-8"></v-divider>
+
+                    <div class="jp-font grey--text text--darken-3 mb24">Step 3: カードメッセージを選べるサービス（無料）をご利用になられますか？</div>
+                    <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、通常のカードを同封させていただきます。</div>
+                    <!-- <v-btn
+                    color="primary"
+                    outlined
+                    @click="$store.commit('setSelectCard', true)"
+                    class="mb24 mr-2"
+                    >
+                    利用する
+                    </v-btn> -->
+                    <!-- <v-btn
+                    color="grey darken-2"
+                    outlined
+                    @click="$store.commit('disableSelectCard', true)"
+                    class="mb24"
+                    >
+                    利用しない
+                    </v-btn> -->
+                    <v-select
+                        v-model="deliveryCardUse"
+                        outlined
+                        :items = "useCard"
+                        label="カードメッセージの利用"
+                        required
+                        class="mb24"
+                    ></v-select>
+                    <div v-if="this.deliveryCardUse === '利用する'">
+                        <div class="jp-font grey--text text--darken-3 mb24">カードのメッセージを選択してください。</div>
+                            <v-select
+                                v-model="deliveryCardMessage"
+                                outlined
+                                :items = "cards"
+                                label="メッセージを選択する"
+                                required
+                                class="mb48"
+                            ></v-select>
+                    </div>
                     <v-btn
                         color="primary"
                         block
@@ -114,6 +150,10 @@ export default {
                 v => !!v || 'ご希望の配達時間を選択してください。',
             ],
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
+            useCard: ['利用する', '利用しない'],
+            cards: ["Happy Birthday", "Take Care", "Get Well Soon", "Good Job!", "With Love", "Cheers!"],
+            deliveryCardUse: '',
+            deliveryCardMessage: '',
         }
     },
     watch: {
@@ -169,17 +209,39 @@ export default {
 
                 this.$store.dispatch('setPostage');
 
-                this.setDeliveryAddress({
-                    name: this.user.name,
-                    kana: this.user.kana,
-                    zipcode: this.user.zipcode,
-                    prefecture: this.user.prefecture,
-                    city: this.user.city,
-                    address_1: this.user.address_1,
-                    building: this.user.building,
-                    phone: this.user.phone,
-                    delivery_time: this.deliveryTime
-                })
+                if(this.deliveryCardUse == '利用しない'){
+                    this.setDeliveryAddress({
+                        name: this.user.name,
+                        kana: this.user.kana,
+                        zipcode: this.user.zipcode,
+                        prefecture: this.user.prefecture,
+                        city: this.user.city,
+                        address_1: this.user.address_1,
+                        building: this.user.building,
+                        phone: this.user.phone,
+                        delivery_time: this.deliveryTime,
+                        delivery_carduse: this.deliveryCardUse,
+                        delivery_cardmessage: '',
+                        delivery_cardname: '',
+                    })
+                }else{
+                    this.setDeliveryAddress({
+                        name: this.user.name,
+                        kana: this.user.kana,
+                        zipcode: this.user.zipcode,
+                        prefecture: this.user.prefecture,
+                        city: this.user.city,
+                        address_1: this.user.address_1,
+                        building: this.user.building,
+                        phone: this.user.phone,
+                        delivery_time: this.deliveryTime,
+                        delivery_carduse: this.deliveryCardUse,
+                        delivery_cardmessage: this.deliveryCardMessage,
+                        delivery_cardname: 'aya & co.',
+                    })
+                }
+
+                
             }
         }
     }       

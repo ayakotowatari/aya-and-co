@@ -175,7 +175,8 @@ import { mapState } from 'vuex'
       links: [
         { title: 'ホーム', route: '/' },
         { title: 'お買いものかご', route: '/cart' },
-        { title: '環境にやさしい包装について', route: '/sustainability'},
+        { title: '選べるカードメッセージサービス', route: '/message-service'},
+        { title: '環境にやさしい包装', route: '/sustainability'},
        ],
       products: [
         { title: 'Summer Meets Autumn', route: '/products/1' },

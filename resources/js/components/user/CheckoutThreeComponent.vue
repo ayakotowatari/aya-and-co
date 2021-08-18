@@ -285,6 +285,9 @@ export default {
             'order',
             'dialogThankYou',
             'deliveryAddress',
+            'deliveryCardUse',
+            'deliveryCardMessage',
+            'deliveryCardName',
         ]),
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
@@ -372,6 +375,9 @@ export default {
             this.customer.deliveryPhone = this.deliveryAddress.phone;
             this.customer.deliveryTime = this.deliveryAddress.delivery_time;
             this.customer.deliveryPostage = this.deliveryAddress.postage;
+            this.customer.deliveryCardUse = this.deliveryCardUse;
+            this.customer.deliveryCardMessage = this.deliveryCardMessage;
+            this.customer.deliveryCardName = this.deliveryCardName;
             this.customer.itemTotal = itemTotal;
             // this.customer.delivery_address = this.deliveryAddress.id;
 
