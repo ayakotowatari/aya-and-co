@@ -156,7 +156,7 @@ export default {
             ],
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
             useCard: ['利用する', '利用しない'],
-            cards: ["Happy Birthday", "Take Care", "Get Well Soon", "With Love"],
+            cards: ["Happy Birthday", "Take Care", "Get Well Soon", "With Love", 'Sending You a Hug'],
             deliveryCardUse: '',
             deliveryCardUseRules: [
                 v => !!v || 'カードメッセージのご利用の有無を選択してください。',

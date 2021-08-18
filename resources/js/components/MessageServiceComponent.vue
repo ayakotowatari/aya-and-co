@@ -21,7 +21,7 @@
                     Custum Card Service
                   </div>
                   <div class="page-subtitle grey--text text--darken-3">
-                    選べるカードメッセージサービス
+                    選べるメッセージカードサービス
                   </div>
               </div>
           </v-col>
@@ -74,8 +74,9 @@
                             Thank You（ありがとう）<br>
                             Happy Birthday（お誕生日おめでとう）<br>
                             Take Care（お身体にお気をつけて）<br>
-                            Get Well Soon（早く元気になって）<span class="font-14">*病気などからの回復期に使われます。</span><br>
+                            Get Well Soon（早く元気になリますように）<span class="font-14">*病気などからの回復期に使われます。</span><br>
                             With Love（愛を込めて）<span class="font-14">*ご家族やご親友に親愛の情を示す時にも使われます。</span>
+                            Sending You a Hug（ハグをおくります）<span class="font-14">*少し落ち込んでいるご友人やご家族をなぐさめたり、元気づけるメッセージです。</span>
                         </p>
                         <p>
                             括弧内の日本語訳は印字されず、英字のみとなります。また、白地のポストカードタイプの用紙を使用しており、裏面には、aya & co.のご案内がプリントされています。<br>
@@ -126,7 +127,7 @@
                     </div>
                     <div class="item-title line-height grey--text text--darken-3">
                         <p>
-                            選べるカードメッセージサービスは、現在のところ、会員登録をしていただいたお客様限定でご利用いただけます。
+                            選べるメッセージカードサービスは、現在のところ、会員登録をしていただいたお客様限定でご利用いただけます。
                             <router-link to="/guest/register">会員登録</router-link>をしていただいてから、ログインした状態でご注文のお手続きへお進みください。
                             ご注文の際に、カードメッセージのご利用をお申し込みいただけます。
                         </p>
