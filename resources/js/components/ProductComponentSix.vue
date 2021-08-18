@@ -50,7 +50,7 @@
               <v-row v-if="product.length <= 0">
                 <v-col v-if="category.id !== 7 && category.id !== 8">
                   <div class="message grey--text text--darken-3 mb-3">
-                    商品のご購入は、シーズンまでしばらくお待ちください。
+                    この商品のご購入は、シーズン（{{category.season}}）までしばらくお待ちください。
                   </div>
                   <div class="message grey--text text--darken-3 mb-6">
                     公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
@@ -67,7 +67,7 @@
                 </v-col>
                 <v-col v-if="category.id == 7 || category.id == 8">
                   <div class="message mb-3">
-                    この商品は、Summer Meets Autumn（PraiseとLemonade）のセットとしてご購入いただけます。
+                    ただいまこの商品は、Summer Meets Autumn（PraiseとLemonade）のセットとしてご購入いただけます。
                   </div>
                   <div>
                     <v-btn
@@ -226,7 +226,7 @@
                     </v-col>
                 </v-row>
                 <div v-if="category.id == 1" class="item-content">
-                    <p>こちらの商品は限定数の販売のため、一回のご注文手続きにつき、セット1点までのご購入とさせていただいております。</p>
+                    <p>現在、こちらの商品は一回のご注文手続きにつき、セット1点までのご購入とさせていただいております。一度ご注文をお済ませになられてから、再度ご注文いただけます。</p>
                 </div>
               </v-col>
         </v-row>
