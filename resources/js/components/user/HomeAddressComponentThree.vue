@@ -81,7 +81,7 @@
                     <v-divider class="mt-4 mb-8"></v-divider>
 
                     <div class="jp-font grey--text text--darken-3 mb24">Step 3: カードメッセージを選べるサービス（無料）をご利用になられますか？</div>
-                    <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、通常のカードを同封させていただきます。</div>
+                    <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、aya & co.よりThank Youカードを同封させていただきます。</div>
                     <!-- <v-btn
                     color="primary"
                     outlined
@@ -151,7 +151,7 @@ export default {
             ],
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
             useCard: ['利用する', '利用しない'],
-            cards: ["Happy Birthday", "Take Care", "Get Well Soon", "Good Job!", "With Love", "Cheers!"],
+            cards: ["Happy Birthday", "Take Care", "Get Well Soon", "With Love"],
             deliveryCardUse: '',
             deliveryCardMessage: '',
         }
