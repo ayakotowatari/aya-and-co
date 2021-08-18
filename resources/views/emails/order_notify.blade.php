@@ -150,7 +150,7 @@ td.align-right{
 
         <p>
             〒{{$user -> zipcode}}<br>
-            {{$user -> zipcode}}{{$user -> prefecture}}{{$user -> city}}{{$user -> address_1}}<br>
+            {{$user -> prefecture}}{{$user -> city}}{{$user -> address_1}}<br>
             @if(isset($user -> building))
                 {{$user -> building}}<br>
             @endif
