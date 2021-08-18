@@ -377,7 +377,7 @@ export default new Vuex.Store({
             //let originalQuantity = state.cart[productInCartIndex].quantity
             //state.cart[productInCartIndex].quantity = Number(originalQuantity) + newQuantity
             // state.cart[productInCartIndex].quantity++;
-            state.cartMessage = "カートにすでに商品が入っております。恐れ入りますが、この商品は一度のご注文につき、1点までのご購入となります。セットを複数ご購入いただく場合は、大変お手数ですが、一つずつのご注文手続きをお願いいたします。"
+            state.cartMessage = "カートにすでに商品が入っております。現在、この商品は一度のご注文につき、1点までのご購入となります。セットを複数ご購入いただく場合は、大変お手数ですが、一つずつのご注文手続きをお願いいたします。"
             return;
         }else{
             product.quantity = newQuantity;
