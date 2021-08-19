@@ -75,7 +75,7 @@
                             Happy Birthday（お誕生日おめでとう）<br>
                             Take Care（お身体にお気をつけて）<br>
                             Get Well Soon（早く元気になリますように）<span class="font-14">*病気などからの回復期に使われます。</span><br>
-                            With Love（愛を込めて）<span class="font-14">*ご家族やご親友に親愛の情を示す時にも使われます。</span>
+                            With Love（愛を込めて）<span class="font-14">*ご家族やご親友に親愛の情を示す時にも使われます。</span><br>
                             Sending You a Hug（ハグをおくります）<span class="font-14">*少し落ち込んでいるご友人やご家族をなぐさめたり、元気づけるメッセージです。</span>
                         </p>
                         <p>
