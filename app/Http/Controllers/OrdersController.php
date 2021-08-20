@@ -116,6 +116,7 @@ class OrdersController extends Controller
                             'products.name', 
                             'products.size', 
                             'products.price',
+                            'products.image',
                             'order_product.quantity',
                             'orders.postage',
                             'orders.total'
@@ -175,6 +176,7 @@ class OrdersController extends Controller
                             'products.name', 
                             'products.size', 
                             'products.price',
+                            'products.image',
                             'order_product.quantity',
                             'orders.postage',
                             'orders.total'
