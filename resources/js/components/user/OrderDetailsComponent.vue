@@ -53,6 +53,15 @@
                         まだ発送されていません。
                         </div>
                     </div>
+                    <div class="mb-8">
+                        <v-btn
+                            color="primary"
+                            outlined
+                            @click="create(order.id)"
+                        >
+                            納品書兼領収書ダウンロード
+                        </v-btn>
+                    </div>
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
                     <v-row justify="start" class="mb-8">
@@ -299,7 +308,15 @@ export default {
 
           return price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
-        
+        create(id){
+
+            window.location.href='/member/create-receipt/'+ id;
+            
+            // this.createUserReceipt({
+            //     id: id
+            // })
+
+        }
     }
 
 
