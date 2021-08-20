@@ -366,6 +366,11 @@
                                                 差出人名の表記：{{order.delivery_cardname}}
                                             </v-list-item-title>
                                         </div>
+                                        <div v-if="order.delivery_carduse === '利用しない'">
+                                            <v-list-item-title class="jp-font-400">
+                                                利用しない
+                                            </v-list-item-title>
+                                        </div>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-card>
