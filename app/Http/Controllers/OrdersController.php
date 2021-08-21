@@ -473,6 +473,7 @@ class OrdersController extends Controller
         // DD($order_id);
         
         $order = Order::join('users', 'users.id', '=', 'orders.user_id')
+                    ->join('statuses', 'statuses.id', '=', 'orders.status_id')
                     // ->join('statuses', 'statuses.id', '=', 'orders.status_id')
                     // ->join('shipments', 'shipments.order_id', '=', 'orders.id')
                     ->where('orders.id', $order_id)
@@ -502,6 +503,7 @@ class OrdersController extends Controller
                         'orders.postage',
                         'orders.item_total',
                         'orders.total',
+                        'statuses.status',
                         // 'statuses.status',
                         // 'shipments.scheduled_date',
                         // 'shipments.actual_date'
@@ -659,7 +661,8 @@ class OrdersController extends Controller
                         'orders.id as order_id',
                         'orders.postage',
                         'orders.item_total',
-                        'orders.total'
+                        'orders.total',
+                        'orders.created_at'
                     )
                     ->first();
 

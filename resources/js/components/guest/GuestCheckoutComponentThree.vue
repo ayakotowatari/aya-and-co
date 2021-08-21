@@ -79,7 +79,7 @@
                 <v-row justify="center">
                     <v-col cols="12" sm="12" md="6">
                         <div class="totalprice grey--text text--darken-2">
-                            納品書兼領収書は、商品の発送の時点で、お客様のメールアドレスまで、PDF文書でお送りさせていただきます。
+                            納品書兼領収書は、商品の発送後に、お客様のメールアドレスまで、PDF文書でお送りさせていただきます。
                         </div>
                     </v-col>
                 </v-row>

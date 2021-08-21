@@ -127,7 +127,8 @@ td.align-right{
     
     <h2>納品書兼領収書</h2>
 
-    <p class="mb30">{{ \Carbon\Carbon::now()->format("Y年n月j日") }} </p>
+    
+    <p class="mb30">{{ $user->created_at->format("Y年n月j日") }} </p>
 
     <p class="mb20">{{ $user->name}}様</p>
 
@@ -191,7 +192,7 @@ td.align-right{
     <div class="section">
         <p>上記金額を領収いたしました。</p>
 
-        <p>{{ \Carbon\Carbon::now()->format("Y年n月j日") }} </p>
+        <p>{{ $user->created_at->format("Y年n月j日") }} </p>
 
         <p>
             〒216-0003　神奈川県川崎市宮前区有馬1-6-1-505<br>
