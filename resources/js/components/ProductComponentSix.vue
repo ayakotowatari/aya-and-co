@@ -50,7 +50,7 @@
               <v-row v-if="product.length <= 0">
                 <v-col v-if="category.id !== 7 && category.id !== 8">
                   <div class="message grey--text text--darken-3 mb-3">
-                    この商品のご購入は、シーズン（{{category.season}}）までしばらくお待ちください。
+                    この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
                   </div>
                   <div class="message grey--text text--darken-3 mb-6">
                     公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
