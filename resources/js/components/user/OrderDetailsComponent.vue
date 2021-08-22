@@ -53,7 +53,7 @@
                         まだ発送されていません。
                         </div>
                     </div>
-                    <div v-if="order.status == 'Shipped'" class="mb-8">
+                    <div v-if="order.status == 'Shipped' || order.status =='Delivered'" class="mb-8">
                         <v-btn
                             color="primary"
                             outlined
