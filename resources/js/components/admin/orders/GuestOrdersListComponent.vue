@@ -126,7 +126,7 @@ export default {
             else if (status == 'Scheduled') return '#85D1BB'
             else if (status == 'Packed') return '#85D1BB'
             else if (status == 'Shipped') return '#F0D117'
-            else if (status == 'Delivered') return '#6B21B5'
+            else if (status == 'Delivered') return '#FE6862'
             else if (status == 'Cancelled') return '#F7E3B5'
             else if (status == 'Missing') return '#F7E3B5'
             else if (status == 'Completed') return '#6B21B5'
