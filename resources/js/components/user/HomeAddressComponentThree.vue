@@ -79,7 +79,7 @@
 
                     <v-divider class="mt-4 mb-8"></v-divider>
 
-                    <div class="jp-font grey--text text--darken-3 mb24">Step 3: カードメッセージを選べるサービス（無料）をご利用になられますか？</div>
+                    <div class="jp-font grey--text text--darken-3 mb24">Step 3: メッセージカードを選べるサービス（無料）をご利用になられますか？</div>
                     <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、aya & co.よりThank Youカードを同封させていただきます。</div>
                     <!-- <v-btn
                     color="primary"

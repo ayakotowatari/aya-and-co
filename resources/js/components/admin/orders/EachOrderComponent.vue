@@ -325,7 +325,7 @@
                                             〒{{order.delivery_zipcode}}<br>
                                             {{order.delivery_prefecture}}{{order.delivery_city}}{{order.delivery_address_1}}<br>
                                         </v-list-item-title>
-                                        <v-list-item-title v-if="order.user_building !== null" class="jp-font-400">
+                                        <v-list-item-title v-if="order.delivery_building !== null" class="jp-font-400">
                                             {{order.delivery_building}}
                                         </v-list-item-title>
                                         <v-list-item-title class="jp-font-400">
