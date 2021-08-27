@@ -716,7 +716,8 @@ class OrdersController extends Controller
                         'orders.id as order_id',
                         'orders.postage',
                         'orders.item_total',
-                        'orders.total'
+                        'orders.total',
+                        'orders.created_at'
                     )
                     ->first();
 
