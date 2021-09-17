@@ -689,10 +689,13 @@ export default new Vuex.Store({
                 // commit('setDeliveryAddress', payload);
         });
     },
-    async guestRegister({state, commit}, payload){
+    async guestRegister({state, commit, dispatch}, payload){
 
         let allerror = [];
         let user = {};
+        let guest_id = payload.guest_id;
+
+        console.log('checkguest_id', guest_id)
 
         commit("setLoading", true);
 
@@ -717,6 +720,7 @@ export default new Vuex.Store({
                 // commit('clearGuest', {});
                 commit('setUser', user);
                 commit('setLoading', false);
+                dispatch('updateOrderUserId', {guest_id: guest_id});
                 // router.push({path: '/'});
                 window.location = '/'
             })
@@ -726,6 +730,24 @@ export default new Vuex.Store({
                 // commit('setDisabled', true);
                 commit('setallRegisterErrors', allerror)
             })
+    },
+    async updateOrderUserId({commit}, payload){
+
+        console.log('updateorder');
+        console.log('guest-id', payload.guest_id);
+
+        await axios
+            .post("/update-userid", {
+                guest_id: payload.guest_id
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                allerror = error.response.data.errors
+                commit('setallErrors', allerror)
+            })
+
     },
     async fetchCategories({ commit }){
         let categories = [];

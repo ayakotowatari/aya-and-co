@@ -63,6 +63,25 @@ class OrdersController extends Controller
 
     }
 
+    public function updateUserId(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+            'guest_id' => 'required',
+        ]);
+
+        $guest_id = request('guest_id');
+
+        $order = Order::where('guest_id', $guest_id)->first();
+
+        $order->user_id = $user->id;
+        $order->guest_id = null;
+
+        $order->update();
+        
+    }
+
     //adminのために各注文詳細を取得
     public function eachOrder(Request $request, $id)
     {

@@ -76,7 +76,6 @@
                                         class="mb-4" 
                                         @click="goRegister()"
                                         :loading="loading"
-                                        :disabled="disabled"
                                     >
                                             登録する
                                     </v-btn>
@@ -166,6 +165,7 @@ export default {
                     email: this.guest.email,
                     password: this.password,
                     password_confirmation: this.password_confirmation,
+                    guest_id: this.guest.id,
                     // timezone: this.timezone
                 })
             }
