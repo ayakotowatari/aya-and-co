@@ -213,11 +213,11 @@ export default {
 
                 "::placeholder": {
                 // color: "#CFD7DF"
-                color: "#717171",
+                color: "#A5A5A5",
                 }
             },
             invalid: {
-                color: "#E25950"
+                color: "#FE6862"
             }
         };
 

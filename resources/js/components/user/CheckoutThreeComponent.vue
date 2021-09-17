@@ -79,7 +79,7 @@
                 <v-row justify="center">
                     <v-col cols="12" sm="12" md="6">
                         <div class="totalprice grey--text text--darken-2">
-                            納品書兼領収書は、商品の発送後に、お客様の「注文履歴」のページでダウンロードいただけるようになります。
+                            納品書兼領収書は、ご購入後に会員登録をしていただくと、商品の発送後に、お客様の「注文履歴」のページよりダウンロードいただけるようになります。
                         </div>
                     </v-col>
                 </v-row>
@@ -226,11 +226,11 @@ export default {
 
                 "::placeholder": {
                 // color: "#CFD7DF"
-                color: "#717171",
+                color: "#A5A5A5",
                 }
             },
             invalid: {
-                color: "#E25950"
+                color: "#FE6862"
             }
         };
 
@@ -460,7 +460,7 @@ export default {
     font-weight: 400;
     font-style: normal;
     font-size: 12px;
-    color: #992653;
+    color: #FE6862;
     letter-spacing: 0.03em;
 }
 
