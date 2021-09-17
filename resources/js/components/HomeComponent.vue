@@ -38,7 +38,7 @@
         毎日の大切な時間にそっとよりそう、黒い小瓶たちです。
       </p> 
       <p class="description mb-8">
-        ただいま、<router-link to="/message-service">選べるメッセージカードサービス</router-link> を実施中。ご注文の際にはぜひご利用ください。
+        <router-link to="/message-service">選べるメッセージカードサービス</router-link> を実施中。ご注文の際にはぜひご利用ください。
       </p> 
       <div class="subheading">
         Products List
@@ -52,7 +52,7 @@
                 class="mx-auto"
                 max-width="344"
                 outlined
-                
+                @click.prevent="showmore(category.id)"
               >
                 <v-img
                     max-height="200"
@@ -160,6 +160,9 @@ export default {
         ...mapActions([
           // 'addToCart'
         ]),
+        showmore(id){
+          this.$router.push({name: 'products', params: {id: id}})
+        },
         expand(id){
           this.$router.push({name: 'products', params: {id: id}})
         },
