@@ -18,6 +18,7 @@ import Faq from "./components/FaqComponent";
 import Policy from "./components/PolicyComponent";
 import Contact from "./components/ContactComponent";
 import Postages from "./components/PostagesComponent";
+import PostagesTwo from "./components/PostagesComponentTwo";
 import About from "./components/AboutComponent";
 import Privacy from "./components/PrivacyComponent";
 import MessageService from "./components/MessageServiceComponent";
@@ -87,11 +88,11 @@ const routes = [
         name: "policy",
         component: Policy
     },
-
+    
     {
         path: "/postage",
         name: "postages",
-        component: Postages
+        component: PostagesTwo
     },
 
     {
