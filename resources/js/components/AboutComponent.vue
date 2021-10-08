@@ -44,7 +44,7 @@
                     <v-col cols="12" sm="12" md="10">
                         <div class="name">
                             <span class="jobtitle">Founder</span><br>
-                            Ayako Towatari
+                            Ayako Towatari Ueda
                         </div>
                     </v-col>
                 </v-row>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="jobtitle mb-8">
                         <p>
-                            Website designed and developed by Ayako Towatari.<br>
+                            Website designed and developed by Ayako Towatari Ueda.<br>
                             Special thanks to Yuka Fujisawa for taking lovely photos of the jars. 
                         </p>
                     </div>
