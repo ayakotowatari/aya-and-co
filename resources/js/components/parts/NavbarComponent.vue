@@ -176,6 +176,7 @@ import { mapState } from 'vuex'
         { title: 'ホーム', route: '/' },
         { title: 'お買いものかご', route: '/cart' },
         { title: '選べるメッセージカードサービス', route: '/message-service'},
+        { title: '配送方法と送料について', route: '/postage'},
         { title: '環境にやさしい包装について', route: '/sustainability'},
        ],
       products: [
@@ -199,7 +200,6 @@ import { mapState } from 'vuex'
       ],
       items:  [
         {title: 'お問い合わせ', route: '/contact'},
-        {title: '送料について', route: '/postage'},
         //{title: 'よくある質問', route: "/faq"},
         {title: '特定商取引法に基づく表記', route:"/policy"},
         {title: 'プライバシーポリシー', route:"/privacy-policy"},
