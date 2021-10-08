@@ -92,6 +92,9 @@ export default new Vuex.Store({
       order: {},
       orderedProducts: [],
       postages: [],
+      postageYupacks: [],
+      postageCompacts: [],
+      couriers: [],
       plannedShipmentDate: null,
       actualShipmentDate: null,
       deliveredDate: null,
@@ -442,6 +445,15 @@ export default new Vuex.Store({
     },
     setPostages(state, payload){
         state.postages = payload
+    },
+    setPostageYupack(state, payload){
+        state.postageYupacks = payload
+    },
+    setPostageCompact(state, payload){
+        state.postageCompacts = payload
+    },
+    setCouriers(state, payload){
+        state.couriers = payload
     },
     setPlannedShipmentDate(state, payload){
         // console.log('payload', payload)
@@ -1258,14 +1270,23 @@ export default new Vuex.Store({
             })
     },
     async fetchPostages({ commit }){
-        let payload = {};
+        let postage = {};
+        let yupack = {};
+        let compact = {};
+        let courier = {};
 
         await axios
             .get("/fetch-postages")
             .then(res => {
-                payload = res.data.postages;
-                commit('setPostages', payload);
+                postage = res.data.postages;
+                yupack = res.data.yupack;
+                compact = res.data.compact;
+                courier = res.data.courier;
+                commit('setPostages', postage);
                 // commit('setDeliveryAddress', payload);
+                commit('setPostageYupack', yupack);
+                commit('setPostageCompact', compact);
+                commit('setCouriers', courier);
         });
     },
     async updateUserName({state, commit}, payload){

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Shipment;
 use App\Models\Status;
 use App\Models\Postage;
+use App\Models\Courier;
 use Illuminate\Http\Request;
 use Auth;
 use PDF;
@@ -658,9 +659,20 @@ class OrdersController extends Controller
 
     public function postage()
     {
+        $couriers = Courier::get();
+
+        // foreach ($couriers as $courier){
+        //     // $courierType[] = $courier->name.' '.$courier->type;
+        //     $courierType[] = $courier->type.'（'.$courier->name.'）';
+        // }
+        
         $postages = Postage::get();
 
-        return response() -> json(['postages' => $postages]);   
+        $postageYupack = Postage::where('courier_id', 1)->get();
+
+        $postageCompact = Postage::where('courier_id', 2)->get();
+
+        return response() -> json(['postages' => $postages, 'yupack' => $postageYupack, 'compact' => $postageCompact, 'courier' => $couriers]);   
     }
 
     public function createUserReceipt($id)
