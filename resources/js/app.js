@@ -38,7 +38,8 @@ Vue.component('footer-component', require('./components/parts/FooterComponent.vu
 // Vue.component('changeaddress-component', require('./components/ChangeAddressComponent.vue').default);
 // Vue.component('otheraddressdialog-component', require('./components/user/OtherAddressDeliveryTimeDialogComponent.vue').default);
 Vue.component('checkaddress-component', require('./components/user/CheckAddressTwoComponent.vue').default);
-Vue.component('homeaddress-component', require('./components/user/HomeAddressComponentThree.vue').default);
+// Vue.component('homeaddress-component', require('./components/user/HomeAddressComponentThree.vue').default);
+Vue.component('homeaddress-component', require('./components/user/HomeAddressComponentFour.vue').default);
 Vue.component('otheraddress-component', require('./components/user/OtherAddressTwoComponent.vue').default);
 Vue.component('orderconfirmation-component', require('./components/user/OrderConfirmationTwoComponent.vue').default);
 Vue.component('checkout-component', require('./components/user/CheckoutThreeComponent.vue').default);

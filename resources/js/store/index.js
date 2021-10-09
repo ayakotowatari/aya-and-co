@@ -946,13 +946,13 @@ export default new Vuex.Store({
 
     },
    
-    async setPostage({commit}){
+    async setPostage({commit}, payload){
 
         let allerror = [];
         let postage = "";
 
         await axios
-        .get("/fetch-postage")
+        .get("/member/fetch-postage/" + payload)
         .then(res => {
             postage = res.data.postage;
             console.log('postage', postage)

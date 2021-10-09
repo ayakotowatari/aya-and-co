@@ -149,11 +149,14 @@ class UsersController extends Controller
     }
 
 
-    public function postage()
+    public function postage($id)
     {
+        $courier_id = $id;
+        
         $prefecture = Auth::user()->prefecture;
 
-        $postage = Postage::where('prefecture', $prefecture)
+        $postage = Postage::where('courier_id', $courier_id)
+                    ->where('prefecture', $prefecture)
                     ->select('postage')
                     ->first();
 

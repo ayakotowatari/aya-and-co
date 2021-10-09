@@ -121,7 +121,7 @@ Route::group(['middleware' => ['auth', 'can:normal-user']], function(){
     Route::get('/select-address/{id}', 'UsersController@selectAddress')->name('select.address');
     Route::get('/order-summary', 'OrdersController@summary')->name('order.summary');
     Route::post('/remove-address', 'UsersController@removeAddress')->name('remove.address');
-    Route::get('/fetch-postage', 'UsersController@postage')->name('postage');
+    Route::get('/member/fetch-postage/{id}', 'UsersController@postage')->name('postage');
     Route::post('/purchase', 'UsersController@purchase')->name('purchase');
     Route::post('/member/order-confirmation', 'UsersController@orderConfirm')->name('order.confirm');
     Route::get('/member/fetch-order/{id}', 'OrdersController@fetchOrder')->name('order.details');

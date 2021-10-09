@@ -165,15 +165,13 @@
                                 required
                                 class="mb48"
                                 :rules="deliveryCardNameRules" 
-                                :error="allerror.delivery_cardname"
-                                :error-messages="allerror.delivery_cardname"
                             ></v-select>
                             <div class="jp-font grey--text text--darken-3 mb24">ギフトカード作成にあたってのご留意事項</div>
                                 <div class="jp-font grey--text text--darken-2 mb24">
-                                    <p>ギフトカードの差出人のお名前は、英字で表記されます。</p>
+                                    <p>ギフトカードの差出人のお名前は、ご登録いただいているフリガナにもとづいて、英字で表記されます。</p>
                                     <p>例1：　Hanako Shirai（姓・名両方表記の場合）</p>
                                     <p>例2：　Hanako（下のお名前のみの場合）</p>
-                                    <p>お客様のお名前の読み方（フリガナ）は下記で登録されています。</p>
+                                    <p>お客様のお名前のフリガナは、下記で登録されています。</p>
                                     <p>{{user.kana}}　様</p>
                                     <p>万一、フリガナに誤りがある場合は、メニューの「アカウント情報の編集」にて、修正を行なってから、ギフトカードをご注文ください。</p>
                                 </div>
