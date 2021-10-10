@@ -111,6 +111,7 @@ export default new Vuex.Store({
       dialogDeleteUser: false,
       disabled: false,
       disableContinue1: true,
+      disableContinue2: true,
       disableInputEmail: true,
       loading: false,
       isAddingAddress: false,
@@ -185,8 +186,47 @@ export default new Vuex.Store({
     setHomeAddress(state,payload){
         state.homeAddress = payload
     },
+    setHomeAsDeliveryAddress(state, payload){
+        state.deliveryAddress = payload
+
+        state.deliveryAddress.delivery_time = ''
+        state.deliveryAddress.delivery_option= ''
+        state.deliveryAddress.courier_type= ''
+        state.deliveryAddress.postage= ''
+    },
+    insertPostage(state, payload){
+
+        let id = payload.courier
+        let prefecture = payload.prefecture
+
+        let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
+        let postage = postage_data.postage
+        state.deliveryAddress.postage = postage
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+
+    },
     setOtherAddresses(state, payload){
         state.otherAddresses = payload
+    },
+    confirmOtherAddress(state, payload){
+        state.deliveryAddress = payload.address
+
+        state.deliveryAddress.delivery_time = ''
+        state.deliveryAddress.delivery_option= ''
+        state.deliveryAddress.courier_type= ''
+        state.deliveryAddress.postage= ''
+    },
+    setDeliveryOption(state, payload){
+        state.deliveryAddress.delivery_time = payload.delivery_time
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+
+        state.deliveryCardUse = payload.delivery_carduse
+        state.deliveryCardMessage = payload.delivery_cardmessage
+        state.deliveryCardName = payload.delivery_cardname
     },
     selectAddress(state, payload){
 
@@ -520,6 +560,9 @@ export default new Vuex.Store({
     },
     updateDisableContinue1(state, payload){
         state.disableContinue1 = payload
+    },
+    updateDisableContinue2(state, payload){
+        state.disableContinue2 = payload
     },
     setDisableInputEmail(state, payload){
         state.disableInputEmail = payload
@@ -964,32 +1007,76 @@ export default new Vuex.Store({
         })
 
     },
-   
+
     async setPostage({commit}, payload){
 
-        let allerror = [];
-        let postage = "";
+        commit('insertPostage', payload)
 
-        await axios
-        .get("/member/fetch-postage/" + payload)
-        .then(res => {
-            postage = res.data.postage;
-            console.log('postage', postage)
-            commit('setPostage', postage);
-            // commit('setDisabled', true);
-            // commit('updateDisableContinue1', false);
-            // commit('setLoading', false);
-            // router.push({ name: 'order-confirmation'});
-        })
-        .catch(error => {
-            // commit('setLoading', false);
-            allerror = error.response.data.errors,
-            commit('setallErrors', allerror)
-        })
     },
-    async setDeliveryAddress({commit}, payload){
+   
+    // async setPostage({commit}, payload){
 
-        commit('updateDeliveryAddress', payload);
+    //     let allerror = [];
+    //     let postage = "";
+
+    //     await axios
+    //     .get("/member/fetch-postage/" + payload)
+    //     .then(res => {
+    //         postage = res.data.postage;
+    //         console.log('postage', postage)
+    //         commit('setPostage', postage);
+    //         // commit('setDisabled', true);
+    //         // commit('updateDisableContinue1', false);
+    //         // commit('setLoading', false);
+    //         // router.push({ name: 'order-confirmation'});
+    //     })
+    //     .catch(error => {
+    //         // commit('setLoading', false);
+    //         allerror = error.response.data.errors,
+    //         commit('setallErrors', allerror)
+    //     })
+    // },
+    // async setDeliveryAddress({commit}, payload){
+
+    //     commit('updateDeliveryAddress', payload);
+    //     commit('setDisabled', true);
+    //     commit('updateDisableContinue1', false);
+        
+    //     // let allerror = [];
+    //     // let postage = "";
+
+    //     // await axios
+    //     // .get("/fetch-postage")
+    //     // .then(res => {
+    //     //     console.log(res)
+    //     //     postage = res.data.postage;
+    //     //     commit('setPostage', postage);
+    //     //     commit('setDisabled', true);
+    //     //     commit('updateDisableContinue1', false);
+    //     //     // commit('setLoading', false);
+    //     //     // router.push({ name: 'order-confirmation'});
+    //     // })
+    //     // .catch(error => {
+    //     //     commit('setLoading', false);
+    //     //     allerror = error.response.data.errors,
+    //     //     commit('setallErrors', allerror)
+    //     // })
+
+    // },
+
+    async confirmHomeAsDeliveryAddress({commit}, payload){
+
+        commit('setHomeAsDeliveryAddress', payload);
+        commit('setDisabled', true);
+        commit('updateDisableContinue1', false);
+        
+    },
+
+    async confirmOtherAddress({commit}, payload){
+
+        console.log('payload', payload)
+
+        commit('confirmOtherAddress', payload);
         commit('setDisabled', true);
         commit('updateDisableContinue1', false);
         
@@ -1014,6 +1101,35 @@ export default new Vuex.Store({
         // })
 
     },
+
+    async setDeliveryOption({commit}, payload){
+
+        commit('setDeliveryOption', payload);
+        commit('setDisabled', true);
+        commit('updateDisableContinue2', false);
+        
+        // let allerror = [];
+        // let postage = "";
+
+        // await axios
+        // .get("/fetch-postage")
+        // .then(res => {
+        //     console.log(res)
+        //     postage = res.data.postage;
+        //     commit('setPostage', postage);
+        //     commit('setDisabled', true);
+        //     commit('updateDisableContinue1', false);
+        //     // commit('setLoading', false);
+        //     // router.push({ name: 'order-confirmation'});
+        // })
+        // .catch(error => {
+        //     commit('setLoading', false);
+        //     allerror = error.response.data.errors,
+        //     commit('setallErrors', allerror)
+        // })
+
+    },
+
 
     async updateAddress({commit}, payload){
         

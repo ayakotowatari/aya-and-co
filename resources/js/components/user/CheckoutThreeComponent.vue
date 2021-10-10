@@ -43,7 +43,8 @@
                             </v-col>
                             <v-col cols="4" sm="4" md="6" class="py-1">
                                 <div class="totalprice">
-                                    {{formatPrice(deliveryAddress.postage)}}
+                                    <!-- {{formatPrice(deliveryAddress.postage)}} -->
+                                    {{deliveryAddress.postage}}
                                 </div>
                             </v-col>
                         </v-row>

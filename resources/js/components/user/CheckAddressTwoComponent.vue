@@ -54,10 +54,9 @@
             </v-col>
         </v-row> -->
         <v-row justify="center">
-           
-                    <v-col cols="12" sm="12" md="6">
-                        <div class="form-title grey--text text--darken-4">配送先の住所を確認・指定する</div>
-                    </v-col>
+            <v-col cols="12" sm="12" md="6">
+                <div class="form-title grey--text text--darken-4">配送先の住所を確認・指定する</div>
+            </v-col>
         </v-row>
         <v-row justify="center">
                     <v-col cols="12" sm="12" md="6">

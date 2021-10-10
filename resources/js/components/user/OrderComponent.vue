@@ -41,7 +41,7 @@
                     :complete="e1 > 1"
                     step="1"
                 >
-                    配送先等の指定
+                    配送先住所の選択
                 </v-stepper-step>
 
                 <v-divider></v-divider>
@@ -50,115 +50,168 @@
                     :complete="e1 > 2"
                     step="2"
                 >
+                    配送オプション等の選択
+                </v-stepper-step>
+
+                <v-divider></v-divider>
+
+                <v-stepper-step
+                    :complete="e1 > 3"
+                    step="3"
+                >
                     注文内容の確認
                 </v-stepper-step>
 
                 <v-divider></v-divider>
 
-                <v-stepper-step step="3">
+                <v-stepper-step step="4">
                     お支払い
                 </v-stepper-step>
             </v-stepper-header>
 
             <v-stepper-items>
-            <v-stepper-content step="1">
-                <checkaddress-component></checkaddress-component>
-                <v-row justify="end">
-                    <v-col cols="4" sm="4" md="2">
-                        <v-btn
-                            block
-                            color="primary"
-                            @click="nextTo2"
-                            :disabled="disableContinue1"
-                            >
-                            次へ
-                        </v-btn>
-                    </v-col>
-                </v-row>
-            </v-stepper-content>
+                <v-stepper-content step="1">
+                    <checkaddress-component></checkaddress-component>
+                    <v-row justify="end">
+                        <v-col cols="4" sm="4" md="2">
+                            <v-btn
+                                block
+                                color="primary"
+                                @click="nextTo2"
+                                :disabled="disableContinue1"
+                                >
+                                次へ
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-stepper-content>
 
-            <v-stepper-content step="2">
-                <orderconfirmation-component></orderconfirmation-component>
-                <v-row justify="space-between" class="hidden-sm-and-down">
-                    <v-col cols="5" sm="5" md="1">
-                        <v-btn
-                            outlined
-                            color="primary"
-                            @click="backTo1"
+                <v-stepper-content step="2">
+                    <deliveryoption-component></deliveryoption-component>
+                    <v-row justify="space-between" class="hidden-sm-and-down">
+                        <v-col cols="5" sm="5" md="1">
+                            <v-btn
+                                outlined
+                                color="primary"
+                                @click="backTo1"
+                                >
+                                戻る
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="4" sm="4" md="2">
+                            <v-btn
+                                block
+                                color="primary"
+                                @click="nextTo3"
+                                :disabled="disableContinue2"
+                                >
+                                次へ
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                     <v-row class="hidden-md-and-up">
+                        <v-col cols="12" sm="12" md="2">
+                            <v-btn
+                                block
+                                dark
+                                color="primary"
+                                @click="nextTo3"
+                                >
+                                レジへ進む
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="3" sm="3" md="2">
+                            <v-btn 
+                                color="primary"
+                                outlined
+                                @click="backTo1"
                             >
-                            戻る
-                        </v-btn>
-                    </v-col>
-                     <v-col cols="5" sm="5" md="2">
-                        <v-btn
-                            color="primary"
-                            @click="nextTo3"
-                            >
-                            レジへ進む
-                        </v-btn>
-                    </v-col>
-                </v-row>
-                <v-row class="hidden-md-and-up">
-                    <v-col cols="12" sm="12" md="2">
-                        <v-btn
-                            block
-                            dark
-                            color="primary"
-                            @click="nextTo3"
-                            >
-                            レジへ進む
-                        </v-btn>
-                    </v-col>
-                    <v-col cols="3" sm="3" md="2">
-                        <v-btn 
-                            color="primary"
-                            outlined
-                            @click="backTo1"
-                        >
-                            戻る
-                        </v-btn>
-                    </v-col>
-                </v-row>
+                                戻る
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-stepper-content>
 
-               
-            </v-stepper-content>
-
-            <v-stepper-content step="3">
-                <checkout-component></checkout-component>
-                <v-row class="hidden-sm-and-down">
-                      <v-col cols="5" sm="5" md="1">
-                        <v-btn
-                            outlined
-                            color="primary"
-                            @click="backTo2"
+                <v-stepper-content step="3">
+                    <orderconfirmation-component></orderconfirmation-component>
+                    <v-row justify="space-between" class="hidden-sm-and-down">
+                        <v-col cols="5" sm="5" md="1">
+                            <v-btn
+                                outlined
+                                color="primary"
+                                @click="backTo2"
+                                >
+                                戻る
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="5" sm="5" md="2">
+                            <v-btn
+                                color="primary"
+                                @click="nextTo4"
+                                >
+                                レジへ進む
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                    <v-row class="hidden-md-and-up">
+                        <v-col cols="12" sm="12" md="2">
+                            <v-btn
+                                block
+                                dark
+                                color="primary"
+                                @click="nextTo4"
+                                >
+                                レジへ進む
+                            </v-btn>
+                        </v-col>
+                        <v-col cols="3" sm="3" md="2">
+                            <v-btn 
+                                color="primary"
+                                outlined
+                                @click="backTo2"
                             >
-                            戻る
-                        </v-btn>
-                     </v-col>
-                </v-row>
-                 <v-row class="hidden-md-and-up">
-                      <v-col cols="3" sm="3" md="1">
-                        <v-btn
-                            outlined
-                            color="primary"
-                            @click="backTo2"
-                            >
-                            戻る
-                        </v-btn>
-                     </v-col>
-                </v-row>
+                                戻る
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </v-stepper-content>
 
-                <!-- <v-btn
-                color="primary"
-                @click="e1 = 1"
-                >
-                Continue
-                </v-btn>
+                <v-stepper-content step="4">
+                    <checkout-component></checkout-component>
+                    <v-row class="hidden-sm-and-down">
+                        <v-col cols="5" sm="5" md="1">
+                            <v-btn
+                                outlined
+                                color="primary"
+                                @click="backTo3"
+                                >
+                                戻る
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                    <v-row class="hidden-md-and-up">
+                        <v-col cols="3" sm="3" md="1">
+                            <v-btn
+                                outlined
+                                color="primary"
+                                @click="backTo3"
+                                >
+                                戻る
+                            </v-btn>
+                        </v-col>
+                    </v-row>
 
-                <v-btn text>
-                Cancel
-                </v-btn> -->
-            </v-stepper-content>
+                    <!-- <v-btn
+                    color="primary"
+                    @click="e1 = 1"
+                    >
+                    Continue
+                    </v-btn>
+
+                    <v-btn text>
+                    Cancel
+                    </v-btn> -->
+                </v-stepper-content>
             </v-stepper-items>
         </v-stepper>
     </v-container>
@@ -190,6 +243,8 @@ export default {
     computed: {
         ...mapState([
             'disableContinue1', 
+            'disableContinue2',
+            'deliveryAddress',
             'cart',
             'checkoutError',
             'dialogThankYou',
@@ -213,11 +268,24 @@ export default {
         nextTo3(){
             this.e1 = 3;
             window.scrollTo(0,0);
+            this.$store.commit('updateDisableContinue2', true);
+            this.$store.commit('setDisabled', false);
         },
         backTo2(){
             this.e1 = 2;
             window.scrollTo(0,0);
+            this.$store.commit('updateDisableContinue2', true);
+            this.$store.commit('setDisabled', false);
+        },
+        nextTo4(){
+            this.e1 = 4
+            window.scrollTo(0,0);
+        },
+        backTo3(){
+            this.e1 = 3;
+            window.scrollTo(0,0);
         }
+
      
         
     }
