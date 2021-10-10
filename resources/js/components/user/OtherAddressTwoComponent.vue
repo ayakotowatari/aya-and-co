@@ -17,7 +17,8 @@
                             <v-col cols="12" sm="12" md="12">
                                 <v-item v-slot="{active, toggle}" v-for="address in otherAddresses" :key="address.id" :value='address'>
                                     <v-card
-                                        :elevation = "active ? '8' : ''"
+                                        elevation = "2"
+                                        :color = "active ? '#F9D9D9' : '#ffffff'"
                                         class="mx-auto mb-6"
                                         outlined
                                         @click="toggle"
@@ -45,7 +46,7 @@
                                             <v-btn
                                                 rounded
                                                 outlined
-                                                color="grey"
+                                                color="grey darken-1"
                                                 @click.stop="remove(address)"
                                             >
                                                 削除する
