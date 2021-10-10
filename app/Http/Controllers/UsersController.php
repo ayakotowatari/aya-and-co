@@ -165,6 +165,22 @@ class UsersController extends Controller
         return response() -> json(['postage' => $postage_res]);
     }
 
+    public function otherPostage($id)
+    {
+        $courier_id = $id;
+        
+        $prefecture = Auth::user()->prefecture;
+
+        $postage = Postage::where('courier_id', $courier_id)
+                    ->where('prefecture', $prefecture)
+                    ->select('postage')
+                    ->first();
+
+        $postage_res = $postage->postage;
+
+        return response() -> json(['postage' => $postage_res]);
+    }
+
     //userの住所を配送先として追加する。
     public function addAddress(Request $request)
     {
@@ -253,11 +269,11 @@ class UsersController extends Controller
 
         $prefecture = request('prefecture');
 
-        $postage = Postage::where('prefecture', $prefecture)
-                        ->select('postage')
-                        ->first();
+        // $postage = Postage::where('prefecture', $prefecture)
+        //                 ->select('postage')
+        //                 ->first();
 
-        $postage_res = $postage->postage;        
+        // $postage_res = $postage->postage;        
 
         $address = new Address();
 
@@ -271,7 +287,7 @@ class UsersController extends Controller
         $address->address_1 = request('address_1');
         $address->building = request('building');
         $address->phone = request('phone');
-        $address->postage = $postage_res;
+        // $address->postage = $postage_res;
         $address->life = 1;
 
         $address->save();

@@ -100,6 +100,85 @@
                         v-model="valid"
                         lazy-validation
                     >
+                        <div class="mb-8">
+                            <div class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配送方法をお選びください。</div>
+                            <div class="jp-font grey--text text--darken-2 mb24">ご用途に応じた配送方法の選び方については、<router-link to="/postage">こちら</router-link>でご案内しております。</div>
+
+                            <v-select
+                                v-model="courier"
+                                outlined
+                                :items = "couriers"
+                                item-text="courier_type"
+                                item-value="id"
+                                label="配送方法を選ぶ"
+                                required
+                                :rules="courierRules" 
+                                :error="allerror.couriers ? true : false"
+                                :error-messages="allerror.couriers"
+                            ></v-select>
+                        </div>
+
+                        <v-divider class="mt-4 mb-8"></v-divider>
+                        <div class="mb-8">
+                            <div class="jp-font grey--text text--darken-3 mb24">Step 3: 選べるメッセージカードサービスのご利用について</div>
+                            <div v-if="this.courier === null">
+                                <div class="jp-font grey--text text--darken-2">配送方法をお選びいただくと、オプションが示されます。</div>
+                            </div>
+                            <div v-if="this.courier === 2">
+                                <div class="jp-font grey--text text--darken-2">お選びいただいた配送方法では、メッセージカードはご利用になられません。</div>
+                            </div>
+                            <div v-if="this.courier === 1">
+                                <div class="jp-font grey--text text--darken-2 mb24">選べるメッセージカードサービス（無料）をご利用になられますか？</div>
+                                <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、aya & co.よりThank Youカードを同封させていただきます。</div>
+                                <v-select
+                                    v-model="deliveryCardUse"
+                                    outlined
+                                    :items = "useCard"
+                                    label="メッセージカードの利用"
+                                    required
+                                    class="mb24"
+                                    :rules="deliveryCardUseRules" 
+                                    :error="allerror.delivery_carduse"
+                                    :error-messages="allerror.delivery_carduse"
+                                ></v-select>
+                                <div v-if="this.deliveryCardUse === '利用する'">
+                                    <div class="jp-font grey--text text--darken-3 mb24">カードのメッセージを選択してください。</div>
+                                    <v-select
+                                        v-model="deliveryCardMessage"
+                                        outlined
+                                        :items = "cards"
+                                        label="メッセージを選択する"
+                                        required
+                                        class="mb48"
+                                        :rules="deliveryCardMessageRules" 
+                                        :error="allerror.delivery_cardmessage"
+                                        :error-messages="allerror.delivery_cardmessage"
+                                    ></v-select>
+                                        <div class="jp-font grey--text text--darken-3 mb24">カードの差出人として、あなたのお名前をどのように表記しますか？</div>
+                                            <v-select
+                                            v-model="deliveryCardName"
+                                            outlined
+                                            :items = "displayName"
+                                            label="表記を選択"
+                                            required
+                                            class="mb48"
+                                            :rules="deliveryCardNameRules" 
+                                        ></v-select>
+                                        <div class="jp-font grey--text text--darken-3 mb24">ギフトカード作成にあたってのご留意事項</div>
+                                            <div class="jp-font grey--text text--darken-2 mb24">
+                                                <p>ギフトカードの差出人のお名前は、ご登録いただいているフリガナにもとづいて、英字で表記されます。</p>
+                                                <p>例1：　Hanako Shirai（姓・名両方表記の場合）</p>
+                                                <p>例2：　Hanako（下のお名前のみの場合）</p>
+                                                <p>お客様のお名前のフリガナは下記で登録されています。</p>
+                                                <p>{{user.kana}}　様</p>
+                                                <p>万一、フリガナに誤りがある場合は、メニューの「アカウント情報の編集」にて、修正を行なってから、ギフトカードをご注文ください。</p>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <v-divider class="mt-4 mb-8"></v-divider>
+                        
                         <div class="jp-font grey--text text--darken-3 mb24">Step 2: ご希望の配達時間を指定する</div>
                         <v-select
                             v-model="deliveryTime"
@@ -112,70 +191,6 @@
                             :error="allerror.delivery_time"
                             :error-messages="allerror.delivery_time"
                         ></v-select>
-
-                         <v-divider class="mt-4 mb-8"></v-divider>
-
-                         <div class="jp-font grey--text text--darken-3 mb24">Step 3: ギフトカード（無料サービス）をご利用ですか？</div>
-                         <!-- <v-btn
-                            color="primary"
-                            outlined
-                            @click="$store.commit('setSelectCard', true)"
-                            class="mb24 mr-2"
-                         >
-                            利用する
-                         </v-btn> -->
-                         <!-- <v-btn
-                            color="grey darken-2"
-                            outlined
-                            @click="$store.commit('disableSelectCard', true)"
-                            class="mb24"
-                         >
-                            利用しない
-                         </v-btn> -->
-                         <v-select
-                            v-model="deliveryCardUse"
-                            outlined
-                            :items = "useCard"
-                            label="ギフトカードの利用"
-                            required
-                            :rules="deliveryCardUseRules" 
-                            :error="allerror.delivery_carduse"
-                            :error-messages="allerror.delivery_carduse"
-                            class="mb24"
-                         ></v-select>
-                         <div v-if="this.deliveryCardUse === '利用する'">
-                            <div class="jp-font grey--text text--darken-3 mb24">ギフトカードのメッセージを選択してください。</div>
-                            <v-select
-                                v-model="deliveryCardMessage"
-                                outlined
-                                :items = "cards"
-                                label="メッセージを選択する"
-                                required
-                                class="mb48"
-                                :rules="deliveryCardMessageRules" 
-                                :error="allerror.delivery_cardmessage"
-                                :error-messages="allerror.delivery_cardmessage"
-                            ></v-select>
-                            <div class="jp-font grey--text text--darken-3 mb24">カードの差出人として、あなたのお名前をどのように表記しますか？</div>
-                            <v-select
-                                v-model="deliveryCardName"
-                                outlined
-                                :items = "displayName"
-                                label="表記を選択"
-                                required
-                                class="mb48"
-                                :rules="deliveryCardNameRules" 
-                            ></v-select>
-                            <div class="jp-font grey--text text--darken-3 mb24">ギフトカード作成にあたってのご留意事項</div>
-                                <div class="jp-font grey--text text--darken-2 mb24">
-                                    <p>ギフトカードの差出人のお名前は、ご登録いただいているフリガナにもとづいて、英字で表記されます。</p>
-                                    <p>例1：　Hanako Shirai（姓・名両方表記の場合）</p>
-                                    <p>例2：　Hanako（下のお名前のみの場合）</p>
-                                    <p>お客様のお名前のフリガナは、下記で登録されています。</p>
-                                    <p>{{user.kana}}　様</p>
-                                    <p>万一、フリガナに誤りがある場合は、メニューの「アカウント情報の編集」にて、修正を行なってから、ギフトカードをご注文ください。</p>
-                                </div>
-                        </div>  
                         <v-btn
                             color="primary"
                             block
@@ -220,6 +235,10 @@ export default {
     data: function(){
         return {
             valid: true,
+            courier: null,
+            courierRules: [
+                v => !!v || 'ご希望の配送方法を選択してください。',
+            ],
             addressGroup: null,
             deliveryTime: '',
             deliveryTimeRules: [
@@ -284,7 +303,7 @@ export default {
         this.$store.dispatch('fetchOtherAddresses');
     },
     created(){
-     
+        this.$store.dispatch('fetchPostages')
     },
     computed: {
         ...mapState([
@@ -294,6 +313,8 @@ export default {
             'dialogNewAddress',
             'dialogRemoveAddress',
             'disabled',
+            'postages',
+            'couriers'
             // 'selectCard',
         ])
     
@@ -301,6 +322,7 @@ export default {
     methods: {
         ...mapActions([
             'selectAddress',
+            'setOtherPostage'
         ]),
         // ...mapMutations({
         //     select: 'selectAddress',
@@ -330,15 +352,23 @@ export default {
 
             if(this.$refs.form.validate()){
 
-                if(this.deliveryCardUse == '利用しない'){
+                // this.$store.dispatch('setOtherPostage', {
+                //     courier: this.courier,
+                //     prefecture: this.addressGroup.prefecture
+                // });
+
+                // console.log('prefecture', this.addressGroup.prefecture)
+                console.log('courier', this.courier)
+
+                if(this.courier == 2){
                     this.selectAddress({
                         address: this.addressGroup,
                         delivery_time: this.deliveryTime,
                         delivery_cardmessage: '',
                         delivery_cardname: '',
-                        delivery_carduse: this.deliveryCardUse
+                        delivery_carduse: '利用しない'
                     })
-                }else{
+                }else if(this.deliveryCardUse == '利用する'){
                     this.selectAddress({
                         address: this.addressGroup,
                         delivery_time: this.deliveryTime,
@@ -346,7 +376,38 @@ export default {
                         delivery_cardname: this.deliveryCardName,
                         delivery_carduse: this.deliveryCardUse
                     })
-                 }
+                }else{
+                     this.selectAddress({
+                        address: this.addressGroup,
+                        delivery_time: this.deliveryTime,
+                        delivery_cardmessage: '',
+                        delivery_cardname: '',
+                        delivery_carduse: this.deliveryCardUse
+                    })
+                }
+
+                this.setOtherPostage({
+                    courier_id: this.courier,
+                    prefecture: this.addressGroup.prefecture
+                })
+
+                // if(this.deliveryCardUse == '利用しない'){
+                //     this.selectAddress({
+                //         address: this.addressGroup,
+                //         delivery_time: this.deliveryTime,
+                //         delivery_cardmessage: '',
+                //         delivery_cardname: '',
+                //         delivery_carduse: this.deliveryCardUse
+                //     })
+                // }else{
+                //     this.selectAddress({
+                //         address: this.addressGroup,
+                //         delivery_time: this.deliveryTime,
+                //         delivery_cardmessage: this.deliveryCardMessage,
+                //         delivery_cardname: this.deliveryCardName,
+                //         delivery_carduse: this.deliveryCardUse
+                //     })
+                //  }
 
             }
 

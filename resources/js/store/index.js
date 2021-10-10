@@ -188,7 +188,7 @@ export default new Vuex.Store({
     },
     selectAddress(state, payload){
 
-        console.log('payload', payload)
+        console.log('payload-selectaddress', payload)
         
         let id = payload.address.id
         let delivery_time = payload.delivery_time
@@ -214,6 +214,18 @@ export default new Vuex.Store({
     },
     setDeliveryAddress(state, payload){
         state.deliveryAddress = payload
+    },
+    setOtherPostage(state, payload){
+
+        console.log('payload-postage', payload)
+        let id = payload.courier_id
+        let prefecture = payload.prefecture
+
+        let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
+        let postage = postage_data.postage
+
+
+        state.deliveryAddress.postage = postage
     },
     updateGuestDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
@@ -1108,6 +1120,33 @@ export default new Vuex.Store({
         })
 
     },
+    // async setOtherPostage({commit}, payload){
+
+    //     let allerror = [];
+    //     let postage = "";
+
+    //     await axios
+    //     .get("/member/fetch-otherpostage/" + payload)
+    //     .then(res => {
+    //         postage = res.data.postage;
+    //         console.log('postage', postage)
+    //         commit('setPostage', postage);
+    //         // commit('setDisabled', true);
+    //         // commit('updateDisableContinue1', false);
+    //         // commit('setLoading', false);
+    //         // router.push({ name: 'order-confirmation'});
+    //     })
+    //     .catch(error => {
+    //         // commit('setLoading', false);
+    //         allerror = error.response.data.errors,
+    //         commit('setallErrors', allerror)
+    //     })
+    // },
+    async setOtherPostage({commit}, payload){
+
+        commit('setOtherPostage', payload);
+    },
+
     async fetchOrders({commit}, payload){
 
         console.log('page', payload.pageNumber);

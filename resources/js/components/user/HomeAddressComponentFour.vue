@@ -93,7 +93,7 @@
                             <div class="jp-font grey--text text--darken-2">お選びいただいた配送方法では、メッセージカードはご利用になられません。</div>
                         </div>
                         <div v-if="this.courier === 1">
-                            <div class="jp-font grey--text text--darken-2 mb24">メッセージカードを選べるサービス（無料）をご利用になられますか？</div>
+                            <div class="jp-font grey--text text--darken-2 mb24">選べるメッセージカードサービス（無料）をご利用になられますか？</div>
                             <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、aya & co.よりThank Youカードを同封させていただきます。</div>
                             <v-select
                                 v-model="deliveryCardUse"
@@ -279,7 +279,7 @@ export default {
 
                 this.$store.dispatch('setPostage', this.courier);
 
-                if(this.deliveryCardUse == ''){
+                if(this.courier == 2){
                     this.setDeliveryAddress({
                         name: this.user.name,
                         kana: this.user.kana,
