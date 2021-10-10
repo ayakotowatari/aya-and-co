@@ -395,7 +395,7 @@ export default {
                 }
 
                 this.setOtherPostage({
-                    courier_id: this.courier,
+                    courier: this.courier,
                     prefecture: this.addressGroup.prefecture
                 })
 

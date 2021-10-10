@@ -219,15 +219,17 @@ export default new Vuex.Store({
     },
     setOtherPostage(state, payload){
 
-        console.log('payload-postage', payload)
-        let id = payload.courier_id
+        // console.log('payload-postage', payload)
+        let id = payload.courier
         let prefecture = payload.prefecture
 
         let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
         let postage = postage_data.postage
-
-
         state.deliveryAddress.postage = postage
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+        
     },
     updateGuestDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
