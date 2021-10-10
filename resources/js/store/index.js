@@ -53,6 +53,8 @@ export default new Vuex.Store({
           phone: '',
           email: '',
           delivery_time: '',
+          delivery_option: '',
+          courier_type: '',
           postage: '',
         //   delivery_cardmessage: '',
         //   delivery_cardname: '',
@@ -248,6 +250,9 @@ export default new Vuex.Store({
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
         state.deliveryAddress.delivery_time = payload.delivery_time
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
 
         state.deliveryCardUse = payload.delivery_carduse
         state.deliveryCardMessage = payload.delivery_cardmessage

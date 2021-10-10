@@ -450,6 +450,7 @@ public function purchase(Request $request){
                 'delivery_address_1' => $request->input('deliveryAddress1'),
                 'delivery_building' => $request->input('deliveryBuilding'),
                 'delivery_phone' => $request->input('deliveryPhone'),
+                'delivery_courier' => $request->input('deliveryCourierType'),
                 'delivery_time' => $request->input('deliveryTime'),
                 'delivery_carduse' => $request->input('deliveryCardUse'),
                 'delivery_cardmessage' => $request->input('deliveryCardMessage'),

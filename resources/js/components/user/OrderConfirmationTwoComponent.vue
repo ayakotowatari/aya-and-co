@@ -132,6 +132,16 @@
                             <v-list-item>
                                 <v-list-item-content>
                                     <v-list-item-subtitle class="jp-font-400">
+                                        配送方法
+                                    </v-list-item-subtitle>
+                                    <v-list-item-title class="jp-font-400">
+                                        {{deliveryAddress.courier_type}}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-subtitle class="jp-font-400">
                                         ご希望の配達時間帯
                                     </v-list-item-subtitle>
                                     <v-list-item-title class="jp-font-400">
