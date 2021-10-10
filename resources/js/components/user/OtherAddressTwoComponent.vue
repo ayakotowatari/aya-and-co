@@ -11,7 +11,7 @@
             <v-row>
                 <v-col cols="12" sm="12" md="12">
                     <h4 class="jp-font grey--text text--darken-3 mb24">Step 1: 配送先の住所を選択する</h4>
-                    <div class="jp-font-400 grey--text text--darken-2 mb24">住所をクリックして選択してください。</div>
+                    <div class="jp-font-400 grey--text text--darken-2 mb24">住所をクリックして選択してください。選択されると、色が赤く変わります。</div>
                     <v-item-group v-model="addressGroup" mandatory>
                         <v-row>
                             <v-col cols="12" sm="12" md="12">
@@ -197,9 +197,16 @@
                             block
                             @click="select"
                             :disabled="disabled"
+                            class="mb-4"
                         >
                             確定する   
                         </v-btn>
+                        <v-btn
+                            color="grey darken-2"
+                            outlined
+                            :disabled="!disabled"
+                            @click="reset"
+                        >配送先の住所を変更する</v-btn>
                     </v-form>
                 </v-col>
             </v-row>
@@ -418,6 +425,12 @@ export default {
         newAddress(){
             this.$store.dispatch('dialogNewAddress', true);
         },
+
+        reset(){
+            this.$refs.form.reset();
+            this.$store.commit('setDisabled', false);
+            this.$store.commit('updateDisableContinue1', true);
+        }
         // select(value){
         //     console.log(value);
 
