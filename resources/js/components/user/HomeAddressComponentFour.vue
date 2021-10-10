@@ -218,7 +218,7 @@ export default {
                 v => !!v || '差出人を選択してください。',
             ],
             deliveryCardName: '',
-            displayName: ['姓・名両方', '下のお名前のみ'],
+            displayName: ['姓・名両方', '名（ファーストネーム）のみ'],
             deliveryCardNameRules: [
                 v => !!v || 'お名前の表記方法を選択してください。',
             ],

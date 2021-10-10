@@ -262,7 +262,7 @@ export default {
             ],
             items: ["希望なし", "午前中", "12:00-14:00頃", "14:00-16:00頃", "16:00-18:00頃", "18:00-20:00頃", "19:00-21:00頃", "20:00-21:00頃"],
             cards: ["Thank You", "Happy Birthday", "Take Care", "Get Well Soon", "With Love", "Sending You a Hug"],
-            displayName: ['姓・名両方', '下のお名前のみ'],
+            displayName: ['姓・名両方', '名（ファーストネーム）のみ'],
             address: {},
             deliveryCardUse: '',
             deliveryCardUseRules: [
