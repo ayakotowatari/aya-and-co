@@ -4,7 +4,7 @@
             <v-col cols="12" sm="12" md="12">
                 <div class="heading-group">
                     <div class="page-heading">
-                        Login
+                        Member Login
                     </div>
                     <div class="page-subtitle grey--text text--darken-3">
                         会員ログイン
