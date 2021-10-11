@@ -267,7 +267,7 @@ class UsersController extends Controller
             "phone" => 'required',
         ]);
 
-        $prefecture = request('prefecture');
+        // $prefecture = request('prefecture');
 
         // $postage = Postage::where('prefecture', $prefecture)
         //                 ->select('postage')
