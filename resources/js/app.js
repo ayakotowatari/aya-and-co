@@ -33,6 +33,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('navbar-component', require('./components/parts/NavbarComponent.vue').default);
 Vue.component('footer-component', require('./components/parts/FooterComponent.vue').default);
+Vue.component('updatecartquantitydialog-component', require('./components/UpdateCartQuantityDialogComponent.vue').default);
 
 //user
 // Vue.component('changeaddress-component', require('./components/ChangeAddressComponent.vue').default);

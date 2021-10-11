@@ -80,6 +80,7 @@ export default new Vuex.Store({
       },
       products: [],
       product: [],
+      productId: '',
       categories: [],
     //   disableSelectAmount: true,
       inventoryQuantity: null,
@@ -101,6 +102,7 @@ export default new Vuex.Store({
       actualShipmentDate: null,
       deliveredDate: null,
       dialog: false,
+      dialogUpdateCartQuantity: false,
       dialogThankYou: false,
       dialogThankYouGuest: false,
       dialogEditAddress: false,
@@ -408,6 +410,8 @@ export default new Vuex.Store({
         if(quantity <= 5){
             state.selectableNumbers = [1]
         
+        // }else if(quantity <= 1){
+
         }else{
             state.selectableNumbers = [1, 2, 3, 4, 5]
         }
@@ -467,19 +471,44 @@ export default new Vuex.Store({
     setProductQuantity(state, payload){
         state.productQuantity = payload;
     },
-    updateCartQuantity(state, payload){
+    // updateCartQuantity(state, payload){
 
-        let id = payload.index
-        let quantity = payload.value
+    //     let id = payload.index
+    //     let quantity = payload.value
 
-        console.log('id', id)
-        console.log('quantity', quantity)
+    //     console.log('id', id)
+    //     console.log('quantity', quantity)
 
-        state.cart[id].quantity = quantity
-        state.cart = JSON.parse(JSON.stringify(state.cart));
+    //     state.cart[id].quantity = quantity
+    //     state.cart = JSON.parse(JSON.stringify(state.cart));
 
-        console.log("updateCartQuantity", state.cart[id]);
+    //     console.log("updateCartQuantity", state.cart[id]);
 
+    // },
+    changeCartQuantity(state, payload){
+        let product = payload.product
+        let updatedQuantity = payload.quantity
+
+        console.log('updatedQuantity', updatedQuantity)
+        console.log('slug', product.slug)
+
+        let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
+        if(productInCartIndex !== -1){
+            // let originalQuantity = state.cart[productInCartIndex].quantity
+            state.cart[productInCartIndex].quantity = Number(updatedQuantity) 
+            // state.cart[productInCartIndex].quantity++;
+            state.cart = JSON.parse(JSON.stringify(state.cart));
+            //return;
+        }else{
+            product.quantity = updatedQuantity;
+            state.cart.push(product);
+        }
+
+        state.dialogUpdateCartQuantity = false
+
+        // state.disableSelectAmount = false;
+
+        console.log('cart',state.cart);
     },
     removeProduct(state, payload){
 
@@ -568,6 +597,14 @@ export default new Vuex.Store({
     },
     setDialogLinkSent(state, payload){
         state.dialogLinkSent = payload
+    },
+    setDialogUpdateCartQuantity(state, payload){
+        state.dialogUpdateCartQuantity = payload
+    },
+    setProductId(state, payload){
+        state.productId = payload
+
+
     },
     setDisabled(state, payload){
         state.disabled = payload
@@ -1591,6 +1628,13 @@ export default new Vuex.Store({
         })
 
     },
+    openDialogUpdateCartQuantity({commit}, payload){
+        
+        commit('setDialogUpdateCartQuantity', true)
+        commit('setProduct', payload.product)
+
+    },
+    
 
   },
   modules: {
