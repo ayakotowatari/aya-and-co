@@ -41,12 +41,14 @@
                                     送料
                                 </div>
                             </v-col>
-                            <v-col cols="4" sm="4" md="6" class="py-1">
-                                <div class="totalprice">
-                                    <!-- {{formatPrice(deliveryAddress.postage)}} -->
-                                    {{deliveryAddress.postage}}
-                                </div>
-                            </v-col>
+                           
+                                <v-col cols="4" sm="4" md="6" class="py-1">
+                                    <div class="totalprice">
+                                        {{formatPrice(deliveryAddress.postage)}}
+                                        <!-- {{deliveryAddress.postage}} -->
+                                    </div>
+                                </v-col>
+                           
                         </v-row>
                     </v-col>
                 </v-row>

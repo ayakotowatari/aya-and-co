@@ -189,10 +189,10 @@ export default new Vuex.Store({
     setHomeAsDeliveryAddress(state, payload){
         state.deliveryAddress = payload
 
-        state.deliveryAddress.delivery_time = ''
-        state.deliveryAddress.delivery_option= ''
-        state.deliveryAddress.courier_type= ''
-        state.deliveryAddress.postage= ''
+        // state.deliveryAddress.delivery_time = ''
+        // state.deliveryAddress.delivery_option= ''
+        // state.deliveryAddress.courier_type= ''
+        // state.deliveryAddress.postage= ''
     },
     insertPostage(state, payload){
 
@@ -213,10 +213,10 @@ export default new Vuex.Store({
     confirmOtherAddress(state, payload){
         state.deliveryAddress = payload.address
 
-        state.deliveryAddress.delivery_time = ''
-        state.deliveryAddress.delivery_option= ''
-        state.deliveryAddress.courier_type= ''
-        state.deliveryAddress.postage= ''
+        // state.deliveryAddress.delivery_time = ''
+        // state.deliveryAddress.delivery_option= ''
+        // state.deliveryAddress.courier_type= ''
+        // state.deliveryAddress.postage= ''
     },
     setDeliveryOption(state, payload){
         state.deliveryAddress.delivery_time = payload.delivery_time

@@ -117,7 +117,7 @@
                                 color="primary"
                                 @click="nextTo3"
                                 >
-                                レジへ進む
+                                次へ
                             </v-btn>
                         </v-col>
                         <v-col cols="3" sm="3" md="2">
