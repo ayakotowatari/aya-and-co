@@ -63,6 +63,7 @@ Vue.component('deleteuserdialog-component', require('./components/user/edit/Dele
 
 //guest
 Vue.component('guestcheckaddress-component', require('./components/guest/GuestCheckAddressComponent.vue').default);
+Vue.component('guestdeliveryoption-component', require('./components/guest/GuestDeliveryOptionComponent.vue').default);
 Vue.component('guestorderconfirmation-component', require('./components/guest/GuestOrderConfirmationComponentTwo.vue').default);
 Vue.component('guestcheckout-component', require('./components/guest/GuestCheckoutComponentThree.vue').default);
 Vue.component('guesthomeaddress-component', require('./components/guest/GuestHomeAddressComponentTwo.vue').default);

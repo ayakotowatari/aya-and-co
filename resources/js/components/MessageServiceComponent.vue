@@ -50,9 +50,6 @@
                   aya & co.では、ご注文時に、商品の発送時に同封されるカードのメッセージをお選びいただき、<br class="lg">
                   さらに、ギフトとして贈られる場合は、カードの差出人としてお客様のお名前を印字するサービスを無料で提供しています。ぜひご利用ください。<br class="lg">
               </p>
-              <p class="description">
-                  なおこのサービスは、<router-link to="/postage">配送方法</router-link>として「ゆうパック（日本郵便）」をお選びいただく場合にのみ、ご利用いただけます。「宅急便コンパクト（ヤマト運輸）」をお選びいただく際にはご利用になれませんので、ご注意ください。
-              </p>
               <div class="divider-image pine-image balloon-image">
                     <v-img
                         max-width=90
@@ -126,7 +123,7 @@
 
                 <div class="mb-8">
                     <div class="item-content policy-title mb-4">
-                        お申し込み方法
+                        ご利用条件とお申し込み方法
                     </div>
                     <div class="item-title line-height grey--text text--darken-3">
                         <p>

@@ -67,6 +67,7 @@ export default new Vuex.Store({
           
       },
       guest: {
+          id: '',
           name: '',
           kana: '',
           zipcode: '',
@@ -298,7 +299,7 @@ export default new Vuex.Store({
         state.deliveryAddress.address_1 = payload.address_1
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
-        state.deliveryAddress.delivery_time = payload.delivery_time
+        // state.deliveryAddress.delivery_time = payload.delivery_time
     },
     updateDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
@@ -349,7 +350,18 @@ export default new Vuex.Store({
         state.deliveryAddress.postage = payload
     },
     setGuest(state, payload){
-        state.guest = payload
+      
+        state.guest.id = payload.id
+        state.guest.name = payload.name
+        state.guest.kana = payload.kana
+        state.guest.zipcode = payload.zipcode
+        state.guest.prefecture = payload.prefecture
+        state.guest.city = payload.city
+        state.guest.address_1 = payload.address_1
+        state.guest.building = payload.building
+        state.guest.phone = payload.phone
+        state.guest.email = payload.email
+
     },
     clearGuest(state, payload){
         state.guest = payload
@@ -383,6 +395,9 @@ export default new Vuex.Store({
     },
     updateGuestEmail(state, payload){
         state.guest.email = payload
+    },
+    setGuestDeliveryOption(state, payload){
+        state.deliveryAddress.delivery_time = payload
     },
     setProducts(state, payload){
         state.products = payload
@@ -1006,16 +1021,16 @@ export default new Vuex.Store({
             building: payload.building,
             phone: payload.phone,
             email: payload.email,
-            delivery_time: payload.delivery_time
+            // delivery_time: payload.delivery_time
         })
         .then(res => {
             //console.log(res)
             guest = res.data.guest;
-            deliveryAddress = res.data.deliveryAddress
-            postage = res.data.postage
+            // deliveryAddress = res.data.deliveryAddress
+            // postage = res.data.postage
             commit('setGuest', guest);
             commit('updateGuestDeliveryAddress', guest);
-            commit('setPostage', postage);
+            // commit('setPostage', postage);
             commit('setDisabled', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
@@ -1033,12 +1048,12 @@ export default new Vuex.Store({
 
         let deliveryAddress = payload.deliveryAddress;
         let guest = {};
-        let postage = "";
+        // let postage = "";
         let allerror = [];
 
         await axios
-        .post("/guest/add-otheraddress", {
-            deliveryPrefecture: payload.deliveryPrefecture,
+        .post("/guest/add", {
+            // deliveryPrefecture: payload.deliveryPrefecture,
             name: payload.name,
             kana: payload.kana,
             zipcode: payload.zipcode,
@@ -1052,10 +1067,10 @@ export default new Vuex.Store({
         .then(res => {
             //console.log(res)
             guest = res.data.guest;
-            postage = res.data.postage;
+            // postage = res.data.postage;
             commit('setGuest', guest);
-            commit('setDeliveryAddress', deliveryAddress);
-            commit('setPostage', postage);
+            commit('updateGuestDeliveryAddress', deliveryAddress);
+            // commit('setPostage', postage);
             commit('setDisabled', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
@@ -1163,7 +1178,7 @@ export default new Vuex.Store({
 
     },
 
-    async setDeliveryOption({commit}, payload){
+    setDeliveryOption({commit}, payload){
 
         commit('setDeliveryOption', payload);
         commit('setDisabled', true);
@@ -1189,6 +1204,15 @@ export default new Vuex.Store({
         //     commit('setallErrors', allerror)
         // })
 
+    },
+
+    setGuestDeliveryOption({commit}, payload){
+
+        let delivery_time = payload.delivery_time
+        
+        commit('setGuestDeliveryOption', delivery_time);
+        commit('setDisabled', true);
+        commit('updateDisableContinue2', false);
     },
 
 

@@ -51,7 +51,7 @@ Route::get('/fetch-postages', 'OrdersController@postage')->name('postages');
 // Route::post('/purchase', 'UsersController@purchaseTest')->name('purchase-test');
 Route::post('/guest/purchase', 'GuestsController@purchase')->name('guest.purchase');
 Route::post('/guest/add', 'GuestsController@create')->name('guest.addaddress');
-Route::post('/guest/add-otheraddress', 'GuestsController@otherAddress')->name('guest.add.otheraddress');
+// Route::post('/guest/add-otheraddress', 'GuestsController@otherAddress')->name('guest.add.otheraddress');
 Route::post('/guest/order-confirmation', 'GuestsController@orderConfirm')->name('order.confirm');
 Route::get('/email/message', 'HomeController@email');
 Route::get('/email/notification', 'HomeController@notification');

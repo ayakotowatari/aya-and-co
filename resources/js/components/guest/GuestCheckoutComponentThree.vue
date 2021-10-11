@@ -161,7 +161,7 @@ export default {
        
     },
     props: {
-
+        deliveryAddress: Object
     },
     data: function(){
         return{
@@ -190,6 +190,7 @@ export default {
                 deliveryAddress1: '',
                 deliveryBuilding: '',
                 deliveryPhone: '',
+                deliveryCourierType: '',
                 deliveryTime: '',
                 deliveryPostage: ''
             },
@@ -199,8 +200,8 @@ export default {
     
     },
     async mounted(){
-        this.stripe = await loadStripe("pk_live_51J0LDyHqbknAxatFzrgue8qXopbEBy5AYGYJ26oSnK0Wqm4FPP8TrdlpQbPDKljHqmxQrm5xhIi5xkWYOLJsIoHB0040SBgx86");
-        //this.stripe = await loadStripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
+        // this.stripe = await loadStripe("pk_live_51J0LDyHqbknAxatFzrgue8qXopbEBy5AYGYJ26oSnK0Wqm4FPP8TrdlpQbPDKljHqmxQrm5xhIi5xkWYOLJsIoHB0040SBgx86");
+        this.stripe = await loadStripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
         let elements = this.stripe.elements();
        
         let elementStyles = {
@@ -271,7 +272,6 @@ export default {
             'cart',
             'order',
             'dialogThankYouGuest',
-            'deliveryAddress',
         ]),
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
@@ -360,6 +360,7 @@ export default {
             this.customer.deliveryAddress1 = this.deliveryAddress.address_1;
             this.customer.deliveryBuilding = this.deliveryAddress.building; 
             this.customer.deliveryPhone = this.deliveryAddress.phone;
+            this.customer.deliveryCourierType = this.deliveryAddress.courier_type;
             this.customer.deliveryTime = this.deliveryAddress.delivery_time;
             this.customer.deliveryPostage = this.deliveryAddress.postage;
             this.customer.itemTotal = itemTotal;

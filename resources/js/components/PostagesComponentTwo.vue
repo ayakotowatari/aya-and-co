@@ -39,10 +39,16 @@
                         ゆうパック
                     </div>
                     <p class="description">
-                        ゆうパックでは、宅配50サイズ（長さ201mm × 幅167mm × 深さ102mm）の箱のなかに、木毛の緩衝材を用いて商品を配置します。そこへ、葉書サイズの「<router-link to="/message-service">選べるメッセージカード</router-link>」を同封します。
+                        ゆうパックでは、宅配50サイズ（長さ201mm × 幅167mm × 深さ102mm）の箱のなかに、木毛の緩衝材を用いて商品を配置します。
                     </p>
+                    <p class="description mb-8">
+                        会員登録をされたお客様で、ゆうパックをご利用になる場合は、「<router-link to="/message-service">選べるメッセージカード</router-link>」のサービス（無料）をご利用いただけます。ご注文時にお好きなメッセージを選んでいただきましたら、ご希望によってお客様のお名前とともに、葉書サイズのaya & co.特製のカードを丁寧に印刷して、同封いたします。
+                    </p>
+                    <div class="item-content policy-title mb-4">
+                        おすすめの用途
+                    </div>
                     <p class="description">
-                        ゆうパックは、ご自身へのご褒美や、ご家族・ご友人へのギフトとして贈られる場合に、適しております。
+                        ご自身へのご褒美や、ご家族・ご友人へのギフトとして贈られるときなど、大切なオケージョンにはゆうパックのご利用がおすすめです。
                     </p>
                 </div>
                 <v-row class="mb-8">
@@ -57,14 +63,14 @@
                     <p class="description">
                         宅急便コンパクトでは、ヤマト運輸の薄型の専用ボックスに、木毛の緩衝材を用いて商品を配置します。ボックスの高さがあまりないため、たとえば140g以上のサイズの瓶は、横向きに倒した状態で包装いたします。
                     </p>
-                    <p class="description">
-                        また、葉書サイズのカードは瓶に押されて折り目がついてしまうため、「<router-link to="/message-service">選べるメッセージカード</router-link>」は同封できません。
+                    <p class="description mb-8">
+                        また、葉書サイズのカードは瓶に押されて折り目がついてしまうため、同封できず、「<router-link to="/message-service">選べるメッセージカード</router-link>」はご利用いただけません。
                     </p>
+                    <div class="item-content policy-title mb-4">
+                        おすすめの用途
+                    </div>
                     <p class="description">
-                        宅急便コンパクトは、ゆうパックと比較して、審美的にはやや劣りますが、送料はリーズナブルで、ご自宅での普段づかいとしてお買い求めいただく際に適した方法です。
-                    </p>
-                    <p class="description">
-                        日本全国各地への、配送オプションごとの送料は、下記よりお確かめいただけます。
+                        宅急便コンパクトは、ゆうパックと比較して、審美的にはやや劣りますが、送料はリーズナブルで、ご自宅での普段づかいとしてお買い求めいただく際におすすめいたします。
                     </p>
                 </div>
                 <div class="divider-image delivery-image">
@@ -81,6 +87,9 @@
                 <div class="item-title">送料について</div>
             </v-col>
             <v-col cols="12" sm="12" md="8">
+                <p class="description">
+                        日本全国各地への、配送オプションごとの送料は、下記よりお確かめいただけます。
+                    </p>
                 <v-row>
                     <v-col cols="12" sm="12" md="6">
                         <v-select
@@ -241,6 +250,10 @@ export default {
 
 .mb16{
     margin-bottom: 16px;
+}
+
+.spot-color{
+    color: #FE6862
 }
 
 @media(max-width:780px){

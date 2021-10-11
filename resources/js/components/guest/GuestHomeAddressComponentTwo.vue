@@ -96,7 +96,7 @@
                         :error="allerror.email ? true : false"
                         :error-messages="allerror.email"
                     ></v-text-field>
-                    <v-select
+                    <!-- <v-select
                         v-model="deliveryTime"
                         :items = "items"
                         label="ご希望の配達時間帯"
@@ -105,7 +105,7 @@
                         :rules="deliveryTimeRules" 
                         :error="allerror.delivery_time ? true : false"
                         :error-messages="allerror.delivery_time"
-                    ></v-select>
+                    ></v-select> -->
                     <!-- <v-btn
                         color="primary"
                         outlined
@@ -129,11 +129,10 @@
                         block
                         @click="add"
                         color="primary"
-                        dark
                         class="mb-6"
                         :disabled="disabled"
                     >
-                    注文内容を確認する
+                    この住所に送る
                     </v-btn>
                 </v-form>
             </v-col>
@@ -249,7 +248,7 @@ export default {
                     building: this.building,
                     phone: this.phone,
                     email: this.email,
-                    delivery_time: this.deliveryTime
+                    // delivery_time: this.deliveryTime
                 })
             }
             
