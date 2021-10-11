@@ -4,6 +4,9 @@
             v-bind:dialogUpdateCartQuantity='dialogUpdateCartQuantity'
             v-bind:selectableNumbers='selectableNumbers'
         ></updatecartquantitydialog-component>
+        <removecartitemdialog-component
+            v-bind:dialogRemoveCartItem='dialogRemoveCartItem'
+        ></removecartitemdialog-component>
         <v-row>
             <v-col cols="12" sm="12" md="12">
                 <div class="heading-group">
@@ -97,7 +100,7 @@
                                             <v-btn
                                                 outlined
                                                 color="grey"
-                                                @click="remove(`${item.slug}`)"
+                                                @click="remove(item)"
                                             >
                                                  <v-icon
                                                 >
@@ -303,6 +306,7 @@ export default {
           'cart',
           'categories',
           'dialogUpdateCartQuantity',
+          'dialogRemoveCartItem',
           'selectableNumbers'
         ]),
         // formatPrice(){
@@ -314,7 +318,7 @@ export default {
         cartTotal(){
             let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(amount);
+            //console.log(amount);
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         // selectedQuantity: {
@@ -330,6 +334,7 @@ export default {
         ...mapActions([
             'removeProduct',
             'openDialogUpdateCartQuantity', 
+            'openDialogRemoveCartItem',
             'fetchInventory'
         ]),
         formatPrice(value){
@@ -337,13 +342,36 @@ export default {
 
           return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
+        updateCartQuantity(value){
+            // this.$store.commit('openDialogUpdateCartQuantity', id)
+            this.openDialogUpdateCartQuantity({
+                cartItem : value
+            })
+            this.fetchInventory({
+                product_id: value.id
+            })
+        },
+        // remove(value){
+
+        //     console.log('slug', value)
+
+        //     this.removeProduct({
+        //         slug: value
+        //     })
+
+        // },
         remove(value){
 
-            console.log('slug', value)
+            //console.log(value);
 
-            this.removeProduct({
-                slug: value
+            this.openDialogRemoveCartItem({
+                cartItem: value
             })
+            // console.log('id', value)
+
+            // this.removeProduct({
+            //     slug: value
+            // })
 
         },
         backToHome(){
@@ -357,15 +385,6 @@ export default {
         // updateCartQuantity(index, value){
         //     this.$store.commit('updateCartQuantity', {index, value})
         // },
-        updateCartQuantity(value){
-            // this.$store.commit('openDialogUpdateCartQuantity', id)
-            this.openDialogUpdateCartQuantity({
-                product : value
-            })
-            this.fetchInventory({
-                product_id: value.id
-            })
-        },
         expand(id){
           this.$router.push({name: 'products', params: {id: id}})
         },

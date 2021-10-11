@@ -4,10 +4,10 @@
             <v-dialog v-model="dialogUpdateCartQuantity" persistent max-width="320">
                 <v-card>
                     <v-card-title class="ja-font-400 dialog-title-14">
-                        {{product.name}}({{product.size}})の数量変更
+                        {{cartItem.name}}({{cartItem.size}})の数量変更
                     </v-card-title>
                     <v-card-text class="ja-font-400">
-                        在庫数数：{{product.inventory}}
+                        在庫数数：{{cartItem.inventory}}
                     </v-card-text>
                     <v-card-text class="ja-font-400">
                         <v-row>
@@ -58,22 +58,17 @@ export default {
     },
     computed: {
         ...mapState([
-            'product',
+            'cartItem',
         ])
     },
     methods: {
         ...mapActions([
 
         ]),
-        remove(value){
-            console.log('value', value);
-            let removedAddress = value
-            this.$store.dispatch('removeAddress', removedAddress)
-        },
         changeQuantity(){
             let quantity = this.selectedQuantity
-            let product = this.product
-            this.$store.commit('changeCartQuantity', {quantity, product})
+            let cartItem = this.cartItem
+            this.$store.commit('changeCartQuantity', {quantity, cartItem})
         },
         back(){
             this.$store.commit('setDialogUpdateCartQuantity', false)
