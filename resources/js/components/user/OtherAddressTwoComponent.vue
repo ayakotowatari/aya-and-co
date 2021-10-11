@@ -62,6 +62,7 @@
                     <v-btn
                         color="primary"
                         block
+                        :disabled="disabled"
                         @click="confirmAddress"
                         class="mb24"
                     >

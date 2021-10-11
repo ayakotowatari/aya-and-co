@@ -173,7 +173,7 @@ export default {
         ThankYou,
     },
     props: {
-
+        deliveryAddress: Object
     },
     data: function(){
         return{
@@ -288,7 +288,6 @@ export default {
             'cart',
             'order',
             'dialogThankYou',
-            'deliveryAddress',
             'deliveryCardUse',
             'deliveryCardMessage',
             'deliveryCardName',

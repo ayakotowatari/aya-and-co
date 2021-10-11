@@ -95,7 +95,7 @@
                         <v-divider></v-divider>
                     </v-col>
                 </v-row>
-                <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所等</h4>
+                <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所・配送オプション等</h4>
                 <v-row>
                     <v-col cols="12" sm="12" md="8">
                         <v-card
@@ -220,7 +220,7 @@ export default {
         
     },
     props: {
-        
+        deliveryAddress: Object
     },
     data: function(){
         return{
@@ -238,7 +238,6 @@ export default {
         ...mapState([
             'user',
             'cart',
-            'deliveryAddress',
             'deliveryCardUse',
             'deliveryCardMessage',
             'deliveryCardName'

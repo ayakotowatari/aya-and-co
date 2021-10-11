@@ -133,7 +133,7 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
     props: {
-        
+        deliveryAddress: Object
     },
     data: function(){
         
@@ -179,7 +179,6 @@ export default {
     computed: {
         ...mapState([
             'allerror',
-            'deliveryAddress',
             'user',
             'disabled',
             'postages',

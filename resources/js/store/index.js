@@ -187,7 +187,14 @@ export default new Vuex.Store({
         state.homeAddress = payload
     },
     setHomeAsDeliveryAddress(state, payload){
-        state.deliveryAddress = payload
+        state.deliveryAddress.name = payload.name
+        state.deliveryAddress.kana = payload.kana
+        state.deliveryAddress.zipcode = payload.zipcode
+        state.deliveryAddress.prefecture = payload.prefecture
+        state.deliveryAddress.city = payload.city
+        state.deliveryAddress.address_1 = payload.address_1
+        state.deliveryAddress.building = payload.building
+        state.deliveryAddress.phone = payload.phone
 
         // state.deliveryAddress.delivery_time = ''
         // state.deliveryAddress.delivery_option= ''
@@ -211,7 +218,14 @@ export default new Vuex.Store({
         state.otherAddresses = payload
     },
     confirmOtherAddress(state, payload){
-        state.deliveryAddress = payload.address
+        state.deliveryAddress.name = payload.address.name
+        state.deliveryAddress.kana = payload.address.kana
+        state.deliveryAddress.zipcode = payload.address.zipcode
+        state.deliveryAddress.prefecture = payload.address.prefecture
+        state.deliveryAddress.city = payload.address.city
+        state.deliveryAddress.address_1 = payload.address.address_1
+        state.deliveryAddress.building = payload.address.building
+        state.deliveryAddress.phone = payload.address.phone
 
         // state.deliveryAddress.delivery_time = ''
         // state.deliveryAddress.delivery_option= ''

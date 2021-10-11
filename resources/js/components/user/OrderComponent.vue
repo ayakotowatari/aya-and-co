@@ -87,7 +87,9 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="2">
-                    <deliveryoption-component></deliveryoption-component>
+                    <deliveryoption-component
+                        v-bind:deliveryAddress='deliveryAddress'
+                    ></deliveryoption-component>
                     <v-row justify="space-between" class="hidden-sm-and-down">
                         <v-col cols="5" sm="5" md="1">
                             <v-btn
@@ -109,17 +111,7 @@
                             </v-btn>
                         </v-col>
                     </v-row>
-                     <v-row class="hidden-md-and-up">
-                        <v-col cols="12" sm="12" md="2">
-                            <v-btn
-                                block
-                                dark
-                                color="primary"
-                                @click="nextTo3"
-                                >
-                                次へ
-                            </v-btn>
-                        </v-col>
+                     <v-row justify="space-between" class="hidden-md-and-up">
                         <v-col cols="3" sm="3" md="2">
                             <v-btn 
                                 color="primary"
@@ -129,11 +121,23 @@
                                 戻る
                             </v-btn>
                         </v-col>
+                        <v-col cols="4" sm="4" md="2">
+                            <v-btn
+                                block
+                                color="primary"
+                                @click="nextTo3"
+                                :disabled="disableContinue2"
+                                >
+                                次へ
+                            </v-btn>
+                        </v-col>
                     </v-row>
                 </v-stepper-content>
 
                 <v-stepper-content step="3">
-                    <orderconfirmation-component></orderconfirmation-component>
+                    <orderconfirmation-component
+                        v-bind:deliveryAddress='deliveryAddress'
+                    ></orderconfirmation-component>
                     <v-row justify="space-between" class="hidden-sm-and-down">
                         <v-col cols="5" sm="5" md="1">
                             <v-btn
@@ -177,7 +181,9 @@
                 </v-stepper-content>
 
                 <v-stepper-content step="4">
-                    <checkout-component></checkout-component>
+                    <checkout-component
+                        v-bind:deliveryAddress='deliveryAddress'
+                    ></checkout-component>
                     <v-row class="hidden-sm-and-down">
                         <v-col cols="5" sm="5" md="1">
                             <v-btn
