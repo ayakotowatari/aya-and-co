@@ -95,7 +95,7 @@
                         <v-divider></v-divider>
                     </v-col>
                 </v-row>
-                <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所等</h4>
+                <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所・配送オプション等</h4>
                 <v-row>
                     <v-col cols="12" sm="12" md="8">
                         <v-card
@@ -126,6 +126,16 @@
                                     </v-list-item-subtitle>
                                     <v-list-item-title class="jp-font-400">
                                         {{deliveryAddress.phone}}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-subtitle class="jp-font-400">
+                                        配送方法
+                                    </v-list-item-subtitle>
+                                    <v-list-item-title class="jp-font-400">
+                                        {{deliveryAddress.courier_type}}
                                     </v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
@@ -210,7 +220,7 @@ export default {
         
     },
     props: {
-        
+        deliveryAddress: Object
     },
     data: function(){
         return{
@@ -228,7 +238,6 @@ export default {
         ...mapState([
             'user',
             'cart',
-            'deliveryAddress',
             'deliveryCardUse',
             'deliveryCardMessage',
             'deliveryCardName'
@@ -245,14 +254,20 @@ export default {
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-                console.log(cartAmount);
+                //console.log(cartAmount);
                 return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         totalPrice(){
-             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-             let totalAmount = cartAmount + this.deliveryAddress.postage
 
-             return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+           
+                let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                let totalAmount = cartAmount + this.deliveryAddress.postage
+
+                //console.log('totalAmount', totalAmount)
+
+                return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+       
+            
         },
        
     },

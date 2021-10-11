@@ -42,15 +42,15 @@ class GuestsController extends Controller
             "address_1" => 'required',
             "phone" => 'required',
             'email' => 'required',
-            "delivery_time" => 'required'
+            // "delivery_time" => 'required'
         ]);
 
-        $prefecture = request('prefecture');
-        $postage = Postage::where('prefecture', $prefecture)
-                    ->select('postage')
-                    ->first();
+        // $prefecture = request('prefecture');
+        // $postage = Postage::where('prefecture', $prefecture)
+        //             ->select('postage')
+        //             ->first();
 
-        $postage_res = $postage->postage;
+        // $postage_res = $postage->postage;
 
         $guest = new Guest();
 
@@ -63,7 +63,7 @@ class GuestsController extends Controller
         $guest->building = request('building');
         $guest->phone = request('phone');
         $guest->email = request('email');
-        $guest->delivery_time = request('delivery_time');
+        // $guest->delivery_time = request('delivery_time');
 
         $guest->save();
 
@@ -92,77 +92,77 @@ class GuestsController extends Controller
         //  return view ('test', ['product'=>$product]);
 
         // return response() -> json(['deliveryAddress' => $delivery_address, 'guest' => $guest]);
-        return response() -> json(['postage' => $postage_res, 'guest' => $guest]);
+        return response() -> json(['guest' => $guest]);
 
     }
-    public function otherAddress(Request $request)
-    {
-        $request ->validate([
-            // 'deliveryName' => 'required',
-            // 'deliveryKana' => 'required',
-            // 'deliveryZipcode' => 'required | min:7',
-            "deliveryPrefecture" => 'required',
-            // "deliveryCity" => 'required',
-            // "deliveryAddress_1" => 'required',
-            // "deliveryPhone" => 'required',
-            // "deliveryDeliveryTime" => 'required',
-            'name' => 'required',
-            'kana' => 'required',
-            'zipcode' => 'required | min:7',
-            "prefecture" => 'required',
-            "city" => 'required',
-            "address_1" => 'required',
-            "phone" => 'required',
-            'email' => 'required',
-        ]);
+    // public function otherAddress(Request $request)
+    // {
+    //     $request ->validate([
+    //         // 'deliveryName' => 'required',
+    //         // 'deliveryKana' => 'required',
+    //         // 'deliveryZipcode' => 'required | min:7',
+    //         // "deliveryPrefecture" => 'required',
+    //         // "deliveryCity" => 'required',
+    //         // "deliveryAddress_1" => 'required',
+    //         // "deliveryPhone" => 'required',
+    //         // "deliveryDeliveryTime" => 'required',
+    //         'name' => 'required',
+    //         'kana' => 'required',
+    //         'zipcode' => 'required | min:7',
+    //         "prefecture" => 'required',
+    //         "city" => 'required',
+    //         "address_1" => 'required',
+    //         "phone" => 'required',
+    //         'email' => 'required',
+    //     ]);
 
-        $guest = new Guest();
+    //     $guest = new Guest();
 
-        $guest->name = request('name');
-        $guest->kana = request('kana');
-        $guest->zipcode = request('zipcode');
-        $guest->prefecture = request('prefecture');
-        $guest->city = request('city');
-        $guest->address_1 = request('address_1');
-        $guest->building = request('building');
-        $guest->phone = request('phone');
-        $guest->email = request('email');
+    //     $guest->name = request('name');
+    //     $guest->kana = request('kana');
+    //     $guest->zipcode = request('zipcode');
+    //     $guest->prefecture = request('prefecture');
+    //     $guest->city = request('city');
+    //     $guest->address_1 = request('address_1');
+    //     $guest->building = request('building');
+    //     $guest->phone = request('phone');
+    //     $guest->email = request('email');
 
-        $guest->save();
+    //     $guest->save();
 
-        $other_prefecture = request('deliveryPrefecture');
+    //     $other_prefecture = request('deliveryPrefecture');
 
-        $other_postage = Postage::where('prefecture', $other_prefecture)
-                            ->select('postage')
-                            ->first();
+    //     $other_postage = Postage::where('prefecture', $other_prefecture)
+    //                         ->select('postage')
+    //                         ->first();
 
-        $res = $other_postage->postage;
+    //     $res = $other_postage->postage;
 
-        // $delivery_address = new GuestAddress();
+    //     // $delivery_address = new GuestAddress();
 
-        // $delivery_address->guest_id = $guest_id;
-        // $delivery_address->type = 1;
-        // $delivery_address->name = request('deliveryName');
-        // $delivery_address->kana = request('deliveryKana');
-        // $delivery_address->zipcode = request('deliveryZipcode');
-        // $delivery_address->prefecture = request('deliveryPrefecture');
-        // $delivery_address->city = request('deliveryCity');
-        // $delivery_address->address_1 = request('deliveryAddress_1');
-        // $delivery_address->building = request('deliveryBuilding');
-        // $delivery_address->phone = request('deliveryPhone');
-        // $delivery_address->delivery_time = request('deliveryDeliveryTime');
-        // $delivery_address->postage = $res;
-        // $delivery_address->life = 1;
+    //     // $delivery_address->guest_id = $guest_id;
+    //     // $delivery_address->type = 1;
+    //     // $delivery_address->name = request('deliveryName');
+    //     // $delivery_address->kana = request('deliveryKana');
+    //     // $delivery_address->zipcode = request('deliveryZipcode');
+    //     // $delivery_address->prefecture = request('deliveryPrefecture');
+    //     // $delivery_address->city = request('deliveryCity');
+    //     // $delivery_address->address_1 = request('deliveryAddress_1');
+    //     // $delivery_address->building = request('deliveryBuilding');
+    //     // $delivery_address->phone = request('deliveryPhone');
+    //     // $delivery_address->delivery_time = request('deliveryDeliveryTime');
+    //     // $delivery_address->postage = $res;
+    //     // $delivery_address->life = 1;
 
-        // $delivery_address->save();
+    //     // $delivery_address->save();
 
-        // dd($guest_address);
+    //     // dd($guest_address);
 
-        //  return view ('test', ['product'=>$product]);
+    //     //  return view ('test', ['product'=>$product]);
 
-        return response() -> json(['postage' => $res, 'guest' => $guest]);
+    //     return response() -> json(['postage' => $res, 'guest' => $guest]);
 
-    }
+    // }
     
 
     /**
@@ -218,6 +218,7 @@ class GuestsController extends Controller
                     'delivery_address_1' => $request->input('deliveryAddress1'),
                     'delivery_building' => $request->input('deliveryBuilding'),
                     'delivery_phone' => $request->input('deliveryPhone'),
+                    'delivery_courier' => $request->input('deliveryCourierType'),
                     'delivery_time' => $request->input('deliveryTime'),
                     'postage' => $request->input('deliveryPostage'),
                     'item_total' => $request->input('itemTotal'),

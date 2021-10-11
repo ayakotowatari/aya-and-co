@@ -1,5 +1,12 @@
 <template>
     <v-container>
+        <updatecartquantitydialog-component
+            v-bind:dialogUpdateCartQuantity='dialogUpdateCartQuantity'
+            v-bind:selectableNumbers='selectableNumbers'
+        ></updatecartquantitydialog-component>
+        <removecartitemdialog-component
+            v-bind:dialogRemoveCartItem='dialogRemoveCartItem'
+        ></removecartitemdialog-component>
         <v-row>
             <v-col cols="12" sm="12" md="12">
                 <div class="heading-group">
@@ -44,10 +51,10 @@
                                         {{formatPrice(item.price)}}
                                         </div>
                                     <v-row align="center">
-                                        <v-col cols="4" sm="4" md="4" >
+                                        <v-col cols="4" sm="4" md="3" >
                                             <label for="">数量</label>
                                         </v-col>
-                                        <v-col cols="2" sm="2" md="4">
+                                        <v-col cols="2" sm="2" md="2">
                                             <!-- <select :value="`${item.quantity}`" class="select-box" @change="updateCartQuantity(index, $event.target.value)">
                                                 <option value=1>1</option>
                                                 <option value=2>2</option>
@@ -59,8 +66,19 @@
                                                 <option value=8>8</option>
                                                 <option value=9>9</option>
                                             </select> -->
-                                            {{ item.quantity }}
+                                                {{ item.quantity }}
                                         </v-col>
+                                        <!-- <v-col cols="2" sm="2" md="2">
+                                             <v-btn
+                                                text
+                                                color="primary"
+                                            >
+                                                <v-icon
+                                                >
+                                                mdi-plus-minus-variant
+                                                </v-icon>
+                                            </v-btn>
+                                        </v-col> -->
                                     </v-row>
                                     <div class="text-overline mb-4">
                                     小計: {{ cartLineTotal(item) }}（税込）
@@ -69,9 +87,26 @@
                                         <v-col cols="4" sm="4" md="4">
                                             <v-btn
                                                 outlined
-                                                text
-                                                @click="remove(`${item.slug}`)"
-                                            >削除する</v-btn>
+                                                color="grey"
+                                                @click="updateCartQuantity(item)"
+                                            >
+                                                <v-icon
+                                                >
+                                                mdi-plus-minus-variant
+                                                </v-icon>
+                                            </v-btn>
+                                        </v-col>
+                                        <v-col cols="4" sm="4" md="4">
+                                            <v-btn
+                                                outlined
+                                                color="grey"
+                                                @click="remove(item)"
+                                            >
+                                                 <v-icon
+                                                >
+                                                mdi-trash-can-outline
+                                                </v-icon>
+                                            </v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-list-item-content>
@@ -263,10 +298,16 @@ export default {
     mounted(){
         
     },
+    created(){
+        
+    },
     computed: {
         ...mapState([
           'cart',
           'categories',
+          'dialogUpdateCartQuantity',
+          'dialogRemoveCartItem',
+          'selectableNumbers'
         ]),
         // formatPrice(){
         //   let amount = this.item.price;
@@ -277,7 +318,7 @@ export default {
         cartTotal(){
             let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(amount);
+            //console.log(amount);
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         // selectedQuantity: {
@@ -291,20 +332,46 @@ export default {
     },
     methods: {
         ...mapActions([
-            'removeProduct'
+            'removeProduct',
+            'openDialogUpdateCartQuantity', 
+            'openDialogRemoveCartItem',
+            'fetchInventory'
         ]),
         formatPrice(value){
           let amount = value;
 
           return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
+        updateCartQuantity(value){
+            // this.$store.commit('openDialogUpdateCartQuantity', id)
+            this.openDialogUpdateCartQuantity({
+                cartItem : value
+            })
+            this.fetchInventory({
+                product_id: value.id
+            })
+        },
+        // remove(value){
+
+        //     console.log('slug', value)
+
+        //     this.removeProduct({
+        //         slug: value
+        //     })
+
+        // },
         remove(value){
 
-            console.log('slug', value)
+            //console.log(value);
 
-            this.removeProduct({
-                slug: value
+            this.openDialogRemoveCartItem({
+                cartItem: value
             })
+            // console.log('id', value)
+
+            // this.removeProduct({
+            //     slug: value
+            // })
 
         },
         backToHome(){
@@ -315,9 +382,9 @@ export default {
 
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
-        updateCartQuantity(index, value){
-            this.$store.commit('updateCartQuantity', {index, value})
-        },
+        // updateCartQuantity(index, value){
+        //     this.$store.commit('updateCartQuantity', {index, value})
+        // },
         expand(id){
           this.$router.push({name: 'products', params: {id: id}})
         },
@@ -329,6 +396,10 @@ export default {
 </script>
 
 <style>
+.item-quantity{
+    border: 1px solid;
+}
+
 .select-box{
     border: solid 1px #bfbfbf; 
     border-radius: 5px;

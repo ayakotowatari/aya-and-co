@@ -34,16 +34,13 @@
                             宛名
                         </th>
                         <th class="text-left jp-font-400">
-                            電話番号
-                        </th>
-                        <th class="text-left jp-font-400">
                             住所
                         </th>
                         <th class="text-left jp-font-400">
                             発送予定日
                         </th>
                         <th class="text-left jp-font-400">
-                            希望配達時間
+                            配送オプション
                         </th>
                         <th class="text-left jp-font-400">
                             ステータス
@@ -65,9 +62,6 @@
                             {{order.delivery_name}}様
                         </td>
                         <td class="jp-font-400">
-                            {{order.delivery_phone}}
-                        </td>
-                        <td class="jp-font-400">
                             〒{{order.delivery_zipcode}}<br>
                             {{order.delivery_prefecture}}{{order.delivery_city}}
                             {{order.delivery_address_1}}<br>
@@ -77,8 +71,8 @@
                             {{order.scheduled_date}}
                         </td>
                         <td class="jp-font-400">
-                            {{order.delivery_time}}
-                        </td> 
+                            {{order.delivery_courier}}
+                        </td>
                         <td>
                             <v-chip :color="getColor(order.status)" dark>{{ order.status }}</v-chip>
                         </td> 

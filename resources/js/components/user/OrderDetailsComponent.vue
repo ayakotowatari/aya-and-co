@@ -80,7 +80,7 @@
                                         {{product.size}}
                                     </div>
                                     <div class="product-price mb-6">
-                                        {{product.quantity}}点　{{formatPrice(product.price)}}
+                                        {{formatPrice(product.price)}}　{{product.quantity}}点　
                                     </div>
                                 </v-list-item-content>
                                 <v-list-item-avatar
@@ -235,6 +235,16 @@
                                                 差出人お名前の表記：{{order.delivery_cardname}}
                                             </v-list-item-title>
                                         </div>
+                                    </v-list-item-content>
+                                </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            配送オプション
+                                        </v-list-item-subtitle>
+                                        <v-list-item-title class="jp-font-400">
+                                            {{order.delivery_courier}}
+                                        </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-card>

@@ -57,7 +57,7 @@ export default {
 
         ]),
         remove(value){
-            console.log('value', value);
+            //console.log('value', value);
             let removedAddress = value
             this.$store.dispatch('removeAddress', removedAddress)
         },

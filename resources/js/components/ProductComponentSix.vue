@@ -410,7 +410,7 @@ export default {
         },
         addOne(){
             let cartItem = this.itemGroup;
-            console.log('item', cartItem)
+            //console.log('item', cartItem)
             let cartQuantity = this.selectedQuantity
             this.$store.commit('addOneToCart', {cartItem, cartQuantity})
             this.$store.commit('setProductQuantity', 1);

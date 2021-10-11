@@ -53,6 +53,8 @@ export default new Vuex.Store({
           phone: '',
           email: '',
           delivery_time: '',
+          delivery_option: '',
+          courier_type: '',
           postage: '',
         //   delivery_cardmessage: '',
         //   delivery_cardname: '',
@@ -65,6 +67,7 @@ export default new Vuex.Store({
           
       },
       guest: {
+          id: '',
           name: '',
           kana: '',
           zipcode: '',
@@ -78,6 +81,7 @@ export default new Vuex.Store({
       },
       products: [],
       product: [],
+      productId: '',
       categories: [],
     //   disableSelectAmount: true,
       inventoryQuantity: null,
@@ -87,6 +91,7 @@ export default new Vuex.Store({
     //   itemGroup: {},
       firstItem: {},
       cart: [],
+      cartItem: {},
       cartMessage: null,
       orders: {},
       order: {},
@@ -99,6 +104,8 @@ export default new Vuex.Store({
       actualShipmentDate: null,
       deliveredDate: null,
       dialog: false,
+      dialogUpdateCartQuantity: false,
+      dialogRemoveCartItem: false,
       dialogThankYou: false,
       dialogThankYouGuest: false,
       dialogEditAddress: false,
@@ -109,6 +116,7 @@ export default new Vuex.Store({
       dialogDeleteUser: false,
       disabled: false,
       disableContinue1: true,
+      disableContinue2: true,
       disableInputEmail: true,
       loading: false,
       isAddingAddress: false,
@@ -183,19 +191,72 @@ export default new Vuex.Store({
     setHomeAddress(state,payload){
         state.homeAddress = payload
     },
+    setHomeAsDeliveryAddress(state, payload){
+        state.deliveryAddress.name = payload.name
+        state.deliveryAddress.kana = payload.kana
+        state.deliveryAddress.zipcode = payload.zipcode
+        state.deliveryAddress.prefecture = payload.prefecture
+        state.deliveryAddress.city = payload.city
+        state.deliveryAddress.address_1 = payload.address_1
+        state.deliveryAddress.building = payload.building
+        state.deliveryAddress.phone = payload.phone
+
+        // state.deliveryAddress.delivery_time = ''
+        // state.deliveryAddress.delivery_option= ''
+        // state.deliveryAddress.courier_type= ''
+        // state.deliveryAddress.postage= ''
+    },
+    insertPostage(state, payload){
+
+        let id = payload.courier
+        let prefecture = payload.prefecture
+
+        let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
+        let postage = postage_data.postage
+        state.deliveryAddress.postage = postage
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+
+    },
     setOtherAddresses(state, payload){
         state.otherAddresses = payload
     },
+    confirmOtherAddress(state, payload){
+        state.deliveryAddress.name = payload.address.name
+        state.deliveryAddress.kana = payload.address.kana
+        state.deliveryAddress.zipcode = payload.address.zipcode
+        state.deliveryAddress.prefecture = payload.address.prefecture
+        state.deliveryAddress.city = payload.address.city
+        state.deliveryAddress.address_1 = payload.address.address_1
+        state.deliveryAddress.building = payload.address.building
+        state.deliveryAddress.phone = payload.address.phone
+
+        // state.deliveryAddress.delivery_time = ''
+        // state.deliveryAddress.delivery_option= ''
+        // state.deliveryAddress.courier_type= ''
+        // state.deliveryAddress.postage= ''
+    },
+    setDeliveryOption(state, payload){
+        state.deliveryAddress.delivery_time = payload.delivery_time
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+
+        state.deliveryCardUse = payload.delivery_carduse
+        state.deliveryCardMessage = payload.delivery_cardmessage
+        state.deliveryCardName = payload.delivery_cardname
+    },
     selectAddress(state, payload){
 
-        console.log('payload', payload)
+        //console.log('payload-selectaddress', payload)
         
         let id = payload.address.id
         let delivery_time = payload.delivery_time
         let delivery_cardmessage = payload.delivery_cardmessage
         let delivery_cardname = payload.delivery_cardname
         let delivery_carduse = payload.delivery_carduse
-        console.log('id', id)
+        //console.log('id', id)
 
         let addressInOtherAddressIndex = state.otherAddresses.findIndex(item => item.id === id)
         //console.log('addressInOtherAddressIndex', addressInOtherAddressIndex)
@@ -215,6 +276,20 @@ export default new Vuex.Store({
     setDeliveryAddress(state, payload){
         state.deliveryAddress = payload
     },
+    setOtherPostage(state, payload){
+
+        // console.log('payload-postage', payload)
+        let id = payload.courier
+        let prefecture = payload.prefecture
+
+        let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
+        let postage = postage_data.postage
+        state.deliveryAddress.postage = postage
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
+        
+    },
     updateGuestDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
         state.deliveryAddress.kana = payload.kana
@@ -224,7 +299,7 @@ export default new Vuex.Store({
         state.deliveryAddress.address_1 = payload.address_1
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
-        state.deliveryAddress.delivery_time = payload.delivery_time
+        // state.deliveryAddress.delivery_time = payload.delivery_time
     },
     updateDeliveryAddress(state, payload){
         state.deliveryAddress.name = payload.name
@@ -236,6 +311,9 @@ export default new Vuex.Store({
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
         state.deliveryAddress.delivery_time = payload.delivery_time
+
+        let courier = state.couriers.find(item=>item.id == payload.courier);
+        state.deliveryAddress.courier_type = courier.courier_type
 
         state.deliveryCardUse = payload.delivery_carduse
         state.deliveryCardMessage = payload.delivery_cardmessage
@@ -272,7 +350,18 @@ export default new Vuex.Store({
         state.deliveryAddress.postage = payload
     },
     setGuest(state, payload){
-        state.guest = payload
+      
+        state.guest.id = payload.id
+        state.guest.name = payload.name
+        state.guest.kana = payload.kana
+        state.guest.zipcode = payload.zipcode
+        state.guest.prefecture = payload.prefecture
+        state.guest.city = payload.city
+        state.guest.address_1 = payload.address_1
+        state.guest.building = payload.building
+        state.guest.phone = payload.phone
+        state.guest.email = payload.email
+
     },
     clearGuest(state, payload){
         state.guest = payload
@@ -307,14 +396,17 @@ export default new Vuex.Store({
     updateGuestEmail(state, payload){
         state.guest.email = payload
     },
+    setGuestDeliveryOption(state, payload){
+        state.deliveryAddress.delivery_time = payload
+    },
     setProducts(state, payload){
         state.products = payload
-        console.log('setProducts')
-        console.log(payload);
+        //console.log('setProducts')
+        //console.log(payload);
     },
     setProduct(state, payload){
         state.product = payload
-        console.log('setProduct', payload);
+        //console.log('setProduct', payload);
     }, 
     setCategories(state, payload){
         state.categories = payload
@@ -335,6 +427,8 @@ export default new Vuex.Store({
         if(quantity <= 5){
             state.selectableNumbers = [1]
         
+        // }else if(quantity <= 1){
+
         }else{
             state.selectableNumbers = [1, 2, 3, 4, 5]
         }
@@ -348,8 +442,8 @@ export default new Vuex.Store({
         let product = payload.cartItem
         let newQuantity = payload.cartQuantity
 
-        console.log('newQuantity', newQuantity)
-        console.log('slug', product.slug)
+        //console.log('newQuantity', newQuantity)
+        //console.log('slug', product.slug)
 
         let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
         if(productInCartIndex !== -1){
@@ -365,15 +459,15 @@ export default new Vuex.Store({
 
         // state.disableSelectAmount = false;
 
-        console.log('cart',state.cart);
+        //console.log('cart',state.cart);
     },
     addOneToCart(state, payload){
 
         let product = payload.cartItem
         let newQuantity = payload.cartQuantity
 
-        console.log('newQuantity', newQuantity)
-        console.log('slug', product.slug)
+        //console.log('newQuantity', newQuantity)
+        //console.log('slug', product.slug)
 
         let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
         if(productInCartIndex !== -1){
@@ -389,32 +483,60 @@ export default new Vuex.Store({
 
         // state.disableSelectAmount = false;
 
-        console.log('cart',state.cart);
+        //console.log('cart',state.cart);
     },
     setProductQuantity(state, payload){
         state.productQuantity = payload;
     },
-    updateCartQuantity(state, payload){
+    // updateCartQuantity(state, payload){
 
-        let id = payload.index
-        let quantity = payload.value
+    //     let id = payload.index
+    //     let quantity = payload.value
 
-        console.log('id', id)
-        console.log('quantity', quantity)
+    //     console.log('id', id)
+    //     console.log('quantity', quantity)
 
-        state.cart[id].quantity = quantity
-        state.cart = JSON.parse(JSON.stringify(state.cart));
+    //     state.cart[id].quantity = quantity
+    //     state.cart = JSON.parse(JSON.stringify(state.cart));
 
-        console.log("updateCartQuantity", state.cart[id]);
+    //     console.log("updateCartQuantity", state.cart[id]);
 
+    // },
+    changeCartQuantity(state, payload){
+        let product = payload.cartItem
+        let updatedQuantity = payload.quantity
+
+        // console.log('updatedQuantity', updatedQuantity)
+        // console.log('slug', product.slug)
+
+        let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
+        if(productInCartIndex !== -1){
+            // let originalQuantity = state.cart[productInCartIndex].quantity
+            state.cart[productInCartIndex].quantity = Number(updatedQuantity) 
+            // state.cart[productInCartIndex].quantity++;
+            state.cart = JSON.parse(JSON.stringify(state.cart));
+            //return;
+        }else{
+            product.quantity = updatedQuantity;
+            state.cart.push(product);
+        }
+
+        state.dialogUpdateCartQuantity = false
+
+        // state.disableSelectAmount = false;
+
+        //console.log('cart',state.cart);
     },
-    removeProduct(state, payload){
+    setCartItem(state, payload){
+        state.cartItem = payload
+    },
+    removeCartItem(state, payload){
 
         let slug = payload.slug
-        console.log('removeProduct', slug)
+        // console.log('removeCartItem', slug)
 
         let productInCartIndex = state.cart.findIndex(item => item.slug === slug);
-        console.log('productInCard', productInCartIndex);
+        // console.log('productInCart', productInCartIndex);
         
         state.cart.splice(productInCartIndex, 1);
 
@@ -422,7 +544,9 @@ export default new Vuex.Store({
             state.cartMessage = null
         }
 
-        console.log(state.cart);
+        // console.log(state.cart);
+
+        state.dialogRemoveCartItem = false
 
     },
     // setPostage(state, payload){
@@ -496,11 +620,25 @@ export default new Vuex.Store({
     setDialogLinkSent(state, payload){
         state.dialogLinkSent = payload
     },
+    setDialogUpdateCartQuantity(state, payload){
+        state.dialogUpdateCartQuantity = payload
+    },
+    setDialogRemoveCartItem(state, payload){
+        state.dialogRemoveCartItem = payload
+    },
+    setProductId(state, payload){
+        state.productId = payload
+
+
+    },
     setDisabled(state, payload){
         state.disabled = payload
     },
     updateDisableContinue1(state, payload){
         state.disableContinue1 = payload
+    },
+    updateDisableContinue2(state, payload){
+        state.disableContinue2 = payload
     },
     setDisableInputEmail(state, payload){
         state.disableInputEmail = payload
@@ -523,7 +661,7 @@ export default new Vuex.Store({
     setErrorMessage(state, payload){
         state.errorMessage = payload.message
 
-        console.log(state.errorMessage)
+        // console.log(state.errorMessage)
     },
     setCheckoutSnackbar(state, payload){
         state.checkoutSnackbar = payload
@@ -707,7 +845,7 @@ export default new Vuex.Store({
         let user = {};
         let guest_id = payload.guest_id;
 
-        console.log('checkguest_id', guest_id)
+        // console.log('checkguest_id', guest_id)
 
         commit("setLoading", true);
 
@@ -745,15 +883,15 @@ export default new Vuex.Store({
     },
     async updateOrderUserId({commit}, payload){
 
-        console.log('updateorder');
-        console.log('guest-id', payload.guest_id);
+        // console.log('updateorder');
+        // console.log('guest-id', payload.guest_id);
 
         await axios
             .post("/update-userid", {
                 guest_id: payload.guest_id
             })
             .then(response => {
-                console.log(response);
+                // console.log(response);
             })
             .catch(error => {
                 allerror = error.response.data.errors
@@ -782,12 +920,12 @@ export default new Vuex.Store({
             .then(res => {
                 payload = res.data.products;
                 commit('setProducts', payload)
-                console.log(payload);
+                // console.log(payload);
         });
     },
     async fetchProduct({commit}, payload){
 
-        console.log('payload', payload)
+        // console.log('payload', payload)
         
         let product = {};
         let inventory = '';
@@ -807,7 +945,7 @@ export default new Vuex.Store({
     async fetchInventory({commit}, payload){
 
         let product_id = payload.product_id;
-        console.log('product_id', product_id)
+        // console.log('product_id', product_id)
         let inventory = "";
 
         await axios
@@ -816,7 +954,7 @@ export default new Vuex.Store({
             inventory = res.data.inventory;
             // commit('setInventoryQuantity', quantity)
             commit('setSelectableNumbers', inventory)
-            console.log(payload);
+            // console.log(payload);
     });
 
     },
@@ -825,14 +963,14 @@ export default new Vuex.Store({
     },
     async sendGuestOrderNotify({commit}, payload) {
 
-        console.log('notify', payload);
+        // console.log('notify', payload);
 
         await axios
             .post("/guest/order-confirmation", {
                 order: payload
             })
             .then(response => {
-                console.log(response);
+                // console.log(response);
             })
             .catch(error => {
                 allerror = error.response.data.errors
@@ -841,14 +979,14 @@ export default new Vuex.Store({
     },
     async sendOrderNotify({commit}, payload) {
 
-        console.log('notify', payload);
+        // console.log('notify', payload);
 
         await axios
             .post("/member/order-confirmation", {
                 order: payload
             })
             .then(response => {
-                console.log(response);
+                // console.log(response);
             })
             .catch(error => {
                 allerror = error.response.data.errors
@@ -857,7 +995,7 @@ export default new Vuex.Store({
     },
     removeProduct({commit}, payload) {
 
-        console.log('payload', payload)
+        // //console.log('payload', payload)
 
         commit('removeProduct', payload);
 
@@ -883,16 +1021,16 @@ export default new Vuex.Store({
             building: payload.building,
             phone: payload.phone,
             email: payload.email,
-            delivery_time: payload.delivery_time
+            // delivery_time: payload.delivery_time
         })
         .then(res => {
-            console.log(res)
+            //console.log(res)
             guest = res.data.guest;
-            deliveryAddress = res.data.deliveryAddress
-            postage = res.data.postage
+            // deliveryAddress = res.data.deliveryAddress
+            // postage = res.data.postage
             commit('setGuest', guest);
             commit('updateGuestDeliveryAddress', guest);
-            commit('setPostage', postage);
+            // commit('setPostage', postage);
             commit('setDisabled', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
@@ -910,12 +1048,12 @@ export default new Vuex.Store({
 
         let deliveryAddress = payload.deliveryAddress;
         let guest = {};
-        let postage = "";
+        // let postage = "";
         let allerror = [];
 
         await axios
-        .post("/guest/add-otheraddress", {
-            deliveryPrefecture: payload.deliveryPrefecture,
+        .post("/guest/add", {
+            // deliveryPrefecture: payload.deliveryPrefecture,
             name: payload.name,
             kana: payload.kana,
             zipcode: payload.zipcode,
@@ -927,12 +1065,12 @@ export default new Vuex.Store({
             email: payload.email,
         })
         .then(res => {
-            console.log(res)
+            //console.log(res)
             guest = res.data.guest;
-            postage = res.data.postage;
+            // postage = res.data.postage;
             commit('setGuest', guest);
-            commit('setDeliveryAddress', deliveryAddress);
-            commit('setPostage', postage);
+            commit('updateGuestDeliveryAddress', deliveryAddress);
+            // commit('setPostage', postage);
             commit('setDisabled', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
@@ -945,32 +1083,76 @@ export default new Vuex.Store({
         })
 
     },
-   
-    async setPostage({commit}){
 
-        let allerror = [];
-        let postage = "";
+    async setPostage({commit}, payload){
 
-        await axios
-        .get("/fetch-postage")
-        .then(res => {
-            postage = res.data.postage;
-            console.log('postage', postage)
-            commit('setPostage', postage);
-            // commit('setDisabled', true);
-            // commit('updateDisableContinue1', false);
-            // commit('setLoading', false);
-            // router.push({ name: 'order-confirmation'});
-        })
-        .catch(error => {
-            // commit('setLoading', false);
-            allerror = error.response.data.errors,
-            commit('setallErrors', allerror)
-        })
+        commit('insertPostage', payload)
+
     },
-    async setDeliveryAddress({commit}, payload){
+   
+    // async setPostage({commit}, payload){
 
-        commit('updateDeliveryAddress', payload);
+    //     let allerror = [];
+    //     let postage = "";
+
+    //     await axios
+    //     .get("/member/fetch-postage/" + payload)
+    //     .then(res => {
+    //         postage = res.data.postage;
+    //         console.log('postage', postage)
+    //         commit('setPostage', postage);
+    //         // commit('setDisabled', true);
+    //         // commit('updateDisableContinue1', false);
+    //         // commit('setLoading', false);
+    //         // router.push({ name: 'order-confirmation'});
+    //     })
+    //     .catch(error => {
+    //         // commit('setLoading', false);
+    //         allerror = error.response.data.errors,
+    //         commit('setallErrors', allerror)
+    //     })
+    // },
+    // async setDeliveryAddress({commit}, payload){
+
+    //     commit('updateDeliveryAddress', payload);
+    //     commit('setDisabled', true);
+    //     commit('updateDisableContinue1', false);
+        
+    //     // let allerror = [];
+    //     // let postage = "";
+
+    //     // await axios
+    //     // .get("/fetch-postage")
+    //     // .then(res => {
+    //     //     console.log(res)
+    //     //     postage = res.data.postage;
+    //     //     commit('setPostage', postage);
+    //     //     commit('setDisabled', true);
+    //     //     commit('updateDisableContinue1', false);
+    //     //     // commit('setLoading', false);
+    //     //     // router.push({ name: 'order-confirmation'});
+    //     // })
+    //     // .catch(error => {
+    //     //     commit('setLoading', false);
+    //     //     allerror = error.response.data.errors,
+    //     //     commit('setallErrors', allerror)
+    //     // })
+
+    // },
+
+    async confirmHomeAsDeliveryAddress({commit}, payload){
+
+        commit('setHomeAsDeliveryAddress', payload);
+        commit('setDisabled', true);
+        commit('updateDisableContinue1', false);
+        
+    },
+
+    async confirmOtherAddress({commit}, payload){
+
+        //console.log('payload', payload)
+
+        commit('confirmOtherAddress', payload);
         commit('setDisabled', true);
         commit('updateDisableContinue1', false);
         
@@ -995,6 +1177,44 @@ export default new Vuex.Store({
         // })
 
     },
+
+    setDeliveryOption({commit}, payload){
+
+        commit('setDeliveryOption', payload);
+        commit('setDisabled', true);
+        commit('updateDisableContinue2', false);
+        
+        // let allerror = [];
+        // let postage = "";
+
+        // await axios
+        // .get("/fetch-postage")
+        // .then(res => {
+        //     console.log(res)
+        //     postage = res.data.postage;
+        //     commit('setPostage', postage);
+        //     commit('setDisabled', true);
+        //     commit('updateDisableContinue1', false);
+        //     // commit('setLoading', false);
+        //     // router.push({ name: 'order-confirmation'});
+        // })
+        // .catch(error => {
+        //     commit('setLoading', false);
+        //     allerror = error.response.data.errors,
+        //     commit('setallErrors', allerror)
+        // })
+
+    },
+
+    setGuestDeliveryOption({commit}, payload){
+
+        let delivery_time = payload.delivery_time
+        
+        commit('setGuestDeliveryOption', delivery_time);
+        commit('setDisabled', true);
+        commit('updateDisableContinue2', false);
+    },
+
 
     async updateAddress({commit}, payload){
         
@@ -1068,7 +1288,7 @@ export default new Vuex.Store({
         .get("/collect-address")
         .then(res => {
             payload = res.data.addresses;
-            console.log('result', payload)
+            //console.log('result', payload)
             commit('setOtherAddresses', payload);
             // commit('setDeliveryAddress', payload);
         })
@@ -1089,7 +1309,7 @@ export default new Vuex.Store({
     async removeAddress({commit}, payload){
 
         let otherAddresses = [];
-        console.log('payload', payload.id)
+        //console.log('payload', payload.id)
 
         await axios
         .post("/remove-address", {
@@ -1108,9 +1328,36 @@ export default new Vuex.Store({
         })
 
     },
+    // async setOtherPostage({commit}, payload){
+
+    //     let allerror = [];
+    //     let postage = "";
+
+    //     await axios
+    //     .get("/member/fetch-otherpostage/" + payload)
+    //     .then(res => {
+    //         postage = res.data.postage;
+    //         console.log('postage', postage)
+    //         commit('setPostage', postage);
+    //         // commit('setDisabled', true);
+    //         // commit('updateDisableContinue1', false);
+    //         // commit('setLoading', false);
+    //         // router.push({ name: 'order-confirmation'});
+    //     })
+    //     .catch(error => {
+    //         // commit('setLoading', false);
+    //         allerror = error.response.data.errors,
+    //         commit('setallErrors', allerror)
+    //     })
+    // },
+    async setOtherPostage({commit}, payload){
+
+        commit('setOtherPostage', payload);
+    },
+
     async fetchOrders({commit}, payload){
 
-        console.log('page', payload.pageNumber);
+        //console.log('page', payload.pageNumber);
 
         let orders= {};
         let lastPage = "";
@@ -1124,8 +1371,8 @@ export default new Vuex.Store({
         .then(res => {
             orders = res.data.orders.data;
             lastPage = res.data.orders.last_page;
-            console.log('lastPage', lastPage)
-            console.log('orders', orders)
+            //console.log('lastPage', lastPage)
+            //console.log('orders', orders)
             commit('setOrders', orders);
             commit('setLastPage', lastPage);
             // commit('setDeliveryAddress', payload);
@@ -1173,7 +1420,7 @@ export default new Vuex.Store({
     //order details
     async fetchOrder({state, commit}, payload){
 
-        console.log('id', payload.id);
+        //console.log('id', payload.id);
 
         let order = {};
         let products = [];
@@ -1223,7 +1470,7 @@ export default new Vuex.Store({
                 email: payload.email,
             })
             .then(response => {
-                console.log('res', response)
+                //console.log('res', response)
                 // commit('setLinkSentSnackbar', true);
                 commit('setLoading', false);
                 // commit('setLinkSentSnackbar', true);
@@ -1232,7 +1479,7 @@ export default new Vuex.Store({
             })
             .catch(error => {
                 errorMessage = error.response.data.error;
-                console.log(errorMessage);
+                //console.log(errorMessage);
                 commit('setErrorMessage', errorMessage);
                 commit('setLoading', false);
                 commit('setDisableInputEmail', false);
@@ -1241,7 +1488,7 @@ export default new Vuex.Store({
     },
     async resetPassword({state, commit}, payload){
 
-        console.log(payload);
+        //console.log(payload);
     
         let errorMessage = "";
 
@@ -1253,7 +1500,7 @@ export default new Vuex.Store({
                 password_confirmation: payload.password_confirmation
             })
             .then(response => {
-                console.log('res', response)
+                //console.log('res', response)
                 // commit('setLinkSentSnackbar', true);
                 commit('setLoading', false);
                 // commit('setLinkSentSnackbar', true);
@@ -1262,7 +1509,7 @@ export default new Vuex.Store({
             })
             .catch(error => {
                 errorMessage = error.response.data.error;
-                console.log(errorMessage);
+                //console.log(errorMessage);
                 commit('setErrorMessage', errorMessage);
                 commit('setLoading', false);
                 // commit('setDisableInputEmail', false);
@@ -1415,6 +1662,19 @@ export default new Vuex.Store({
         })
 
     },
+    openDialogUpdateCartQuantity({commit}, payload){
+        
+        commit('setDialogUpdateCartQuantity', true)
+        commit('setCartItem', payload.cartItem)
+
+    },
+    openDialogRemoveCartItem({commit}, payload){
+
+        commit('setDialogRemoveCartItem', true)
+        commit('setCartItem', payload.cartItem)
+
+    }
+    
 
   },
   modules: {

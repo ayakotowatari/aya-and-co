@@ -54,10 +54,9 @@
             </v-col>
         </v-row> -->
         <v-row justify="center">
-           
-                    <v-col cols="12" sm="12" md="6">
-                        <div class="form-title grey--text text--darken-4">配送先の住所を確認・指定する</div>
-                    </v-col>
+            <v-col cols="12" sm="12" md="6">
+                <div class="form-title grey--text text--darken-4">配送先の住所を確認・指定する</div>
+            </v-col>
         </v-row>
         <v-row justify="center">
                     <v-col cols="12" sm="12" md="6">
@@ -126,7 +125,7 @@ export default {
         cartTotal(){
             let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(amount);
+            //console.log(amount);
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         name: {

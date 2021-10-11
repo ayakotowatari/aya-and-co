@@ -98,6 +98,7 @@
                             v-model="page"
                             :length="lastPage"
                             :total-visible="7"
+                            circle
                             @input="getOrders"
                         ></v-pagination>
                     </v-col>
@@ -174,7 +175,7 @@ export default {
 
 <style>
 .date{
-    font-family: mrs-eaves-roman-all-small-ca, sans-serif;
+  font-family: mrs-eaves-roman-all-small-ca, sans-serif;
   font-weight: 400;
   font-style: normal;
   font-size: 16px;

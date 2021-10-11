@@ -149,11 +149,30 @@ class UsersController extends Controller
     }
 
 
-    public function postage()
+    public function postage($id)
     {
+        $courier_id = $id;
+        
         $prefecture = Auth::user()->prefecture;
 
-        $postage = Postage::where('prefecture', $prefecture)
+        $postage = Postage::where('courier_id', $courier_id)
+                    ->where('prefecture', $prefecture)
+                    ->select('postage')
+                    ->first();
+
+        $postage_res = $postage->postage;
+
+        return response() -> json(['postage' => $postage_res]);
+    }
+
+    public function otherPostage($id)
+    {
+        $courier_id = $id;
+        
+        $prefecture = Auth::user()->prefecture;
+
+        $postage = Postage::where('courier_id', $courier_id)
+                    ->where('prefecture', $prefecture)
                     ->select('postage')
                     ->first();
 
@@ -248,13 +267,13 @@ class UsersController extends Controller
             "phone" => 'required',
         ]);
 
-        $prefecture = request('prefecture');
+        // $prefecture = request('prefecture');
 
-        $postage = Postage::where('prefecture', $prefecture)
-                        ->select('postage')
-                        ->first();
+        // $postage = Postage::where('prefecture', $prefecture)
+        //                 ->select('postage')
+        //                 ->first();
 
-        $postage_res = $postage->postage;        
+        // $postage_res = $postage->postage;        
 
         $address = new Address();
 
@@ -268,7 +287,7 @@ class UsersController extends Controller
         $address->address_1 = request('address_1');
         $address->building = request('building');
         $address->phone = request('phone');
-        $address->postage = $postage_res;
+        // $address->postage = $postage_res;
         $address->life = 1;
 
         $address->save();
@@ -431,6 +450,7 @@ public function purchase(Request $request){
                 'delivery_address_1' => $request->input('deliveryAddress1'),
                 'delivery_building' => $request->input('deliveryBuilding'),
                 'delivery_phone' => $request->input('deliveryPhone'),
+                'delivery_courier' => $request->input('deliveryCourierType'),
                 'delivery_time' => $request->input('deliveryTime'),
                 'delivery_carduse' => $request->input('deliveryCardUse'),
                 'delivery_cardmessage' => $request->input('deliveryCardMessage'),

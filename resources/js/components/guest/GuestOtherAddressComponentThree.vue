@@ -82,7 +82,7 @@
                         :error="allerror.phone ? true : false"
                         :error-messages="allerror.phone"
                     ></v-text-field>
-                    <v-select
+                    <!-- <v-select
                         v-model="deliveryDeliveryTime"
                         :items = "items"
                         label="ご希望の配達時間帯"
@@ -91,7 +91,7 @@
                         :rules="deliveryTimeRules" 
                         :error="allerror.delivery_time ? true : false"
                         :error-messages="allerror.delivery_time"
-                    ></v-select>
+                    ></v-select> -->
                     <!-- <v-btn
                         color="primary"
                         outlined
@@ -234,11 +234,10 @@
                     block
                     @click="add"
                     color="primary"
-                    dark
                     :disabled="disabled"
                     class="mb-6"
                 >
-                注文内容を確認する
+                これらの住所を使用する
                 </v-btn>
             </v-col>
         </v-row>
@@ -378,12 +377,12 @@ export default {
                     address_1: this.deliveryAddress1,
                     building: this.deliveryBuilding,
                     phone: this.deliveryPhone,
-                    delivery_time: this.deliveryDeliveryTime,
+                    // delivery_time: this.deliveryDeliveryTime,
                 }
 
                 this.addGuestAndOtherAddress({
                     deliveryAddress: deliveryAddress,
-                    deliveryPrefecture: this.deliveryState,
+                    // deliveryPrefecture: this.deliveryState,
                     name: this.name,
                     kana: this.kana,
                     zipcode: this.zipcode,

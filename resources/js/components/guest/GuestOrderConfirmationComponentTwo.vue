@@ -132,6 +132,16 @@
                             <v-list-item>
                                 <v-list-item-content>
                                     <v-list-item-subtitle class="jp-font-400">
+                                        配送オプション
+                                    </v-list-item-subtitle>
+                                    <v-list-item-title class="jp-font-400">
+                                        {{deliveryAddress.courier_type}}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                            <v-list-item>
+                                <v-list-item-content>
+                                    <v-list-item-subtitle class="jp-font-400">
                                         ご希望の配達時間帯
                                     </v-list-item-subtitle>
                                     <v-list-item-title class="jp-font-400">
@@ -182,7 +192,7 @@ export default {
         
     },
     props: {
-        
+        deliveryAddress: Object
     },
     data: function(){
         return{
@@ -199,12 +209,11 @@ export default {
         ...mapState([
             'guest',
             'cart',
-            'deliveryAddress',
         ]),
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-                console.log(cartAmount);
+                //console.log(cartAmount);
                 return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         totalPrice(){

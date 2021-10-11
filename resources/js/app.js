@@ -33,13 +33,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 Vue.component('navbar-component', require('./components/parts/NavbarComponent.vue').default);
 Vue.component('footer-component', require('./components/parts/FooterComponent.vue').default);
+Vue.component('updatecartquantitydialog-component', require('./components/UpdateCartQuantityDialogComponent.vue').default);
+Vue.component('removecartitemdialog-component', require('./components/RemoveCartItemDialogComponent.vue').default);
 
 //user
 // Vue.component('changeaddress-component', require('./components/ChangeAddressComponent.vue').default);
 // Vue.component('otheraddressdialog-component', require('./components/user/OtherAddressDeliveryTimeDialogComponent.vue').default);
 Vue.component('checkaddress-component', require('./components/user/CheckAddressTwoComponent.vue').default);
+// Vue.component('homeaddress-component', require('./components/user/HomeAddressComponentThree.vue').default);
 Vue.component('homeaddress-component', require('./components/user/HomeAddressComponentThree.vue').default);
 Vue.component('otheraddress-component', require('./components/user/OtherAddressTwoComponent.vue').default);
+Vue.component('deliveryoption-component', require('./components/user/DeliveryOptionComponent.vue').default);
 Vue.component('orderconfirmation-component', require('./components/user/OrderConfirmationTwoComponent.vue').default);
 Vue.component('checkout-component', require('./components/user/CheckoutThreeComponent.vue').default);
 Vue.component('editaddressdialog-component', require('./components/user/EditAddressDialogComponent.vue').default);
@@ -59,6 +63,7 @@ Vue.component('deleteuserdialog-component', require('./components/user/edit/Dele
 
 //guest
 Vue.component('guestcheckaddress-component', require('./components/guest/GuestCheckAddressComponent.vue').default);
+Vue.component('guestdeliveryoption-component', require('./components/guest/GuestDeliveryOptionComponent.vue').default);
 Vue.component('guestorderconfirmation-component', require('./components/guest/GuestOrderConfirmationComponentTwo.vue').default);
 Vue.component('guestcheckout-component', require('./components/guest/GuestCheckoutComponentThree.vue').default);
 Vue.component('guesthomeaddress-component', require('./components/guest/GuestHomeAddressComponentTwo.vue').default);
