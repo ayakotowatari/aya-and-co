@@ -7,7 +7,7 @@
                         Login
                     </div>
                     <div class="page-subtitle grey--text text--darken-3">
-                        ログイン
+                        会員ログイン
                     </div>
                 </div>
             </v-col>
