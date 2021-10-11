@@ -516,6 +516,7 @@ class OrdersController extends Controller
                         'orders.delivery_address_1',
                         'orders.delivery_building',
                         'orders.delivery_phone',
+                        'orders.delivery_courier',
                         'orders.delivery_time',
                         'orders.delivery_carduse',
                         'orders.delivery_cardmessage',
