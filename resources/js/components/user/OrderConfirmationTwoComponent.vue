@@ -254,7 +254,7 @@ export default {
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-                console.log(cartAmount);
+                //console.log(cartAmount);
                 return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         totalPrice(){
@@ -263,7 +263,7 @@ export default {
                 let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
                 let totalAmount = cartAmount + this.deliveryAddress.postage
 
-                console.log('totalAmount', totalAmount)
+                //console.log('totalAmount', totalAmount)
 
                 return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
        

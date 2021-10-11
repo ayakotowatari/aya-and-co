@@ -125,7 +125,7 @@ export default {
         cartTotal(){
             let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
-            console.log(amount);
+            //console.log(amount);
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         name: {

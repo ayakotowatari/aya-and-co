@@ -366,7 +366,7 @@ export default {
                 // });
 
                 // console.log('prefecture', this.addressGroup.prefecture)
-                console.log('courier', this.courier)
+                //console.log('courier', this.courier)
 
                 if(this.courier == 2){
                     this.selectAddress({

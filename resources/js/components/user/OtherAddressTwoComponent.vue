@@ -189,7 +189,7 @@ export default {
         //     })
         // },
         confirmAddress(){
-            console.log('address', this.addressGroup)
+            //console.log('address', this.addressGroup)
             this.confirmOtherAddress({
                 address: this.addressGroup
             })

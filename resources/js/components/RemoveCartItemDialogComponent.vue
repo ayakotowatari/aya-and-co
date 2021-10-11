@@ -52,7 +52,7 @@ export default {
 
         ]),
         remove(value){
-            console.log('value', value);
+            //console.log('value', value);
             let cartItem = value
             this.$store.commit('removeCartItem', cartItem)
         },
