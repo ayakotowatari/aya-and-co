@@ -951,7 +951,7 @@ export default new Vuex.Store({
                 inventory = res.data.inventory;
                 firstItem = res.data.item;
                 commit('setProduct', product)
-                //commit('setSelectableNumbers', inventory)
+                commit('setSelectableNumbers', inventory)
                 commit('setFirstItem', firstItem)
             })
     },
