@@ -26,7 +26,7 @@
             </v-col>
         </v-row>
         <div class="item-content policy-title mb-4">
-            1梱包でお送りできる商品数
+            1梱包(宅急便コンパクト)でお送りできる商品数
         </div>
         <p class="description">
             セット商品：　1セットまで<br>

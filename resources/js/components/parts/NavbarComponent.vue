@@ -188,8 +188,6 @@ import { mapState } from 'vuex'
       links: [
         { title: 'ホーム', route: '/' },
         { title: 'お買いものかご', route: '/cart' },
-        { title: '選べるメッセージカードサービス', route: '/message-service'},
-        { title: '配送方法と送料について', route: '/postage'},
         { title: '環境にやさしい包装について', route: '/sustainability'},
        ],
     //   products: [
@@ -203,7 +201,9 @@ import { mapState } from 'vuex'
     //     { title: 'Lemonade', route: '/products/8' },
     //   ],
       products: [
-          {title: '商品リスト', route:'/products-list'}
+          {title: '商品リスト', route:'/products-list'},
+          { title: '選べるメッセージカードサービス', route: '/message-service'},
+          { title: '配送方法と送料について', route: '/postage'},
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},
