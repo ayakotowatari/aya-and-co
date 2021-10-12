@@ -37,6 +37,8 @@ Vue.component('updatecartquantitydialog-component', require('./components/Update
 Vue.component('removecartitemdialog-component', require('./components/RemoveCartItemDialogComponent.vue').default);
 Vue.component('yupack-component', require('./components/YupackComponent.vue').default);
 Vue.component('yamatocompact-component', require('./components/YamatoCompactComponent.vue').default);
+Vue.component('allproducts-component', require('./components/AllProductsComponent.vue').default);
+Vue.component('currentproducts-component', require('./components/CurrentProductsComponent.vue').default);
 
 //user
 // Vue.component('changeaddress-component', require('./components/ChangeAddressComponent.vue').default);

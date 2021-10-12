@@ -34,92 +34,81 @@
         日本各地の農家さんによって大切に栽培された有機・無農薬果物・減農薬果物や、ワックス・防腐剤等を用いずに育てられた柑橘類を用いて、
         イギリスに長くつたわる伝統的な製法を再現し、一つ一つ、心をこめて丁寧につくるマーマレードです。
       </p>   
-      <p class="description mb-8">
+      <p class="description mb-12">
         毎日の大切な時間にそっとよりそう、黒い小瓶たちです。
       </p> 
-      <p class="description mb-8">
-        <router-link to="/message-service">選べるメッセージカードサービス</router-link> を実施中。ご注文の際にはぜひご利用ください。
-      </p> 
-      <div class="subheading">
-        Products List
-      </div>
-      <div class="subheading-jp">
-        商品ラインナップ
-      </div>
-      <v-row>
-          <v-col cols="12" sm="12" md="3" v-for="category in categories" :key="category.id">
-              <v-card
-                class="mx-auto"
-                max-width="344"
-                outlined
-                @click.prevent="showmore(category.id)"
-              >
-                <v-img
-                    max-height="200"
-                    :src="category.absolute_path"
-                > 
-                </v-img>
-                <v-card-text>
-                    <div class="product-name mb-1">
-                        {{category.name}}
-                    </div>
-                    <div class="product-season mb-4">
-                        {{category.season}}
-                    </div>
-                    <!-- <div class="product-size mb-2">
-                      {{product.size}}
-                    </div> -->
-                    <!-- <div class="product-price mb-4">
-                        {{formatPrice(product.price)}}
-                    </div> -->
-                    <div class="product-details">
-                        {{category.details}}
-                    </div>
-                </v-card-text>
-
-                <!-- <v-list-item three-line>
-                  <v-list-item-content>
-                    <div class="product-name mb-1">
-                      {{product.name}}
-                    </div>
-                    <div class="product-size mb-4">
-                      {{product.size}}
-                    </div>
-                    <div class="product-price mb-6">
-                        {{formatPrice(product.price)}}
-                    </div>
-                    <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                  </v-list-item-content>
-
-                  <v-list-item-avatar
-                    tile
-                    size="80"
-                    color="grey"
-                  ></v-list-item-avatar>
-                </v-list-item>
-                -->
-                <div class="link">
-                    <router-link
-                        :to="{
-                          name: 'products',
-                          params: {id: category.id}
-                        }"
-                        @click.native="scrollToTop"
+      <v-row class="mb-12">
+        <v-col cols="12" sm="12" md="4">
+            <div class="subheading">
+              How to Shop
+            </div>
+            <div class="subheading-jp">
+              お買い物の方法
+            </div>
+        </v-col>
+        <v-col cols="12" sm="12" md="8">
+            <p class="description">
+              <span class="logo-title">aya & co. </span>は、リアルな店舗をもたず、このウェブサイト上の店でのみ、商品を販売しております。このサイトでのショッピングをどうぞお楽しみください。
+            </p>
+            <v-row>
+                <v-col cols="12" sm="12" md="8">
+                    <v-timeline
+                      align-top
+                      dense
                     >
-                        <v-card-actions>
-                          <v-btn
-                            outlined
-                            rounded
-                            text
-                            @click.prevent="expand(category.id)"          >
-                            詳細
-                          </v-btn>
-                        </v-card-actions>
-                    </router-link>
-                </div>
-              </v-card>
+                        <v-timeline-item small class="description">商品リストから、お好きなマーマレードを選んでカートに入れてご注文ください。</v-timeline-item>
+                        <v-timeline-item small class="description">お買い物のまえに、「<router-link to="/postage">配送方法と送料について</router-link>」をお読みいただくと、ご注文の手続きをスムーズに進めていただけます。</v-timeline-item>
+                        <v-timeline-item small class="description">会員登録をいただいたお客様には、人気の「<router-link to="/message-service">選べるメッセージカードサービス</router-link>」(無料)をご利用いただけます。ご注文の際にはぜひご活用ください。</v-timeline-item>
+                        <v-timeline-item small class="description"><span class="logo-title">Little Black Jars </span>をご指定の宛先までお届けいたします。</v-timeline-item>
+                    </v-timeline>
+                </v-col>
+            </v-row>
+        </v-col>
+      </v-row>
+      
+      <v-row class="mb-8">
+          <v-col cols="12" sm="12" md="4">
+              <div class="subheading">
+                Products List
+              </div>
+              <div class="subheading-jp">
+                商品ラインナップ
+              </div>
+          </v-col>
+          <v-col cols="12" sm="12" md="8">
+              <p class="description">
+                  <span class="logo-title">aya & co. </span>では、季節の旬の果物を仕入れて、small batch（少量生産）にて商品を製造します。ほとんどはシーズンの短期間のみの販売となり、発売後、すぐに売り切れてしまうこともございますので、気に入られた商品は、ぜひお早めにお求めください。
+              </p>
           </v-col>
       </v-row>
+      
+      
+      <v-tabs v-model="tab" class="mb-12">
+          <v-tab
+              href="#tab-1"
+          >
+              全ての商品
+          </v-tab>
+          <v-tab
+              href="#tab-2"
+          >
+              いま販売中の商品
+          </v-tab>
+          <!-- <v-tab router :to="{name: 'search-events'}">Search</v-tab> -->
+      </v-tabs>
+
+      <v-tabs-items v-model="tab">
+          <v-tab-item 
+              value="tab-1"
+          >
+              <allproducts-component></allproducts-component>
+          </v-tab-item>
+          <v-tab-item
+              value="tab-2"
+          >
+              <currentproducts-component></currentproducts-component>
+          </v-tab-item>
+      </v-tabs-items>
   </v-container>
 </template>
 
@@ -132,6 +121,7 @@ export default {
     },
     data: function(){
         return {
+            tab: null,
             // id: this.$route.params.id
             // message: "",
             // quantity: [1, 2, 3],
@@ -190,9 +180,9 @@ export default {
         // 
         
 
-        toCart(){
-          this.$router.push({name: 'carttwo'})
-        }
+        // toCart(){
+        //   this.$router.push({name: 'carttwo'})
+        // }
 
         // fetchProducts: function(){
         //     axios.get("/fetch-product").then(res => {
@@ -206,7 +196,6 @@ export default {
 </script>
 
 <style>
-
 .key-visual{
   margin-top: 20px;
   margin-bottom: 48px;
@@ -299,6 +288,13 @@ export default {
 
 .sm {
   display: none
+}
+
+.logo-title{
+    font-family: mrs-eaves, serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
 }
 
 @media(max-width:780px){

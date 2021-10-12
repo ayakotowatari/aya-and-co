@@ -17,7 +17,7 @@ import Sustainability from "./components/SustainabilityComponent";
 import Faq from "./components/FaqComponent";
 import Policy from "./components/PolicyComponent";
 import Contact from "./components/ContactComponent";
-import Postages from "./components/PostagesComponent";
+// import Postages from "./components/PostagesComponent";
 import PostagesTwo from "./components/PostagesComponentTwo";
 import About from "./components/AboutComponent";
 import Privacy from "./components/PrivacyComponent";

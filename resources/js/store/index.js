@@ -719,7 +719,7 @@ export default new Vuex.Store({
      },
      deliveryCardName(state){
         return state.deliveryAddress.delivery_carename;
-     }
+     },
   },
   
   // アクション

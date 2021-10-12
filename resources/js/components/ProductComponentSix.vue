@@ -443,6 +443,10 @@ export default {
 </script>
 
 <style>
+.mb80{
+  margin-bottom: 80px;
+}
+
 .mb48{
   margin-bottom: 48px;
 }

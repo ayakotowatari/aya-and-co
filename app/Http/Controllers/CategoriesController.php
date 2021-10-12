@@ -19,9 +19,9 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::whereNotNull('name')
-                        ->where('status_id', '=', 1)
+                        ->whereIn('status_id', [1, 2])
                         ->get();
-
+        // DD($categories);
         // $products = Product::get();
         
         return response() -> json(['categories' => $categories]);
