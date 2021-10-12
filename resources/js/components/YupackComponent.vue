@@ -6,12 +6,26 @@
         <p class="description mb-8">
             会員登録をされたお客様で、ゆうパックをご利用になる場合は、「<router-link to="/message-service">選べるメッセージカード</router-link>」のサービス（無料）をご利用いただけます。ご注文時にお好きなメッセージを選んでいただきましたら、ご希望によってお客様のお名前とともに、葉書サイズのaya & co.特製のカードを丁寧に印刷して、同封いたします。
         </p>
+
+        <v-row class="mb-8">
+            <v-col cols="12" sm="12" md="12" class="line-color">
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
+
         <div class="item-content policy-title mb-4">
             おすすめの用途
         </div>
         <p class="description mb-8">
             ご自身へのご褒美や、ご家族・ご友人へのギフトとして贈られるときなど、大切なオケージョンには、ゆうパックのご利用がおすすめです。
         </p>
+
+        <v-row class="mb-8">
+            <v-col cols="12" sm="12" md="12" class="line-color">
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
+
         <div class="item-content policy-title mb-4">
             1梱包でお送りできる商品数
         </div>
@@ -22,6 +36,13 @@
         <p class="description mb-8">
             1セット、もしくは単品3つ以上の商品をご注文いただくことも可能です。配送方法等についてご相談させていただきますので、ご注文の前にぜひお問い合わせください。
         </p>
+
+        <v-row class="mb-8">
+            <v-col cols="12" sm="12" md="12" class="line-color">
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
+
         <div class="item-content policy-title mb-4">
             そのほか
         </div>

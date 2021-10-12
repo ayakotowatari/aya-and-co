@@ -174,21 +174,21 @@
                             購入する
                             </v-btn>
                         </v-col>
-                        <!-- <v-col cols="12" sm="12" md="3">
+                        <v-col cols="12" sm="12" md="3">
                             <v-btn
                                 color="primary"
                                 outlined
-                                @click="backToHome"
+                                @click="goToProductsList"
                                 class="hidden-sm-and-down"
                             >お買いものを続ける</v-btn>
                             <v-btn
                                 block
                                 color="primary"
                                 outlined
-                                @click="backToHome"
+                                @click="goToProductsList"
                                 class="hidden-md-and-up"
                             >お買いものを続ける</v-btn>
-                        </v-col> -->
+                        </v-col>
                     </v-row>
                 </v-col>
             </v-row>
@@ -379,8 +379,11 @@ export default {
             // })
 
         },
-        backToHome(){
-            this.$router.push({name: 'home'})
+        // backToHome(){
+        //     this.$router.push({name: 'home'})
+        // },
+        goToProductsList(){
+            this.$router.push({name: 'products-list'})
         },
         cartLineTotal(item) {   
             let amount = item.price * item.quantity;

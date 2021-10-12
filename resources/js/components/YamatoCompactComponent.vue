@@ -6,12 +6,25 @@
         <p class="description mb-8">
             また、葉書サイズのカードは瓶に押されて折り目がついてしまうため、同封できず、「<router-link to="/message-service">選べるメッセージカード</router-link>」はご利用いただけません。
         </p>
+
+         <v-row class="mb-8">
+            <v-col cols="12" sm="12" md="12" class="line-color">
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
+
         <div class="item-content policy-title mb-4">
             おすすめの用途
         </div>
         <p class="description mb-8">
             宅急便コンパクトは、ゆうパックと比較して、審美的には劣りますが、送料はリーズナブルで、ご自宅での普段づかいとしてお買い求めいただく際におすすめいたします。
         </p>
+
+         <v-row class="mb-8">
+            <v-col cols="12" sm="12" md="12" class="line-color">
+                <v-divider></v-divider>
+            </v-col>
+        </v-row>
         <div class="item-content policy-title mb-4">
             1梱包でお送りできる商品数
         </div>

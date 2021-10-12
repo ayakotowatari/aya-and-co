@@ -48,7 +48,7 @@
         </v-col>
         <v-col cols="12" sm="12" md="8">
             <p class="description">
-              <span class="logo-title">aya & co. </span>は、リアルな店舗をもたず、このウェブサイト上の店でのみ、商品を販売しております。このサイトでのショッピングをどうぞお楽しみください。
+              <span class="logo-title">aya & co. </span>は、リアルな店舗をもたず、このウェブサイト上の店でのみ、商品を販売しております。<span class="logo-title">aya & co. </span>でのショッピングをどうぞお楽しみください。
             </p>
             <v-row>
                 <v-col cols="12" sm="12" md="8">
@@ -77,7 +77,7 @@
           </v-col>
           <v-col cols="12" sm="12" md="8">
               <p class="description">
-                  <span class="logo-title">aya & co. </span>では、季節の旬の果物を仕入れて、small batch（少量生産）にて商品を製造します。ほとんどはシーズンの短期間のみの販売となり、発売後、すぐに売り切れてしまうこともございますので、気に入られた商品は、ぜひお早めにお求めください。
+                  <span class="logo-title">aya & co. </span>では、季節の旬の果物を仕入れて、small batch（少量生産）にて商品を製造します。ほとんどはシーズンの短期間のみの販売となりますので、気に入られた商品は、ぜひお早めにお求めください。
               </p>
           </v-col>
       </v-row>

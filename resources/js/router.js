@@ -22,6 +22,7 @@ import PostagesTwo from "./components/PostagesComponentTwo";
 import About from "./components/AboutComponent";
 import Privacy from "./components/PrivacyComponent";
 import MessageService from "./components/MessageServiceComponent";
+import ProductsList from "./components/ProductsListComponent";
 
 //user
 // import OrderConfirmation from "./components/user/OrderConfirmationComponent";
@@ -111,6 +112,12 @@ const routes = [
         path: "/message-service",
         name: "message-service",
         component: MessageService
+    },
+
+    {
+        path: "/products-list",
+        name: "products-list",
+        component: ProductsList
     },
 
     {
