@@ -81,7 +81,20 @@
 
             <v-divider class="my-2"></v-divider>
 
-             <v-list-group
+            <v-list-item-group
+                v-model="group2"
+                color="primary"
+            >
+                <v-list-item
+                    v-for="product in products" :key="product.title"
+                    route :to="product.route"
+                >
+                    <v-list-item-title v-text="product.title" class="jp-font-300"></v-list-item-title>
+                </v-list-item>
+            </v-list-item-group>
+           
+
+             <!-- <v-list-group
                 :value="true"
                 no-action
             >
@@ -96,7 +109,7 @@
                         <v-list-item-title v-text="product.title" class="product-name"></v-list-item-title>
                     </v-list-item>
 
-            </v-list-group>
+            </v-list-group> -->
 
             <v-divider class="my-2"></v-divider>
 
@@ -127,7 +140,7 @@
             </v-list-group>
 
             <v-list-item-group
-                v-model="group2"
+                v-model="group3"
                 v-if="user === null"
                 color="primary"
             >
@@ -141,8 +154,8 @@
 
             <v-divider class="my-2"></v-divider>
 
-             <v-list-item-group
-                v-model="group3"
+            <v-list-item-group
+                v-model="group4"
                 color="primary"
             >
                 <v-list-item
@@ -152,7 +165,6 @@
                     <v-list-item-title v-text="item.title" class="jp-font-300"></v-list-item-title>
                 </v-list-item>
             </v-list-item-group>
-
         </v-list>
     </v-navigation-drawer>
 
@@ -171,6 +183,7 @@ import { mapState } from 'vuex'
         group1: null,
         group2: null,
         group3: null,
+        group4: null,
         // itemNumber: 0,
       links: [
         { title: 'ホーム', route: '/' },
@@ -179,15 +192,18 @@ import { mapState } from 'vuex'
         { title: '配送方法と送料について', route: '/postage'},
         { title: '環境にやさしい包装について', route: '/sustainability'},
        ],
+    //   products: [
+    //     { title: 'Summer Meets Autumn', route: '/products/1' },
+    //     { title: 'Vintage', route: '/products/2' },
+    //     { title: 'Morning', route: '/products/3' },
+    //     { title: 'Serenity', route: '/products/4' },
+    //     { title: 'Blush', route: '/products/5' },
+    //     { title: 'Miss You', route: '/products/6' },
+    //     { title: 'Praise', route: '/products/7' },
+    //     { title: 'Lemonade', route: '/products/8' },
+    //   ],
       products: [
-        { title: 'Summer Meets Autumn', route: '/products/1' },
-        { title: 'Vintage', route: '/products/2' },
-        { title: 'Morning', route: '/products/3' },
-        { title: 'Serenity', route: '/products/4' },
-        { title: 'Blush', route: '/products/5' },
-        { title: 'Miss You', route: '/products/6' },
-        { title: 'Praise', route: '/products/7' },
-        { title: 'Lemonade', route: '/products/8' },
+          {title: '商品リスト', route:'/products-list'}
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},

@@ -111,7 +111,33 @@
                         :error="allerror.delivery_time"
                         :error-messages="allerror.delivery_time"
                     ></v-select>
-
+                    <div v-if="deliveryAddress.home_address == true && this.courier == 1">
+                        <v-divider class="mt-4 mb-8"></v-divider>
+                         <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
+                         <div class="jp-font grey--text text--darken-3 mb24">
+                             ゆうパックをご利用になり、ご自宅でお受け取りになったうえで、どなたかにギフトとして手渡しされるなどの場合には、その旨を備考欄にご記入ください。梱包後に、さらに別の箱に梱包して、お送りします。
+                         </div>
+                        <v-textarea
+                            v-model="deliveryNote"
+                            label="備考欄"
+                            outlined
+                            rows="3"
+                            :error="allerror.note ? true : false"
+                            :error-messages="allerror.note"
+                        ></v-textarea>
+                    </div>
+                     <div v-if="deliveryAddress.home_address == false && this.courier == 1">
+                        <v-divider class="mt-4 mb-8"></v-divider>
+                         <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
+                        <v-textarea
+                            v-model="deliveryNote"
+                            label="備考欄"
+                            outlined
+                            rows="3"
+                            :error="allerror.note ? true : false"
+                            :error-messages="allerror.note"
+                        ></v-textarea>
+                    </div>
                     <v-btn
                         color="primary"
                         block
@@ -168,6 +194,7 @@ export default {
             deliveryCardNameRules: [
                 v => !!v || 'お名前の表記方法を選択してください。',
             ],
+            deliveryNote: ''
         }
     },
     mounted(){
@@ -210,6 +237,7 @@ export default {
                         delivery_carduse: '利用しない',
                         delivery_cardmessage: '',
                         delivery_cardname: '',
+                        delivery_note: '',
                     })
                 }else if(this.deliveryCardUse == '利用する'){
                     if(this.sender == 'ご自身のお名前'){
@@ -219,6 +247,7 @@ export default {
                             delivery_carduse: this.deliveryCardUse,
                             delivery_cardmessage: this.deliveryCardMessage,
                             delivery_cardname: this.deliveryCardName,
+                            delivery_note: this.deliveryNote
                         })
                     }else{
                         this.setDeliveryOption({
@@ -227,6 +256,7 @@ export default {
                             delivery_carduse: this.deliveryCardUse,
                             delivery_cardmessage: this.deliveryCardMessage,
                             delivery_cardname: 'aya & co.',
+                            delivery_note: this.deliveryNote
                         })
                     }
                 }else{
@@ -236,6 +266,7 @@ export default {
                         delivery_carduse: this.deliveryCardUse,
                         delivery_cardmessage: '',
                         delivery_cardname: '',
+                        delivery_note: this.deliveryNote
                     })
                 }
             }

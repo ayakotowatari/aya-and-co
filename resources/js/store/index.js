@@ -51,11 +51,13 @@ export default new Vuex.Store({
           address_1: '',
           building: '',
           phone: '',
+          home_address: false,
           email: '',
           delivery_time: '',
           delivery_option: '',
           courier_type: '',
           postage: '',
+          delivery_note: '',
         //   delivery_cardmessage: '',
         //   delivery_cardname: '',
         //   delivery_carduse: ''
@@ -84,7 +86,7 @@ export default new Vuex.Store({
       productId: '',
       categories: [],
     //   disableSelectAmount: true,
-      inventoryQuantity: null,
+      inventory: null,
       //selectableNumbers:[1, 2, 3, 4, 5, 6],
       selectableNumbers: [1],
       productQuantity: 1,
@@ -200,6 +202,7 @@ export default new Vuex.Store({
         state.deliveryAddress.address_1 = payload.address_1
         state.deliveryAddress.building = payload.building
         state.deliveryAddress.phone = payload.phone
+        state.deliveryAddress.home_address = payload.home_address
 
         // state.deliveryAddress.delivery_time = ''
         // state.deliveryAddress.delivery_option= ''
@@ -231,6 +234,8 @@ export default new Vuex.Store({
         state.deliveryAddress.address_1 = payload.address.address_1
         state.deliveryAddress.building = payload.address.building
         state.deliveryAddress.phone = payload.address.phone
+        state.deliveryAddress.home_address = payload.home_address
+        state.deliveryAddress.delivery_note = ''
 
         // state.deliveryAddress.delivery_time = ''
         // state.deliveryAddress.delivery_option= ''
@@ -246,6 +251,9 @@ export default new Vuex.Store({
         state.deliveryCardUse = payload.delivery_carduse
         state.deliveryCardMessage = payload.delivery_cardmessage
         state.deliveryCardName = payload.delivery_cardname
+
+        state.deliveryAddress.delivery_note = payload.delivery_note
+        
     },
     selectAddress(state, payload){
 
@@ -301,24 +309,27 @@ export default new Vuex.Store({
         state.deliveryAddress.phone = payload.phone
         // state.deliveryAddress.delivery_time = payload.delivery_time
     },
-    updateDeliveryAddress(state, payload){
-        state.deliveryAddress.name = payload.name
-        state.deliveryAddress.kana = payload.kana
-        state.deliveryAddress.zipcode = payload.zipcode
-        state.deliveryAddress.prefecture = payload.prefecture
-        state.deliveryAddress.city = payload.city
-        state.deliveryAddress.address_1 = payload.address_1
-        state.deliveryAddress.building = payload.building
-        state.deliveryAddress.phone = payload.phone
-        state.deliveryAddress.delivery_time = payload.delivery_time
-
-        let courier = state.couriers.find(item=>item.id == payload.courier);
-        state.deliveryAddress.courier_type = courier.courier_type
-
-        state.deliveryCardUse = payload.delivery_carduse
-        state.deliveryCardMessage = payload.delivery_cardmessage
-        state.deliveryCardName = payload.delivery_cardname
+    updateDeliveryAddress(state, deliveryAddress){
+        state.deliveryAddress = deliveryAddress
     },
+    // updateDeliveryAddress(state, payload){
+    //     state.deliveryAddress.name = payload.name
+    //     state.deliveryAddress.kana = payload.kana
+    //     state.deliveryAddress.zipcode = payload.zipcode
+    //     state.deliveryAddress.prefecture = payload.prefecture
+    //     state.deliveryAddress.city = payload.city
+    //     state.deliveryAddress.address_1 = payload.address_1
+    //     state.deliveryAddress.building = payload.building
+    //     state.deliveryAddress.phone = payload.phone
+    //     state.deliveryAddress.delivery_time = payload.delivery_time
+
+    //     let courier = state.couriers.find(item=>item.id == payload.courier);
+    //     state.deliveryAddress.courier_type = courier.courier_type
+
+    //     state.deliveryCardUse = payload.delivery_carduse
+    //     state.deliveryCardMessage = payload.delivery_cardmessage
+    //     state.deliveryCardName = payload.delivery_cardname
+    // },
     updateDeliveryName(state,payload){
         state.deliveryAddress.name = payload
     },
@@ -411,8 +422,8 @@ export default new Vuex.Store({
     setCategories(state, payload){
         state.categories = payload
     },
-    setInventoryQuantity(state, payload){
-        state.inventoryQuantity = payload
+    setInventory(state, payload){
+        state.inventory = payload
     },
     // setItemGroup(state, payload){
     //     state.itemGroup = payload
@@ -424,11 +435,15 @@ export default new Vuex.Store({
 
         let quantity = payload
 
-        if(quantity <= 5){
-            state.selectableNumbers = [1]
+        console.log('quantity', quantity)
+
+        if(quantity <= 5 && quantity >= 4){
+            state.selectableNumbers = [1, 2]
         
         // }else if(quantity <= 1){
 
+        }else if(quantity <=3){
+            state.selectableNumbers = [1]
         }else{
             state.selectableNumbers = [1, 2, 3, 4, 5]
         }
@@ -706,7 +721,7 @@ export default new Vuex.Store({
      },
      deliveryCardName(state){
         return state.deliveryAddress.delivery_carename;
-     }
+     },
   },
   
   // アクション
@@ -938,7 +953,7 @@ export default new Vuex.Store({
                 inventory = res.data.inventory;
                 firstItem = res.data.item;
                 commit('setProduct', product)
-                //commit('setSelectableNumbers', inventory)
+                commit('setSelectableNumbers', inventory)
                 commit('setFirstItem', firstItem)
             })
     },
@@ -952,7 +967,7 @@ export default new Vuex.Store({
         .get("/fetch-inventory/" + product_id)
         .then(res => {
             inventory = res.data.inventory;
-            // commit('setInventoryQuantity', quantity)
+            commit('setInventory', inventory)
             commit('setSelectableNumbers', inventory)
             // console.log(payload);
     });
@@ -960,6 +975,9 @@ export default new Vuex.Store({
     },
     clearCart({commit}) {
         commit('updateCart', []);
+    },
+    clearDeliveryAddress({commit}){
+        commit('updateDeliveryAddress', {});
     },
     async sendGuestOrderNotify({commit}, payload) {
 
@@ -1407,9 +1425,9 @@ export default new Vuex.Store({
     clearGuest({commit}) {
         commit('updateGuest', {});
     },
-    clearDeliveryAddress({commit}) {
-        commit('updateDeliveryAddress', {});
-    },
+    // clearDeliveryAddress({commit}) {
+    //     commit('updateDeliveryAddress', {});
+    // },
     addToCart({commit}, payload){
 
 

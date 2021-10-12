@@ -6,9 +6,11 @@
                     <v-card-title class="ja-font-400 dialog-title-14">
                         {{cartItem.name}}({{cartItem.size}})の数量変更
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
-                        在庫数数：{{cartItem.inventory}}
-                    </v-card-text>
+                    <div v-if="cartItem.inventory <= 5">
+                        <v-card-text class="ja-font-400">
+                            在庫数：{{inventory}}
+                        </v-card-text>
+                    </div>
                     <v-card-text class="ja-font-400">
                         <v-row>
                             <v-col cols="6" sm="6" md="6">
@@ -59,6 +61,7 @@ export default {
     computed: {
         ...mapState([
             'cartItem',
+            'inventory',
         ])
     },
     methods: {

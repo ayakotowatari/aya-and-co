@@ -261,7 +261,7 @@ export default {
     methods: {
         getColor(status){
             if (status == 'Ongoing') return '#67A8DD'
-            else if (status == 'Draft') return 'info'
+            else if (status == 'Off-season') return 'info'
             else return '#85D1BB'
         },
         updateSubtitle(){

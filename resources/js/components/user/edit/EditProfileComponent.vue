@@ -19,7 +19,7 @@
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
                         <div class="mb-6">
-                            <div class="item-content policy-title">
+                            <div class="item-content policy-title mb-3">
                                 名前（フリガナ）
                             </div>
                             <div class="item-title grey--text text--darken-3 mb-3">
@@ -45,7 +45,7 @@
                         <v-divider class="mb-6"></v-divider>
 
                         <div class="mb-6">
-                            <div class="item-content policy-title">
+                            <div class="item-content policy-title mb-3">
                                 住所・電話番号
                             </div>
                             <div class="mb-3">
@@ -81,7 +81,7 @@
                         <v-divider class="mb-6"></v-divider>
 
                         <div class="mb-6">
-                            <div class="item-content policy-title">
+                            <div class="item-content policy-title mb-3">
                                 メールアドレス
                             </div>
                             <div class="item-title grey--text text--darken-3 mb-3">
@@ -107,7 +107,7 @@
                         <v-divider class="mb-6"></v-divider>
 
                         <div class="mb-6">
-                            <div class="item-content policy-title">
+                            <div class="item-content policy-title mb-3">
                                 パスワード
                             </div>
                             <div class="item-title grey--text text--darken-3 mb-3">

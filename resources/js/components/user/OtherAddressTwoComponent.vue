@@ -191,7 +191,8 @@ export default {
         confirmAddress(){
             //console.log('address', this.addressGroup)
             this.confirmOtherAddress({
-                address: this.addressGroup
+                address: this.addressGroup,
+                home_address: false
             })
         },
         newAddress(){

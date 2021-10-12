@@ -525,6 +525,7 @@ class OrdersController extends Controller
                         'orders.delivery_carduse',
                         'orders.delivery_cardmessage',
                         'orders.delivery_cardname',
+                        'orders.message',
                         'orders.postage',
                         'orders.item_total',
                         'orders.total',

@@ -108,8 +108,6 @@ export default {
     data: function(){
         return{
             tab: null,
-            items: ["希望なし", "9:00-12:00", "12:00-14:00", "14:00-16:00"],
-            deliveryTime: '',
         }
     },
     created(){
@@ -122,104 +120,10 @@ export default {
             'deliveryAddress',
             'allerror',
         ]),
-        cartTotal(){
-            let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-
-            //console.log(amount);
-            return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-        },
-        name: {
-            get(){                
-                return this.user.name
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryName', value)
-            }
-        },
-        kana: {
-            get(){                
-                return this.user.kana
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryKana', value)
-            }
-        },
-        zipcode: {
-            get(){                
-                return this.user.zipcode
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryZipcode', value)
-            }
-        },
-        state: {
-            get(){                
-                return this.user.prefecture
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryPrefecture', value)
-            }
-        },
-        city: {
-           get(){                
-                return this.user.city
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryCity', value)
-            }
-        },
-        address1: {
-            get(){                
-                return this.user.address_1
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryAddress1', value)
-            }
-        },
-        building: {
-            get(){                
-                return this.user.building
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryBuilding', value)
-            }
-        },
-        phone: {
-            get(){                
-                return this.user.phone
-            },
-            set (value) {
-                this.$store.commit('updateDeliveryPhone', value)
-            }
-        },
+      
     },
     methods: {
-        ...mapActions([
-            'addDeliveryAddress'
-        ]),
-        cartLineTotal(item) {   
-            let amount = item.price * item.quantity;
-
-            return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-        },
-        confirmOrder(){
-
-            let delivery_time = this.deliveryTime;
-            this.$store.commit('setDeliveryTime', delivery_time); 
-
-            this.addDeliveryAddress({
-                name: this.deliveryAddress.name,
-                kana: this.deliveryAddress.kana,
-                zipcode: this.deliveryAddress.zipcode,
-                prefecture: this.deliveryAddress.prefecture,
-                city: this.deliveryAddress.city,
-                address_1: this.deliveryAddress.address_1,
-                building: this.deliveryAddress.building,
-                phone: this.deliveryAddress.phone,
-                delivery_time: this.deliveryAddress.delivery_time
-                
-            })
-        }
+       
     },
 }
 </script>

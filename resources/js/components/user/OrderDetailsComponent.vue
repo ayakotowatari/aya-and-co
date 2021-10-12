@@ -220,6 +220,26 @@
                                 <v-list-item>
                                     <v-list-item-content>
                                         <v-list-item-subtitle class="jp-font-400">
+                                            配送オプション
+                                        </v-list-item-subtitle>
+                                        <v-list-item-title class="jp-font-400">
+                                            {{order.delivery_courier}}
+                                        </v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                                  <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            ご希望のお届け時間帯
+                                        </v-list-item-subtitle>
+                                        <v-list-item-title class="jp-font-400">
+                                            {{order.delivery_time}}
+                                        </v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
                                             カードメッセージ
                                         </v-list-item-subtitle>
                                         <div v-if="order.delivery_carduse === '利用しない'">
@@ -237,15 +257,27 @@
                                         </div>
                                     </v-list-item-content>
                                 </v-list-item>
-                                <v-list-item>
-                                    <v-list-item-content>
-                                        <v-list-item-subtitle class="jp-font-400">
-                                            配送オプション
-                                        </v-list-item-subtitle>
-                                        <v-list-item-title class="jp-font-400">
-                                            {{order.delivery_courier}}
-                                        </v-list-item-title>
-                                    </v-list-item-content>
+                                 <v-list-item>
+                                    <div v-if="this.order.message !== null">
+                                        <v-list-item-content>
+                                            <v-list-item-subtitle class="jp-font-400">
+                                                備考欄
+                                            </v-list-item-subtitle>
+                                            <v-list-item-title class="jp-font-400">
+                                                {{order.message}}
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </div>
+                                    <div v-if="this.order.message == null">
+                                        <v-list-item-content>
+                                            <v-list-item-subtitle class="jp-font-400">
+                                                備考欄
+                                            </v-list-item-subtitle>
+                                            <v-list-item-title class="jp-font-400">
+                                                なし
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </div>
                                 </v-list-item>
                             </v-card>
                         </v-col>

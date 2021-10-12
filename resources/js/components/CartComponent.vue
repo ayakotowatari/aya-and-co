@@ -84,28 +84,30 @@
                                     小計: {{ cartLineTotal(item) }}（税込）
                                     </div>
                                     <v-row>
-                                        <v-col cols="4" sm="4" md="4">
+                                        <v-col cols="4" sm="4" md="4" class="mr-6">
                                             <v-btn
                                                 outlined
-                                                color="grey"
+                                                color="grey darken-1"
                                                 @click="updateCartQuantity(item)"
                                             >
-                                                <v-icon
+                                                <!-- <v-icon
                                                 >
                                                 mdi-plus-minus-variant
-                                                </v-icon>
+                                                </v-icon> -->
+                                                数量変更
                                             </v-btn>
                                         </v-col>
                                         <v-col cols="4" sm="4" md="4">
                                             <v-btn
                                                 outlined
-                                                color="grey"
+                                                color="grey darken-1"
                                                 @click="remove(item)"
                                             >
-                                                 <v-icon
+                                                <!-- <v-icon
                                                 >
                                                 mdi-trash-can-outline
-                                                </v-icon>
+                                                </v-icon> -->
+                                                削除
                                             </v-btn>
                                         </v-col>
                                     </v-row>
@@ -176,14 +178,14 @@
                             <v-btn
                                 color="primary"
                                 outlined
-                                @click="backToHome"
+                                @click="goToProductsList"
                                 class="hidden-sm-and-down"
                             >お買いものを続ける</v-btn>
                             <v-btn
                                 block
                                 color="primary"
                                 outlined
-                                @click="backToHome"
+                                @click="goToProductsList"
                                 class="hidden-md-and-up"
                             >お買いものを続ける</v-btn>
                         </v-col>
@@ -198,86 +200,40 @@
              src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/orange.png"
           ></v-img>
         </div>
+
         <div class="subheading">
-        Products List
+            Products List
         </div>
         <div class="subheading-jp">
-            商品ラインナップ
+            商品リスト
         </div>
-        <v-row>
-            <v-col cols="12" sm="12" md="3" v-for="category in categories" :key="category.id">
-                <v-card
-                    class="mx-auto"
-                    max-width="344"
-                    outlined
-                    
-                >
-                    <v-img
-                        max-height="200"
-                        :src="category.absolute_path"
-                    > 
-                    </v-img>
-                    <v-card-text>
-                        <div class="product-name mb-1">
-                            {{category.name}}
-                        </div>
-                        <div class="product-season mb-4">
-                            {{category.season}}
-                        </div>
-                        <!-- <div class="product-size mb-2">
-                        {{product.size}}
-                        </div> -->
-                        <!-- <div class="product-price mb-4">
-                            {{formatPrice(product.price)}}
-                        </div> -->
-                        <div class="product-details">
-                            {{category.details}}
-                        </div>
-                    </v-card-text>
 
-                    <!-- <v-list-item three-line>
-                    <v-list-item-content>
-                        <div class="product-name mb-1">
-                        {{product.name}}
-                        </div>
-                        <div class="product-size mb-4">
-                        {{product.size}}
-                        </div>
-                        <div class="product-price mb-6">
-                            {{formatPrice(product.price)}}
-                        </div>
-                        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                    </v-list-item-content>
+        <v-tabs v-model="tab" class="mb-12">
+          <v-tab
+              href="#tab-1"
+          >
+              全ての商品
+          </v-tab>
+          <v-tab
+              href="#tab-2"
+          >
+              いま販売中の商品
+          </v-tab>
+          <!-- <v-tab router :to="{name: 'search-events'}">Search</v-tab> -->
+      </v-tabs>
 
-                    <v-list-item-avatar
-                        tile
-                        size="80"
-                        color="grey"
-                    ></v-list-item-avatar>
-                    </v-list-item>
-                    -->
-                    <div class="link">
-                        <router-link
-                            :to="{
-                            name: 'products',
-                            params: {id: category.id}
-                            }"
-                            @click.native="scrollToTop"
-                        >
-                            <v-card-actions>
-                            <v-btn
-                                outlined
-                                rounded
-                                text
-                                @click.prevent="expand(category.id)"          >
-                                詳細
-                            </v-btn>
-                            </v-card-actions>
-                        </router-link>
-                    </div>
-                </v-card>
-            </v-col>
-        </v-row>
+      <v-tabs-items v-model="tab">
+          <v-tab-item 
+              value="tab-1"
+          >
+              <allproducts-component></allproducts-component>
+          </v-tab-item>
+          <v-tab-item
+              value="tab-2"
+          >
+              <currentproducts-component></currentproducts-component>
+          </v-tab-item>
+      </v-tabs-items>
    </v-container>
 </template>
 
@@ -292,7 +248,8 @@ export default {
     data: function(){
         return {
             // id: this.$route.params.id
-            quantity: [1, 2, 3]
+            tab: null,
+            // quantity: [1, 2, 3]
         }
     },
     mounted(){
@@ -307,7 +264,7 @@ export default {
           'categories',
           'dialogUpdateCartQuantity',
           'dialogRemoveCartItem',
-          'selectableNumbers'
+          'selectableNumbers',
         ]),
         // formatPrice(){
         //   let amount = this.item.price;
@@ -345,11 +302,14 @@ export default {
         updateCartQuantity(value){
             // this.$store.commit('openDialogUpdateCartQuantity', id)
             this.openDialogUpdateCartQuantity({
-                cartItem : value
+                cartItem: value
             })
             this.fetchInventory({
                 product_id: value.id
             })
+        },
+        showmore(id){
+          this.$router.push({name: 'products', params: {id: id}})
         },
         // remove(value){
 
@@ -374,8 +334,11 @@ export default {
             // })
 
         },
-        backToHome(){
-            this.$router.push({name: 'home'})
+        // backToHome(){
+        //     this.$router.push({name: 'home'})
+        // },
+        goToProductsList(){
+            this.$router.push({name: 'products-list'})
         },
         cartLineTotal(item) {   
             let amount = item.price * item.quantity;
