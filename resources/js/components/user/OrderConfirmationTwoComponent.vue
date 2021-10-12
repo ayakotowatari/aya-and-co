@@ -175,6 +175,25 @@
                                     </div>
                                 </v-list-item-content>
                             </v-list-item>
+                            <div v-if="deliveryAddress.courier_type == '日本郵便 ゆうパック'">
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            備考欄
+                                        </v-list-item-subtitle>
+                                        <div v-if="deliveryAddress.delivery_note !==''">
+                                            <v-list-item-title class="jp-font-400">
+                                                {{deliveryAddress.delivery_note}}
+                                            </v-list-item-title>
+                                        </div>
+                                        <div v-if="deliveryAddress.delivery_note ==''">
+                                            <v-list-item-title class="jp-font-400">
+                                                なし
+                                            </v-list-item-title>
+                                        </div>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </div>
                         </v-card>
                     </v-col>
                 </v-row>

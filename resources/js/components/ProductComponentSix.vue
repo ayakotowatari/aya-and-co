@@ -249,7 +249,7 @@
                 class="mx-auto"
                 max-width="344"
                 outlined
-                
+                @click.prevent="showmore(otherCategory.id)"
               >
                 <v-img
                     max-height="200"
@@ -421,6 +421,9 @@ export default {
         },
         toCart(){
           this.$router.push({name: 'cart'})
+        },
+        showmore(id){
+          this.$router.push({name: 'products', params: {id: id}})
         },
         expand(value){
           this.$router.go({name: 'products', params: {id: value}, force: true})

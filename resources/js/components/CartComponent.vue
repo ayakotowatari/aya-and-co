@@ -84,28 +84,30 @@
                                     小計: {{ cartLineTotal(item) }}（税込）
                                     </div>
                                     <v-row>
-                                        <v-col cols="4" sm="4" md="4">
+                                        <v-col cols="4" sm="4" md="4" class="mr-6">
                                             <v-btn
                                                 outlined
-                                                color="grey"
+                                                color="grey darken-1"
                                                 @click="updateCartQuantity(item)"
                                             >
-                                                <v-icon
+                                                <!-- <v-icon
                                                 >
                                                 mdi-plus-minus-variant
-                                                </v-icon>
+                                                </v-icon> -->
+                                                数量変更
                                             </v-btn>
                                         </v-col>
                                         <v-col cols="4" sm="4" md="4">
                                             <v-btn
                                                 outlined
-                                                color="grey"
+                                                color="grey darken-1"
                                                 @click="remove(item)"
                                             >
-                                                 <v-icon
+                                                <!-- <v-icon
                                                 >
                                                 mdi-trash-can-outline
-                                                </v-icon>
+                                                </v-icon> -->
+                                                削除
                                             </v-btn>
                                         </v-col>
                                     </v-row>
@@ -172,7 +174,7 @@
                             購入する
                             </v-btn>
                         </v-col>
-                        <v-col cols="12" sm="12" md="3">
+                        <!-- <v-col cols="12" sm="12" md="3">
                             <v-btn
                                 color="primary"
                                 outlined
@@ -186,7 +188,7 @@
                                 @click="backToHome"
                                 class="hidden-md-and-up"
                             >お買いものを続ける</v-btn>
-                        </v-col>
+                        </v-col> -->
                     </v-row>
                 </v-col>
             </v-row>
@@ -210,7 +212,7 @@
                     class="mx-auto"
                     max-width="344"
                     outlined
-                    
+                    @click.prevent="showmore(category.id)"
                 >
                     <v-img
                         max-height="200"
@@ -350,6 +352,9 @@ export default {
             this.fetchInventory({
                 product_id: value.id
             })
+        },
+        showmore(id){
+          this.$router.push({name: 'products', params: {id: id}})
         },
         // remove(value){
 

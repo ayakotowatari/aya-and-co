@@ -31,7 +31,7 @@
         Little Black Jars
       </div>
       <p class="description">
-        日本各地の農家さんによって大切に栽培された有機・無農薬果物や、ワックス・防腐剤等を用いずに育てられた柑橘類を用いて、
+        日本各地の農家さんによって大切に栽培された有機・無農薬果物・減農薬果物や、ワックス・防腐剤等を用いずに育てられた柑橘類を用いて、
         イギリスに長くつたわる伝統的な製法を再現し、一つ一つ、心をこめて丁寧につくるマーマレードです。
       </p>   
       <p class="description mb-8">
@@ -242,6 +242,7 @@ export default {
   font-size: 16px;
   letter-spacing: 0.03em;
   color: rgba(0, 0, 0, 0.6)
+  /* color: #424242 */
 }
 
 .subheading{

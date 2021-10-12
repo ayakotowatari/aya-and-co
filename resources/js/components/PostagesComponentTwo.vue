@@ -29,6 +29,34 @@
                         配送方法によって、パッケージ（包装）と送料が異なりますので、ご用途にあった方法をお選びください。<br>
                     </p>
                 </div>
+                <v-tabs v-model="tab" class="mb-12">
+                    <v-tab
+                        href="#tab-1"
+                    >
+                        ゆうパック
+                    </v-tab>
+                    <v-tab
+                        href="#tab-2"
+                    >
+                        宅急便コンパクト
+                    </v-tab>
+                    <!-- <v-tab router :to="{name: 'search-events'}">Search</v-tab> -->
+                </v-tabs>
+
+                <v-tabs-items v-model="tab">
+                    <v-tab-item 
+                        value="tab-1"
+                    >
+                        <yupack-component></yupack-component>
+                    </v-tab-item>
+                    <v-tab-item
+                        value="tab-2"
+                    >
+                        <yamatocompact-component></yamatocompact-component>
+                    </v-tab-item>
+                </v-tabs-items>
+
+<!-- 
                 <v-row class="mb-8">
                     <v-col cols="12" sm="12" md="12" class="line-color">
                         <v-divider></v-divider>
@@ -55,8 +83,8 @@
                     <v-col cols="12" sm="12" md="12" class="line-color">
                         <v-divider></v-divider>
                     </v-col>
-                </v-row>
-                <div class="mb-8">
+                </v-row> -->
+                <!-- <div class="mb-8">
                     <div class="item-content policy-title mb-4">
                         宅急便コンパクト
                     </div>
@@ -72,7 +100,7 @@
                     <p class="description">
                         宅急便コンパクトは、ゆうパックと比較して、審美的にはやや劣りますが、送料はリーズナブルで、ご自宅での普段づかいとしてお買い求めいただく際におすすめいたします。
                     </p>
-                </div>
+                </div> -->
                 <div class="divider-image delivery-image">
                     <v-img
                         max-width=120

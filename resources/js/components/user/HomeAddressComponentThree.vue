@@ -129,6 +129,7 @@ export default {
                 address_1: this.user.address_1,
                 building: this.user.building,
                 phone: this.user.phone,
+                home_address: true
             })
         },
         edit(){
