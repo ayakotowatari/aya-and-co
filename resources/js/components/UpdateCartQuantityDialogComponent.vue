@@ -8,7 +8,7 @@
                     </v-card-title>
                     <div v-if="cartItem.inventory <= 5">
                         <v-card-text class="ja-font-400">
-                            在庫数：{{cartItem.inventory}}
+                            在庫数：{{inventory}}
                         </v-card-text>
                     </div>
                     <v-card-text class="ja-font-400">
@@ -61,6 +61,7 @@ export default {
     computed: {
         ...mapState([
             'cartItem',
+            'inventory',
         ])
     },
     methods: {

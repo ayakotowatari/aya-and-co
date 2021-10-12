@@ -237,13 +237,50 @@
              src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/lemon.png"
           ></v-img>
         </div>
-        <div class="subheading">
+        <!-- <div class="subheading">
             Other Items
         </div>
         <div class="subheading-jp">
             そのほかの商品
+        </div> -->
+
+        <div class="subheading">
+            Products List
         </div>
-        <v-row>
+        <div class="subheading-jp">
+            商品リスト
+        </div>
+
+        <v-tabs v-model="tab" class="mb-12">
+          <v-tab
+              href="#tab-1"
+          >
+              全ての商品
+          </v-tab>
+          <v-tab
+              href="#tab-2"
+          >
+              いま販売中の商品
+          </v-tab>
+          <!-- <v-tab router :to="{name: 'search-events'}">Search</v-tab> -->
+      </v-tabs>
+
+      <v-tabs-items v-model="tab">
+          <v-tab-item 
+              value="tab-1"
+          >
+              <allproducts-component></allproducts-component>
+          </v-tab-item>
+          <v-tab-item
+              value="tab-2"
+          >
+              <currentproducts-component></currentproducts-component>
+          </v-tab-item>
+      </v-tabs-items>
+
+
+
+        <!-- <v-row>
           <v-col cols="12" sm="12" md="3" v-for="otherCategory in otherCategories" :key="otherCategory.id">
               <v-card
                 class="mx-auto"
@@ -287,7 +324,7 @@
                 </div>
               </v-card>
           </v-col>
-      </v-row>
+      </v-row> -->
 
   </v-container>
 </template>
@@ -299,6 +336,7 @@ export default {
     data: function(){
         return {
             // id: this.$route.params.id
+            tab: null,
             message: "",
             // options: [1, 2, 3],
             // itemGroup:{},
@@ -340,9 +378,9 @@ export default {
         category(){
           return this.categories.find(category => category.id === Number(this.id));
         },
-        otherCategories(){
-          return this.categories.filter(category => category.id !== Number(this.id));
-        },
+        // otherCategories(){
+        //   return this.categories.filter(category => category.id !== Number(this.id));
+        // },
         itemGroup: {
             get(){                
                 return this.firstItem

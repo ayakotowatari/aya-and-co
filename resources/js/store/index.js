@@ -86,7 +86,7 @@ export default new Vuex.Store({
       productId: '',
       categories: [],
     //   disableSelectAmount: true,
-      inventoryQuantity: null,
+      inventory: null,
       //selectableNumbers:[1, 2, 3, 4, 5, 6],
       selectableNumbers: [1],
       productQuantity: 1,
@@ -422,8 +422,8 @@ export default new Vuex.Store({
     setCategories(state, payload){
         state.categories = payload
     },
-    setInventoryQuantity(state, payload){
-        state.inventoryQuantity = payload
+    setInventory(state, payload){
+        state.inventory = payload
     },
     // setItemGroup(state, payload){
     //     state.itemGroup = payload
@@ -437,11 +437,13 @@ export default new Vuex.Store({
 
         console.log('quantity', quantity)
 
-        if(quantity <= 5){
-            state.selectableNumbers = [1]
+        if(quantity <= 5 && quantity >= 4){
+            state.selectableNumbers = [1, 2]
         
         // }else if(quantity <= 1){
 
+        }else if(quantity <=3){
+            state.selectableNumbers = [1]
         }else{
             state.selectableNumbers = [1, 2, 3, 4, 5]
         }
@@ -965,7 +967,7 @@ export default new Vuex.Store({
         .get("/fetch-inventory/" + product_id)
         .then(res => {
             inventory = res.data.inventory;
-            // commit('setInventoryQuantity', quantity)
+            commit('setInventory', inventory)
             commit('setSelectableNumbers', inventory)
             // console.log(payload);
     });
