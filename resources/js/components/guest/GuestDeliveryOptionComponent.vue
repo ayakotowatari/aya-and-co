@@ -33,7 +33,7 @@
                         </div>
                         <div v-else class="mb-8">
                             <div class="jp-font grey--text text--darken-3 mb24">Step 1: ご希望の配送方法をお選びください。</div>
-                            <div class="jp-font grey--text text--darken-2 mb24">ご用途に応じた配送方法の選び方については、<router-link to="/postage">こちら</router-link>でご案内しております。</div>
+                            <!-- <div class="jp-font grey--text text--darken-2 mb24">ご用途に応じた配送方法の選び方については、<router-link to="/postage">こちら</router-link>でご案内しております。</div> -->
 
                             <v-select
                                 v-model="courier"
@@ -142,13 +142,13 @@ export default {
             return totalInCartQuantity;
         },
         courierStandard(){
-            return this.couriers.filter(courier => courier.id !== 3)
+            return this.couriers.filter(courier => courier.id !== 2)
         },
         courierMiddle(){
             return this.couriers.filter(courier => courier.id !== 1)
         },
         courierBig(){
-            return this.couriers.filter(courier => courier.id === 3)
+            return this.couriers.filter(courier => courier.id === 2)
         },
     },
     methods: {

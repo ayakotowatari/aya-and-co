@@ -132,35 +132,20 @@
                         ></v-select>
                         <div v-if="this.courier === 1">
                             <div
-                                v-for="postageYupack in postageYupacks"
-                                :key="postageYupack.id"
+                                v-for="postageYamatoTakkyubin in postageYamatoTakkyubins"
+                                :key="postageYamatoTakkyubin.id"
                             >
                                 <v-row>
                                     <v-col cols="6" sm="6" md="6">
-                                        <div class="item-content">{{ postageYupack.prefecture}}</div>
+                                        <div class="item-content">{{ postageYamatoTakkyubin.prefecture}}</div>
                                     </v-col>
                                     <v-col cols="6" sm="6" md="6">
-                                        <div class="grey--text text--darken-3">{{ formatPrice(postageYupack.postage)}}</div>
+                                        <div class="grey--text text--darken-3">{{ formatPrice(postageYamatoTakkyubin.postage)}}</div>
                                     </v-col>
                                 </v-row>
                             </div>
                         </div>
-                        <div v-if="this.courier === 2">
-                            <div
-                                v-for="postageCompact in postageCompacts"
-                                :key="postageCompact.id"
-                            >
-                                <v-row>
-                                    <v-col cols="6" sm="6" md="6">
-                                        <div class="item-content">{{ postageCompact.prefecture}}</div>
-                                    </v-col>
-                                    <v-col cols="6" sm="6" md="6">
-                                        <div class="grey--text text--darken-3">{{ formatPrice(postageCompact.postage)}}</div>
-                                    </v-col>
-                                </v-row>
-                            </div>
-                        </div>
-                         <div v-if="this.courier === 3">
+                         <div v-if="this.courier === 2">
                             <div
                                 v-for="postageYamatoBig in postageYamatoBigs"
                                 :key="postageYamatoBig.id"
@@ -171,6 +156,21 @@
                                     </v-col>
                                     <v-col cols="6" sm="6" md="6">
                                         <div class="grey--text text--darken-3">{{ formatPrice(postageYamatoBig.postage)}}</div>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </div>
+                        <div v-if="this.courier === 3">
+                            <div
+                                v-for="postageCompact in postageCompacts"
+                                :key="postageCompact.id"
+                            >
+                                <v-row>
+                                    <v-col cols="6" sm="6" md="6">
+                                        <div class="item-content">{{ postageCompact.prefecture}}</div>
+                                    </v-col>
+                                    <v-col cols="6" sm="6" md="6">
+                                        <div class="grey--text text--darken-3">{{ formatPrice(postageCompact.postage)}}</div>
                                     </v-col>
                                 </v-row>
                             </div>
@@ -267,7 +267,7 @@ export default {
     computed: {
         ...mapState([
             'postages',
-            'postageYupacks',
+            'postageYamatoTakkyubins',
             'postageYamatoBigs',
             'postageCompacts',
             'couriers'

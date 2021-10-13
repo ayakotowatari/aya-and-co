@@ -61,10 +61,10 @@
                             <div class="jp-font grey--text text--darken-2">配送方法をお選びいただくと、オプションが示されます。</div>
                         </div>
                         <div v-if="this.courier !== null">
-                            <div v-if="this.courier === 2">
+                            <div v-if="this.courier === 3">
                                 <div class="jp-font grey--text text--darken-2">お選びいただいた配送方法では、メッセージカードはご利用になられません。</div>
                             </div>
-                            <div v-if="this.courier !== 2">
+                            <div v-if="this.courier !== 3">
                                 <div class="jp-font grey--text text--darken-2 mb24">選べるメッセージカードサービス（無料）をご利用になられますか？</div>
                                 <div class="jp-font grey--text text--darken-2 mb24">ご利用でない場合は、aya & co.よりThank Youカードを同封させていただきます。</div>
                                 <v-select
@@ -138,7 +138,7 @@
                         :error="allerror.delivery_time"
                         :error-messages="allerror.delivery_time"
                     ></v-select>
-                    <div v-if="deliveryAddress.home_address == true && this.courier !== 2">
+                    <div v-if="deliveryAddress.home_address == true && this.courier !== 3">
                         <v-divider class="mt-4 mb-8"></v-divider>
                          <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
                         <v-textarea
@@ -150,7 +150,7 @@
                             :error-messages="allerror.note"
                         ></v-textarea>
                     </div>
-                     <div v-if="deliveryAddress.home_address == false && this.courier !== 2">
+                     <div v-if="deliveryAddress.home_address == false && this.courier !== 3">
                         <v-divider class="mt-4 mb-8"></v-divider>
                          <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
                         <v-textarea
@@ -263,13 +263,13 @@ export default {
         //     return cartQuantity;
         // },
         courierStandard(){
-            return this.couriers.filter(courier => courier.id !== 3)
+            return this.couriers.filter(courier => courier.id !== 2)
         },
         courierMiddle(){
             return this.couriers.filter(courier => courier.id !== 1)
         },
         courierBig(){
-            return this.couriers.filter(courier => courier.id === 3)
+            return this.couriers.filter(courier => courier.id === 2)
         },
         // cartQuantity(){
 
@@ -298,7 +298,7 @@ export default {
                     totalQuantity: this.totalQuantityInCart
                 })
 
-                if(this.courier == 2){
+                if(this.courier == 3){
                     this.setDeliveryOption({
                         courier: this.courier,
                         delivery_time: this.deliveryTime,

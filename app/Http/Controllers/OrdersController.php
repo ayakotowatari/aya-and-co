@@ -677,13 +677,13 @@ class OrdersController extends Controller
         
         $postages = Postage::get();
 
-        $postageYupack = Postage::where('courier_id', 1)->get();
+        $postageYamatoTakkyubin = Postage::where('courier_id', 1)->get();
 
-        $postageCompact = Postage::where('courier_id', 2)->get();
+        $postageYamatoBig = Postage::where('courier_id', 2)->get();
 
-        $postageYamatobig = Postage::where('courier_id', 2)->get();
+        $postageCompact = Postage::where('courier_id', 3)->get();
 
-        return response() -> json(['postages' => $postages, 'yupack' => $postageYupack, 'compact' => $postageCompact, 'yamatobig' => $postageYamatobig, 'courier' => $couriers]);   
+        return response() -> json(['postages' => $postages, 'yamatotakkyubin' => $postageYamatoTakkyubin, 'yamatobig' => $postageYamatoBig, 'compact' => $postageCompact, 'courier' => $couriers]);   
     }
 
     public function createUserReceipt($id)

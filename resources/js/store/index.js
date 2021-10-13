@@ -132,7 +132,7 @@ export default new Vuex.Store({
       },
       orderedProducts: [],
       postages: [],
-      postageYupacks: [],
+      postageYamatoTakkyubins: [],
       postageCompacts: [],
       postageYamatoBigs: [],
       couriers: [],
@@ -252,7 +252,7 @@ export default new Vuex.Store({
         let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
         let postage = postage_data.postage
 
-        if(id == 2){
+        if(id == 3){
             if(totalQuantity > 4){
                 let boxQuantity = Math.ceil(totalQuantity/4)
                 // console.log('boxQuantity', boxQuantity);
@@ -636,14 +636,15 @@ export default new Vuex.Store({
     setPostages(state, payload){
         state.postages = payload
     },
-    setPostageYupack(state, payload){
-        state.postageYupacks = payload
-    },
-    setPostageCompact(state, payload){
-        state.postageCompacts = payload
+    setPostageYamatoTakkyubin(state, payload){
+        state.postageYamatoTakkyubins = payload
     },
     setPostageYamatoBig(state, payload){
         state.postageYamatoBigs = payload
+    },
+    setPostageCompact(state, payload){
+        console.log(payload);
+        state.postageCompacts = payload
     },
     setCouriers(state, payload){
         state.couriers = payload
@@ -1590,7 +1591,7 @@ export default new Vuex.Store({
     },
     async fetchPostages({ commit }){
         let postage = {};
-        let yupack = {};
+        let yamatotakkyubin = {};
         let compact = {};
         let yamatobig = {}
         let courier = {};
@@ -1599,13 +1600,13 @@ export default new Vuex.Store({
             .get("/fetch-postages")
             .then(res => {
                 postage = res.data.postages;
-                yupack = res.data.yupack;
-                compact = res.data.compact;
+                yamatotakkyubin = res.data.yamatotakkyubin;
                 yamatobig = res.data.yamatobig;
+                compact = res.data.compact;
                 courier = res.data.courier;
                 commit('setPostages', postage);
                 // commit('setDeliveryAddress', payload);
-                commit('setPostageYupack', yupack);
+                commit('setPostageYamatoTakkyubin', yamatotakkyubin);
                 commit('setPostageCompact', compact);
                 commit('setPostageYamatoBig', yamatobig)
                 commit('setCouriers', courier);
