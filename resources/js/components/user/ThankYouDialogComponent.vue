@@ -53,13 +53,15 @@ export default {
     },
     methods: {
         toOrderSummary(){
-            this.$router.push({name: 'order-summary'});
+            window.location.href='/member/summary';
+            // this.$router.push({name: 'order-summary'});
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);
         },
         backHome(){
-            this.$router.push({name: 'home'})
+            window.location.href='/';
+            // this.$router.push({name: 'home'})
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);
