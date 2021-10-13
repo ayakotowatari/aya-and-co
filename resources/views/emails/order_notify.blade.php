@@ -183,6 +183,12 @@ td.align-right{
             </p>
         </div>
         <div class="mb20">
+            <p>
+                ウェブサイト:<br>
+                https://www.ayaandco.com
+            </p>
+        </div>
+        <div class="mb20">
             <p>住所:<br>
         
                 〒216-0003<br>
