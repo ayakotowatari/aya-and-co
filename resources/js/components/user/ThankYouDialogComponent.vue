@@ -53,15 +53,17 @@ export default {
     },
     methods: {
         toOrderSummary(){
-            window.location.href='/member/summary';
-            // this.$router.push({name: 'order-summary'});
+            //ストライプを２度目にうまく読み込まないため変更
+            // window.location.href='/member/summary';
+            this.$router.push({name: 'order-summary'});
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);
         },
         backHome(){
-            window.location.href='/';
-            // this.$router.push({name: 'home'})
+             //ストライプを２度目にうまく読み込まないため変更
+            // window.location.href='/';
+            this.$router.push({name: 'home'})
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);

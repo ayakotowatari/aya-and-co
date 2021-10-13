@@ -427,7 +427,7 @@ export default {
                 this.$store.dispatch('showDialogThankYou');
                 this.$store.dispatch('sendOrderNotify', this.order);
                 this.$store.dispatch('clearCart');
-                this.$store.dispatch('clearDeliveryAddress');
+                // this.$store.dispatch('clearDeliveryAddress');
                 // this.$store.dispatch('clearDeliveryAddress');
                 this.loading = false;
                 
