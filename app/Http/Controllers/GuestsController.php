@@ -221,6 +221,7 @@ class GuestsController extends Controller
                     'delivery_courier' => $request->input('deliveryCourierType'),
                     'delivery_time' => $request->input('deliveryTime'),
                     'postage' => $request->input('deliveryPostage'),
+                    'box_quantity' => $request->input('deliveryBoxQuantity'),
                     'item_total' => $request->input('itemTotal'),
                     'status_id' => 1
                     // 'delivery_time' => $request->input('delivery_time'),

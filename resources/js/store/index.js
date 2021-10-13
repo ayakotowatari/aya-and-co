@@ -57,6 +57,7 @@ export default new Vuex.Store({
           delivery_option: '',
           courier_type: '',
           postage: '',
+          box_quantity: '',
           delivery_note: '',
         //   delivery_cardmessage: '',
         //   delivery_cardname: '',
@@ -101,6 +102,7 @@ export default new Vuex.Store({
       postages: [],
       postageYupacks: [],
       postageCompacts: [],
+      postageYamatoBigs: [],
       couriers: [],
       plannedShipmentDate: null,
       actualShipmentDate: null,
@@ -213,10 +215,27 @@ export default new Vuex.Store({
 
         let id = payload.courier
         let prefecture = payload.prefecture
+        let totalQuantity = payload.totalQuantity
 
         let postage_data = state.postages.find(postage=>postage.courier_id == id && postage.prefecture === prefecture);
         let postage = postage_data.postage
-        state.deliveryAddress.postage = postage
+
+        if(id == 2){
+            if(totalQuantity > 4){
+                let boxQuantity = Math.ceil(totalQuantity/4)
+                // console.log('boxQuantity', boxQuantity);
+                let finalPostage = postage * boxQuantity
+                
+                state.deliveryAddress.postage = finalPostage
+                state.deliveryAddress.box_quantity = boxQuantity
+            }else{
+                state.deliveryAddress.postage = postage
+                state.deliveryAddress.box_quantity = 1
+            }
+        }else{
+            state.deliveryAddress.postage = postage
+        }
+        
 
         let courier = state.couriers.find(item=>item.id == payload.courier);
         state.deliveryAddress.courier_type = courier.courier_type
@@ -435,7 +454,7 @@ export default new Vuex.Store({
 
         let quantity = payload
 
-        console.log('quantity', quantity)
+        // console.log('quantity', quantity)
 
         if(quantity <= 5 && quantity >= 4){
             state.selectableNumbers = [1, 2]
@@ -590,6 +609,9 @@ export default new Vuex.Store({
     },
     setPostageCompact(state, payload){
         state.postageCompacts = payload
+    },
+    setPostageYamatoBig(state, payload){
+        state.postageYamatoBigs = payload
     },
     setCouriers(state, payload){
         state.couriers = payload
@@ -1538,6 +1560,7 @@ export default new Vuex.Store({
         let postage = {};
         let yupack = {};
         let compact = {};
+        let yamatobig = {}
         let courier = {};
 
         await axios
@@ -1546,11 +1569,13 @@ export default new Vuex.Store({
                 postage = res.data.postages;
                 yupack = res.data.yupack;
                 compact = res.data.compact;
+                yamatobig = res.data.yamatobig;
                 courier = res.data.courier;
                 commit('setPostages', postage);
                 // commit('setDeliveryAddress', payload);
                 commit('setPostageYupack', yupack);
                 commit('setPostageCompact', compact);
+                commit('setPostageYamatoBig', yamatobig)
                 commit('setCouriers', courier);
         });
     },

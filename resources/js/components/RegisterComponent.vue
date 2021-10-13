@@ -21,7 +21,7 @@
                     会員登録をしてメンバーになっていただくと、以下のことが可能となります。
                 </div>
                 <div class="jp-font-400 grey--text text--darken-2 mb-4">
-                    <div>
+                    <div class="mb-4">
                         <span class="mr-2">
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
@@ -29,7 +29,7 @@
                             ご注文時に、登録されているご住所（ご自宅・それ以外）の入力の手間が省けます。
                         </span>
                     </div>
-                    <div>
+                    <div class="mb-4">
                         <span class="mr-2">
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
@@ -37,15 +37,15 @@
                             ご注文の履歴が確認できます。発送予定日・発送日をご確認いただけます。
                         </span>
                     </div>
-                    <div>
+                    <div class="mb-4">
                         <span class="mr-2">
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
                         <span>
-                            「選べるカードメッセージサービス」を無料でご利用いただけます。
+                            「選べるメッセージカードサービス」を無料でご利用いただけます。
                         </span>
                     </div>
-                    <div>
+                    <div class="mb-4">
                         <span class="mr-2">
                             <v-icon color="primary">mdi-check</v-icon>
                         </span>
@@ -226,7 +226,7 @@ export default {
             zipcode: '',
             zipcodeRules: [
                 v => !!v || '郵便番号を入力してください。',
-                v => v.length == 7 || 'ハイフンなしで、数字7桁を入力してください。'
+                v => v.length == 7 || 'ハイフンなしで、半角数字7桁のみを入力してください。例: 1234567'
             ], 
             state: '',
             prefectureRules: [

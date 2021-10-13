@@ -457,6 +457,7 @@ public function purchase(Request $request){
                 'delivery_cardname' => $request->input('deliveryCardName'),
                 'message' => $request->input('deliveryMessage'),
                 'postage' => $request->input('deliveryPostage'),
+                'box_quantity' => $request ->input('deliveryBoxQuantity'),
                 'item_total' => $request->input('itemTotal'),
                 'status_id' => 1
                 // 'delivery_time' => $request->input('delivery_time'),

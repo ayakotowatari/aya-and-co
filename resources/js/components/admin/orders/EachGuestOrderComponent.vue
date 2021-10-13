@@ -340,6 +340,9 @@
                                         <v-list-item-title class="jp-font-400">
                                             {{order.delivery_courier}}
                                         </v-list-item-title>
+                                        <v-list-item-title class="jp-font-400">
+                                            梱包数：{{order.box_quantity}}
+                                        </v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
                                 <v-list-item>

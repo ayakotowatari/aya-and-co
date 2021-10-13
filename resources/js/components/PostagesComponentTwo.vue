@@ -22,8 +22,8 @@
                         aya & co.では、商品のご注文時に、以下の２つのオプションから配送方法をお選びいただけます。
                     </p>
                     <p class="description">
-                        ・ゆうパック（日本郵便）<br>
-                        ・宅急便コンパクト（ゆうパック）
+                        ・宅急便（ヤマト運輸）<br>
+                        ・宅急便コンパクト（ヤマト運輸）
                     </p>
                     <p class="description">
                         配送方法によって、パッケージ（包装）と送料が異なりますので、ご用途にあった方法をお選びください。<br>
@@ -33,7 +33,7 @@
                     <v-tab
                         href="#tab-1"
                     >
-                        ゆうパック
+                        宅急便
                     </v-tab>
                     <v-tab
                         href="#tab-2"
@@ -47,7 +47,7 @@
                     <v-tab-item 
                         value="tab-1"
                     >
-                        <yupack-component></yupack-component>
+                        <yamatotakkyubin-component></yamatotakkyubin-component>
                     </v-tab-item>
                     <v-tab-item
                         value="tab-2"
@@ -115,9 +115,9 @@
                 <div class="item-title">送料について</div>
             </v-col>
             <v-col cols="12" sm="12" md="8">
-                <p class="description">
-                        日本全国各地への、配送オプションごとの送料は、下記よりお確かめいただけます。
-                    </p>
+                <p class="description mb-8">
+                    日本全国各地への、配送オプションごとの送料（1梱包の料金）は、下記よりお確かめいただけます。
+                </p>
                 <v-row>
                     <v-col cols="12" sm="12" md="6">
                         <v-select
@@ -156,6 +156,21 @@
                                     </v-col>
                                     <v-col cols="6" sm="6" md="6">
                                         <div class="grey--text text--darken-3">{{ formatPrice(postageCompact.postage)}}</div>
+                                    </v-col>
+                                </v-row>
+                            </div>
+                        </div>
+                         <div v-if="this.courier === 3">
+                            <div
+                                v-for="postageYamatoBig in postageYamatoBigs"
+                                :key="postageYamatoBig.id"
+                            >
+                                <v-row>
+                                    <v-col cols="6" sm="6" md="6">
+                                        <div class="item-content">{{ postageYamatoBig.prefecture}}</div>
+                                    </v-col>
+                                    <v-col cols="6" sm="6" md="6">
+                                        <div class="grey--text text--darken-3">{{ formatPrice(postageYamatoBig.postage)}}</div>
                                     </v-col>
                                 </v-row>
                             </div>
@@ -253,6 +268,7 @@ export default {
         ...mapState([
             'postages',
             'postageYupacks',
+            'postageYamatoBigs',
             'postageCompacts',
             'couriers'
         ])

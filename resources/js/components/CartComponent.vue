@@ -133,7 +133,7 @@
                             <span v-text="cartTotal" class="totalprice"></span>
                         </v-col>
                     </v-row>
-                    <v-row>
+                    <v-row class="mb-8">
                         <v-col cols="12" sm="12" md="3">
                             <v-btn
                                 dark
@@ -190,9 +190,15 @@
                             >お買いものを続ける</v-btn>
                         </v-col>
                     </v-row>
+                    <div>
+                        <p class="description">
+                            お買い物のまえに「<router-link to="/postage">配送方法と送料について</router-link>」をご覧いただきますと、スムーズにご注文いただけます。
+                        </p>
+                    </div>
                 </v-col>
             </v-row>
         </div>
+       
         <div class="divider-image orange-image">
          <v-img
              max-width=90

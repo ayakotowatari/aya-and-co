@@ -120,6 +120,7 @@ class OrdersController extends Controller
                         'orders.delivery_cardmessage',
                         'orders.delivery_cardname',
                         'orders.postage',
+                        'orders.box_quantity',
                         'orders.total',
                         'orders.note',
                         'statuses.status',
@@ -181,6 +182,7 @@ class OrdersController extends Controller
                         'orders.delivery_courier',
                         'orders.delivery_time',
                         'orders.postage',
+                        'orders.box_quantity',
                         'orders.total',
                         'orders.note',
                         'statuses.status',
@@ -527,6 +529,7 @@ class OrdersController extends Controller
                         'orders.delivery_cardname',
                         'orders.message',
                         'orders.postage',
+                        'orders.box_quantity',
                         'orders.item_total',
                         'orders.total',
                         'statuses.status',
@@ -678,7 +681,9 @@ class OrdersController extends Controller
 
         $postageCompact = Postage::where('courier_id', 2)->get();
 
-        return response() -> json(['postages' => $postages, 'yupack' => $postageYupack, 'compact' => $postageCompact, 'courier' => $couriers]);   
+        $postageYamatobig = Postage::where('courier_id', 2)->get();
+
+        return response() -> json(['postages' => $postages, 'yupack' => $postageYupack, 'compact' => $postageCompact, 'yamatobig' => $postageYamatobig, 'courier' => $couriers]);   
     }
 
     public function createUserReceipt($id)

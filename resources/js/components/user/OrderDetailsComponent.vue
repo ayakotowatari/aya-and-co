@@ -225,6 +225,11 @@
                                         <v-list-item-title class="jp-font-400">
                                             {{order.delivery_courier}}
                                         </v-list-item-title>
+                                        <div v-if="order.box_quantity !== null">
+                                            <v-list-item-title class="jp-font-400">
+                                                梱包数：{{order.box_quantity}}個
+                                            </v-list-item-title>
+                                        </div>
                                     </v-list-item-content>
                                 </v-list-item>
                                   <v-list-item>

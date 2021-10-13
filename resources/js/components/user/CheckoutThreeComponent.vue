@@ -215,8 +215,8 @@ export default {
     async mounted(){
        
         //this.stripe = await loadStripe(`${process.env.MIX_STRIPE_KEY}`);
-        this.stripe = await loadStripe("pk_live_51J0LDyHqbknAxatFzrgue8qXopbEBy5AYGYJ26oSnK0Wqm4FPP8TrdlpQbPDKljHqmxQrm5xhIi5xkWYOLJsIoHB0040SBgx86");
-        // this.stripe = await loadStripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
+        // this.stripe = await loadStripe("pk_live_51J0LDyHqbknAxatFzrgue8qXopbEBy5AYGYJ26oSnK0Wqm4FPP8TrdlpQbPDKljHqmxQrm5xhIi5xkWYOLJsIoHB0040SBgx86");
+        this.stripe = await loadStripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
 
         let elements = this.stripe.elements();
        
@@ -382,6 +382,7 @@ export default {
             this.customer.deliveryCardMessage = this.deliveryCardMessage;
             this.customer.deliveryCardName = this.deliveryCardName;
             this.customer.deliveryPostage = this.deliveryAddress.postage;
+            this.customer.deliveryBoxQuantity = this.deliveryAddress.box_quantity;
             this.customer.deliveryMessage = this.deliveryAddress.delivery_note;
             this.customer.itemTotal = itemTotal;
             // this.customer.delivery_address = this.deliveryAddress.id;

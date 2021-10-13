@@ -137,6 +137,11 @@
                                     <v-list-item-title class="jp-font-400">
                                         {{deliveryAddress.courier_type}}
                                     </v-list-item-title>
+                                    <div v-if="deliveryAddress.courier_type === 'ヤマト運輸 宅急便コンパクト'">
+                                        <v-list-item-title class="jp-font-400">
+                                            梱包数：{{deliveryAddress.box_quantity}}
+                                        </v-list-item-title>
+                                    </div>
                                 </v-list-item-content>
                             </v-list-item>
                             <v-list-item>
@@ -259,7 +264,7 @@ export default {
             'cart',
             'deliveryCardUse',
             'deliveryCardMessage',
-            'deliveryCardName'
+            'deliveryCardName',
         ]),
         // deliveryCardUse(){
         //     return this.$store.getters.deliveryCardUse

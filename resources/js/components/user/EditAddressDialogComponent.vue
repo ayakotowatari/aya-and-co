@@ -46,7 +46,7 @@
                                             label="郵便番号"
                                             outlined
                                             required
-                                            hint="記号とハイフンなしで、数字7桁のみをご記入ください。例: 1234567"
+                                            hint="ハイフンなしで、半角数字7桁のみをご記入ください。例: 1234567"
                                             persistent-hint
                                             :rules="zipcodeRules"
                                             :error="allerror.zipcode ? true : false"
@@ -154,7 +154,7 @@ export default {
             // ],
             zipcodeRules: [
                 v => !!v || '郵便番号を半角数字7桁で入力してください。',
-                // v => v.length == 7 || 'ハイフンなしで、数字7桁を入力してください。'
+                // v => v.length == 7 || 'ハイフンなしで、半角数字7桁を入力してください。例：1234567'
             ], 
             prefectureRules: [
                 v => !!v || '都道府県を入力してください。',

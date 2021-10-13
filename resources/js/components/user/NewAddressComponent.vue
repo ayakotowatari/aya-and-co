@@ -44,7 +44,7 @@
                             label="郵便番号"
                             outlined
                             required
-                            hint="ハイフンなしでご記入ください。例: 1234567"
+                            hint="ハイフンなしで、半角数字7桁をご記入ください。例: 1234567"
                             persistent-hint
                             :error="allerror.zipcode"
                             :error-messages="allerror.zipcode"
