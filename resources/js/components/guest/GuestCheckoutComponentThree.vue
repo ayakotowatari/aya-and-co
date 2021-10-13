@@ -403,7 +403,7 @@ export default {
                 this.$store.dispatch('showDialogThankYouGuest');
                 this.$store.dispatch('sendGuestOrderNotify', this.order);
                 this.$store.dispatch('clearCart');
-                this.$store.dispatch('clearDeliveryAddress');
+                // this.$store.dispatch('clearDeliveryAddress');
                 this.loading = false;
                 
                 // this.$router.push({ name: 'order-summary'})

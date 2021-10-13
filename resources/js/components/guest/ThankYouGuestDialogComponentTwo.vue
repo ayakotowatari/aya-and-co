@@ -56,21 +56,20 @@ export default {
     },
     methods: {
         toRegister(){
+            // window.location.href="/guest-register"
             this.$router.push({name: 'guest-register'});
             this.$store.commit('setDialogThankYouGuest', false);
             this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);
         },
         backHome(){
+            // window.location.href="/"
             this.$router.push({name: 'home'})
              this.$store.commit('setDialogThankYouGuest', false);
              this.$store.commit('updateDisableContinue1', true);
             this.$store.commit('setDisabled', false);
         }
-        
     }
-
-
 }
 </script>
 

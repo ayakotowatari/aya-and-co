@@ -72,9 +72,10 @@ td.align-right{
 </style>
 <body>
 
-    <!-- <div class="header">    
-        <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg" alt="logo" class="logo">
-    </div> -->
+    <div class="header">    
+        <!-- <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg" alt="logo" class="logo"> -->
+        <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.png" alt="logo" class="logo">
+    </div>
 
     <h2 class="mb">ご購入をいただき、ありがとうございます。</h2>
 
@@ -179,6 +180,12 @@ td.align-right{
             <p>
                 メールアドレス:<br>
                 ayaandco.info@gmail.com
+            </p>
+        </div>
+        <div class="mb20">
+            <p>
+                ウェブサイト:<br>
+                https://www.ayaandco.com
             </p>
         </div>
         <div class="mb20">
