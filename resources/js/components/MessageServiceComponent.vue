@@ -2,16 +2,7 @@
     <v-container>
         <div class="key-visual">
             <v-img
-                max-width=1137
-                max-height=636
                 src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/card_2.jpg"
-                class="hidden-sm-and-down"
-            ></v-img>
-            <v-img
-                max-width=360
-                max-height=183
-                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/card_2.jpg"
-                class="hidden-md-and-up"
             ></v-img>
         </div>
         <v-row>

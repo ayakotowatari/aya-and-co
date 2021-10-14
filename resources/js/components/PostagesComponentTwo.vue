@@ -1,5 +1,10 @@
 <template>
     <v-container>
+         <div class="key-visual">
+            <v-img
+                src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/gift_box_2.jpg"
+            ></v-img>
+        </div>
          <v-row>
             <v-col cols="12" sm="12" md="12">
                 <div class="heading-group">

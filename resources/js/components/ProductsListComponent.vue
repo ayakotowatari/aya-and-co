@@ -2,17 +2,14 @@
     <v-container>
         <div class="key-visual">
             <v-img
-                max-width=1137
-                max-height=636
                 src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/twomarmalades.png"
-                class="hidden-sm-and-down"
             ></v-img>
-            <v-img
-                max-width=360
-                max-height=183
+            <!-- <v-img
+                max-width=100%
+                max-height=100%
                 src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/twomarmalades.png"
                 class="hidden-md-and-up"
-            ></v-img>
+            ></v-img> -->
         </div>
         <v-row>
             <v-col cols="12" sm="12" md="12">
