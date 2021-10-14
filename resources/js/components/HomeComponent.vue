@@ -48,7 +48,7 @@
         </v-col>
         <v-col cols="12" sm="12" md="8">
             <p class="description">
-              <span class="logo-title">aya & co. </span>は、リアルな店舗をもたず、このウェブサイト上の店でのみ、商品を販売しております。<span class="logo-title">aya & co. </span>でのショッピングをどうぞお楽しみください。
+              aya & co. は、リアルな店舗をもたず、このウェブサイト上の店でのみ、商品を販売しております。aya & co. でのショッピングをどうぞお楽しみください。
             </p>
             <v-row>
                 <v-col cols="12" sm="12" md="8">
@@ -59,7 +59,7 @@
                         <v-timeline-item small class="description">商品リストから、お好きなマーマレードを選んでカートに入れてご注文ください。</v-timeline-item>
                         <v-timeline-item small class="description">お買い物のまえに、「<router-link to="/postage">配送方法と送料について</router-link>」をお読みいただくと、ご注文の手続きをスムーズに進めていただけます。</v-timeline-item>
                         <v-timeline-item small class="description">会員登録をいただいたお客様には、人気の「<router-link to="/message-service">選べるメッセージカードサービス</router-link>」(無料)をご利用いただけます。ご注文の際にはぜひご活用ください。</v-timeline-item>
-                        <v-timeline-item small class="description"><span class="logo-title">Little Black Jars </span>をご指定の宛先までお届けいたします。</v-timeline-item>
+                        <v-timeline-item small class="description">Little Black Jars をご指定の宛先までお届けいたします。</v-timeline-item>
                     </v-timeline>
                 </v-col>
             </v-row>
@@ -77,7 +77,7 @@
           </v-col>
           <v-col cols="12" sm="12" md="8">
               <p class="description">
-                  <span class="logo-title">aya & co. </span>では、季節の旬の果物を仕入れて、small batch（少量生産）にて商品を製造します。ほとんどはシーズンの短期間のみの販売となりますので、気に入られた商品は、ぜひお早めにお求めください。
+                  aya & co. では、季節の旬の果物を仕入れて、small batch（少量生産）にて商品を製造します。ほとんどはシーズンの短期間のみの販売となりますので、気に入られた商品は、ぜひお早めにお求めください。
               </p>
           </v-col>
       </v-row>
