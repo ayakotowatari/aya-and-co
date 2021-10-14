@@ -60,15 +60,32 @@
                         選べるメッセージ
                     </div>
                     <div class="item-title line-height grey--text text--darken-3">
-                        <p>現在、メッセージは、以下のなかからお選びいただけます。</p>
-                        <p>
-                            Thank You（ありがとう）<br>
-                            Happy Birthday（お誕生日おめでとう）<br>
-                            Take Care（お身体にお気をつけて）<br>
-                            Get Well Soon（早く元気になリますように）<span class="font-14">*病気などからの回復期に使われます。</span><br>
-                            With Love（愛を込めて）<span class="font-14">*ご家族やご親友に親愛の情を示す時にも使われます。</span><br>
-                            Sending You a Hug（ハグをおくります）<span class="font-14">*少し落ち込んでいるご友人やご家族をなぐさめたり、元気づけるメッセージです。</span>
-                        </p>
+                        <p class="mb-4">現在、メッセージは、以下のなかからお選びいただけます。</p>
+                        <v-row>
+                            <v-col cols="12" sm="12" md="1" class="hidden-sm-and-down">
+
+                            </v-col>
+                            <v-col cols="12" sm="12" md="11">
+                                <div class="mb-2">
+                                    Thank You（ありがとう）
+                                </div>
+                                <div class="mb-2">
+                                    Happy Birthday（お誕生日おめでとう)
+                                </div>
+                                <div class="mb-2">
+                                    Take Care（お身体にお気をつけて)
+                                </div>
+                                <div class="mb-2">
+                                    Get Well Soon（早く元気になリますように）<span class="font-14">*病気などからの回復期に使われます。</span>
+                                </div>
+                                <div class="mb-2">
+                                    With Love（愛を込めて）<span class="font-14">*ご家族やご親友に親愛の情を示す時にも使われます。</span>
+                                </div>
+                                <p class="mb-4">
+                                Sending You a Hug（ハグをおくります）<span class="font-14">*少し落ち込んでいるご友人やご家族をなぐさめたり、元気づけるメッセージです。</span>
+                                </p>
+                            </v-col>
+                        </v-row>
                         <p>
                             括弧内の日本語訳は印字されず、英字のみとなります。また、白地のポストカードタイプの用紙を使用しており、裏面には、aya & co.のご案内がプリントされています。<br>
                         </p>
