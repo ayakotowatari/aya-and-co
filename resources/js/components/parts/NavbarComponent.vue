@@ -202,8 +202,8 @@ import { mapState } from 'vuex'
     //   ],
       products: [
           {title: '商品リスト', route:'/products-list'},
-          { title: '選べるメッセージカードサービス', route: '/message-service'},
-          { title: '配送方法と送料について', route: '/postage'},
+          {title: '配送方法と送料について', route: '/postage'},
+          {title: '選べるメッセージカードサービス', route: '/message-service'},
       ],
       members: [
         {title: '注文履歴', route: '/member/summary'},
