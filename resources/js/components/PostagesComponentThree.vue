@@ -18,7 +18,7 @@
             </v-col>
             <v-col cols="12" sm="12" md="8">
                 <div class="jp-font-400 grey--text text--darken-2 mb-4">
-                    こちらのページは、現在、準備中です。公開まで、しばらくお待ちください。
+                    こちらのページは、現在、メンテナンス中です。公開まで、しばらくお待ちください。
                 </div>
                 <!-- <div class="divider-image delivery-image">
                     <v-img

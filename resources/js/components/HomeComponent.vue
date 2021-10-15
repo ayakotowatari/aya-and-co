@@ -57,7 +57,7 @@
                       dense
                     >
                         <v-timeline-item small class="description">商品リストから、お好きなマーマレードを選んでカートに入れてご注文ください。</v-timeline-item>
-                        <v-timeline-item small class="description">お買い物のまえに、「<router-link to="/postage">配送方法と送料について</router-link>」をお読みいただくと、ご注文の手続きをスムーズに進めていただけます。</v-timeline-item>
+                        <!-- <v-timeline-item small class="description">お買い物のまえに、「<router-link to="/postage">配送方法と送料について</router-link>」をお読みいただくと、ご注文の手続きをスムーズに進めていただけます。</v-timeline-item> -->
                         <v-timeline-item small class="description">会員登録をいただいたお客様には、人気の「<router-link to="/message-service">選べるメッセージカードサービス</router-link>」(無料)をご利用いただけます。ご注文の際にはぜひご活用ください。</v-timeline-item>
                         <v-timeline-item small class="description">Little Black Jars をご指定の宛先までお届けいたします。</v-timeline-item>
                     </v-timeline>
