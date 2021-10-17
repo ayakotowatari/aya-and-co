@@ -5,6 +5,7 @@ import createPersistedState from 'vuex-persistedstate'
 import router from "../router"
 
 import { admin } from './modules/admin';
+import { coupon } from './modules/coupon';
  
 Vue.use(Vuex)
  
@@ -1755,6 +1756,7 @@ export default new Vuex.Store({
   },
   modules: {
     admin,
+    coupon
   }
 
 })
