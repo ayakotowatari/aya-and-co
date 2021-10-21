@@ -113,18 +113,32 @@
                     <v-col cols="12" sm="12" md="4">
                          <v-row class="mb-4">
                             <v-col cols="12" sm="12" md="12">
-                                <v-text-field
-                                    v-model="coupon_code"
-                                    label="クーポンコード" 
-                                    outlined
-                                    :error="allError.coupon? true : false"
-                                    :error-messages="allError.coupon"
-                                ></v-text-field>
-                                <v-btn
-                                    @click="apply()"
+                                <v-form
+                                    ref="form"
+                                    v-model="valid"
+                                    lazy-validation
                                 >
-                                    クーポンを適用する
-                                </v-btn>
+                                    <v-text-field
+                                        v-model="coupon_code"
+                                        label="クーポンコード" 
+                                        outlined
+                                        :rules='couponRules'
+                                        :error="allError.coupon? true : false"
+                                        :error-messages="allError.coupon"
+                                    ></v-text-field>
+                                    <v-btn
+                                        @click="apply()"
+                                        v-if="couponDisabled == false"
+                                    >
+                                        クーポンを適用する
+                                    </v-btn>
+                                    <v-btn
+                                        @click="resetCoupon()"
+                                        v-if="couponDisabled == true"
+                                    >
+                                        削除する
+                                    </v-btn>
+                                </v-form>
                             </v-col>
                         </v-row>
                     </v-col>
@@ -296,10 +310,13 @@ export default {
     },
     data: function(){
         return{
+            valid: true,
             coupon_code: null,
+            couponRules: [
+                v => !!v || 'クーポンコードを入力してください。',
+            ],
             use_coupon: '使用しない',
             ask_coupon: ['使用する', '使用しない']
-           
         }
     },
     mounted(){
@@ -321,6 +338,7 @@ export default {
             'coupon',
             'allError',
             'couponErrors',
+            'couponDisabled'
         ]),
         // deliveryCardUse(){
         //     return this.$store.getters.deliveryCardUse
@@ -412,6 +430,12 @@ export default {
             this.applyCoupon({
                 coupon_code: this.coupon_code
             })
+        },
+        resetCoupon(){
+            this.$refs.form.reset();
+            this.$store.commit('coupon/setCouponDisabled', false);
+            this.$store.dispatch('coupon/clearAllErrors');
+            this.$store.dispatch('coupon/clearCoupon');
         }
     },
 }

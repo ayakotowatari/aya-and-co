@@ -11,7 +11,7 @@ export const coupon = {
             percent_off: '',
             applied: false
         },
-        couponErrors: {}, 
+        couponDisabled: false,
         allError: []
        
     },
@@ -23,10 +23,20 @@ export const coupon = {
             state.coupon.percent_off = payload.percent_off
             state.coupon.applied = true
         },
-        setCouponErrors(state, payload){
-            state.couponErrors = payload
+        updateCoupon(state){
+            state.coupon.name = ''
+            state.coupon.type = ''
+            state.coupon.value = ''
+            state.coupon.percent_off = ''
+            state.coupon.applied = false
+        },
+        setCouponDisabled(state, payload){
+            state.couponDisabled = payload
         },
         setAllErrors(state, payload){
+            state.allError = payload
+        },
+        updateAllErrors(state, payload){
             state.allError = payload
         }
         
@@ -58,6 +68,7 @@ export const coupon = {
                     coupon = response.data.coupon;
                     // message = response.data.message;
                     commit('setCoupon', coupon);
+                    commit('setCouponDisabled', true);
                     // commit('setCouponErrors', message)
                     
                     // console.log(response);
@@ -72,15 +83,16 @@ export const coupon = {
                 .catch(error => {
                     allerror = error.response.data.errors
                     commit('setAllErrors', allerror)
+                    commit('setCouponDisabled', true);
                     console.log('error', allerror)
                 })
         },
-        
-        
-        
-
-
-
+        clearAllErrors({commit}) {
+            commit('updateAllErrors', []);
+        },
+        clearCoupon({commit}){
+            commit('updateCoupon');
+        }
 
     }
 
