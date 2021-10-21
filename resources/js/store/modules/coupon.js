@@ -5,6 +5,7 @@ export const coupon = {
 
     state: {
         coupon: {
+            id: '',
             name: '',
             type: '',
             value: '',
@@ -12,18 +13,24 @@ export const coupon = {
             applied: false
         },
         couponDisabled: false,
-        allError: []
+        allError: {
+            coupon: '',
+            coupon_code: ''
+        },
+        otherError: {}
        
     },
     mutations: {
         setCoupon(state, payload){
+            state.coupon.id = payload.id
             state.coupon.name = payload.name
             state.coupon.type = payload.type
             state.coupon.value = payload.value
             state.coupon.percent_off = payload.percent_off
             state.coupon.applied = true
+
         },
-        updateCoupon(state){
+        emptyCoupon(state){
             state.coupon.name = ''
             state.coupon.type = ''
             state.coupon.value = ''
@@ -38,17 +45,48 @@ export const coupon = {
         },
         updateAllErrors(state, payload){
             state.allError = payload
+        },
+        setOtherErrors(state, payload){
+            state.otherError = payload
         }
         
+    },
+
+    getters: {
+
+        discount(state, getters, rootState){
+
+            if(state.coupon.type == "fixed"){
+
+                return state.coupon.value
+
+            }else if(state.coupon.type == "percent"){
+
+                let cartAmount = rootState.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                let percentOff = state.coupon.percent_off / 100;
+                let discount = cartAmount * percentOff;
+
+                return discount
+
+            }else if(state.coupon.type == "postage"){
+
+                let postage = rootState.deliveryAddress.postage
+
+                return postage
+
+            }else{
+
+                return null
+            }
+
+        }
+
     },
     actions: {
         async applyCoupon({state, commit}, payload){
 
             let allerror = {};
             let coupon = {};
-            // let message = '';
-    
-            // commit("setLoading", true);
     
             await axios
                 .post('/member/coupon', {
@@ -57,28 +95,12 @@ export const coupon = {
                 })
                 .then(response => {
                     console.log(response);
-                    // if(response.data.coupon !== null){
-                    //     coupon = response.data.coupon;
-                    //     commit('setCoupon', coupon);
-                    // }else{
-                    //     message = response.data.message
-                    //     commit('setCouponErrors', message)
-                    // }
                     
                     coupon = response.data.coupon;
-                    // message = response.data.message;
+
                     commit('setCoupon', coupon);
                     commit('setCouponDisabled', true);
-                    // commit('setCouponErrors', message)
-                    
-                    // console.log(response);
-                    // console.log('coupon', coupon);
-                    // console.log('message', message);
-                    // // commit('clearGuest', {});
-                    
-                    
-                    // commit('setLoading', false);
-                    // router.push({path: '/'});
+                   
                 })
                 .catch(error => {
                     allerror = error.response.data.errors
@@ -87,12 +109,33 @@ export const coupon = {
                     console.log('error', allerror)
                 })
         },
+        async storeCouponData({state, commit}, payload){
+
+            let allerror = {};
+    
+            await axios
+                .post('/member/store-coupon', {
+                    coupon: payload,
+                })
+                .then(response => {
+                    console.log(response);
+                    
+                    commit('emptyCoupon');
+                   
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
         clearAllErrors({commit}) {
             commit('updateAllErrors', []);
         },
         clearCoupon({commit}){
-            commit('updateCoupon');
-        }
+            commit('emptyCoupon');
+        },
+
 
     }
 

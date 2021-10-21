@@ -30,7 +30,7 @@
                     <v-btn
                         outlined
                         color="primary"
-                        @click="$router.push({name: 'home'})"
+                        @click="$router.push({name: 'products-list'})"
                     >お買いものを続ける</v-btn>
                 </v-col>
             </v-row>

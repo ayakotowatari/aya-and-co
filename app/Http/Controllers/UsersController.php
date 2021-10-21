@@ -459,6 +459,7 @@ public function purchase(Request $request){
                 'postage' => $request->input('deliveryPostage'),
                 'box_quantity' => $request ->input('deliveryBoxQuantity'),
                 'item_total' => $request->input('itemTotal'),
+                'discount' =>  $request->input('discount'),
                 'status_id' => 1
                 // 'delivery_time' => $request->input('delivery_time'),
             ]);

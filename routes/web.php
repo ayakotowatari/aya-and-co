@@ -134,6 +134,7 @@ Route::group(['middleware' => ['auth', 'can:normal-user']], function(){
     Route::get('/member/create-receipt/{id}', 'OrdersController@createUserReceipt')->name('member.create.receipt');
     Route::post('/update-userid', 'OrdersController@updateUserId')->name('member.update.order.userid');
     Route::post('/member/coupon', 'CouponsController@checkCoupon')->name('member.check.coupon');
+    Route::post('/member/store-coupon', 'CouponsController@storeCouponData')->name('member.store.coupon');
 });
 
 Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){

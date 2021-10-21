@@ -196,6 +196,10 @@ export default {
 </script>
 
 <style>
+.v-list-item .v-list-item__subtitle, .v-list-item .v-list-item__title{
+    line-height: 1.4 !important
+}
+
 .key-visual{
   margin-top: 20px;
   margin-bottom: 48px;
