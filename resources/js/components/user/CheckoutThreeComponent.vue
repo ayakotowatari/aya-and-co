@@ -33,6 +33,27 @@
                         </v-row>
                     </v-col>
                 </v-row>
+                <v-row v-if="coupon.applied !== false && coupon.type !== 'postage'" justify="center">
+                    <v-col cols="12" sm="12" md="6">
+                        <v-row justify="start">
+                            <v-col cols="8" sm="8" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    クーポン割引
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'fixed'">
+                                <div class="totalprice">
+                                    -{{formatPrice(coupon.value)}}
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'percent'">
+                                <div v-text="percentDiscount" class="totalprice">
+                                    <!-- -{{formatPrice(coupon.percent_off)}} -->
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
                 <v-row justify="center">
                     <v-col cols="12" sm="12" md="6">
                         <v-row justify="start">
@@ -41,14 +62,28 @@
                                     送料
                                 </div>
                             </v-col>
-                           
-                                <v-col cols="4" sm="4" md="6" class="py-1">
-                                    <div class="totalprice">
-                                        {{formatPrice(deliveryAddress.postage)}}
-                                        <!-- {{deliveryAddress.postage}} -->
-                                    </div>
-                                </v-col>
-                           
+                            <v-col cols="4" sm="4" md="6" class="py-1">
+                                <div class="totalprice">
+                                    {{formatPrice(deliveryAddress.postage)}}
+                                    <!-- {{deliveryAddress.postage}} -->
+                                </div>
+                            </v-col>
+                        </v-row>
+                    </v-col>
+                </v-row>
+                <v-row v-if="coupon.applied !== false && coupon.type =='postage'" justify="center">
+                    <v-col cols="12" sm="12" md="6">
+                        <v-row justify="start">
+                            <v-col cols="8" sm="8" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    クーポン割引
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'postage'">
+                                <div class="totalprice">
+                                    -{{formatPrice(deliveryAddress.postage)}}
+                                </div>
+                            </v-col>
                         </v-row>
                     </v-col>
                 </v-row>
@@ -292,11 +327,21 @@ export default {
             'deliveryCardMessage',
             'deliveryCardName',
         ]),
+        ...mapState('coupon', [
+            'coupon'
+        ]),
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
             //console.log(cartAmount);
             return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+        },
+        percentDiscount(){
+            let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+            let percentOff = this.coupon.percent_off / 100;
+            let discount = cartAmount * percentOff;
+
+            return '-' + discount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         // totalPrice(){
         //     if(this.cart !== null && this.deliveryAddress !== null){
@@ -309,10 +354,54 @@ export default {
         //     }
         // },
          totalPrice(){
-            let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-            let totalAmount = cartAmount + this.deliveryAddress.postage
+            // let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+            // let totalAmount = cartAmount + this.deliveryAddress.postage
 
-            return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+            // return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+
+            if(this.coupon.applied !== true){
+                let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                let totalAmount = cartAmount + this.deliveryAddress.postage
+
+                //console.log('totalAmount', totalAmount)
+
+                return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+            }else{
+
+                if(this.coupon.type === "fixed"){
+
+                    let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                    let totalAmount = (cartAmount + this.deliveryAddress.postage) - this.coupon.value;
+
+                    //console.log('totalAmount', totalAmount)
+
+                    return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+
+                }else if(this.coupon.type === "percent"){
+
+                    let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                    let percentOff = this.coupon.percent_off / 100;
+                    let discount = cartAmount * percentOff;
+                    let totalAmount = (cartAmount + this.deliveryAddress.postage) - discount;
+
+                    // console.log('cartAmount', cartAmount)
+                    // console.log('discount', discount)
+                    // console.log('percentOff', percentOff)
+
+                    return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+
+                }else{
+
+                    let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                    let postage = this.deliveryAddress.postage;
+                    let totalAmount = (cartAmount + postage) - postage;
+
+                    return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+
+                }
+                
+            }
+           
             
             //  let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
             //  let totalAmount = cartAmount + this.deliveryAddress.postage

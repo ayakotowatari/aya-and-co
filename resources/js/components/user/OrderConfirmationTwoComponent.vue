@@ -64,7 +64,7 @@
                                 </div>
                             </v-col>
                         </v-row>
-                        <v-row v-if="coupon.applied !== false">
+                        <v-row v-if="coupon.applied !== false && coupon.type !== 'postage'">
                             <v-col cols="6" sm="6" md="6" class="py-1">
                                 <div class="totalprice grey--text text--darken-3">
                                     クーポン割引
@@ -75,7 +75,7 @@
                                     -{{formatPrice(coupon.value)}}
                                 </div>
                             </v-col>
-                            <v-col cols="4" sm="4" md="6" class="py-1" v-if="coupon.type == 'percent'">
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'percent'">
                                 <div v-text="percentDiscount" class="totalprice">
                                     <!-- -{{formatPrice(coupon.percent_off)}} -->
                                 </div>
@@ -90,6 +90,18 @@
                             <v-col cols="6" sm="6" md="6" class="py-1">
                                 <div class="totalprice">
                                     {{formatPrice(deliveryAddress.postage)}}
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row v-if="coupon.applied !== false && coupon.type == 'postage'">
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    クーポン割引
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'postage'">
+                                <div class="totalprice">
+                                    -{{formatPrice(deliveryAddress.postage)}}
                                 </div>
                             </v-col>
                         </v-row>
@@ -336,7 +348,6 @@ export default {
         ...mapState('coupon', [
             'coupon',
             'allError',
-            'couponErrors',
             'couponDisabled'
         ]),
         // deliveryCardUse(){
@@ -397,9 +408,10 @@ export default {
                     }else{
 
                         let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-                        let percentOff = this.coupon.percent_off / 100;
-                        let discount = cartAmount * percentOff;
-                        let totalAmount = (cartAmount + this.deliveryAddress.postage) - discount;
+                        let postage = this.deliveryAddress.postage;
+                        let totalAmount = (cartAmount + postage) - postage;
+
+                        return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
 
                     }
                    
