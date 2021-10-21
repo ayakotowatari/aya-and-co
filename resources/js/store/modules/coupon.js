@@ -11,8 +11,8 @@ export const coupon = {
             percent_off: '',
             applied: false
         },
-        couponMessage: null, 
-        allError: {}
+        couponErrors: {}, 
+        allError: []
        
     },
     mutations: {
@@ -23,10 +23,10 @@ export const coupon = {
             state.coupon.percent_off = payload.percent_off
             state.coupon.applied = true
         },
-        setCouponMessage(state, payload){
-            state.couponMessage = payload
+        setCouponErrors(state, payload){
+            state.couponErrors = payload
         },
-        setAllError(state, payload){
+        setAllErrors(state, payload){
             state.allError = payload
         }
         
@@ -34,9 +34,9 @@ export const coupon = {
     actions: {
         async applyCoupon({state, commit}, payload){
 
-            let allerror = [];
+            let allerror = {};
             let coupon = {};
-            let message = '';
+            // let message = '';
     
             // commit("setLoading", true);
     
@@ -46,15 +46,26 @@ export const coupon = {
                   
                 })
                 .then(response => {
-                    // console.log(response);
-                    coupon = response.data.coupon;
-                    message = response.data.message;
                     console.log(response);
-                    console.log('coupon', coupon);
-                    console.log('message', message);
-                    // commit('clearGuest', {});
+                    // if(response.data.coupon !== null){
+                    //     coupon = response.data.coupon;
+                    //     commit('setCoupon', coupon);
+                    // }else{
+                    //     message = response.data.message
+                    //     commit('setCouponErrors', message)
+                    // }
+                    
+                    coupon = response.data.coupon;
+                    // message = response.data.message;
                     commit('setCoupon', coupon);
-                    commit('setCouponMessage', message)
+                    // commit('setCouponErrors', message)
+                    
+                    // console.log(response);
+                    // console.log('coupon', coupon);
+                    // console.log('message', message);
+                    // // commit('clearGuest', {});
+                    
+                    
                     // commit('setLoading', false);
                     // router.push({path: '/'});
                 })

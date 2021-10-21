@@ -25,21 +25,37 @@ class CouponsController extends Controller
 
         $coupon = Coupon::where('name', $coupon_code)->first();
 
-        // DD($coupon);
-
-        $redeemed = $coupon->users()->first();
-
-        // DD($redeemed);
-
-        if(!$redeemed){
-
-            return response() -> json(['coupon'=>$coupon]);
-            
+        if(empty($coupon)){
+            return response() ->json(['errors' => ['coupon' => 'このクーポンは現在提供されていません。']], 400);
         }else{
-            $message = 'このクーポンはすでに使用済みです。';
+            $redeemed = $coupon->users()->first();
 
-            return response() -> json(['message'=>$message]);
+            if(!$redeemed){
+    
+                return response() -> json(['coupon'=>$coupon]);
+                
+            }else{
+    
+                return response() ->json(['errors' => ['coupon' => 'このクーポンは使用済みです。']], 400);
+            }
         }
+
+    
+            
+       
+
+       
+
+           
+
+       
+
+       
+       
+
+       
+
+        
 
     }
 

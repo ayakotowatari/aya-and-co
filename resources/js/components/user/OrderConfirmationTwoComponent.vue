@@ -51,80 +51,98 @@
                         </v-card>
                     </v-col>
                 </v-row>
-                <v-row>
-                    <v-col cols="6" sm="6" md="3" class="py-1">
-                        <div class="totalprice grey--text text--darken-3">
-                            商品小計（税込）
-                        </div>
+                <v-row align="start">
+                    <v-col cols="12" sm="12" md="6" class="mb-4">
+                        <v-row>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    商品小計（税込）
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div v-text="cartTotal" class="totalprice">
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row v-if="coupon.applied !== false">
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    クーポン割引
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'fixed'">
+                                <div class="totalprice">
+                                    -{{formatPrice(coupon.value)}}
+                                </div>
+                            </v-col>
+                            <v-col cols="4" sm="4" md="6" class="py-1" v-if="coupon.type == 'percent'">
+                                <div v-text="percentDiscount" class="totalprice">
+                                    <!-- -{{formatPrice(coupon.percent_off)}} -->
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="totalprice grey--text text--darken-3">
+                                    送料
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="totalprice">
+                                    {{formatPrice(deliveryAddress.postage)}}
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="12" sm="12" md="12">
+                                <v-divider></v-divider>
+                            </v-col>
+                        </v-row>
+                        <v-row>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div class="charge grey--text text--darken-3">
+                                    ご請求額
+                                </div>
+                            </v-col>
+                            <v-col cols="6" sm="6" md="6" class="py-1">
+                                <div v-text="totalPrice" class="charge">
+                                </div>
+                            </v-col>
+                        </v-row>
                     </v-col>
-                    <v-col cols="6" sm="6" md="4" class="py-1">
-                        <div v-text="cartTotal" class="totalprice">
-                        </div>
+                    <v-col cols="12" sm="12" md="4">
+                         <v-row class="mb-4">
+                            <v-col cols="12" sm="12" md="12">
+                                <v-text-field
+                                    v-model="coupon_code"
+                                    label="クーポンコード" 
+                                    outlined
+                                    :error="allError.coupon? true : false"
+                                    :error-messages="allError.coupon"
+                                ></v-text-field>
+                                <v-btn
+                                    @click="apply()"
+                                >
+                                    クーポンを適用する
+                                </v-btn>
+                            </v-col>
+                        </v-row>
                     </v-col>
                 </v-row>
-                <v-row v-if="coupon.applied !== false">
-                    <v-col cols="6" sm="6" md="3" class="py-1">
-                        <div class="totalprice grey--text text--darken-3">
-                            クーポン割引
-                        </div>
-                    </v-col>
-                    <v-col cols="6" sm="6" md="4" class="py-1" v-if="coupon.type == 'fixed'">
-                        <div class="totalprice">
-                            -{{formatPrice(coupon.value)}}
-                        </div>
-                    </v-col>
-                    <v-col cols="4" sm="4" md="3" class="py-1" v-if="coupon.type == 'percent'">
-                        <div v-text="percentDiscount" class="totalprice">
-                            -
-                            <!-- -{{formatPrice(coupon.percent_off)}} -->
-                        </div>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="6" sm="6" md="3" class="py-1">
-                        <div class="totalprice grey--text text--darken-3">
-                            送料
-                        </div>
-                    </v-col>
-                    <v-col cols="6" sm="6" md="4" class="py-1">
-                        <div class="totalprice">
-                            {{formatPrice(deliveryAddress.postage)}}
-                        </div>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="12" sm="12" md="12">
-                        <v-divider></v-divider>
-                    </v-col>
-                </v-row>
-                <v-row>
-                    <v-col cols="8" sm="8" md="3" class="py-1">
-                        <div class="charge grey--text text--darken-3">
-                            ご請求額
-                        </div>
-                    </v-col>
-                    <v-col cols="4" sm="4" md="3" class="py-1">
-                        <div v-text="totalPrice" class="charge">
-                        </div>
-                    </v-col>
-                </v-row>
+                
                 <v-row class="mb-4">
                     <v-col cols="12" sm="12" md="12">
                         <v-divider></v-divider>
                     </v-col>
                 </v-row>
-                <div class="mb-4">
-                    <v-text-field
-                        v-model="coupon_code"
-                        label="クーポンコード" 
-                        outlined
-                    ></v-text-field>
-                    <v-btn
-                        @click="apply()"
-                    >
-                        クーポンを適用する
-                    </v-btn>
-                </div>
+                <!-- <v-select
+                    v-model="use_coupon"
+                    label="クーポンの使用"
+                    outlined
+                    :items = "ask_coupon"
+                    required
+                >
+                </v-select> -->
                 <h4 class="jp-font grey--text text--darken-3 mb24">お届け先のご住所・配送オプション等</h4>
                 <v-row>
                     <v-col cols="12" sm="12" md="8">
@@ -279,6 +297,8 @@ export default {
     data: function(){
         return{
             coupon_code: null,
+            use_coupon: '使用しない',
+            ask_coupon: ['使用する', '使用しない']
            
         }
     },
@@ -298,7 +318,9 @@ export default {
             'deliveryCardName',
         ]),
         ...mapState('coupon', [
-            'coupon'
+            'coupon',
+            'allError',
+            'couponErrors',
         ]),
         // deliveryCardUse(){
         //     return this.$store.getters.deliveryCardUse
@@ -342,7 +364,7 @@ export default {
 
                         return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
 
-                    }else{
+                    }else if(this.coupon.type === "percent"){
 
                         let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
                         let percentOff = this.coupon.percent_off / 100;
@@ -354,6 +376,14 @@ export default {
                         // console.log('percentOff', percentOff)
 
                         return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+
+                    }else{
+
+                        let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+                        let percentOff = this.coupon.percent_off / 100;
+                        let discount = cartAmount * percentOff;
+                        let totalAmount = (cartAmount + this.deliveryAddress.postage) - discount;
+
                     }
                    
                 }
@@ -367,7 +397,6 @@ export default {
     methods: {
         ...mapActions('coupon', [
             'applyCoupon',
-            'allError'
         ]),
         cartLineTotal(item) {   
             let amount = item.price * item.quantity;
