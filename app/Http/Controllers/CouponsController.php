@@ -27,6 +27,7 @@ class CouponsController extends Controller
 
         if(empty($coupon)){
             return response() ->json(['errors' => ['coupon' => 'このクーポンは現在提供されていません。']], 400);
+            // return response() ->json(['errors' => 'このクーポンは現在提供されていません。'], 400);
         }else{
             $redeemed = $coupon->users()->first();
 

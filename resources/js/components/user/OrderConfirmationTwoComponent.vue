@@ -122,9 +122,8 @@
                                         v-model="coupon_code"
                                         label="クーポンコード" 
                                         outlined
-                                        :rules='couponRules'
-                                        :error="allError.coupon? true : false"
-                                        :error-messages="allError.coupon"
+                                        :error="allError.coupon || allError.coupon_code ? true : false"
+                                        :error-messages="allError.coupon || allError.coupon_code"
                                     ></v-text-field>
                                     <v-btn
                                         @click="apply()"
@@ -136,7 +135,7 @@
                                         @click="resetCoupon()"
                                         v-if="couponDisabled == true"
                                     >
-                                        削除する
+                                        削除・リセットする
                                     </v-btn>
                                 </v-form>
                             </v-col>
@@ -312,9 +311,9 @@ export default {
         return{
             valid: true,
             coupon_code: null,
-            couponRules: [
-                v => !!v || 'クーポンコードを入力してください。',
-            ],
+            // couponRules: [
+            //     v => !!v || 'クーポンコードを入力してください。',
+            // ],
             use_coupon: '使用しない',
             ask_coupon: ['使用する', '使用しない']
         }
