@@ -7,6 +7,7 @@ use App\User;
 use App\Models\Address;
 use App\Models\Postage;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\ProductInventory;
 use App\Notifications\OrderNotify;
 use Illuminate\Http\Request;
@@ -31,6 +32,32 @@ class UsersController extends Controller
     {
         $user = Auth::user();
         return response()->json(['user'=>$user],200);
+    }
+
+    //admin用に、会員の情報をとって、累計金額を入れる
+    public function fetchUsers()
+    {
+        $users = User::where('life', 1)->get();
+
+        // DD($users);
+
+        foreach($users as $user){
+
+            $user_id = $user->id;
+            $subtotal = Order::where('orders.user_id', $user_id)->sum('item_total');
+            $discounts = Order::where('orders.user_id', $user_id)->sum('discount');
+            $total = $subtotal - $discounts;
+
+            $user->total_spend = $total;
+            $user->update();
+
+        }
+
+        $active_users = User::where('total_spend', '>', 0)->get();
+        // DD($active_users);
+
+        return response()->json(['users'=>$active_users]);
+        
     }
 
     public function updateAddress(Request $request)

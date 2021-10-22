@@ -23,7 +23,14 @@
             </v-col>
         </v-row>
         <div v-if="cart.length <= 0" class="jp-font-400 grey--text text--darken-2 mb48">
-            お買い物かごに何も入っていません。
+            <div class="mb-8">
+                お買い物かごに何も入っていません。
+            </div>
+            <v-row>
+                <v-col cols="12" sm="12" md="4">
+                     <coupondisplay-component></coupondisplay-component>
+                </v-col>
+            </v-row>
         </div>
         <div v-if="cart.length >= 1" class="mb48">
             <v-row>
@@ -190,11 +197,16 @@
                             >お買いものを続ける</v-btn>
                         </v-col>
                     </v-row>
-                    <div>
+                    <div class="mb-6">
                         <p class="description">
                             お買い物のまえに「<router-link to="/postage">配送方法と送料について</router-link>」をご覧いただきますと、スムーズにご注文いただけます。
                         </p>
                     </div>
+                    <v-row>
+                        <v-col cols="12" sm="12" md="6">
+                            <coupondisplay-component></coupondisplay-component>
+                        </v-col>
+                    </v-row>
                 </v-col>
             </v-row>
         </div>
@@ -259,7 +271,7 @@ export default {
         }
     },
     mounted(){
-        
+        this.$store.dispatch('coupon/checkIfCoupon')
     },
     created(){
         
@@ -271,6 +283,9 @@ export default {
           'dialogUpdateCartQuantity',
           'dialogRemoveCartItem',
           'selectableNumbers',
+        ]),
+        ...mapState('coupon',[
+            'ifCoupon'
         ]),
         // formatPrice(){
         //   let amount = this.item.price;

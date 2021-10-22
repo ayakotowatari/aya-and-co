@@ -12,4 +12,8 @@ class Coupon extends Model
     public function users(){
         return $this->belongsToMany('App\User');
     }
+
+    public function status(){
+        return $this->hasOne('App\Models\Status');
+    }
 }

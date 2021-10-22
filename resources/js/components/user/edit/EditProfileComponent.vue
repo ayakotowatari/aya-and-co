@@ -132,6 +132,19 @@
 
                         <v-divider class="mb-6"></v-divider>
 
+                        <!-- <div class="mb-6">
+                            <div class="item-content policy-title mb-3">
+                                クーポン
+                            </div>
+                            <div v-for="coupon in coupons" :key="coupon.id">
+                                <div class="item-title grey--text text--darken-3 mb-3">
+                                    {{coupon.name}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <v-divider class="mb-6"></v-divider> -->
+
                         <div class="mb-6">
                             <div class="item-content policy-title mb-3">
                                 アカウントの削除
@@ -166,7 +179,7 @@ export default {
         }
     },
     mounted(){
-      
+        this.$store.dispatch('coupon/fetchCoupons');
     },
     created(){
      
@@ -179,6 +192,9 @@ export default {
             'isEditingEmail',
             'isEditingPassword',
             'dialogDeleteUser',
+        ]),
+        ...mapState('coupon', [
+            'coupons'
         ])
     
     },

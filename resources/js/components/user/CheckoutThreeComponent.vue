@@ -41,7 +41,7 @@
                                     クーポン割引
                                 </div>
                             </v-col>
-                            <v-col cols="6" sm="6" md="6" class="py-1">
+                            <v-col cols="4" sm="4" md="6" class="py-1">
                                 <div class="totalprice">
                                     -{{formatPrice(discount)}}
                                 </div>

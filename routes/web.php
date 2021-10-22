@@ -55,6 +55,7 @@ Route::post('/guest/add', 'GuestsController@create')->name('guest.addaddress');
 Route::post('/guest/order-confirmation', 'GuestsController@orderConfirm')->name('order.confirm');
 Route::get('/email/message', 'HomeController@email');
 Route::get('/email/notification', 'HomeController@notification');
+Route::get('/check-coupon', 'CouponsController@checkIfCoupon')->name('member.check.ifcoupon');
 
 //register by guest
 // Route::post('/register', 'RegisterController@register')->name('register');
@@ -107,6 +108,9 @@ Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::post('/admin/update-productstatus', 'ProductsController@updateStatus')->name('admin.update.product.status');
     Route::get('/admin/create-receipt/{id}', 'OrdersController@createUserReceipt')->name('admin.create.userreceipt');
     Route::get('/admin/create-guestreceipt/{id}', 'OrdersController@createGuestReceipt')->name('admin.create.guestreceipt');
+    Route::get('/admin/fetch-users', 'UsersController@fetchUsers')->name('admin.fetch.users');
+    Route::post('/admin/create-coupon', 'CouponsController@createCoupon')->name('admin.create.coupon');
+    Route::get('/admin/fetch-coupons', 'CouponsController@fetchCoupons')->name('admin.fetch.coupons');
 });
 
 //test

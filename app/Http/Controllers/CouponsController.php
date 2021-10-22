@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Coupon;
+use App\Models\Order;
 use Auth;
 use Illuminate\Http\Request;
+
+use Carbon\Carbon;
 
 class CouponsController extends Controller
 {
@@ -62,15 +65,118 @@ class CouponsController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createCoupon(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+        ]);
+
+        $coupon = new Coupon();
+
+        $coupon->name = request('name');
+        $coupon->type = request('type');
+        $coupon->value = request('value');
+        $coupon->percent_off = request('percentOff');
+        $coupon->minimum = request('minimum');
+        $coupon->date_by = request('dateBy');
+        $coupon->status_id = request('status_id');
+
+        $coupon->save();
+
+        $coupons = Coupon::get();
+
+        return response() -> json(['coupons'=>$coupons]);
+
     }
+
+    //会員が、2回目購入用のcouponにeligibleかどうかを確認する
+    public function checkIfCoupon(Request $request)
+    {
+        $user = Auth::user();
+
+        if(!$user){
+            return response() -> json(['check'=> false]);
+        }else{
+
+            $coupon_code = 'thanks10';
+
+            $coupon = Coupon::where('name', $coupon_code)->first();
+
+            $one_order = Order::where('orders.user_id', '=', $user->id)->count();
+
+            $first_order = Order::where('orders.user_id', '=', $user->id)->oldest()->first();
+
+            $order_date = new Carbon($first_order->created_at);
+
+            // DD($order_date);
+
+            if($one_order >= 1){
+
+                $redeemed = $coupon->users()->first();
+
+                if(!$redeemed){
+
+                    $deadline = Carbon::now()->subMonths(6);
+
+                    if($order_date->lt($deadline)){
+
+                        return response() -> json(['check'=> false]);
+
+                    }else{
+
+                        return response() -> json(['check'=> true]);
+
+                    }
+                    
+                }else{
+        
+                    return response() -> json(['check'=> false]);;
+                }
+            }
+
+        }
+        
+    }
+
+    //Adminのクーポンリスト表示用
+    public function fetchCoupons()
+    {
+       
+        $coupons = Coupon::join('statuses', 'statuses.id', '=', 'coupons.status_id')
+                    ->select(
+                        'coupons.id',
+                        'name',
+                        'type',
+                        'value',
+                        'percent_off',
+                        'minimum',
+                        'date_by',
+                        'status'
+                    )
+                    ->get();
+
+        return response() -> json(['coupons'=>$coupons]);
+        
+    }
+    // public function fetchCoupons()
+    // {
+    //     $user = Auth::user();
+
+    //     $item_total = $user->orders()->sum('item_total');
+    //     $discounts = $user->orders()->sum('discount');
+    //     $total = $item_total - $discounts;
+
+    //     if($total >= 5000 && $total <= 9999 ){
+
+
+            
+
+    //     }
+
+       
+
+    // }
 
     /**
      * Store a newly created resource in storage.

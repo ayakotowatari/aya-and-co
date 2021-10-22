@@ -65,6 +65,7 @@ Vue.component('editaddress-component', require('./components/user/edit/EditAddre
 Vue.component('editemail-component', require('./components/user/edit/EditEmailComponent.vue').default);
 Vue.component('editpassword-component', require('./components/user/edit/EditPasswordComponent.vue').default);
 Vue.component('deleteuserdialog-component', require('./components/user/edit/DeleteUserDialogComponent.vue').default);
+Vue.component('coupondisplay-component', require('./components/CouponDisplayComponent.vue').default);
 
 //guest
 Vue.component('guestcheckaddress-component', require('./components/guest/GuestCheckAddressComponent.vue').default);

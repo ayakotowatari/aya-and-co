@@ -12,6 +12,9 @@ export const coupon = {
             percent_off: '',
             applied: false
         },
+        coupons: [],
+        ifCoupon: false,
+        memberCoupons: [],
         couponDisabled: false,
         allError: {
             coupon: '',
@@ -30,6 +33,12 @@ export const coupon = {
             state.coupon.applied = true
 
         },
+        setCoupons(state, payload){
+            state.coupons = payload
+        },
+        setIfCoupon(state, payload){
+            state.ifCoupon = payload
+        },
         emptyCoupon(state){
             state.coupon.name = ''
             state.coupon.type = ''
@@ -39,6 +48,9 @@ export const coupon = {
         },
         setCouponDisabled(state, payload){
             state.couponDisabled = payload
+        },
+        setMemberCoupons(state, payload){
+            state.memberCoupons = payload
         },
         setAllErrors(state, payload){
             state.allError = payload
@@ -134,6 +146,73 @@ export const coupon = {
         },
         clearCoupon({commit}){
             commit('emptyCoupon');
+        },
+        // async fetchCoupons({commit}){
+
+        //     let payload =[];
+    
+        //     await axios
+        //         .get("/member/fetch-coupons")
+        //         .then(res => {
+        //             payload = res.data.coupons;
+        //             commit('setMemberCoupons', payload);
+        //             // commit('setDeliveryAddress', payload);
+        //     });
+        // },
+        async createCoupon({commit}, payload){
+
+            let allerror = {};
+            let coupons = [];
+    
+            await axios
+                .post('/admin/create-coupon', {
+                    name: payload.name,
+                    type: payload.type,
+                    value: payload.value,
+                    percentOff: payload.percentOff,
+                    minimum: payload.minimum,
+                    dateBy: payload.dateBy,
+                    status_id: payload.status_id
+                })
+                .then(response => {
+                    console.log(response);
+                    coupons = response.data.coupons;
+
+                    commit('setCoupons', coupons);
+                    
+                    // dispatch('assignCoupons', coupons);
+                   
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+        async fetchCoupons({commit}){
+
+            let payload =[];
+    
+            await axios
+                .get("/admin/fetch-coupons")
+                .then(res => {
+                    payload = res.data.coupons;
+                    commit('setCoupons', payload);
+                    // commit('setDeliveryAddress', payload);
+            });
+        },
+
+        async checkIfCoupon({commit}){
+
+            let payload ='';
+    
+            await axios
+                .get("/check-coupon")
+                .then(res => {
+                    payload = res.data.check;
+                    commit('setIfCoupon', payload);
+                    // commit('setDeliveryAddress', payload);
+            });
         },
 
 
