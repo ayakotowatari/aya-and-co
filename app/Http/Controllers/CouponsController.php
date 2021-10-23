@@ -26,7 +26,9 @@ class CouponsController extends Controller
 
         $coupon_code = request('coupon_code');
 
-        $coupon = Coupon::where('name', $coupon_code)->first();
+        $coupon = Coupon::where('name', $coupon_code)
+                        ->whereDate('date_by', '>=', Carbon::now()->toDateString())
+                        ->first();
 
         if(empty($coupon)){
             return response() ->json(['errors' => ['coupon' => 'このクーポンは現在、提供されていません。']], 400);
@@ -105,9 +107,9 @@ class CouponsController extends Controller
 
             $one_order = Order::where('orders.user_id', '=', $user->id)->count();
 
-            $first_order = Order::where('orders.user_id', '=', $user->id)->oldest()->first();
+            // $first_order = Order::where('orders.user_id', '=', $user->id)->oldest()->first();
 
-            $order_date = new Carbon($first_order->created_at);
+            // $order_date = new Carbon($first_order->created_at);
 
             // DD($order_date);
 
