@@ -46,10 +46,6 @@
                                     -{{formatPrice(discount)}}
                                 </div>
                             </v-col>
-                            <!-- <v-col cols="6" sm="6" md="6" class="py-1" v-if="coupon.type == 'percent'">
-                                <div v-text="percentDiscount" class="totalprice">
-                                </div>
-                            </v-col> -->
                         </v-row>
                     </v-col>
                 </v-row>
@@ -214,9 +210,9 @@ export default {
             stripe: {},
            // cardElement: {},
             //publicKey: process.env.MIX_STRIPE_KEY,
-            cardNumber: {},
-            cardExpiry: {},
-            cardCvc: {},
+            cardNumberElement: null,
+            cardExpiryElement: null,
+            cardCvcElement: null,
             cardNumberError: null,
             cardExpiryError: null,
             cardCvcError: null,
@@ -239,7 +235,15 @@ export default {
                 deliveryPhone: '',
                 deliveryCourierType: '',
                 deliveryTime: '',
-                deliveryPostage: ''
+                deliveryPostage: '',
+                // deliveryMessage: '',
+                // deliveryCardName: '',
+                // deliveryCardUse:'',
+                // deliveryCardMessage:'',
+                // boxQuantity: '',
+                // itemTotal: '',
+                // discount:'',
+
             },
             paymentProcessing: false,
             loading: false,
@@ -251,8 +255,9 @@ export default {
         //this.stripe = await loadStripe(`${process.env.MIX_STRIPE_KEY}`);
         // this.stripe = await loadStripe("pk_live_51J0LDyHqbknAxatFzrgue8qXopbEBy5AYGYJ26oSnK0Wqm4FPP8TrdlpQbPDKljHqmxQrm5xhIi5xkWYOLJsIoHB0040SBgx86");
         this.stripe = await loadStripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
-
-        let elements = this.stripe.elements();
+        // const stripe = Stripe("pk_test_51J0LDyHqbknAxatFaAwlCUX9kBQ0Pm1y8vxHS7HfavGtjQoUzUcqdlCYHa94F5JZXhZKIiOVfXknzPHey45W9DR600Zv4O4onO");
+        
+        const elements = this.stripe.elements();
        
         let elementStyles = {
             base: {
@@ -278,39 +283,37 @@ export default {
             invalid: 'invalid',
         };
 
-        this.cardNumber = elements.create('cardNumber', {
+        this.cardNumberElement = elements.create('cardNumber', {
             // classes: {
             //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
             // }       
             style: elementStyles,
             classes: elementClasses,
         });
-        this.cardNumber.mount('#card-number');
-
-        this.listenForErrorsCardNumber();
-
-        this.cardExpiry = elements.create('cardExpiry', {
+        
+        this.cardExpiryElement = elements.create('cardExpiry', {
             style: elementStyles,
             classes: elementClasses,
             // classes: {
             //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
             // } 
         });
-        this.cardExpiry.mount('#card-expiry');
+
+        this.cardCvcElement = elements.create('cardCvc', {
+            style: elementStyles,
+            classes: elementClasses,
+            // classes: {
+            //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
+            // } 
+        });
+
+        this.cardNumberElement.mount('#card-number');
+        this.cardExpiryElement.mount('#card-expiry');
+        this.cardCvcElement.mount('#card-cvc');
 
         this.listenForErrorsCardExpiry();
-
-        this.cardCvc = elements.create('cardCvc', {
-            style: elementStyles,
-            classes: elementClasses,
-            // classes: {
-            //       base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'   
-            // } 
-        });
-        this.cardCvc.mount('#card-cvc');
-
+        this.listenForErrorsCardNumber();
         this.listenForErrorsCardCvc();
-
         // registerElements([this.cardNumber, this.cardExpiry, this.cardCvc], 'card');
     },
     created(){
@@ -425,21 +428,21 @@ export default {
         listenForErrorsCardNumber(){
             const vm = this;
 
-            this.cardNumber.addEventListener('change', (event)=>{
+            this.cardNumberElement.addEventListener('change', (event)=>{
                 vm.cardNumberError = event.error ? event.error.message: null;
             })
         },
         listenForErrorsCardExpiry(){
             const vm = this;
 
-            this.cardExpiry.addEventListener('change', (event)=>{
+            this.cardExpiryElement.addEventListener('change', (event)=>{
                 vm.cardExpiryError = event.error ? event.error.message: null;
             })
         },
         listenForErrorsCardCvc(){
             const vm = this;
 
-            this.cardCvc.addEventListener('change', (event)=>{
+            this.cardCvcElement.addEventListener('change', (event)=>{
                 vm.cardCvcError = event.error ? event.error.message: null;
             })
         },
@@ -483,7 +486,7 @@ export default {
 
 
             const {paymentMethod, error} = await this.stripe.createPaymentMethod(
-                'card', this.cardNumber, {
+                'card', this.cardNumberElement, {
                     billing_details: {
                         name: this.customer.name,
                         email: this.customer.email,
