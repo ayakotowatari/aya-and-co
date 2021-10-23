@@ -117,9 +117,13 @@ class CouponsController extends Controller
 
                 if(!$redeemed){
 
-                    $deadline = Carbon::now()->subMonths(6);
+                    // $deadline = Carbon::now()->subMonths(6);
+                    $deadline = new Carbon('2021-11-30');
+                    $now = new Carbon();
 
-                    if($order_date->lt($deadline)){
+                    // DD($now);
+
+                    if($now->gt($deadline)){
 
                         return response() -> json(['check'=> false]);
 

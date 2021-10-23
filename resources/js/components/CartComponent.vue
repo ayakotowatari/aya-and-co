@@ -58,7 +58,7 @@
                                         {{formatPrice(item.price)}}
                                         </div>
                                     <v-row align="center">
-                                        <v-col cols="4" sm="4" md="3" >
+                                        <v-col cols="4" sm="4" md="4" >
                                             <label for="">数量</label>
                                         </v-col>
                                         <v-col cols="2" sm="2" md="2">
@@ -91,11 +91,12 @@
                                     小計: {{ cartLineTotal(item) }}（税込）
                                     </div>
                                     <v-row>
-                                        <v-col cols="4" sm="4" md="4" class="mr-6">
+                                        <v-col cols="12" md="12" sm="12">
                                             <v-btn
                                                 outlined
                                                 color="grey darken-1"
                                                 @click="updateCartQuantity(item)"
+                                                class="mr-3"
                                             >
                                                 <!-- <v-icon
                                                 >
@@ -103,8 +104,6 @@
                                                 </v-icon> -->
                                                 数量変更
                                             </v-btn>
-                                        </v-col>
-                                        <v-col cols="4" sm="4" md="4">
                                             <v-btn
                                                 outlined
                                                 color="grey darken-1"
