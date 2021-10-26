@@ -120,6 +120,18 @@
                                     </div>
                                 </v-col>
                             </v-row>
+                            <v-row v-if="order.discount !== null">
+                                <v-col cols="8" sm="8" md="4" class="py-1">
+                                    <div class="totalprice grey--text text--darken-3">
+                                        クーポン割引
+                                    </div>
+                                </v-col>
+                                <v-col cols="4" sm="4" md="4" class="py-1">
+                                    <div class="totalprice">
+                                        - {{formatPrice(order.discount)}}
+                                    </div>
+                                </v-col>
+                            </v-row>
                             <v-row>
                                 <v-col cols="12" sm="12" md="6">
                                     <v-divider></v-divider>
@@ -341,13 +353,6 @@ export default {
             'actualShipmentDate',
             'deliveredDate',
         ]),
-        // totalPrice(){
-        //      let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-        //      let totalAmount = cartAmount + this.deliveryAddress.postage
-
-        //      return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-        // },
-    
     },
     methods: {
         formatPrice(value){

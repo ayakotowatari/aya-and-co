@@ -61,29 +61,9 @@
                                                     <v-list-item-subtitle class="product-size mb-2">
                                                         {{item.size}}
                                                     </v-list-item-subtitle>
-                                                    <!-- <v-list-item-title class="jp-font-400 grey--text text--darken-4 mb-2">
-                                                        {{item.quantity}}個
-                                                    </v-list-item-title> -->
                                                     <v-list-item-title class="date grey--text text--darken-4">
                                                         {{formattedDate(item.updated_at)}}
                                                     </v-list-item-title>
-                                                
-                                                    <!-- <v-row align="center">
-                                                        <v-col cols="4" sm="4" md="4" >
-                                                            <div class="jp-font-400 grey--text text--darken-3">数量</div>
-                                                        </v-col>
-                                                        <v-col cols="3" sm="3" md="4">
-                                                            <div>{{item.quantity}}</div>
-                                                        </v-col>
-                                                    </v-row>
-                                                    <v-row align="center">
-                                                        <v-col cols="4" sm="4" md="4" >
-                                                            <div class="jp-font-400 grey--text text--darken-3">注文日</div>
-                                                        </v-col>
-                                                        <v-col cols="8" sm="8" md="8">
-                                                            <div>{{item.updated_at}}</div>
-                                                        </v-col>
-                                                    </v-row> -->
                                                 </v-list-item-content>
                                             </v-list-item>
                                         </v-col>
@@ -131,14 +111,6 @@ export default {
         this.$store.dispatch('fetchOrders', {
             pageNumber
         })
-        // this.$store.dispatch('fetchOrders');
-      // this.$store.dispatch('fetchProducts');  
-
-        // this.fetchProducts();
-
-      // this.fetchUser();
-      // this.fetchInst();
-      // this.fetchInitials();
 
     },
     computed: {

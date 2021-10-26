@@ -111,6 +111,15 @@ Route::group(['middleware' => ['auth:admin', 'can:admin']], function(){
     Route::get('/admin/fetch-users', 'UsersController@fetchUsers')->name('admin.fetch.users');
     Route::post('/admin/create-coupon', 'CouponsController@createCoupon')->name('admin.create.coupon');
     Route::get('/admin/fetch-coupons', 'CouponsController@fetchCoupons')->name('admin.fetch.coupons');
+    Route::get('/admin/fetch-coupon/{id}', 'CouponsController@fetchCoupon')->name('admin.fetch.coupon');
+    Route::post('/admin/edit-couponname', 'CouponsController@editName')->name('admin.coupon.edit.name');
+    Route::post('/admin/edit-coupontype', 'CouponsController@editType')->name('admin.coupon.edit.type');
+    Route::post('/admin/edit-couponvalue', 'CouponsController@editValue')->name('admin.coupon.edit.value');
+    Route::post('/admin/edit-couponpercentoff', 'CouponsController@editPercentOff')->name('admin.coupon.edit.percentoff');
+    Route::post('/admin/edit-couponminimum', 'CouponsController@editMinimum')->name('admin.coupon.edit.minimum');
+    Route::post('/admin/edit-couponndeadline', 'CouponsController@editDeadline')->name('admin.coupon.edit.deadline');
+    Route::post('/admin/edit-couponstatus', 'CouponsController@editStatus')->name('admin.coupon.edit.status');
+    
 });
 
 //test

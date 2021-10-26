@@ -61,7 +61,7 @@
                                 :error-messages="otherError.percent_off"
                             ></v-text-field>
                             <v-date-picker
-                                v-model="dateBy"
+                                v-model="deadline"
                                 color = "primary"
                             ></v-date-picker>
                             <v-btn 
@@ -104,7 +104,7 @@ export default {
             value: '',
             percentOff: '',
             minimum: '',
-            dateBy: '',
+            deadline: '',
     
         }
     },
@@ -135,7 +135,7 @@ export default {
                     value: this.value,
                     percentOff: this.percentOff,
                     minimum: this.minimum,
-                    dateBy: this.dateBy,
+                    deadline: this.deadline,
                     status_id: 1,
                 })
             }

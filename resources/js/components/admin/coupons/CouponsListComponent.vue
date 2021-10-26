@@ -45,19 +45,7 @@
             {{ myprops.item[header.value] }}
           </td>
         </template>
-        <!-- <template v-slot:[`item.date`]="{ item }">
-          {{ formattedDate(item.date) }}
-        </template> -->
-        <!-- <template v-slot:[`item.dashboard`]="{ item }">
-          <v-icon
-            v-show="item.status !== 'Draft'"
-            small
-            class="mr-4"
-            @click="toDashboard(item.id)"
-          >
-            mdi-open-in-new
-          </v-icon>
-        </template> -->
+
         <template v-slot:[`item.actions`]="{ item }">
           <v-icon
             small
@@ -65,21 +53,8 @@
           >
             mdi-open-in-new
           </v-icon>
-          <!-- <v-icon
-            v-show="item.status == 'Complete'"
-            small
-            class="mr-4"
-            @click="editItem(item)"
-          >
-            mdi-content-copy
-          </v-icon>
-          <v-icon
-            small
-            @click="deleteItem(item)"
-          >
-            mdi-trash-can-outline
-          </v-icon> -->
         </template>
+        
         <template v-slot:[`item.status`]="{ item }">
           <v-chip :color="getColor(item.status)" dark>{{ item.status }}</v-chip>
         </template>
@@ -109,7 +84,7 @@ export default {
                 { text: '値', value: 'value', sortable: false  },
                 { text: '割引率', value: 'percent_off', sortable: false  },
                 { text: '最小金額', value: 'minimum'},
-                { text: '期限', value: 'date_by', sortable: false },
+                { text: '期限', value: 'deadline', sortable: false },
                 { text: '状況', value: 'status'},
                 { text: '詳細', value: 'actions', sortable: false },
             ],
@@ -144,7 +119,7 @@ export default {
         },
         expand(id){
             console.log(id); 
-            this.$router.push({name: 'each-order', params: {id: id}})
+            this.$router.push({name: 'each-coupon', params: {id: id}})
         },
         // expand(id){
         //     console.log(id); 

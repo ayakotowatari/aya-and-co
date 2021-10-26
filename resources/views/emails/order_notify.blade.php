@@ -15,7 +15,7 @@
 <style>
 
 body {
-    padding: 32px;
+    padding: 24px;
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -111,6 +111,12 @@ td.align-right{
                 <td class="pr20">送料:</td>
                 <td class="align-right">{{$order['postage']}}円</td>
             </tr>
+            @if(isset($order['discount']))
+            <tr>
+                <td class="pr20">クーポン割引:</td>
+                <td class="align-right">-{{$order['discount']}}円</td>
+            </tr>
+            @endif
             <tr>
                 <td class="pr20">合計:</td>
                 <td class="align-right">{{$order['total']}}円</td>

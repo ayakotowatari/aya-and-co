@@ -119,6 +119,7 @@ export default new Vuex.Store({
         message:"",
         postage:"",
         status:"",
+        discount:"",
         total:"",
         user_address_1:"",
         user_building:"",

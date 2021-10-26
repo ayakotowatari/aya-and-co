@@ -61,6 +61,15 @@
  Vue.component('inputguestordernote-component', require('./components/admin/orders/InputGuestOrderNoteComponent.vue').default);
  Vue.component('updateguestordernote-component', require('./components/admin/orders/UpdateGuestOrderNoteComponent.vue').default);
  
+ //coupon
+ Vue.component('editname-component', require('./components/admin/coupons/edit/EditNameComponent.vue').default);
+ Vue.component('edittype-component', require('./components/admin/coupons/edit/EditTypeComponent.vue').default);
+ Vue.component('editvalue-component', require('./components/admin/coupons/edit/EditValueComponent.vue').default);
+ Vue.component('editpercentoff-component', require('./components/admin/coupons/edit/EditPercentOffComponent.vue').default);
+ Vue.component('editminimum-component', require('./components/admin/coupons/edit/EditMinimumComponent.vue').default);
+ Vue.component('editstatus-component', require('./components/admin/coupons/edit/EditStatusComponent.vue').default);
+ Vue.component('editdeadline-component', require('./components/admin/coupons/edit/EditDeadlineComponent.vue').default);
+ 
  /**
   * Next, we will create a fresh Vue application instance and attach it to
   * the page. Then, you may begin adding components to this application

@@ -20,7 +20,8 @@ class CreateCouponsTable extends Migration
             $table->integer('value')->nullable();
             $table->integer('percent_off')->nullable();
             $table->integer('minimum')->nullable();
-            $table->string('date_by')->nullable();
+            $table->string('deadline')->nullable();
+            $table->string('target')->nullable();
             $table->bigInteger('status_id')->unsigned();
             $table->timestamps();
 

@@ -121,6 +121,7 @@ class OrdersController extends Controller
                         'orders.delivery_cardname',
                         'orders.postage',
                         'orders.box_quantity',
+                        'orders.discount',
                         'orders.total',
                         'orders.note',
                         'statuses.status',
@@ -531,6 +532,7 @@ class OrdersController extends Controller
                         'orders.postage',
                         'orders.box_quantity',
                         'orders.item_total',
+                        'orders.discount',
                         'orders.total',
                         'statuses.status',
                         // 'statuses.status',
@@ -703,6 +705,7 @@ class OrdersController extends Controller
                         'orders.id as order_id',
                         'orders.postage',
                         'orders.item_total',
+                        'orders.discount',
                         'orders.total',
                         'orders.created_at'
                     )

@@ -27,7 +27,7 @@ class CouponsController extends Controller
         $coupon_code = request('coupon_code');
 
         $coupon = Coupon::where('name', $coupon_code)
-                        ->whereDate('date_by', '>=', Carbon::now()->toDateString())
+                        ->whereDate('deadline', '>=', Carbon::now()->toDateString())
                         ->first();
 
         if(empty($coupon)){
@@ -81,7 +81,7 @@ class CouponsController extends Controller
         $coupon->value = request('value');
         $coupon->percent_off = request('percentOff');
         $coupon->minimum = request('minimum');
-        $coupon->date_by = request('dateBy');
+        $coupon->deadline = request('deadline');
         $coupon->status_id = request('status_id');
 
         $coupon->save();
@@ -93,7 +93,7 @@ class CouponsController extends Controller
     }
 
     //会員が、2回目購入用のcouponにeligibleかどうかを確認する
-    public function checkIfCoupon(Request $request)
+    public function checkIfCoupon()
     {
         $user = Auth::user();
 
@@ -157,7 +157,7 @@ class CouponsController extends Controller
                         'value',
                         'percent_off',
                         'minimum',
-                        'date_by',
+                        'deadline',
                         'status'
                     )
                     ->get();
@@ -165,24 +165,188 @@ class CouponsController extends Controller
         return response() -> json(['coupons'=>$coupons]);
         
     }
-    // public function fetchCoupons()
-    // {
-    //     $user = Auth::user();
 
-    //     $item_total = $user->orders()->sum('item_total');
-    //     $discounts = $user->orders()->sum('discount');
-    //     $total = $item_total - $discounts;
+     //Adminの各クーポン詳細
+     public function fetchCoupon($id)
+     {
+         $coupon = Coupon::join('statuses', 'statuses.id', '=', 'coupons.status_id')
+                        ->where('coupons.id', $id)
+                        ->select(
+                            'coupons.id',
+                            'name',
+                            'type',
+                            'value',
+                            'percent_off',
+                            'minimum',
+                            'deadline',
+                            'status'
+                        )
+                        ->first();
+    
+         return response() -> json(['coupon'=>$coupon]);
+         
+     }
 
-    //     if($total >= 5000 && $total <= 9999 ){
+     public function editName (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required',
+        ]);
 
+        $coupon_id = request('id');
+        $name = request('name');
 
-            
+        $coupon = Coupon::find($coupon_id);
 
-    //     }
+        $coupon->name = $name;
+        $coupon->update();
 
-       
+        $updated_name = $coupon->name;
 
-    // }
+        return response() -> json(['name'=>$updated_name]);
+
+     }
+
+     public function editType (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'type' => 'required',
+        ]);
+
+        $coupon_id = request('id');
+        $type = request('type');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->type = $type;
+        $coupon->update();
+
+        $updated_type = $coupon->type;
+
+        return response() -> json(['type'=>$updated_type]);
+
+     }
+
+     public function editValue (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'value' => 'required',
+        ]);
+
+        $coupon_id = request('id');
+        $value = request('value');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->value = $value;
+        $coupon->update();
+
+        $updated_value = $coupon->value;
+
+        return response() -> json(['value'=>$updated_value]);
+
+     }
+
+     public function editPercentOff (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'percentOff' => 'required',
+        ]);
+
+        $coupon_id = request('id');
+        $percent_off = request('percentOff');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->percent_off = $percent_off;
+        $coupon->update();
+
+        $updated_percentOff = $coupon->percent_off;
+
+        return response() -> json(['percentOff'=>$updated_percentOff]);
+
+     }
+
+     public function editMinimum (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'minimum' => 'required',
+        ]);
+
+        $coupon_id = request('id');
+        $minimum = request('minimum');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->minimum = $minimum;
+        $coupon->update();
+
+        $updated_minimum = $coupon->minimum;
+
+        return response() -> json(['minimum'=>$updated_minimum]);
+
+     }
+
+     public function editDeadline (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'deadline' => 'required',
+        ]);
+
+        $coupon_id = request('id');
+        $deadline = request('deadline');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->deadline = $deadline;
+        $coupon->update();
+
+        $updated_deadline = $coupon->deadline;
+
+        return response() -> json(['deadline'=>$updated_minimum]);
+
+     }
+
+     public function editStatus (Request $request)
+     {
+        $request->validate([
+            'id' => 'required',
+            'status_id' => 'status_id',
+        ]);
+
+        $coupon_id = request('id');
+        $status_id = request('status_id');
+
+        $coupon = Coupon::find($coupon_id);
+
+        $coupon->status_id = $status_id;
+        $coupon->update();
+
+        $updated_status = $coupon->status()->status;
+
+        return response() -> json(['status'=>$updated_status]);
+
+     }
+
+     public function statuses()
+    {
+        // $statuses = Status::whereNotNull('status')->get();
+
+        $statuses = Status::whereIn('id', [1, 17])
+        ->get();
+
+        // DD($statuses);
+
+        return response() -> json(['statuses' => $statuses]);   
+
+    }
+    
 
     /**
      * Store a newly created resource in storage.

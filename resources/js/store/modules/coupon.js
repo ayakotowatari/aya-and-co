@@ -15,7 +15,18 @@ export const coupon = {
         coupons: [],
         ifCoupon: false,
         memberCoupons: [],
+        adminCoupon: {},
         couponDisabled: false,
+        isEditing: {
+            name: false,
+            type: false,
+            value: false,
+            percentOff: false,
+            minimum: false,
+            deadline: false,
+            status: false
+        },
+        statuses: [],
         allError: {
             coupon: '',
             coupon_code: ''
@@ -40,6 +51,7 @@ export const coupon = {
             state.ifCoupon = payload
         },
         emptyCoupon(state){
+            state.coupon.id = ''
             state.coupon.name = ''
             state.coupon.type = ''
             state.coupon.value = ''
@@ -51,6 +63,54 @@ export const coupon = {
         },
         setMemberCoupons(state, payload){
             state.memberCoupons = payload
+        },
+        setAdminCoupon(state, payload){
+            state.adminCoupon = payload
+        },
+        setIsEditingName(state, payload){
+            state.isEditing.name = payload
+        },
+        setIsEditingType(state, payload){
+            state.isEditing.type = payload
+        },
+        setIsEditingValue(state, payload){
+            state.isEditing.value = payload
+        },
+        setIsEditingPercentOff(state, payload){
+            state.isEditing.percentOff = payload
+        },
+        setIsEditingMinimum(state, payload){
+            state.isEditing.minimum = payload
+        },
+        setIsEditingDeadline(state, payload){
+            state.isEditing.deadline = payload
+        },
+        setIsEditingStatus(state, payload){
+            state.isEditing.status = payload
+        },
+        updateCouponName(state, payload){
+            state.adminCoupon.name = payload
+        },
+        updateCouponType(state, payload){
+            state.adminCoupon.type = payload
+        },
+        updateCouponValue(state, payload){
+            state.adminCoupon.value = payload
+        },
+        updateCouponPercentOff(state, payload){
+            state.adminCoupon.percentOff = payload
+        },
+        updateCouponMinimum(state, payload){
+            state.adminCoupon.minimum = payload
+        },
+        updateCouponDeadine(state, payload){
+            state.adminCoupon.deadline = payload
+        },
+        updateCouponStatus(state, payload){
+            state.adminCoupon.status = payload
+        },
+        setStatuses(state, payload){
+            state.statuses = payload
         },
         setAllErrors(state, payload){
             state.allError = payload
@@ -147,18 +207,6 @@ export const coupon = {
         clearCoupon({commit}){
             commit('emptyCoupon');
         },
-        // async fetchCoupons({commit}){
-
-        //     let payload =[];
-    
-        //     await axios
-        //         .get("/member/fetch-coupons")
-        //         .then(res => {
-        //             payload = res.data.coupons;
-        //             commit('setMemberCoupons', payload);
-        //             // commit('setDeliveryAddress', payload);
-        //     });
-        // },
         async createCoupon({commit}, payload){
 
             let allerror = {};
@@ -171,7 +219,7 @@ export const coupon = {
                     value: payload.value,
                     percentOff: payload.percentOff,
                     minimum: payload.minimum,
-                    dateBy: payload.dateBy,
+                    deadline: payload.deadline,
                     status_id: payload.status_id
                 })
                 .then(response => {
@@ -202,6 +250,22 @@ export const coupon = {
             });
         },
 
+        async fetchCoupon({commit}, payload){
+
+            let coupon = {};
+
+            await axios
+                .get('/admin/fetch-coupon/' + payload.id)
+                .then(response => {
+                    coupon = response.data.coupon;
+                    commit('setAdminCoupon', coupon);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
         async checkIfCoupon({commit}){
 
             let payload ='';
@@ -213,6 +277,185 @@ export const coupon = {
                     commit('setIfCoupon', payload);
                     // commit('setDeliveryAddress', payload);
             });
+        },
+
+        async updateName({commit}, payload){
+
+            let allerror = {};
+            let coupon = '';
+    
+            await axios
+                .post('/admin/edit-couponname', {
+                    id: payload.id,
+                    name: payload.name,
+                })
+                .then(response => {
+                    console.log(response);
+                    name = response.data.name
+                    commit('updateCouponName', name);
+                    commit('setIsEditingName', false);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updateType({commit}, payload){
+
+            let allerror = {};
+            let type = '';
+
+            console.log('payload', payload);
+    
+            await axios
+                .post('/admin/edit-coupontype', {
+                    id: payload.id,
+                    type: payload.type,
+                })
+                .then(response => {
+                    console.log(response);
+                    type = response.data.type
+                    commit('updateCouponType', type);
+                    commit('setIsEditingType', false);   
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updateValue({commit}, payload){
+
+            let allerror = {};
+            let value  = '';
+    
+            await axios
+                .post('/admin/edit-couponvalue', {
+                    id: payload.id,
+                    value: payload.value,
+                })
+                .then(response => {
+                    console.log(response);
+                    value = response.data.value
+                    commit('updateCouponValue', value);
+                   
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updatePercentOff({commit}, payload){
+
+            let allerror = {};
+            let percentOff  = '';
+    
+            await axios
+                .post('/admin/edit-couponpercentoff', {
+                    id: payload.id,
+                    percentOff: payload.percentOff,
+                })
+                .then(response => {
+                    console.log(response);
+                    percentOff = response.data.percentOff
+                    commit('updateCouponPercentOff', percentOff);
+                    commit('setIsEditingPercentOff', false);  
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updateMinimum({commit}, payload){
+
+            let allerror = {};
+            let minimum  = '';
+    
+            await axios
+                .post('/admin/edit-couponminimum', {
+                    id: payload.id,
+                    minimum: payload.minimum,
+                })
+                .then(response => {
+                    console.log(response);
+                    minimum = response.data.value
+                    commit('updateCouponMinimum', payload);
+                    commit('setIsEditingMinimum', false);  
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updateDeadline({commit}, payload){
+
+            let allerror = {};
+            let deadline = '';
+    
+            await axios
+                .post('/admin/edit-coupondeadline', {
+                    id: payload.id,
+                    deadline: payload.deadline,
+                })
+                .then(response => {
+                    console.log(response);
+                    deadline = response.data.deadline
+                    commit('updateCouponDeadline', payload);
+                    commit('setIsEditingDeadline', false);  
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async updateStatus({commit}, payload){
+
+            let allerror = {};
+            let status = '';
+    
+            await axios
+                .post('/admin/edit-couponstatus', {
+                    id: payload.id,
+                    status_id: payload.status_id,
+                })
+                .then(response => {
+                    console.log(response);
+                    status = response.data.status
+                    commit('updateCouponStatus', payload);
+                    commit('setIsEditingStatus', false);  
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
+                    commit('setOtherErrors', allerror)
+                    console.log('error', allerror)
+                })
+        },
+
+        async fetchStatuses({commit}){
+
+            let statuses = {};
+
+            await axios
+                .get('/admin/fetch-statuses/')
+                .then(response => {
+                    statuses = response.data.statuses;
+                    commit('setStatuses', statuses);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors,
+                    commit('setOtherErrors', allerror)
+                })
         },
 
 
