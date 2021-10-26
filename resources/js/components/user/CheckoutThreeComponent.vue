@@ -47,7 +47,6 @@
                         <v-col cols="4" sm="4" md="6" class="py-1">
                             <div class="totalprice">
                                 {{formatPrice(deliveryAddress.postage)}}
-                                <!-- {{deliveryAddress.postage}} -->
                             </div>
                         </v-col>
                     </v-row>
@@ -296,13 +295,13 @@ export default {
             //console.log(cartAmount);
             return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
-        percentDiscount(){
-            let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-            let percentOff = this.coupon.percent_off / 100;
-            let discount = cartAmount * percentOff;
+        // percentDiscount(){
+        //     let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+        //     let percentOff = this.coupon.percent_off / 100;
+        //     let discount = cartAmount * percentOff;
 
-            return '-' + discount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-        },
+        //     return '-' + discount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
+        // },
          totalPrice(){
 
             if(this.coupon.applied !== true){

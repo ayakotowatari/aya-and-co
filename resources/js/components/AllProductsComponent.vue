@@ -19,38 +19,11 @@
                 <div class="product-season mb-4">
                     {{category.season}}
                 </div>
-                <!-- <div class="product-size mb-2">
-                    {{product.size}}
-                </div> -->
-                <!-- <div class="product-price mb-4">
-                    {{formatPrice(product.price)}}
-                </div> -->
                 <div class="product-details">
                     {{category.details}}
                 </div>
             </v-card-text>
 
-            <!-- <v-list-item three-line>
-                <v-list-item-content>
-                <div class="product-name mb-1">
-                    {{product.name}}
-                </div>
-                <div class="product-size mb-4">
-                    {{product.size}}
-                </div>
-                <div class="product-price mb-6">
-                    {{formatPrice(product.price)}}
-                </div>
-                <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
-                </v-list-item-content>
-
-                <v-list-item-avatar
-                tile
-                size="80"
-                color="grey"
-                ></v-list-item-avatar>
-            </v-list-item>
-            -->
             <div class="link">
                 <router-link
                     :to="{
@@ -95,7 +68,6 @@ export default {
         ...mapState([
             'categories'
         ])
-    
     },
     methods: {
         showmore(id){

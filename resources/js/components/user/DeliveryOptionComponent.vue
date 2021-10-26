@@ -250,18 +250,6 @@ export default {
             return totalInCartQuantity;
 
         },
-        // setInCart(){
-            
-        //     return this.cart.filter(cart => cart.set === 1);
-            
-        // },
-        // setQuantity(){
-
-        //     let setInCart = this.cart.filter(cart => cart.set === 1);
-        //     let cartQuantity = setInCart.reduce((acc,item) => acc + item.quantity, 0);
-        //     console.log('result', cartQuantity);
-        //     return cartQuantity;
-        // },
         courierStandard(){
             return this.couriers.filter(courier => courier.id !== 2)
         },
@@ -271,13 +259,6 @@ export default {
         courierBig(){
             return this.couriers.filter(courier => courier.id === 2)
         },
-        // cartQuantity(){
-
-        //     let cartQuantity = this.cart.reduce((acc,item) => acc + item.quantity, 0);
-        //     // console.log('result', cartQuantity)
-
-        //     return cartQuantity;
-        // },
     },
     methods: {
         ...mapActions([

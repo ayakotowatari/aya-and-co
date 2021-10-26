@@ -22,10 +22,6 @@
              <v-card-text class="ja-font-400 small-description">
                   クーポンは1回限りのご利用となり、有効期限は、2021年11月30日です。
             </v-card-text>
-            <!-- <v-card-subtitle>
-                <p>{{ event.date }}</p>
-                <p>{{ event.title }}</p>
-            </v-card-subtitle> -->
         </v-card>
     </div>
 </template>

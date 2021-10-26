@@ -75,17 +75,6 @@
                                             </select> -->
                                                 {{ item.quantity }}
                                         </v-col>
-                                        <!-- <v-col cols="2" sm="2" md="2">
-                                             <v-btn
-                                                text
-                                                color="primary"
-                                            >
-                                                <v-icon
-                                                >
-                                                mdi-plus-minus-variant
-                                                </v-icon>
-                                            </v-btn>
-                                        </v-col> -->
                                     </v-row>
                                     <div class="text-overline mb-4">
                                     小計: {{ cartLineTotal(item) }}（税込）
@@ -98,10 +87,6 @@
                                                 @click="updateCartQuantity(item)"
                                                 class="mr-3"
                                             >
-                                                <!-- <v-icon
-                                                >
-                                                mdi-plus-minus-variant
-                                                </v-icon> -->
                                                 数量変更
                                             </v-btn>
                                             <v-btn
@@ -109,10 +94,6 @@
                                                 color="grey darken-1"
                                                 @click="remove(item)"
                                             >
-                                                <!-- <v-icon
-                                                >
-                                                mdi-trash-can-outline
-                                                </v-icon> -->
                                                 削除
                                             </v-btn>
                                         </v-col>
@@ -286,26 +267,12 @@ export default {
         ...mapState('coupon',[
             'ifCoupon'
         ]),
-        // formatPrice(){
-        //   let amount = this.item.price;
-        //   console.log(amount)
-
-        //   return amount.toLocaleString('ja-JP', {style: 'currency', currency: 'JPY'});
-        // },
         cartTotal(){
             let amount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
             //console.log(amount);
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
-        // selectedQuantity: {
-        //     get(){
-        //         return this.$store.state.cart[0].quantity
-        //     },
-        //     set (value) {
-        //         this.$store.commit('updateCartQuantity', value)
-        //     }
-        // },
     },
     methods: {
         ...mapActions([
@@ -331,15 +298,6 @@ export default {
         showmore(id){
           this.$router.push({name: 'products', params: {id: id}})
         },
-        // remove(value){
-
-        //     console.log('slug', value)
-
-        //     this.removeProduct({
-        //         slug: value
-        //     })
-
-        // },
         remove(value){
 
             //console.log(value);
@@ -347,16 +305,8 @@ export default {
             this.openDialogRemoveCartItem({
                 cartItem: value
             })
-            // console.log('id', value)
-
-            // this.removeProduct({
-            //     slug: value
-            // })
 
         },
-        // backToHome(){
-        //     this.$router.push({name: 'home'})
-        // },
         goToProductsList(){
             this.$router.push({name: 'products-list'})
         },
@@ -365,9 +315,6 @@ export default {
 
             return amount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
-        // updateCartQuantity(index, value){
-        //     this.$store.commit('updateCartQuantity', {index, value})
-        // },
         expand(id){
           this.$router.push({name: 'products', params: {id: id}})
         },
