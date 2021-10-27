@@ -21,7 +21,6 @@ class CreateCouponUserTable extends Migration
 
             $table->foreign("coupon_id")->references("id")->on("coupons");
             $table->foreign("user_id")->references("id")->on("users");
-            $table->timestamps();
         });
     }
 
