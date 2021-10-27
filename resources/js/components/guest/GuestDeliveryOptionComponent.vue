@@ -48,19 +48,6 @@
                                 :error-messages="allerror.couriers"
                             ></v-select>
                         </div>
-                        <!-- <div class="jp-font grey--text text--darken-3 mb24">Step 1: ご希望の配送方法をお選びください。</div>
-                        <v-select
-                            v-model="courier"
-                            outlined
-                            :items = "couriers"
-                            item-text="courier_type"
-                            item-value="id"
-                            label="配送方法を選ぶ"
-                            required
-                            :rules="courierRules" 
-                            :error="allerror.couriers ? true : false"
-                            :error-messages="allerror.couriers"
-                        ></v-select> -->
                     </div>
                     <v-divider class="mt-4 mb-8"></v-divider>
                    

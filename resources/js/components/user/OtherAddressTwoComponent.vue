@@ -25,7 +25,7 @@
                                         max-width=560
                                     >   
                                         <v-row align="center">
-                                        <v-col cols="9" sm="9" md="9">
+                                        <v-col cols="9" sm="9" md="8">
                                             <v-list-item three-line>
                                             <v-list-item-content>
                                                 <div>
@@ -41,7 +41,7 @@
                                             </v-list-item>
                                         </v-col>
 
-                                        <v-col cols="12" sm="12" md="3">
+                                        <v-col cols="12" sm="12" md="4">
                                         <v-card-actions>
                                             <v-btn
                                                 rounded

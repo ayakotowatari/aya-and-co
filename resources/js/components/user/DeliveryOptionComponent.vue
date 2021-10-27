@@ -15,7 +15,7 @@
                     <div class="mb-8">
                         <div v-if="totalQuantityInCart >= 4">
                             <div class="jp-font grey--text text--darken-3 mb24">Step 1: ご希望の配送方法をお選びください。</div>
-                            <div class="jp-font grey--text text--darken-2 mb24">ご用途に応じた配送方法の選び方については、<router-link to="/postage">こちら</router-link>でご案内しております。</div>
+                            <!-- <div class="jp-font grey--text text--darken-2 mb24">ご用途に応じた配送方法の選び方については、<router-link to="/postage">こちら</router-link>でご案内しております。</div> -->
 
                             <v-select
                                 v-model="courier"
@@ -145,7 +145,7 @@
                             v-model="deliveryNote"
                             label="備考欄"
                             outlined
-                            rows="3"
+                            rows="8"
                             :error="allerror.note ? true : false"
                             :error-messages="allerror.note"
                         ></v-textarea>
