@@ -34,7 +34,8 @@ class CouponsController extends Controller
             return response() ->json(['errors' => ['coupon' => 'このクーポンは現在、提供されていません。']], 400);
             // return response() ->json(['errors' => 'このクーポンは現在提供されていません。'], 400);
         }else{
-            $redeemed = $coupon->users()->first();
+
+            $redeemed = $coupon-> users() -> where('user_id', $user_id) ->first();
 
             if(!$redeemed){
     
@@ -107,15 +108,11 @@ class CouponsController extends Controller
 
             $one_order = Order::where('orders.user_id', '=', $user->id)->count();
 
-            // $first_order = Order::where('orders.user_id', '=', $user->id)->oldest()->first();
+            if($one_order > 0){
 
-            // $order_date = new Carbon($first_order->created_at);
+                $redeemed = $coupon-> users() -> where('user_id', $user->id) ->first();
 
-            // DD($order_date);
-
-            if($one_order >= 1){
-
-                $redeemed = $coupon->users()->first();
+                // DD($redeemed);
 
                 if(!$redeemed){
 
@@ -137,7 +134,7 @@ class CouponsController extends Controller
                     
                 }else{
         
-                    return response() -> json(['check'=> false]);;
+                    return response() -> json(['check'=> false]);
                 }
             }
 
