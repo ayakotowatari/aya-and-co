@@ -279,6 +279,7 @@ export default new Vuex.Store({
         state.otherAddresses = payload
     },
     confirmOtherAddress(state, payload){
+        state.deliveryAddress.id = payload.id;
         state.deliveryAddress.name = payload.address.name
         state.deliveryAddress.kana = payload.address.kana
         state.deliveryAddress.zipcode = payload.address.zipcode
@@ -335,7 +336,16 @@ export default new Vuex.Store({
 
     },
     setDeliveryAddress(state, payload){
-        state.deliveryAddress = payload
+        state.deliveryAddress.id = payload.id
+        state.deliveryAddress.name = payload.name
+        state.deliveryAddress.kana = payload.kana
+        state.deliveryAddress.zipcode = payload.zipcode
+        state.deliveryAddress.prefecture = payload.prefecture
+        state.deliveryAddress.city = payload.city
+        state.deliveryAddress.address_1 = payload.address_1
+        state.deliveryAddress.building = payload.building
+        state.deliveryAddress.phone = payload.phone
+
     },
     setOtherPostage(state, payload){
 

@@ -16,11 +16,12 @@
 
 body {
     padding: 24px;
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Noto Sans JP', sans-serif!important;
     font-weight: 400;
     font-style: normal;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.87)；
+    color: rgba(0, 0, 0, 0.87)!important;
+    background-color: #ffffff!important;
     /* text-size-adjust: 100%; */
 }
 .header{

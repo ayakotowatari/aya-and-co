@@ -283,34 +283,6 @@
 
            </v-col>
         </v-row>
-       
-        <!-- <v-row>
-            <v-col cols="12" sm="12" md="2" class="hidden-sm-and-down">
-                <v-btn
-                    color="primary"
-                    depressed
-                    dark
-                    @click="$router.push({name: 'checkout'})"
-                >
-                レジへ進む
-                </v-btn>
-            </v-col>
-            <v-col cols="12" sm="12" md="2" class="hidden-sm-and-down">
-                <v-btn
-                    color="primary"
-                    outlined
-                    @click="$router.push({name: 'home'})"
-                >お買い物を続ける</v-btn>
-            </v-col>
-        </v-row> -->
-        <!-- <v-bottom-navigation class="hidden-md-and-up" background-color="primary" grow dark fixed app>
-            <v-btn
-                class="jp-font-400"
-                @click="$router.push({name: 'checkout'})"
-            >
-                レジへ進む
-            </v-btn>
-        </v-bottom-navigation> -->
     </div>
 </template>
 
@@ -358,27 +330,11 @@ export default {
         ...mapGetters('coupon', [
             'discount'
         ]),
-        // deliveryCardUse(){
-        //     return this.$store.getters.deliveryCardUse
-        // },
-        // deliveryCardMessage(){
-        //     return this.$store.getters.deliveryCardMessage
-        // },
-        // deliveryCardName(){
-        //     return this.$store.getters.deliveryCardName
-        // },
         cartTotal(){
             let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
 
                 //console.log(cartAmount);
                 return cartAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-        },
-        percentDiscount(){
-            let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-            let percentOff = this.coupon.percent_off / 100;
-            let discount = cartAmount * percentOff;
-
-            return '-' + discount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         totalPrice(){
 
@@ -397,38 +353,6 @@ export default {
                 let totalAmount = (cartAmount + this.deliveryAddress.postage) - discount;
 
                 return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-
-                    // if(this.coupon.type === "fixed"){
-
-                    //     let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-                    //     let totalAmount = (cartAmount + this.deliveryAddress.postage) - this.coupon.value;
-
-                    //     //console.log('totalAmount', totalAmount)
-
-                    //     return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-
-                    // }else if(this.coupon.type === "percent"){
-
-                    //     let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-                    //     let percentOff = this.coupon.percent_off / 100;
-                    //     let discount = cartAmount * percentOff;
-                    //     let totalAmount = (cartAmount + this.deliveryAddress.postage) - discount;
-
-                    //     // console.log('cartAmount', cartAmount)
-                    //     // console.log('discount', discount)
-                    //     // console.log('percentOff', percentOff)
-
-                    //     return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-
-                    // }else{
-
-                    //     let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
-                    //     let postage = this.deliveryAddress.postage;
-                    //     let totalAmount = (cartAmount + postage) - postage;
-
-                    //     return totalAmount.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
-
-                    // }
                    
             }
         },
