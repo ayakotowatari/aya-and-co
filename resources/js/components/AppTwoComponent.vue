@@ -28,6 +28,7 @@ export default {
     },
     mounted(){
         this.$store.dispatch('admin/fetchUser');
+        this.$store.dispatch('admin/fetchUsers');
     },
     created(){
      
@@ -35,6 +36,7 @@ export default {
     computed: {
         ...mapState('admin', [
             'user',
+            'users',
         ])
     
     },

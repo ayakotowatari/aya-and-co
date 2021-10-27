@@ -90,7 +90,7 @@
                 </v-list-item>
             </v-list-item-group>
 
-             <v-divider class="my-2" v-if="user.user_type_id === 6"></v-divider>
+            <v-divider class="my-2" v-if="user.user_type_id === 6"></v-divider>
 
             <v-list-item-group
                 v-model="group3"
@@ -135,6 +135,7 @@ import { mapState } from 'vuex'
       lists: [
         { title: 'カテゴリーリスト', route: '/admin/categories-list' },
         { title: '商品リスト', route: '/admin/products-list' },
+        { title: 'クーポンリスト', route: '/admin/coupons-list' },
       ],
       items:  [
         {title: '管理者登録', route: "/admin/register"},

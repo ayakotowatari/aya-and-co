@@ -257,9 +257,7 @@ const routes = [
         name: "profile",
         component: Profile
     },
-
-  
-
+    
 ];
 
 export default new VueRouter ({

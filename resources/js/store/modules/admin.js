@@ -5,6 +5,7 @@ export const admin = {
 
     state: {
        user: {},
+       users: [],
        orders: [],
        order: {},
        shipment: {},
@@ -59,6 +60,9 @@ export const admin = {
     mutations: {
         setUser(state, payload){
             state.user = payload
+        },
+        setUsers(state, payload){
+            state.users = payload
         },
         setOrders(state, payload){
             state.orders = payload
@@ -287,6 +291,19 @@ export const admin = {
                     payload = res.data.user;
                     commit('setUser', payload);
                     // commit('setDeliveryAddress', payload);
+                })
+
+        },
+        async fetchUsers({ commit }){
+            let users = {};
+    
+            await axios
+                .get("/admin/fetch-users")
+                .then(res => {
+                    users = res.data.users;
+                    commit('setUsers', users);
+                    // commit('setDeliveryAddress', payload);
+                    console.log(users)
                 })
 
         },

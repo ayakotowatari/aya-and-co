@@ -17,6 +17,9 @@ import ProductsList from "./components/admin/products/ProductsListComponent";
 import CategoriesList from "./components/admin/products/CategoriesListComponent";
 import CreateCategory from "./components/admin/products/create/CreateCategoryComponent";
 import CreateProduct from "./components/admin/products/create/CreateProductComponent";
+import CreateCoupon from "./components/admin/coupons/create/CreateCouponComponent";
+import CouponsList from "./components/admin/coupons/CouponsListComponent";
+import EachCoupon from "./components/admin/coupons/EachCouponComponent";
 import Sample from "./components/SampleComponent";
 
 // import HomeTwo from "./components/HomeTwoComponent";
@@ -118,6 +121,24 @@ const routes = [
         path: "/admin/create-product" ,
         name: "create-product" ,
         component: CreateProduct
+    },
+
+    {
+        path: "/admin/create-coupon" ,
+        name: "create-coupon" ,
+        component: CreateCoupon
+    },
+
+    {
+        path: "/admin/coupons-list" ,
+        name: "coupons-list" ,
+        component: CouponsList
+    },
+
+    {
+        path: "/admin/each-coupon/:id" ,
+        name: "each-coupon" ,
+        component: EachCoupon
     },
    
    

@@ -8,7 +8,7 @@
             <v-col cols="12" sm="12" md="6">
                 <v-text-field
                     v-model="name"
-                    label="名前" 
+                    label="お名前" 
                     outlined
                     required
                     :rules="nameRules"

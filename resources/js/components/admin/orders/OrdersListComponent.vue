@@ -117,6 +117,7 @@ export default {
     computed: {
         ...mapState('admin', [
             'orders',
+            'users',
         ]),
     
     },

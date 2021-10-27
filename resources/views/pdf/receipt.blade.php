@@ -28,7 +28,7 @@
 }
 
 body {
-    padding: 32px;
+    padding: 24px;
     font-family: 'ipag';
     font-weight: 400;
     font-style: normal;
@@ -44,7 +44,7 @@ body {
     margin-bottom: 20px;
 }
 .logo{
-    max-width: 160px;
+    max-width: 120px;
 }
 .line {
     max-width: 300px;
@@ -117,13 +117,10 @@ td.align-right{
 </style>
 <body>
 
-    <!-- <div class="header">    
-        <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg" alt="logo" class="logo">
-    </div> -->
-
-    <!-- <h1 class="text-center">
-        <img src="{{ asset('/image/logo.png')}}" alt="aya & co.のロゴ">
-    </h1> -->
+    <div class="header">    
+        <!-- <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg" alt="logo" class="logo"> -->
+        <img src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.png" alt="logo" class="logo">
+    </div>
     
     <h2>納品書兼領収書</h2>
 
@@ -170,6 +167,12 @@ td.align-right{
                 <td>送料</td>
                 <td>¥{{ $user -> postage }}</td>
             </tr>
+            @if(isset($user -> discount))
+            <tr>
+                <td>クーポン割引</td>
+                <td>-¥{{ $user -> discount }}</td>
+            </tr>
+            @endif
             <tr>
                 <td>合計</td>
                 <td>¥{{ $user -> total}}</td>

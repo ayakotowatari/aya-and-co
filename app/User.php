@@ -76,5 +76,9 @@ class User extends Authenticatable
     {
         $this->notify(new PasswordResetNotification($token));
     }
+
+    public function coupons(){
+        return $this->hasMany('App\Models\Coupon');
+    }
 }
 // 

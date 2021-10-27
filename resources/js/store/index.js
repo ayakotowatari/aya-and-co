@@ -5,6 +5,7 @@ import createPersistedState from 'vuex-persistedstate'
 import router from "../router"
 
 import { admin } from './modules/admin';
+import { coupon } from './modules/coupon';
  
 Vue.use(Vuex)
  
@@ -118,6 +119,7 @@ export default new Vuex.Store({
         message:"",
         postage:"",
         status:"",
+        discount:"",
         total:"",
         user_address_1:"",
         user_building:"",
@@ -277,6 +279,7 @@ export default new Vuex.Store({
         state.otherAddresses = payload
     },
     confirmOtherAddress(state, payload){
+        state.deliveryAddress.id = payload.id;
         state.deliveryAddress.name = payload.address.name
         state.deliveryAddress.kana = payload.address.kana
         state.deliveryAddress.zipcode = payload.address.zipcode
@@ -333,7 +336,16 @@ export default new Vuex.Store({
 
     },
     setDeliveryAddress(state, payload){
-        state.deliveryAddress = payload
+        state.deliveryAddress.id = payload.id
+        state.deliveryAddress.name = payload.name
+        state.deliveryAddress.kana = payload.kana
+        state.deliveryAddress.zipcode = payload.zipcode
+        state.deliveryAddress.prefecture = payload.prefecture
+        state.deliveryAddress.city = payload.city
+        state.deliveryAddress.address_1 = payload.address_1
+        state.deliveryAddress.building = payload.building
+        state.deliveryAddress.phone = payload.phone
+
     },
     setOtherPostage(state, payload){
 
@@ -1755,6 +1767,7 @@ export default new Vuex.Store({
   },
   modules: {
     admin,
+    coupon
   }
 
 })

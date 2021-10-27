@@ -128,7 +128,6 @@
                                                     </v-btn>
                                                 </div>
                                             </v-col>
-                                            
                                         </v-row>
                                     </v-form>
                                 </v-col>
@@ -238,6 +237,7 @@ export default {
                     // delivery_time: this.deliveryTime
                 })
             }
+           
         },
         back(){
             this.$store.dispatch("dialogNewAddress", false);

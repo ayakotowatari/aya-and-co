@@ -61,51 +61,6 @@
                     </v-tab-item>
                 </v-tabs-items>
 
-<!-- 
-                <v-row class="mb-8">
-                    <v-col cols="12" sm="12" md="12" class="line-color">
-                        <v-divider></v-divider>
-                    </v-col>
-                </v-row>
-                <div class="mb-8">
-                    <div class="item-content policy-title mb-4">
-                        ゆうパック
-                    </div>
-                    <p class="description">
-                        ゆうパックでは、宅配50サイズ（長さ201mm × 幅167mm × 深さ102mm）の箱のなかに、木毛の緩衝材を用いて商品を配置します。
-                    </p>
-                    <p class="description mb-8">
-                        会員登録をされたお客様で、ゆうパックをご利用になる場合は、「<router-link to="/message-service">選べるメッセージカード</router-link>」のサービス（無料）をご利用いただけます。ご注文時にお好きなメッセージを選んでいただきましたら、ご希望によってお客様のお名前とともに、葉書サイズのaya & co.特製のカードを丁寧に印刷して、同封いたします。
-                    </p>
-                    <div class="item-content policy-title mb-4">
-                        おすすめの用途
-                    </div>
-                    <p class="description">
-                        ご自身へのご褒美や、ご家族・ご友人へのギフトとして贈られるときなど、大切なオケージョンには、ゆうパックのご利用がおすすめです。
-                    </p>
-                </div>
-                <v-row class="mb-8">
-                    <v-col cols="12" sm="12" md="12" class="line-color">
-                        <v-divider></v-divider>
-                    </v-col>
-                </v-row> -->
-                <!-- <div class="mb-8">
-                    <div class="item-content policy-title mb-4">
-                        宅急便コンパクト
-                    </div>
-                    <p class="description">
-                        宅急便コンパクトでは、ヤマト運輸の薄型の専用ボックスに、木毛の緩衝材を用いて商品を配置します。ボックスの高さがあまりないため、たとえば140g以上のサイズの瓶は、横向きに倒した状態で包装いたします。
-                    </p>
-                    <p class="description mb-8">
-                        また、葉書サイズのカードは瓶に押されて折り目がついてしまうため、同封できず、「<router-link to="/message-service">選べるメッセージカード</router-link>」はご利用いただけません。
-                    </p>
-                    <div class="item-content policy-title mb-4">
-                        おすすめの用途
-                    </div>
-                    <p class="description">
-                        宅急便コンパクトは、ゆうパックと比較して、審美的にはやや劣りますが、送料はリーズナブルで、ご自宅での普段づかいとしてお買い求めいただく際におすすめいたします。
-                    </p>
-                </div> -->
                 <div class="divider-image delivery-image">
                     <v-img
                         max-width=120
@@ -182,71 +137,6 @@
                         </div>
                     </v-col>
                 </v-row>
-                <!-- <table v-for="postage in postages" :key="postage.id">
-                    <tr>
-                        <td>{{ postage.prefecture }}</td>
-                        <td>{{ postage.postage }}</td>
-                    </tr>
-                </table> -->
-                <!-- <v-tabs
-                    v-model="tab"
-                >
-                    <v-tab
-                        href="#tab-1"
-                    >
-                        ゆうパック（日本郵便）
-                    </v-tab>
-                    <v-tab
-                        href="#tab-2"
-                    >
-                        宅急便コンパクト（ヤマト運輸）
-                    </v-tab>
-                </v-tabs>
-
-                <v-tabs-items
-                    v-model="tab"
-                >
-                    <v-tab-item
-                       value="tab-1"
-                       v-for="postageYupack in postageYupacks"
-                       :key='postageYupack.id'
-                    >
-                        <v-row>
-                            <v-col cols="6" sm="6" md="2">
-                                <div class="item-content">{{ postageYupack.prefecture}}</div>
-                            </v-col>
-                            <v-col cols="6" sm="6" md="2">
-                                <div class="grey--text text--darken-3">{{ formatPrice(postageYupack.postage)}}</div>
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
-                    <v-tab-item
-                       value="tab-2"
-                       v-for="postageCompact in postageCompacts"
-                       :key='postageCompact.id'
-                    >
-                        <v-row>
-                            <v-col cols="6" sm="6" md="2">
-                                <div class="item-content">{{ postageCompact.prefecture}}</div>
-                            </v-col>
-                            <v-col cols="6" sm="6" md="2">
-                                <div class="grey--text text--darken-3">{{ formatPrice(postageCompact.postage)}}</div>
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
-
-                </v-tabs-items> -->
-
-                <!-- <div v-for="postage in postages" :key="postage.id">
-                    <v-row>
-                        <v-col cols="6" sm="6" md="2">
-                            <div class="item-content">{{ postage.prefecture}}</div>
-                        </v-col>
-                        <v-col cols="6" sm="6" md="2">
-                            <div class="grey--text text--darken-3">{{ formatPrice(postage.postage)}}</div>
-                        </v-col>
-                    </v-row>
-                </div> -->
             </v-col>
         </v-row>
     </v-container>
@@ -283,8 +173,6 @@ export default {
           return value.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'})
         },
     }
-
-
 }
 </script>
 
