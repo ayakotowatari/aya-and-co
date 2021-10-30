@@ -15,7 +15,15 @@ export const coupon = {
         coupons: [],
         ifCoupon: false,
         memberCoupons: [],
-        adminCoupon: {},
+        adminCoupon: {
+            name: '',
+            type: '',
+            value: '',
+            percentOff: '',
+            minimum: '',
+            deadline: '',
+            status: ''
+        },
         couponDisabled: false,
         isEditing: {
             name: false,
@@ -103,7 +111,8 @@ export const coupon = {
         updateCouponMinimum(state, payload){
             state.adminCoupon.minimum = payload
         },
-        updateCouponDeadine(state, payload){
+        updateCouponDeadline(state, payload){
+            console.log('payload', payload)
             state.adminCoupon.deadline = payload
         },
         updateCouponStatus(state, payload){
@@ -341,6 +350,7 @@ export const coupon = {
                     console.log(response);
                     value = response.data.value
                     commit('updateCouponValue', value);
+                    commit('setIsEditingValue', false); 
                    
                 })
                 .catch(error => {
@@ -385,8 +395,8 @@ export const coupon = {
                 })
                 .then(response => {
                     console.log(response);
-                    minimum = response.data.value
-                    commit('updateCouponMinimum', payload);
+                    minimum = response.data.minimum
+                    commit('updateCouponMinimum', minimum);
                     commit('setIsEditingMinimum', false);  
                 })
                 .catch(error => {
@@ -409,7 +419,7 @@ export const coupon = {
                 .then(response => {
                     console.log(response);
                     deadline = response.data.deadline
-                    commit('updateCouponDeadline', payload);
+                    commit('updateCouponDeadline', deadline);
                     commit('setIsEditingDeadline', false);  
                 })
                 .catch(error => {
@@ -432,7 +442,7 @@ export const coupon = {
                 .then(response => {
                     console.log(response);
                     status = response.data.status
-                    commit('updateCouponStatus', payload);
+                    commit('updateCouponStatus', status);
                     commit('setIsEditingStatus', false);  
                 })
                 .catch(error => {
@@ -447,7 +457,7 @@ export const coupon = {
             let statuses = {};
 
             await axios
-                .get('/admin/fetch-statuses/')
+                .get('/admin/fetch-couponstatuses/')
                 .then(response => {
                     statuses = response.data.statuses;
                     commit('setStatuses', statuses);

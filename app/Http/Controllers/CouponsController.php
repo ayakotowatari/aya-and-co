@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\Status;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -306,7 +307,7 @@ class CouponsController extends Controller
 
         $updated_deadline = $coupon->deadline;
 
-        return response() -> json(['deadline'=>$updated_minimum]);
+        return response() -> json(['deadline'=>$updated_deadline]);
 
      }
 
@@ -314,7 +315,7 @@ class CouponsController extends Controller
      {
         $request->validate([
             'id' => 'required',
-            'status_id' => 'status_id',
+            'status_id' => 'required',
         ]);
 
         $coupon_id = request('id');
@@ -325,13 +326,13 @@ class CouponsController extends Controller
         $coupon->status_id = $status_id;
         $coupon->update();
 
-        $updated_status = $coupon->status()->status;
-
+        $updated_status = Status::find($status_id)->status;
+       
         return response() -> json(['status'=>$updated_status]);
 
      }
 
-     public function statuses()
+     public function fetchStatuses()
     {
         // $statuses = Status::whereNotNull('status')->get();
 

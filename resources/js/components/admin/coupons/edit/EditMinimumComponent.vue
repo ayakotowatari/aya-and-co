@@ -12,8 +12,8 @@
                     outlined
                     required
                     :rules="minimumRules"
-                    :error="allerror.minimum ? true : false"
-                    :error-messages="allerror.minimum"
+                    :error="allerror ? true : false"
+                    :error-messages="allerror"
                 >
                 </v-text-field>
                 <v-btn

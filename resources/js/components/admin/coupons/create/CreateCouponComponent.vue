@@ -12,10 +12,19 @@
                 </div>
             </v-col>
         </v-row>
-            <v-row justify="center">
+        <v-row justify="center">
+            <v-col cols="12" sm="12" md="4">
+                <v-btn
+                        color="primary"
+                        outlined
+                        @click="$router.push({name: 'coupons-list'})"
+                >
+                        リストへもどる
+                </v-btn>
+            </v-col>
             <v-col cols="12" sm="12" md="6">
                 <v-form 
-                    ref="form"
+                    ref="form" 
                     v-model="valid"
                     lazy-validation
                 >
@@ -46,7 +55,7 @@
                                 :error="otherError.value ? true : false"
                                 :error-messages="otherError.value"
                             ></v-text-field>
-                             <v-text-field
+                            <v-text-field
                                 v-model="percentOff"
                                 label="オフ率"
                                 outlined

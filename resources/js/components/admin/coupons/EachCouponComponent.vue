@@ -15,7 +15,13 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="12" md="4">
-                    
+                    <v-btn
+                        color="primary"
+                        outlined
+                        @click="$router.push({name: 'coupons-list'})"
+                    >
+                        リストへもどる
+                    </v-btn>
                 </v-col>
                 <v-col cols="12" sm="12" md="8">
                         <div class="mb-6">
@@ -101,7 +107,7 @@
                                 割引率
                             </div>
                             <div class="item-title grey--text text--darken-3 mb-3">
-                                {{ adminCoupon.percent_off}}
+                                {{ adminCoupon.percentOff}}
                             </div>
                             <div>
                                 <v-btn
@@ -134,7 +140,7 @@
                                     color="primary"
                                     outlined
                                     v-if="!isEditing.minimum"
-                                    @click="$store.commit('setIsEditingMinimum', true)"
+                                    @click="$store.commit('coupon/setIsEditingMinimum', true)"
                                 >
                                     編集
                                 </v-btn>
@@ -160,7 +166,7 @@
                                     color="primary"
                                     outlined
                                     v-if="!isEditing.deadline"
-                                    @click="$store.commit('setIsEditingDeadline', true)"
+                                    @click="$store.commit('coupon/setIsEditingDeadline', true)"
                                 >
                                     編集
                                 </v-btn>
@@ -186,7 +192,7 @@
                                     color="primary"
                                     outlined
                                     v-if="!isEditing.status"
-                                    @click="$store.commit('setIsEditingStatus', true)"
+                                    @click="$store.commit('coupon/setIsEditingStatus', true)"
                                 >
                                     編集
                                 </v-btn>
