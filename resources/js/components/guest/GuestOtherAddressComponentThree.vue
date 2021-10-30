@@ -82,24 +82,6 @@
                         :error="allerror.phone ? true : false"
                         :error-messages="allerror.phone"
                     ></v-text-field>
-                    <!-- <v-select
-                        v-model="deliveryDeliveryTime"
-                        :items = "items"
-                        label="ご希望の配達時間帯"
-                        outlined
-                        required
-                        :rules="deliveryTimeRules" 
-                        :error="allerror.delivery_time ? true : false"
-                        :error-messages="allerror.delivery_time"
-                    ></v-select> -->
-                    <!-- <v-btn
-                        color="primary"
-                        outlined
-                        :disabled="disabled"
-                        @click="resetOther"
-                    >
-                    入力内容をリセットする
-                    </v-btn> -->
                 </v-form>
             </v-col>
              <v-col cols="12" sm="12" md="12">
@@ -203,33 +185,6 @@
                         :error-messages="allerror.email"
                     ></v-text-field>
                 </v-form>
-                <!-- <v-btn
-                    color="primary"
-                    outlined
-                    :disabled="disabled"
-                    @click="resetHome"
-                    class="hidden-sm-and-down mb-4"
-                >
-                入力内容をリセットする
-                </v-btn>
-                <v-btn
-                    color="primary"
-                    outlined
-                    :disabled="disabled"
-                    @click="resetHome"
-                    class="hidden-md-and-up mb-4"
-                >
-                入力内容をリセットする
-                </v-btn> -->
-                <!-- <v-btn
-                    @click="add"
-                    color="primary"
-                    dark
-                    :disabled="disabled"
-                    class="hidden-sm-and-down"
-                >
-                注文内容を確認する
-                </v-btn> -->
                 <v-btn
                     block
                     @click="add"

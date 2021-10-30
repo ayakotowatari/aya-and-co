@@ -199,11 +199,11 @@ export default {
             this.$store.dispatch('dialogNewAddress', true);
         },
 
-        reset(){
-            this.$refs.form.reset();
-            this.$store.commit('setDisabled', false);
-            this.$store.commit('updateDisableContinue1', true);
-        }
+        // reset(){
+        //     this.$refs.form.reset();
+        //     this.$store.commit('setDisabled', false);
+        //     this.$store.commit('updateDisableContinue1', true);
+        // }
         // select(value){
         //     console.log(value);
 

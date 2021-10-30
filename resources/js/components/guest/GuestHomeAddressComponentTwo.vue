@@ -96,35 +96,6 @@
                         :error="allerror.email ? true : false"
                         :error-messages="allerror.email"
                     ></v-text-field>
-                    <!-- <v-select
-                        v-model="deliveryTime"
-                        :items = "items"
-                        label="ご希望の配達時間帯"
-                        outlined
-                        required
-                        :rules="deliveryTimeRules" 
-                        :error="allerror.delivery_time ? true : false"
-                        :error-messages="allerror.delivery_time"
-                    ></v-select> -->
-                    <!-- <v-btn
-                        color="primary"
-                        outlined
-                        :disabled="disabled"
-                        @click="reset"
-                        class="hidden-sm-and-down mb-4"
-                    >
-                    入力内容をリセットする
-                    </v-btn>
-                    <v-btn
-                        color="primary"
-                        outlined
-                        block
-                        :disabled="disabled"
-                        @click="reset"
-                        class="hidden-md-and-up mb-4"
-                    >
-                    入力内容をリセットする
-                    </v-btn> -->
                     <v-btn
                         block
                         @click="add"

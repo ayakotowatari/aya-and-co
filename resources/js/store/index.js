@@ -159,14 +159,14 @@ export default new Vuex.Store({
         confirmOtherAddress: false,
         addNewAddress: false,
         sendResetLink: false,
-        inputEmail: true,
+        resetEmail: true,
         guestHomeAddress: false,
         confirmGuestOtherAddress: false,
         confirmGuestDeliveryOption: false,
       },
       disableContinue1: true,
       disableContinue2: true,
-      disableInputEmail: true,
+    //   disableInputEmail: true,
       loading: false,
       isAddingAddress: false,
       isEditingName: false,
@@ -745,8 +745,8 @@ export default new Vuex.Store({
     setDisabledSendResetLink(state, payload){
         state.disabled.sendResetLink = payload
     },
-    setDisabledInputEmail(state, payload){
-        state.disabled.inputEmail = payload
+    setDisabledResetEmail(state, payload){
+        state.disabled.resetEmail = payload
     },
     setDisabledGuestHomeAddress(state, payload){
         state.disabled.guestHomeAddress = payload
@@ -763,9 +763,9 @@ export default new Vuex.Store({
     updateDisableContinue2(state, payload){
         state.disableContinue2 = payload
     },
-    setDisableInputEmail(state, payload){
-        state.disableInputEmail = payload
-    },
+    // setDisableInputEmail(state, payload){
+    //     state.disableInputEmail = payload
+    // },
     setDialogDeleteUser(state, payload){
         state.dialogDeleteUser = payload
     },
@@ -1608,8 +1608,8 @@ export default new Vuex.Store({
                 //console.log(errorMessage);
                 commit('setErrorMessage', errorMessage);
                 commit('setLoading', false);
-                commit('setDisableInputEmail', false);
-                commit('setDisabled', true);
+                commit('setDisabledResetEmail', false);
+                commit('setDisabledSendResetLink', true);
             })
     },
     async resetPassword({state, commit}, payload){

@@ -53,7 +53,7 @@
                                                     <v-btn
                                                         color="primary"
                                                         outlined
-                                                        :disabled="disabled.inputEmail"
+                                                        :disabled="disabled.resetEmail"
                                                         @click="resetInput()"
                                                     >
                                                         入力し直す
@@ -78,7 +78,7 @@
                                                         block
                                                         color="primary"
                                                         outlined
-                                                        :disabled="disabled.inputEmail"
+                                                        :disabled="disabled.resetEmail"
                                                     >
                                                         入力し直す
                                                     </v-btn>
@@ -162,7 +162,7 @@ export default {
             this.$refs.form.reset();
             this.$store.commit('setErrorMessage', '');
             this.$store.commit('setDisabledSendResetLink', false);
-            this.$store.commit('setDisabledInputEmail', true);
+            this.$store.commit('setDisabledResetEmail', true);
         }
     }
 }
