@@ -17,13 +17,13 @@
                 <v-img
                     max-width=120
                     v-if="$vuetify.breakpoint.md || $vuetify.breakpoint.lg"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.svg"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo_latest.svg"
                 >
                 </v-img>
                 <v-img
                     max-width=120
                     v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.png"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo_latest.svg"
                 >
                 </v-img>
             </v-toolbar-title>
