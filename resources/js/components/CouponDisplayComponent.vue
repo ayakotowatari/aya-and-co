@@ -8,16 +8,19 @@
                 >
                     mdi-ticket
                 </v-icon>  
-                クーポンをご利用いただけます。
+                感謝のクーポンをご利用いただけます。
             </v-card-title>
             <v-card-text class="ja-font-400">
-                {{user.name}}様へ、本サイトでのお買い物にお使いいただけるクーポンが発行されています。
+                {{user.name}}様、いつもaya & co.をご利用いただき、誠にありがとうございます。
+            </v-card-text>
+            <v-card-text class="ja-font-400">
+                感謝の気持ちを込めて、本サイトでの2回目以降のお買い物にお使いいただけるクーポンを発行いたしました。
             </v-card-text>
             <v-card-text class="ja-font-400">
                  ご注文時に、下記のクーポン番号をご入力いただくと、商品のお買い上げ金額の10％引きとなります。ぜひご利用ください。
             </v-card-text>
             <v-card-text class="ja-font-400">
-                このクーポンの有効期限は、2021年11月30日です。
+                このクーポンの有効期限は、<strong>{{couponDeadline}}</strong>です。
             </v-card-text>
              <v-card-text class="ja-font-400">
                 クーポン番号: thanks10
@@ -50,7 +53,8 @@ export default {
             'user'
         ]),
         ...mapState('coupon',[
-            'ifCoupon'
+            'ifCoupon',
+            'couponDeadline'
         ]),
     },
     methods: {
