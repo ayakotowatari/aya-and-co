@@ -6,7 +6,7 @@
                     <v-card-title >
                         <div class="dialog-title grey--text text--darken-4">{{user.name}}様</div>
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         ご注文をお受付けいたしました。
                         誠にありがとうございます。<br>
                         お届けまでしばらくお待ちくださいませ。

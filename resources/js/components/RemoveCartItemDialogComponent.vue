@@ -4,10 +4,10 @@
         <v-row justify="center">
             <v-dialog v-model="dialogRemoveCartItem" persistent max-width="320">
                 <v-card>
-                    <v-card-title class="ja-font-400 dialog-title-14">
+                    <v-card-title class="jp-font-400 dialog-title-14">
                         {{cartItem.name}}({{cartItem.size}})
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         この商品をカートから削除をしてよろしいですか？
                     </v-card-text>
                     <!-- <v-card-subtitle>

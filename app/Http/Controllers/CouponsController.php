@@ -27,9 +27,46 @@ class CouponsController extends Controller
 
         $coupon_code = request('coupon_code');
 
-        $coupon = Coupon::where('name', $coupon_code)
+        if($coupon_code == 'welcomeback'){
+
+            $first_order = Order::where('orders.user_id', '=', $user_id)->oldest()->first();
+
+            if(!empty($first_order)){
+
+                $order_date = new Carbon($first_order->created_at);
+
+                if($user_id <= 28){
+                    $deadline = $order_date->addMonths(4);
+                }else{
+                    $deadline = $order_date->addMonths(2);
+                }
+
+                if($deadline >= Carbon::now()->toDateString()){
+
+                    $coupon = Coupon::where('name', $coupon_code)
+                        ->first();
+                    
+                    // DD($coupon);
+
+                }else{
+
+                    return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
+                }
+
+            }else{
+                return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
+            }
+
+        }else{
+
+            $coupon = Coupon::where('name', $coupon_code)
                         ->whereDate('deadline', '>=', Carbon::now()->toDateString())
                         ->first();
+
+            // DD($coupon);
+        }
+
+        // DD($coupon);
 
         if(empty($coupon)){
             return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
@@ -37,6 +74,8 @@ class CouponsController extends Controller
         }else{
 
             $redeemed = $coupon-> users() -> where('user_id', $user_id) ->first();
+
+            // DD($redeemed);
 
             if(!$redeemed){
     
@@ -67,6 +106,14 @@ class CouponsController extends Controller
 
             $coupon->users()->attach($user->id);
         }
+
+        // if($coupon_array['applied'] !== false){
+
+        //     $coupon_id = $coupon_array['id'];
+        //     $coupon = $user->coupons()->where('coupon_id', $coupon_id);
+
+        //     $coupon->redeemed = 1;
+        // }
     }
 
     public function createCoupon(Request $request)
@@ -103,11 +150,11 @@ class CouponsController extends Controller
             return response() -> json(['check'=> false, 'deadline'=>'']);
         }else{
 
-            $coupon_code = 'thanks50';
+            $coupon_code = 'welcomeback';
 
             $coupon = Coupon::where('name', $coupon_code)->first();
 
-            $one_order = Order::where('orders.user_id', '=', $user->id)->count();
+            // $one_order = Order::where('orders.user_id', '=', $user->id)->count();
 
             $first_order = Order::where('orders.user_id', '=', $user->id)->oldest()->first();
 
@@ -115,9 +162,13 @@ class CouponsController extends Controller
 
                 $order_date = new Carbon($first_order->created_at);
 
-                $redeemed = $coupon-> users() -> where('user_id', $user->id) ->first();
+                if($user->id <= 28){
+                    $deadline = $order_date->addMonths(4);
+                }else{
+                    $deadline = $order_date->addMonths(2);
+                }
 
-                $deadline = $order_date->addMonths(6);
+                $redeemed = $coupon-> users() -> where('user_id', $user->id) ->first();
 
                 if(!$redeemed){
                     
@@ -142,41 +193,6 @@ class CouponsController extends Controller
             }else{
                 return response() -> json(['check'=> false, 'deadline'=>'']);
             }
-
-            // if($one_order > 0){
-
-            //     $redeemed = $coupon-> users() -> where('user_id', $user->id) ->first();
-
-            //     // DD($redeemed);
-
-            //     if(!$redeemed){
-
-            //         $deadline = $order_date->addMonths(6);
-            //         // DD($deadline);
-            //         // $deadline = new Carbon($coupon->deadline);
-            //         $now = new Carbon();
-
-            //         // DD($now);
-
-            //         if($now->gt($deadline)){
-
-            //             return response() -> json(['check'=> false, 'deadline'=>$deadline]);
-
-            //         }else{
-
-            //             $carbon_deadline = new Carbon($deadline);
-            //             // setlocale(LC_ALL, 'ja_JP.UTF-8');
-            //             $ja_deadline = $carbon_deadline->format('Y年n月j日');
-
-            //             return response() -> json(['check'=> true, 'deadline'=>$ja_deadline]);
-
-            //         }
-                    
-            //     }else{
-        
-            //         return response() -> json(['check'=> false, 'deadline'=>'']);
-            //     }
-            // }
 
         }
         

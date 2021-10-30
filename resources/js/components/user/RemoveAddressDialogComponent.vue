@@ -6,7 +6,7 @@
                     <v-card-title >
                         以下の宛先を削除してよろしいですか？
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         〒{{address.zipcode}} <br>
                         {{address.prefecture}}{{address.city}}{{address.address_1}} <br>
                         {{address.name}}様
