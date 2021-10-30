@@ -45,7 +45,7 @@
                                                         color="primary" 
                                                         @click="reset()"
                                                         :loading="loading"
-                                                        :disabled="disabled"
+                                                        :disabled="disabled.sendResetLink"
                                                         class="mr-2"
                                                     >
                                                         リセット用のリンクを送る
@@ -53,7 +53,7 @@
                                                     <v-btn
                                                         color="primary"
                                                         outlined
-                                                        :disabled="disableInputEmail"
+                                                        :disabled="disabled.inputEmail"
                                                         @click="resetInput()"
                                                     >
                                                         入力し直す
@@ -69,7 +69,7 @@
                                                         color="primary" 
                                                         @click="reset()"
                                                         :loading="loading"
-                                                        :disabled="disabled"
+                                                        :disabled="disabled.sendResetLink"
                                                         class="mb-2"
                                                     >
                                                         リセット用のリンクを送る
@@ -78,7 +78,7 @@
                                                         block
                                                         color="primary"
                                                         outlined
-                                                        :disabled="disableInputEmail"
+                                                        :disabled="disabled.inputEmail"
                                                     >
                                                         入力し直す
                                                     </v-btn>
@@ -136,7 +136,7 @@ export default {
             'errorMessage',
             'loading',
             'disabled',
-            'disableInputEmail',
+            // 'disableInputEmail',
             'linkSentSnackbar',
             'dialogLinkSent',
             // 'user',
@@ -161,8 +161,8 @@ export default {
             
             this.$refs.form.reset();
             this.$store.commit('setErrorMessage', '');
-            this.$store.commit('setDisabled', false);
-            this.$store.commit('setDisableInputEmail', true);
+            this.$store.commit('setDisabledSendResetLink', false);
+            this.$store.commit('setDisabledInputEmail', true);
         }
     }
 }

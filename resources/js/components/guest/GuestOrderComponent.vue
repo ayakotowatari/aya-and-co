@@ -286,25 +286,28 @@ export default {
             this.e1 = 2;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledGuestHomeAddress', false);
+            this.$store.commit('setDisabledConfirmGuestOtherAddress', false);
         },
         backTo1(){
             this.e1 = 1;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            this.$store.commit('updateDisableContinue2', true);
+            this.$store.commit('setDisabledGuestHomeAddress', false);
+            this.$store.commit('setDisabledConfirmGuestDeliveryOption', false);
         },
         nextTo3(){
             this.e1 = 3;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue2', true);
-            this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledConfirmGuestDeliveryOption', false);
         },
         backTo2(){
             this.e1 = 2;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue2', true);
-            this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledConfirmGuestDeliveryOption', false);
         },
         nextTo4(){
             this.e1 = 4

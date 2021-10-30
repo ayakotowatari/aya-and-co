@@ -102,7 +102,7 @@ class CouponsController extends Controller
             return response() -> json(['check'=> false]);
         }else{
 
-            $coupon_code = 'thanks10';
+            $coupon_code = 'thanks20';
 
             $coupon = Coupon::where('name', $coupon_code)->first();
 
@@ -117,7 +117,7 @@ class CouponsController extends Controller
                 if(!$redeemed){
 
                     // $deadline = Carbon::now()->subMonths(6);
-                    $deadline = new Carbon('2021-11-30');
+                    $deadline = new Carbon($coupon->deadline);
                     $now = new Carbon();
 
                     // DD($now);

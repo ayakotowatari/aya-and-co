@@ -58,7 +58,7 @@ export default {
             this.$router.push({name: 'order-summary'});
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            // this.$store.commit('setDisabled', false);
         },
         backHome(){
              //ストライプを２度目にうまく読み込まないため変更
@@ -66,7 +66,7 @@ export default {
             this.$router.push({name: 'home'})
             this.$store.commit('setDialogThankYou', false);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            // this.$store.commit('setDisabled', false);
         }
         
     }

@@ -66,7 +66,7 @@
                         color="primary"
                         block
                         @click="confirm"
-                        :disabled="disabled"
+                        :disabled="disabled.confirmGuestDeliveryOption"
                         class="mb-6"
                     >
                     確定する

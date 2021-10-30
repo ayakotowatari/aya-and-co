@@ -234,7 +234,7 @@
                     block
                     @click="add"
                     color="primary"
-                    :disabled="disabled"
+                    :disabled="disabled.confirmGuestOtherAddress"
                     class="mb-6"
                 >
                 これらの住所を使用する

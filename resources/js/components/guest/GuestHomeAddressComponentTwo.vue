@@ -130,7 +130,7 @@
                         @click="add"
                         color="primary"
                         class="mb-6"
-                        :disabled="disabled"
+                        :disabled="disabled.guestHomeAddress"
                     >
                     この住所に送る
                     </v-btn>

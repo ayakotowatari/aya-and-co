@@ -263,25 +263,33 @@ export default {
             this.e1 = 2;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            // this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledHomeAddress', false);
+            this.$store.commit('setDisabledEditHomeAddress', false);
+            this.$store.commit('setDisabledConfirmOtherAddress', false);
+            this.$store.commit('setDisabledAddNewAddress', false);
         },
         backTo1(){
             this.e1 = 1;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue1', true);
-            this.$store.commit('setDisabled', false);
+            this.$store.commit('updateDisableContinue2', true);
+            // this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledConfirmDeliveryOption', false);
         },
         nextTo3(){
             this.e1 = 3;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue2', true);
-            this.$store.commit('setDisabled', false);
+            // this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledConfirmDeliveryOption', false);
         },
         backTo2(){
             this.e1 = 2;
             window.scrollTo(0,0);
             this.$store.commit('updateDisableContinue2', true);
-            this.$store.commit('setDisabled', false);
+            // this.$store.commit('setDisabled', false);
+            this.$store.commit('setDisabledConfirmDeliveryOption', false);
         },
         nextTo4(){
             this.e1 = 4

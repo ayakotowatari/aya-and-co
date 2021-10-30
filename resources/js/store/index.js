@@ -152,7 +152,18 @@ export default new Vuex.Store({
       dialogRegisterToOrder: false,
       dialogLinkSent: false,
       dialogDeleteUser: false,
-      disabled: false,
+      disabled: {
+        homeAddress: false,
+        editHomeAddress: false,
+        confirmDeliveryOption: false,
+        confirmOtherAddress: false,
+        addNewAddress: false,
+        sendResetLink: false,
+        inputEmail: true,
+        guestHomeAddress: false,
+        confirmGuestOtherAddress: false,
+        confirmGuestDeliveryOption: false,
+      },
       disableContinue1: true,
       disableContinue2: true,
       disableInputEmail: true,
@@ -716,6 +727,36 @@ export default new Vuex.Store({
     setDisabled(state, payload){
         state.disabled = payload
     },
+    setDisabledHomeAddress(state, payload){
+        state.disabled.homeAddress = payload
+    },
+    setDisabledEditHomeAddress(state, payload){
+        state.disabled.editHomeAddress = payload
+    },
+    setDisabledConfirmDeliveryOption(state, payload){
+        state.disabled.confirmDeliveryOption = payload
+    },
+    setDisabledConfirmOtherAddress(state, payload){
+        state.disabled.confirmOtherAddress = payload
+    },
+    setDisabledAddNewAddress(state, payload){
+        state.disabled.addNewAddress = payload
+    },
+    setDisabledSendResetLink(state, payload){
+        state.disabled.sendResetLink = payload
+    },
+    setDisabledInputEmail(state, payload){
+        state.disabled.inputEmail = payload
+    },
+    setDisabledGuestHomeAddress(state, payload){
+        state.disabled.guestHomeAddress = payload
+    },
+    setDisabledConfirmGuestOtherAddress(state, payload){
+        state.disabled.confirmGuestOtherAddress = payload
+    },
+    setDisabledConfirmGuestDeliveryOption(state, payload){
+        state.disabled.confirmGuestDeliveryOption = payload
+    },
     updateDisableContinue1(state, payload){
         state.disableContinue1 = payload
     },
@@ -1090,9 +1131,7 @@ export default new Vuex.Store({
 
         // commit('setLoading', true);
         
-        let deliveryAddress = {};
         let guest = {};
-        let postage = "";
         let allerror = [];
 
         await axios
@@ -1116,7 +1155,7 @@ export default new Vuex.Store({
             commit('setGuest', guest);
             commit('updateGuestDeliveryAddress', guest);
             // commit('setPostage', postage);
-            commit('setDisabled', true);
+            commit('setDisabledGuestHomeAddress', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
         })
@@ -1156,7 +1195,7 @@ export default new Vuex.Store({
             commit('setGuest', guest);
             commit('updateGuestDeliveryAddress', deliveryAddress);
             // commit('setPostage', postage);
-            commit('setDisabled', true);
+            commit('setDisabledConfirmGuestOtherAddress', true);
             commit('updateDisableContinue1', false);
             // commit('setLoading', false);
             // router.push({ name: 'guestOrder-confirmation'});
@@ -1228,7 +1267,8 @@ export default new Vuex.Store({
     async confirmHomeAsDeliveryAddress({commit}, payload){
 
         commit('setHomeAsDeliveryAddress', payload);
-        commit('setDisabled', true);
+        commit('setDisabledHomeAddress', true);
+        commit('setDisabledEditHomeAddress', true);
         commit('updateDisableContinue1', false);
         
     },
@@ -1238,7 +1278,8 @@ export default new Vuex.Store({
         //console.log('payload', payload)
 
         commit('confirmOtherAddress', payload);
-        commit('setDisabled', true);
+        commit('setDisabledConfirmOtherAddress', true);
+        commit('setDisabledAddNewAddress', true);
         commit('updateDisableContinue1', false);
         
         // let allerror = [];
@@ -1266,7 +1307,7 @@ export default new Vuex.Store({
     setDeliveryOption({commit}, payload){
 
         commit('setDeliveryOption', payload);
-        commit('setDisabled', true);
+        commit('setDisabledConfirmDeliveryOption', true);
         commit('updateDisableContinue2', false);
         
         // let allerror = [];
@@ -1296,7 +1337,7 @@ export default new Vuex.Store({
         let delivery_time = payload.delivery_time
         
         commit('setGuestDeliveryOption', delivery_time);
-        commit('setDisabled', true);
+        commit('setDisabledConfirmGuestDeliveryOption', true);
         commit('updateDisableContinue2', false);
     },
 
@@ -1320,7 +1361,7 @@ export default new Vuex.Store({
         .then(res => {
             user = res.data.user;
             commit('updateUser', user);
-            commit('setDialogEditAddress', false);
+            // commit('setDialogEditAddress', false);
             // commit('setLoading', false);
             // router.push({path: '/check-address'});
         })
@@ -1560,7 +1601,7 @@ export default new Vuex.Store({
                 commit('setLoading', false);
                 // commit('setLinkSentSnackbar', true);
                 commit('setDialogLinkSent', true);
-                commit('setDisabled', true);
+                commit('setDisabledSendResetLink', true);
             })
             .catch(error => {
                 errorMessage = error.response.data.error;

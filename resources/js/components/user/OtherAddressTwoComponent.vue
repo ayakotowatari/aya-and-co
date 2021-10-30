@@ -62,7 +62,7 @@
                     <v-btn
                         color="primary"
                         block
-                        :disabled="disabled"
+                        :disabled="disabled.confirmOtherAddress"
                         @click="confirmAddress"
                         class="mb24"
                     >
@@ -95,7 +95,7 @@
                     <v-btn
                         color="primary"
                         outlined
-                        :disabled="disabled"
+                        :disabled="disabled.addNewAddress"
                         @click="newAddress"
                     >
                         新しい住所を追加する

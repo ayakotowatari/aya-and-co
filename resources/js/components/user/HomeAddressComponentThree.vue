@@ -47,7 +47,7 @@
                     color="primary"
                     block
                     @click="confirmHomeAddress"
-                    :disabled="disabled"
+                    :disabled="disabled.homeAddress"
                     class="mb24"
                 >
                     この住所へ送る
@@ -57,7 +57,7 @@
                     color="primary"
                     class="mb-8"
                     @click="edit"
-                    :disabled="disabled"
+                    :disabled="disabled.editHomeAddress"
                 >
                     編集する
                 </v-btn>
