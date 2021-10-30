@@ -16,14 +16,16 @@
             <v-toolbar-title>
                 <v-img
                     max-width=120
+                    height=auto
                     v-if="$vuetify.breakpoint.md || $vuetify.breakpoint.lg"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo_latest.svg"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo_latest.png"
                 >
                 </v-img>
                 <v-img
-                    max-width=120
+                    max-width=120px
+                    height=auto
                     v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
-                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo_latest.svg"
+                    src="https://aya-and-co.s3.ap-northeast-1.amazonaws.com/logo.png"
                 >
                 </v-img>
             </v-toolbar-title>
@@ -274,6 +276,10 @@ import { mapState } from 'vuex'
   }
 </script>
 <style>
+.logo-image{
+    width: 100%;
+    height: 100%;
+}
 .jp-font-300{
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 300;
