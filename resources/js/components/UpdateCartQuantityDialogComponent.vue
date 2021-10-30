@@ -3,15 +3,15 @@
         <v-row justify="center">
             <v-dialog v-model="dialogUpdateCartQuantity" persistent max-width="320">
                 <v-card>
-                    <v-card-title class="ja-font-400 dialog-title-14">
+                    <v-card-title class="jp-font-400 dialog-title-14">
                         {{cartItem.name}}({{cartItem.size}})の数量変更
                     </v-card-title>
                     <div v-if="cartItem.inventory <= 5">
-                        <v-card-text class="ja-font-400">
+                        <v-card-text class="jp-font-400">
                             在庫数：{{inventory}}
                         </v-card-text>
                     </div>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         <v-row>
                             <v-col cols="6" sm="6" md="6">
                                 <v-select

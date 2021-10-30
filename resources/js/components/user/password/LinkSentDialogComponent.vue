@@ -6,13 +6,13 @@
                     <v-card-title >
                         <div class="dialog-title grey--text text--darken-4">パスワードリセット</div>
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         登録されたメールアドレスに、パスワードをリセットするためのリンクが送られました。
                     </v-card-text>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         メールを確認し、パスワードをリセットしてください。
                     </v-card-text>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         パスワードをリセットすると、自動的にログインされます。もしくは、リセット後に、下記のボタンからログインしてください。
                     </v-card-text>
                     <!-- <v-card-subtitle>

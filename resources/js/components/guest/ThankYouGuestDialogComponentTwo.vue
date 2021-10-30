@@ -6,12 +6,12 @@
                     <v-card-title >
                         <div class="dialog-title grey--text text--darken-4">{{guest.name}}様</div>
                     </v-card-title>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         ご注文をお受付けいたしました。
                         誠にありがとうございます。<br>
                         お届けまでしばらくお待ちくださいませ。
                     </v-card-text>
-                    <v-card-text class="ja-font-400">
+                    <v-card-text class="jp-font-400">
                         会員としてご登録いただけますと、次回以降のご注文からお買い物がスムーズになりますので、ぜひご検討ください。
                     </v-card-text>
                     <!-- <v-card-subtitle>
