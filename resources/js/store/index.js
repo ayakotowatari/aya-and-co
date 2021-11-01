@@ -88,6 +88,7 @@ export default new Vuex.Store({
       product: [],
       productId: '',
       categories: [],
+      category: {},
     //   disableSelectAmount: true,
       inventory: null,
       //selectableNumbers:[1, 2, 3, 4, 5, 6],
@@ -496,6 +497,9 @@ export default new Vuex.Store({
     }, 
     setCategories(state, payload){
         state.categories = payload
+    },
+    setCategory(state, payload){
+        state.category = payload
     },
     setInventory(state, payload){
         state.inventory = payload
@@ -1034,6 +1038,19 @@ export default new Vuex.Store({
                 // products = res.data.products;
                 // commit('setProducts', products);
                 commit('setCategories', categories);
+        });
+    },
+    async fetchCategory({ commit }, payload){
+        let category = {};
+        // let products = [];
+
+        await axios
+            .get("/fetch-category/" + payload.id)
+            .then(res => {
+                category = res.data.category;
+                // products = res.data.products;
+                // commit('setProducts', products);
+                commit('setCategory', category);
         });
     },
     async fetchProducts({ commit }){

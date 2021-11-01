@@ -42,6 +42,7 @@ Route::get('/fetch-user', 'UsersController@fetchUser')->name('user.fetch.user');
 Route::get('/fetch-products', 'ProductsController@index')->name('products');
 Route::get('/fetch-product/{id}', 'ProductsController@show')->name('product');
 Route::get('/fetch-categories', 'CategoriesController@index')->name('categories');
+Route::get('/fetch-category/{id}', 'CategoriesController@fetchCategory')->name('categories');
 Route::get('/ajax/zipcode/{val}', 'OrdersController@zipcode')->name('zipcode');
 Route::get('/fetch-inventory/{id}', 'ProductsController@inventory')->name('inventory.quantity');
 Route::get('/fetch-postages', 'OrdersController@postage')->name('postages');

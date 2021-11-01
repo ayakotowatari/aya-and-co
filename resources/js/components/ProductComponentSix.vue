@@ -167,7 +167,7 @@
                         </v-btn>
                     </div>
                 </div>
-                <div v-if="category.id == 13" class="mt-8 mb-8">
+                <div v-if="category.id == 12 || category.id == 13" class="mt-8 mb-8">
                   <div class="message grey--text text--darken-3 mb-3">
                     ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてもご購入いただけます。
                   </div>
@@ -390,13 +390,19 @@ export default {
     created(){
       this.$store.dispatch('fetchProduct', {
         id: this.id
+      });
+
+      this.$store.dispatch('fetchCategory', {
+        id: this.id
       })
+
     },
     computed: {
         ...mapState([
           // 'products',
           'product',
           'categories',
+          'category',
           'user',
           'cart',
           'cartMessage',
@@ -408,9 +414,9 @@ export default {
           // 'selectedItem'
           // 'product'
         ]),
-        category(){
-          return this.categories.find(category => category.id === Number(this.id));
-        },
+        // category(){
+        //   return this.categories.find(category => category.id === Number(this.id));
+        // },
         // otherCategories(){
         //   return this.categories.filter(category => category.id !== Number(this.id));
         // },

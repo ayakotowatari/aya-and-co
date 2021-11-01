@@ -36,6 +36,16 @@ class CategoriesController extends Controller
         return response() -> json(['categories' => $categories]);
     }
 
+    //商品ページで一つのカテゴリーをゲット
+
+    public function fetchCategory($id)
+    {
+        $category = Category::find($id);
+
+        return response() -> json(['category' => $category]);
+
+    }
+
     public function fetchEachCategory($id)
     {
         // $category = Category::with('status')->find($id);

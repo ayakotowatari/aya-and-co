@@ -33,7 +33,7 @@ class ProductsController extends Controller
 
         $products = Product::where('category_id', $id)
                             ->where('inventory', '>', 0)
-                            ->where('status_id', 1)
+                            ->where('status_id', [1, 2])
                             ->get();
 
         if($products->isEmpty()){
