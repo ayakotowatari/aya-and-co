@@ -267,7 +267,7 @@ class CategoriesController extends Controller
     public function fetchCategoryStatuses()
     {
 
-        $statuses = Status::whereIn('id', [1, 2, 17])
+        $statuses = Status::whereIn('id', [1, 2, 16, 17])
                         ->get();
 
         // DD($statuses);
