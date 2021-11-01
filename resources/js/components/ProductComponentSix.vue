@@ -83,7 +83,7 @@
                         </v-btn>
                       </div>
                   </div>
-                  <div v-if="category.status_id == '1'">
+                  <div v-if="category.status_id == 1">
                       <div class="message grey--text text--darken-3 mb-3">
                         ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてご購入いただけます。
                       </div>
