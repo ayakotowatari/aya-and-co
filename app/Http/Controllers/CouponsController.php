@@ -23,67 +23,77 @@ class CouponsController extends Controller
         
         $request->validate([
             'coupon_code' => 'required',
+            'amount' => 'required'
         ]);
 
         $coupon_code = request('coupon_code');
 
-        if($coupon_code == 'welcomeback'){
+        $amount = request('amount');
 
-            $first_order = Order::where('orders.user_id', '=', $user_id)->oldest()->first();
+        if($amount < 1000){
 
-            if(!empty($first_order)){
+            return response() ->json(['errors' => ['coupon' => 'このクーポンは1,000円以上のお買い上げでご利用いただけます。']], 400);
 
-                $order_date = new Carbon($first_order->created_at);
+        }else{
 
-                if($user_id <= 28){
-                    $deadline = $order_date->addMonths(4);
+            if($coupon_code == 'welcomeback'){
+
+                $first_order = Order::where('orders.user_id', '=', $user_id)->oldest()->first();
+    
+                if(!empty($first_order)){
+    
+                    $order_date = new Carbon($first_order->created_at);
+    
+                    if($user_id <= 28){
+                        $deadline = $order_date->addMonths(4);
+                    }else{
+                        $deadline = $order_date->addMonths(2);
+                    }
+    
+                    if($deadline >= Carbon::now()->toDateString()){
+    
+                        $coupon = Coupon::where('name', $coupon_code)
+                            ->first();
+                        
+                        // DD($coupon);
+    
+                    }else{
+    
+                        return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
+                    }
+    
                 }else{
-                    $deadline = $order_date->addMonths(2);
-                }
-
-                if($deadline >= Carbon::now()->toDateString()){
-
-                    $coupon = Coupon::where('name', $coupon_code)
-                        ->first();
-                    
-                    // DD($coupon);
-
-                }else{
-
                     return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
                 }
-
+    
             }else{
-                return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
+    
+                $coupon = Coupon::where('name', $coupon_code)
+                            ->whereDate('deadline', '>=', Carbon::now()->toDateString())
+                            ->first();
+    
+                // DD($coupon);
             }
-
-        }else{
-
-            $coupon = Coupon::where('name', $coupon_code)
-                        ->whereDate('deadline', '>=', Carbon::now()->toDateString())
-                        ->first();
-
-            // DD($coupon);
-        }
-
-        // DD($coupon);
-
-        if(empty($coupon)){
-            return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
-            // return response() ->json(['errors' => 'このクーポンは現在提供されていません。'], 400);
-        }else{
-
-            $redeemed = $coupon-> users() -> where('user_id', $user_id) ->first();
-
-            // DD($redeemed);
-
-            if(!$redeemed){
     
-                return response() -> json(['coupon'=>$coupon]);
-                
+            // DD($coupon);
+    
+            if(empty($coupon)){
+                return response() ->json(['errors' => ['coupon' => 'このクーポンは有効期限切れか、現在、提供されていません。']], 400);
+                // return response() ->json(['errors' => 'このクーポンは現在提供されていません。'], 400);
             }else{
     
-                return response() ->json(['errors' => ['coupon' => 'このクーポンは使用済みです。']], 400);
+                $redeemed = $coupon-> users() -> where('user_id', $user_id) ->first();
+    
+                // DD($redeemed);
+    
+                if(!$redeemed){
+        
+                    return response() -> json(['coupon'=>$coupon]);
+                    
+                }else{
+        
+                    return response() ->json(['errors' => ['coupon' => 'このクーポンは使用済みです。']], 400);
+                }
             }
         }
     }

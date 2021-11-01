@@ -392,8 +392,11 @@ export default {
           return price.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY'});
         },
         apply(){
+            let cartAmount = this.$store.state.cart.reduce((acc,item) => acc + (item.price * item.quantity), 0);
+
             this.applyCoupon({
-                coupon_code: this.coupon_code
+                coupon_code: this.coupon_code,
+                amount: cartAmount
             })
         },
         resetCoupon(){

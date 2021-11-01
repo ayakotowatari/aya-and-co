@@ -176,7 +176,7 @@ export const coupon = {
             await axios
                 .post('/member/coupon', {
                     coupon_code: payload.coupon_code,
-                  
+                    amount: payload.amount
                 })
                 .then(response => {
                     console.log(response);
