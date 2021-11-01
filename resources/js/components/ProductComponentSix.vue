@@ -48,7 +48,7 @@
                   購入したい商品をタップして、数量を選び、カートに入れてください。
               </div>
               <v-row v-if="product.length <= 0">
-                <v-col v-if="category.id !== 12 && category.id !== 13">
+                <v-col v-if="category.id !== 12 || category.id !== 13">
                   <div class="message grey--text text--darken-3 mb-3">
                     この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
                   </div>
