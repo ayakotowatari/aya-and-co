@@ -48,7 +48,7 @@
                   購入したい商品をタップして、数量を選び、カートに入れてください。
               </div>
               <v-row v-if="product.length <= 0">
-                <v-col v-if="category.id !== 12 || category.id !== 13">
+                <v-col v-if="category.id !== (12 || 13)">
                   <div class="message grey--text text--darken-3 mb-3">
                     この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
                   </div>
@@ -65,7 +65,7 @@
                     </v-btn>
                   </div>
                 </v-col>
-                <v-col v-if="category.id == 12 || category.id == 13">
+                <v-col v-if="category.id == (12 || 13)">
                   <div v-if="category.status_id == 2">
                       <div class="message grey--text text--darken-3 mb-3">
                         この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
@@ -166,21 +166,22 @@
                             カートをみる
                         </v-btn>
                     </div>
+                    <!-- <div v-if="category.id == 12" class="mt-8 mb-8">
+                      <div class="message grey--text text--darken-3 mb-3">
+                        ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてもご購入いただけます。
+                      </div>
+                      <div>
+                        <v-btn
+                            outlined
+                            color="primary"
+                            @click="toSet()"
+                        >
+                          Harvest in the Northのセットへ
+                        </v-btn>
+                      </div>
+                    </div> -->
                 </div>
-                <div v-if="category.id == 12 || category.id == 13" class="mt-8 mb-8">
-                  <div class="message grey--text text--darken-3 mb-3">
-                    ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてもご購入いただけます。
-                  </div>
-                  <div>
-                    <v-btn
-                        outlined
-                        color="primary"
-                        @click="toSet()"
-                    >
-                      Harvest in the Northのセットへ
-                    </v-btn>
-                  </div>
-                </div>
+                
                 <!-- <div v-if="product.length >= 1 && category.id == 1">
                     <v-list-item-group v-model="itemGroup">
                         <v-row>
