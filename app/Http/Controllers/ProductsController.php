@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\ProductInventory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -215,9 +216,11 @@ class ProductsController extends Controller
 
         $category_id = request('category_id');
 
-        $image = Category::where('id', $category_id)->image->first();
+        $category = Category::where('id', $category_id)->first();
 
-        $product->image = $image;
+        // $image = Category::where('id', $category_id)->image->first();
+
+        $product->image = $category->image;
 
         $product-> save();
 

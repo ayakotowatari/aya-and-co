@@ -138,7 +138,19 @@
                         :error="allerror.delivery_time"
                         :error-messages="allerror.delivery_time"
                     ></v-select>
-                    <div v-if="deliveryAddress.home_address == true && this.courier !== 3">
+                    <div>
+                        <v-divider class="mt-4 mb-8"></v-divider>
+                         <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
+                        <v-textarea
+                            v-model="deliveryNote"
+                            label="備考欄"
+                            outlined
+                            rows="6"
+                            :error="allerror.message? true : false"
+                            :error-messages="allerror.message"
+                        ></v-textarea>
+                    </div>
+                    <!-- <div v-if="deliveryAddress.home_address == true && this.courier !== 3">
                         <v-divider class="mt-4 mb-8"></v-divider>
                          <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
                         <v-textarea
@@ -149,8 +161,8 @@
                             :error="allerror.note ? true : false"
                             :error-messages="allerror.note"
                         ></v-textarea>
-                    </div>
-                     <div v-if="deliveryAddress.home_address == false && this.courier !== 3">
+                    </div> -->
+                     <!-- <div v-if="deliveryAddress.home_address == false && this.courier !== 3">
                         <v-divider class="mt-4 mb-8"></v-divider>
                          <h4 class="jp-font grey--text text--darken-3 mb24">Step 4: 備考欄</h4>
                         <v-textarea
@@ -161,7 +173,7 @@
                             :error="allerror.note ? true : false"
                             :error-messages="allerror.note"
                         ></v-textarea>
-                    </div>
+                    </div> -->
                     <v-btn
                         color="primary"
                         block
@@ -286,7 +298,7 @@ export default {
                         delivery_carduse: '利用しない',
                         delivery_cardmessage: '',
                         delivery_cardname: '',
-                        delivery_note: '',
+                        delivery_note: this.deliveryNote,
                     })
                 }else if(this.deliveryCardUse == '利用する'){
                     if(this.sender == 'ご自身のお名前'){

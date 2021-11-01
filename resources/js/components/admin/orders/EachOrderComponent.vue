@@ -398,6 +398,23 @@
                                         </div>
                                     </v-list-item-content>
                                 </v-list-item>
+                                 <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            備考欄
+                                        </v-list-item-subtitle>
+                                        <div v-if="order.message == null">
+                                            <v-list-item-title class="jp-font-400">
+                                                なし
+                                            </v-list-item-title>
+                                        </div>
+                                        <div v-if="order.message !== null">
+                                            <p class="jp-font-400 line-height">
+                                                {{order.message}}
+                                            </p>
+                                        </div>
+                                    </v-list-item-content>
+                                </v-list-item>
                             </v-card>
                         </v-col>
                     </v-row>

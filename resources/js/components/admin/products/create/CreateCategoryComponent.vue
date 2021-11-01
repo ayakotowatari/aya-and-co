@@ -50,7 +50,7 @@
                                 v-model="description"
                                 label="説明文"
                                 outlined
-                                rows="10"
+                                rows="15"
                                 :error="allerror.description ? true : false"
                                 :error-messages="allerror.description"
                             ></v-textarea>
@@ -122,6 +122,7 @@ export default {
             description: '',
             descriptionRules: [
                 v => !!v || '説明文を入力してください。',
+                v => v.length == 600 || '600字以内で入力してください。'
             ],
             season: '',
             seasonRules: [

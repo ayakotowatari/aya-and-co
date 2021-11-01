@@ -280,9 +280,9 @@
                                             <v-list-item-subtitle class="jp-font-400">
                                                 備考欄
                                             </v-list-item-subtitle>
-                                            <v-list-item-title class="jp-font-400">
+                                            <p class="jp-font-400 line-height">
                                                 {{order.message}}
-                                            </v-list-item-title>
+                                            </p>
                                         </v-list-item-content>
                                     </div>
                                     <div v-if="this.order.message == null">

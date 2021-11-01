@@ -258,7 +258,26 @@
                                     </div>
                                 </v-list-item-content>
                             </v-list-item>
-                            <div v-if="deliveryAddress.courier_type == '日本郵便 ゆうパック'">
+                            <div>
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-subtitle class="jp-font-400">
+                                            備考欄
+                                        </v-list-item-subtitle>
+                                        <div v-if="deliveryAddress.delivery_note !==''">
+                                            <p class="jp-font-400 line-height">
+                                                {{deliveryAddress.delivery_note}}
+                                            </p>
+                                        </div>
+                                        <div v-if="deliveryAddress.delivery_note ==''">
+                                            <v-list-item-title class="jp-font-400">
+                                                なし
+                                            </v-list-item-title>
+                                        </div>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </div>
+                            <!-- <div v-if="deliveryAddress.courier_type == '日本郵便 ゆうパック'">
                                 <v-list-item>
                                     <v-list-item-content>
                                         <v-list-item-subtitle class="jp-font-400">
@@ -276,7 +295,7 @@
                                         </div>
                                     </v-list-item-content>
                                 </v-list-item>
-                            </div>
+                            </div> -->
                         </v-card>
                     </v-col>
                 </v-row>
@@ -396,4 +415,7 @@ export default {
   letter-spacing: 0.03em;
 }
 
+.line-height{
+    line-height: 1.5;
+}
 </style>

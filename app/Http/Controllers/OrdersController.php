@@ -123,7 +123,7 @@ class OrdersController extends Controller
                         'orders.box_quantity',
                         'orders.discount',
                         'orders.total',
-                        'orders.note',
+                        'orders.message',
                         'statuses.status',
                         // 'shipments.scheduled_date',
                         // 'shipments.actual_date'

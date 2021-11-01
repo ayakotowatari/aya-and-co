@@ -36,7 +36,7 @@
               </div>
           </v-col>
           <v-col cols="12" sm="12" md="8">
-              <div class="subheading-group">
+              <div class="subheading-group mb-8">
                   <div class="subheading">
                       Shop Here
                   </div>
@@ -44,11 +44,11 @@
                       お買いもの
                   </div>
               </div>
-              <div v-if="product.length >= 2" class="note">
+              <div v-if="product.length >= 1" class="note">
                   購入したい商品をタップして、数量を選び、カートに入れてください。
               </div>
               <v-row v-if="product.length <= 0">
-                <v-col v-if="category.id !== 7 && category.id !== 8">
+                <v-col v-if="category.id !== 12">
                   <div class="message grey--text text--darken-3 mb-3">
                     この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
                   </div>
@@ -65,22 +65,22 @@
                     </v-btn>
                   </div>
                 </v-col>
-                <v-col v-if="category.id == 7 || category.id == 8">
-                  <div class="message mb-3">
-                    ただいまこの商品は、Summer Meets Autumn（PraiseとLemonade）のセットとしてご購入いただけます。
+                <v-col v-if="category.id == 12">
+                  <div class="message grey--text text--darken-3 mb-3">
+                    ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてご購入いただけます。
                   </div>
                   <div>
                     <v-btn
-                        text
+                        outlined
                         color="primary"
                         @click="toSet()"
                     >
-                      Summer Meets Autumnのセットへ
+                      Harvest in the Northのセットへ
                     </v-btn>
                   </div>
                 </v-col>
               </v-row>
-              <div v-if="product.length >= 1 && category.id !== 1">
+              <div v-if="product.length >= 1">
                     <v-list-item-group v-model="itemGroup">
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
@@ -148,7 +148,21 @@
                         </v-btn>
                     </div>
                 </div>
-                <div v-if="product.length >= 1 && category.id == 1">
+                <div v-if="category.id == 13" class="mt-8 mb-8">
+                  <div class="message grey--text text--darken-3 mb-3">
+                    ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてもご購入いただけます。
+                  </div>
+                  <div>
+                    <v-btn
+                        outlined
+                        color="primary"
+                        @click="toSet()"
+                    >
+                      Harvest in the Northのセットへ
+                    </v-btn>
+                  </div>
+                </div>
+                <!-- <div v-if="product.length >= 1 && category.id == 1">
                     <v-list-item-group v-model="itemGroup">
                         <v-row>
                             <v-col cols="12" sm="12" md="6">
@@ -218,16 +232,16 @@
                     <div v-if="cartMessage !== null" class="item-content">
                         <p>{{ cartMessage }}</p>
                     </div>
-                </div>
+                </div> -->
                 <v-row>
                     <v-col cols="12" sm="12" md="12">
                       <div v-html="category.description" class="description mt24">
                       </div>
                     </v-col>
                 </v-row>
-                <div v-if="category.id == 1" class="item-content">
+                <!-- <div v-if="category.id == 1" class="item-content">
                     <p>現在、こちらの商品は一回のご注文手続きにつき、セット1点までのご購入とさせていただいております。一度ご注文をお済ませになられてから、再度ご注文いただけます。</p>
-                </div>
+                </div> -->
               </v-col>
         </v-row>
         <div class="divider-image">
@@ -473,7 +487,7 @@ export default {
             item.quantity = value
         },
         toSet(){
-          this.$router.push({name: 'products', params: {id: 1}})
+          this.$router.push({name: 'products', params: {id: 28}})
         }
     }
 
