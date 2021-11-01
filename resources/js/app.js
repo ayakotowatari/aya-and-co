@@ -40,6 +40,7 @@ Vue.component('yamatotakkyubin-component', require('./components/YamatoTakkyubin
 Vue.component('yamatocompact-component', require('./components/YamatoCompactComponent.vue').default);
 Vue.component('allproducts-component', require('./components/AllProductsComponent.vue').default);
 Vue.component('currentproducts-component', require('./components/CurrentProductsComponent.vue').default);
+Vue.component('otherproducts-component', require('./components/OtherProductsComponent.vue').default);
 
 //user
 // Vue.component('changeaddress-component', require('./components/ChangeAddressComponent.vue').default);

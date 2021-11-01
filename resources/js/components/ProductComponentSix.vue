@@ -48,25 +48,8 @@
                   購入したい商品をタップして、数量を選び、カートに入れてください。
               </div>
               <v-row v-if="product.length <= 0">
-                <v-col v-if="category.id !== (12 || 13)">
-                  <div class="message grey--text text--darken-3 mb-3">
-                    この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
-                  </div>
-                  <div class="message grey--text text--darken-3 mb-6">
-                    公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
-                  </div>
-                  <div>
-                    <v-btn
-                        href = "https://lin.ee/1RJJ9C3"
-                        outlined
-                        color="primary"
-                    >
-                      LINEに友だち追加する
-                    </v-btn>
-                  </div>
-                </v-col>
-                <v-col v-if="category.id == (12 || 13)">
-                  <div v-if="category.status_id == 2">
+                 <v-col v-if="category.id == 26 || category.id == 27">
+                   <div v-if="category.status_id == 2">
                       <div class="message grey--text text--darken-3 mb-3">
                         この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
                       </div>
@@ -96,6 +79,23 @@
                           Harvest in the Northのセットへ
                         </v-btn>
                       </div>
+                  </div>
+                </v-col>
+                <v-col v-else>
+                  <div class="message grey--text text--darken-3 mb-3">
+                    この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
+                  </div>
+                  <div class="message grey--text text--darken-3 mb-6">
+                    公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
+                  </div>
+                  <div>
+                    <v-btn
+                        href = "https://lin.ee/1RJJ9C3"
+                        outlined
+                        color="primary"
+                    >
+                      LINEに友だち追加する
+                    </v-btn>
                   </div>
                 </v-col>
               </v-row>
@@ -303,7 +303,9 @@
           <v-tab-item 
               value="tab-1"
           >
-              <allproducts-component></allproducts-component>
+              <otherproducts-component
+                v-bind:id="id"
+              ></otherproducts-component>
           </v-tab-item>
           <v-tab-item
               value="tab-2"
