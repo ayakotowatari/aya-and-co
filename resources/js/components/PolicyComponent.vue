@@ -55,7 +55,7 @@
                     </div>
                     <div class="item-title line-height grey--text text--darken-3">
                         送料<br>
-                        日本郵便の運賃によります。詳しくは、<router-link to="/postage">送料のページ</router-link>をご覧ください。
+                        ヤマト運輸の運賃によります。詳しくは、<router-link to="/postage">送料のページ</router-link>をご覧ください。
                     </div>
                 </div>
                 <div class="mb-6">
@@ -63,7 +63,7 @@
                         運送業者
                     </div>
                     <div class="item-title grey--text text--darken-3">
-                        日本郵便
+                        ヤマト運輸
                     </div>
                 </div>
                 <div class="mb-6">

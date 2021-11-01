@@ -279,6 +279,7 @@ export default new Vuex.Store({
             }
         }else{
             state.deliveryAddress.postage = postage
+            state.deliveryAddress.box_quantity = ''
         }
         
 

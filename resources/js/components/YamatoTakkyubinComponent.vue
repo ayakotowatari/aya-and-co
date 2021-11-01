@@ -44,7 +44,10 @@
             プラスサイズについて
         </div>
         <p class="description mb-8">
-            4瓶以上の商品をご注文いただく場合は、通常よリ大きな宅配ボックスで配送させていただきます。その場合、数量にかかわらず、送料は、通常のプラス290円（沖縄県のみ、プラス710円）となります。詳しくは、下記の送料一覧で、「宅急便（プラスサイズ）」をご覧ください。
+            4瓶以上の商品をご注文いただく場合は、通常よリ大きな宅配ボックスで配送させていただきます。その場合、10個程度までのご注文でしたら、数量にかかわらず、送料は、通常のプラス310円（沖縄県のみ、プラス750円）となります。詳しくは、下記の送料一覧で、「宅急便（プラスサイズ）」をご覧ください。
+        </p>
+         <p class="description mb-8">
+            上記以上の数量のご注文につきましても、別途、対応しておりますので、ご注文の前にどうぞご相談ください。
         </p>
 
         <v-row class="mb-8">
@@ -75,11 +78,7 @@
 export default {
     data: function(){
         return {
-            tab: null,
-        items: [
-          'web', 'shopping', 'videos', 'images', 'news',
-        ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+           
         }
     },
     mounted(){
