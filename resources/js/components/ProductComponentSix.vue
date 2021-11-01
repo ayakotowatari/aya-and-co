@@ -65,18 +65,37 @@
                     </v-btn>
                   </div>
                 </v-col>
-                <v-col v-if="category.id == 12 && category.id == 13">
-                  <div class="message grey--text text--darken-3 mb-3">
-                    ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてご購入いただけます。
+                <v-col v-if="category.id == 12 || category.id == 13">
+                  <div v-if="category.status_id == 2">
+                      <div class="message grey--text text--darken-3 mb-3">
+                        この商品は、完売、もしくは、シーズン（{{category.season}}）まで準備中です。
+                      </div>
+                      <div class="message grey--text text--darken-3 mb-6">
+                        公式LINEアカウントで、発売日をお知らせしています。ぜひご登録ください。
+                      </div>
+                      <div>
+                        <v-btn
+                            href = "https://lin.ee/1RJJ9C3"
+                            outlined
+                            color="primary"
+                        >
+                          LINEに友だち追加する
+                        </v-btn>
+                      </div>
                   </div>
-                  <div>
-                    <v-btn
-                        outlined
-                        color="primary"
-                        @click="toSet()"
-                    >
-                      Harvest in the Northのセットへ
-                    </v-btn>
+                  <div v-if="category.status_id == '1'">
+                      <div class="message grey--text text--darken-3 mb-3">
+                        ただいまこの商品は、Harvest in the North（VelvetyとMarmelada）のセットとしてご購入いただけます。
+                      </div>
+                      <div>
+                        <v-btn
+                            outlined
+                            color="primary"
+                            @click="toSet()"
+                        >
+                          Harvest in the Northのセットへ
+                        </v-btn>
+                      </div>
                   </div>
                 </v-col>
               </v-row>
