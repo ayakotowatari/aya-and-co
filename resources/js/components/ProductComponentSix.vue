@@ -515,7 +515,7 @@ export default {
             item.quantity = value
         },
         toSet(){
-          this.$router.push({name: 'products', params: {id: 28}})
+          this.$router.push({name: 'products', params: {id: 11}})
         }
     }
 
