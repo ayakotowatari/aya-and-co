@@ -464,7 +464,7 @@ export const coupon = {
             let statuses = {};
 
             await axios
-                .get('/admin/fetch-couponstatuses/')
+                .get('/admin/fetch-couponstatuses')
                 .then(response => {
                     statuses = response.data.statuses;
                     commit('setStatuses', statuses);

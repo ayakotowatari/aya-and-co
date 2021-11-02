@@ -14,7 +14,7 @@
                 {{user.name}}様、いつもaya & co.をご利用いただき、誠にありがとうございます。
             </v-card-text>
             <v-card-text class="jp-font-400">
-                感謝の気持ちを込めまして、本サイトでの2回目以降のお買い物で、1,000円以上のお買い上げでお使いいただけるクーポンを発行いたしました。
+                感謝の気持ちを込めまして、本サイトでの2回目以降のお買い物で、1,000円以上の商品のお買い上げでお使いいただけるクーポンを発行いたしました。
             </v-card-text>
             <v-card-text class="jp-font-400">
                 ご注文時に、下記のクーポン番号をご入力いただくと、商品のお買い上げ金額の10％引きとなります。ぜひご利用ください。
@@ -23,7 +23,7 @@
                 このクーポンの有効期限は、<strong>{{couponDeadline}}</strong>です。
             </v-card-text>
              <v-card-text class="jp-font-400">
-                クーポン番号: <strong>thanks10</strong>
+                クーポン番号: <strong>welcomeback</strong>
             </v-card-text>
              <v-card-text class="jp-font-400 small-description">
                 クーポンは1回限りでご利用いただけます。

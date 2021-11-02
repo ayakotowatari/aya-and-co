@@ -145,7 +145,7 @@ export default {
                     percentOff: this.percentOff,
                     minimum: this.minimum,
                     deadline: this.deadline,
-                    status_id: 1,
+                    status_id: 16,
                 })
             }
         }, 

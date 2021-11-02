@@ -173,7 +173,7 @@ class CouponsController extends Controller
                 $order_date = new Carbon($first_order->created_at);
 
                 if($user->id <= 28){
-                    $deadline = $order_date->addMonths(4);
+                    $deadline = $order_date->addMonths(5);
                 }else{
                     $deadline = $order_date->addMonths(2);
                 }
@@ -401,7 +401,7 @@ class CouponsController extends Controller
     {
         // $statuses = Status::whereNotNull('status')->get();
 
-        $statuses = Status::whereIn('id', [1, 17])
+        $statuses = Status::whereIn('id', [1, 16, 17])
         ->get();
 
         // DD($statuses);
