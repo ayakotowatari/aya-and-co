@@ -513,18 +513,26 @@ export default new Vuex.Store({
     setSelectableNumbers(state, payload){
 
         let quantity = payload
+        let product_id = state.product[0].id
 
-        // console.log('quantity', quantity)
+        console.log('product_id', product_id)
 
-        if(quantity <= 5 && quantity >= 4){
-            state.selectableNumbers = [1, 2]
-        
-        // }else if(quantity <= 1){
+        if(product_id == 11){
 
-        }else if(quantity <=3){
             state.selectableNumbers = [1]
         }else{
-            state.selectableNumbers = [1, 2, 3, 4, 5]
+
+            if(quantity <= 5 && quantity >= 4){
+                state.selectableNumbers = [1, 2]
+            
+            // }else if(quantity <= 1){
+    
+            }else if(quantity <=3){
+                state.selectableNumbers = [1]
+            }else{
+                state.selectableNumbers = [1, 2, 3, 4, 5]
+            }
+
         }
 
     },
@@ -560,15 +568,15 @@ export default new Vuex.Store({
         let product = payload.cartItem
         let newQuantity = payload.cartQuantity
 
-        //console.log('newQuantity', newQuantity)
-        //console.log('slug', product.slug)
+        // console.log('newQuantity', newQuantity)
+        // console.log('slug', product.slug)
 
         let productInCartIndex = state.cart.findIndex(item => item.slug === product.slug);
         if(productInCartIndex !== -1){
             //let originalQuantity = state.cart[productInCartIndex].quantity
             //state.cart[productInCartIndex].quantity = Number(originalQuantity) + newQuantity
             // state.cart[productInCartIndex].quantity++;
-            state.cartMessage = "カートにすでに商品が入っております。現在、この商品は一度のご注文につき、1点までのご購入となります。セットを複数ご購入いただく場合は、大変お手数ですが、一つずつのご注文手続きをお願いいたします。"
+            state.cartMessage = "カートにすでに商品が入っております。"
             return;
         }else{
             product.quantity = newQuantity;
