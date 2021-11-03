@@ -149,7 +149,9 @@ class NewsController extends Controller
         $news = request('news');
         // DD($news);
 
-        $users = User::where('id', 19)->first();
+        $users = User::where('id', [1, 2])
+                    ->where('unsubscribe', 0)
+                    ->get();
 
         // $users = User::where('unsubscribe', 0)->get();
 
