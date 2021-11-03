@@ -26,8 +26,8 @@ body {
     /* text-size-adjust: 100%; */
 }
 img{
-    max-width: 60%;
-    height: auto;
+    width :100%;
+    margin: 0 auto;
 }
 .header{
     text-align: center;
@@ -53,7 +53,17 @@ img{
     margin-bottom: 20px;
 }
 
-.section a{
+/* .section a{
+    color: #fff;
+    background: #FE6862;
+    padding: 10px 30px;
+    display: inline-block;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+} */
+.btn-link{
     color: #fff;
     background: #FE6862;
     padding: 10px 30px;
@@ -81,10 +91,7 @@ td.align-right{
     /* body{
         font-size: 32px;
     } */
-    img{
-        max-width: 100%;
-    }
-   
+
 }
 
 </style>
@@ -129,7 +136,7 @@ td.align-right{
 
         @if(isset($news['p2_link']))
         <p>
-            <a href="{{ $news['p2_link']}}">{{$news['p2_btntext']}}</a>
+            <a href="{{ $news['p2_link']}}" class="btn-link">{{$news['p2_btntext']}}</a>
         </p>
         @endif
 
@@ -153,7 +160,7 @@ td.align-right{
 
         @if(isset($news['p3_link']))
         <p>
-            <a href="{{ $news['p3_link']}}">{{$news['p3_btntext']}}</a>
+            <a href="{{ $news['p3_link']}}" class="btn-link">{{$news['p3_btntext']}}</a>
         </p>
         @endif
 
@@ -178,7 +185,7 @@ td.align-right{
 
         @if(isset($news['p4_link']))
         <p>
-            <a href="{{ $news['p4_link']}}">{{$news['p4_btntext']}}</a>
+            <a href="{{ $news['p4_link']}}" class="btn-link">{{$news['p4_btntext']}}</a>
         </p>
         @endif
 
@@ -202,7 +209,7 @@ td.align-right{
 
         @if(isset($news['p5_link']))
         <p>
-            <a href="{{ $news['p5_link']}}">{{$news['p5_btntext']}}</a>
+            <a href="{{ $news['p5_link']}}" class="btn-link">{{$news['p5_btntext']}}</a>
         </p>
         @endif
 
