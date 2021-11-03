@@ -67,6 +67,8 @@ Vue.component('editemail-component', require('./components/user/edit/EditEmailCo
 Vue.component('editpassword-component', require('./components/user/edit/EditPasswordComponent.vue').default);
 Vue.component('deleteuserdialog-component', require('./components/user/edit/DeleteUserDialogComponent.vue').default);
 Vue.component('coupondisplay-component', require('./components/CouponDisplayComponent.vue').default);
+Vue.component('unsubscribedialog-component', require('./components/user/edit/UnsubscribeDialogComponent.vue').default);
+Vue.component('subscribedialog-component', require('./components/user/edit/SubscribeDialogComponent.vue').default);
 
 //guest
 Vue.component('guestcheckaddress-component', require('./components/guest/GuestCheckAddressComponent.vue').default);

@@ -153,6 +153,8 @@ export default new Vuex.Store({
       dialogRegisterToOrder: false,
       dialogLinkSent: false,
       dialogDeleteUser: false,
+      dialogUnsubscribe: false,
+      dialogSubscribe: false,
       disabled: {
         homeAddress: false,
         editHomeAddress: false,
@@ -731,6 +733,12 @@ export default new Vuex.Store({
     },
     setDialogRemoveCartItem(state, payload){
         state.dialogRemoveCartItem = payload
+    },
+    setDialogUnsubscribe(state, payload){
+        state.dialogUnsubscribe = payload
+    },
+    setDialogSubscribe(state, payload){
+        state.dialogSubscribe = payload
     },
     setProductId(state, payload){
         state.productId = payload
@@ -1828,7 +1836,47 @@ export default new Vuex.Store({
         commit('setDialogRemoveCartItem', true)
         commit('setCartItem', payload.cartItem)
 
-    }
+    },
+    async unsubscribeEmails({commit}, payload){
+        
+        let user = {};
+        let allerror = [];
+
+        await axios
+        .post("/member/unsubscribe")
+        .then(res => {
+            user = res.data.user
+            commit('updateUser', user);
+            commit('setDialogUnsubscribe', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
+    },
+    async subscribeEmails({commit}, payload){
+        
+        let user = {};
+        let allerror = [];
+
+        await axios
+        .post("/member/subscribe")
+        .then(res => {
+            user = res.data.user
+            commit('updateUser', user);
+            commit('setDialogSubscribe', false);
+            // commit('setLoading', false);
+            // router.push({path: '/check-address'});
+        })
+        .catch(error => {
+            allerror = error.response.data.errors,
+            commit('setallErrors', allerror)
+        })
+
+    },
     
 
   },

@@ -785,6 +785,7 @@ export const admin = {
         async fetchProducts({commit}){
 
             let products = [];
+            let allerror = [];
 
             await axios
                 .get('/admin/fetch-products')
@@ -802,6 +803,7 @@ export const admin = {
 
             let product = {};
             let total = '';
+            let allerror = [];
 
             await axios
                 .get('/admin/fetch-product/' + payload.id)
@@ -821,6 +823,7 @@ export const admin = {
         async updateInventory({state, commit}, payload){
 
             let inventory ="";
+            let allerror = [];
 
             await axios
                 .post('/admin/update-inventory', {
@@ -843,6 +846,7 @@ export const admin = {
             //console.log('payload', payload)
 
             let category = {};
+            let allerror = [];
 
             let data = new FormData();
             data.append("name", payload.name);
@@ -872,6 +876,7 @@ export const admin = {
         async fetchCategoryStatuses({state, commit}){
 
             let statuses = [];
+            let allerror = [];
 
             await axios
                 .get('/admin/fetch-statuses')
@@ -888,6 +893,7 @@ export const admin = {
         async updateCategoryStatus({state, commit}, payload){
 
             let status = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/update-status', {
@@ -910,6 +916,7 @@ export const admin = {
             //console.log('payload', payload)
 
             let category = {};
+            let allerror = [];
 
             await axios
                 .post('/admin/create-product', {
@@ -935,6 +942,7 @@ export const admin = {
         async updateProductStatus({state, commit}, payload){
 
             let status = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/update-productstatus', {
@@ -955,7 +963,7 @@ export const admin = {
 
         async createUserReceipt({commit}, payload){
 
-            let allerror=""
+            let allerror = [];
 
             await axios
                 .get('/admin/create-receipt/' + payload.id)
@@ -973,6 +981,7 @@ export const admin = {
         async inputUserOrderNote({state, commit}, payload){
 
             let note = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/input-userordernote', {
@@ -994,6 +1003,7 @@ export const admin = {
         async updateUserOrderNote({state, commit}, payload){
 
             let note = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/update-userordernote', {
@@ -1015,6 +1025,7 @@ export const admin = {
         async inputGuestOrderNote({state, commit}, payload){
 
             let note = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/input-guestordernote', {
@@ -1036,6 +1047,7 @@ export const admin = {
         async updateGuestOrderNote({state, commit}, payload){
 
             let note = "";
+            let allerror = [];
 
             await axios
                 .post('/admin/update-guestordernote', {
@@ -1050,6 +1062,94 @@ export const admin = {
                 })
                 .catch(error => {
                     allerror = error.response.data.errors,
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        // async createEmailNews({commit}, payload){
+
+        //     let data = new FormData();
+        //     data.append("image", payload.image);
+        //     data.append("p1_heading", payload.p1_heading);
+        //     data.append("p1_main", payload.p1_main);
+        //     data.append("p2_heading", payload.p2_heading);
+        //     data.append("p2_main", payload.p2_main);
+        //     data.append("p2_link", payload.p2_link);
+        //     data.append("p3_heading", payload.p3_heading);
+        //     data.append("p3_main", payload.p3_main);
+        //     data.append("p3_link", payload.p3_link);
+        //     data.append("p4_heading", payload.p4_heading);
+        //     data.append("p4_main", payload.p4_main);
+        //     data.append("p4_link", payload.p4_link);
+
+        //     let config = {headers: {'Content-Type': 'multipart/form-data'}};
+
+        //     await axios
+        //         .post('/admin/create-emailnews', data, config)
+        //         .then(response => {
+        //             commit('setLoading', false);
+        //         })
+        //         .catch(error => {
+        //             allerror = error.response.data.errors,
+        //             commit('setallErrors', allerror)
+        //         })
+        // },
+        
+        async createEmailNews({commit, dispatch}, payload){
+
+            let news = {}
+            let allerror = [];
+
+            await axios
+                .post('/admin/create-emailnews', {
+                    subject: payload.subject,
+                    image: payload.image,
+                    p1_heading: payload.p1_heading,
+                    p1_main: payload.p1_main,
+                    p1_menu: payload.p1_menu,
+                    p2_heading: payload.p2_heading,
+                    p2_main: payload.p2_main,
+                    p2_link: payload.p2_link,
+                    p2_btntext: payload.p2_btntext,
+                    p3_heading: payload.p3_heading,
+                    p3_main: payload.p3_main,
+                    p3_link: payload.p3_link,
+                    p3_btntext: payload.p3_btntext,
+                    p4_heading: payload.p4_heading,
+                    p4_main: payload.p4_main,
+                    p4_link: payload.p4_link,
+                    p4_btntext: payload.p4_btntext,
+                    p5_heading: payload.p5_heading,
+                    p5_main: payload.p5_main,
+                    p5_link: payload.p5_link,
+                    p5_btntext: payload.p5_btntext,
+                })
+                .then(response => {
+                    news = response.data.news;
+                    dispatch('sendNews', {news:news});
+                    commit('setLoading', false);
+                })
+                .catch(error => {
+                    console.log(error);
+                    allerror = error.response.data.errors;
+                    commit('setallErrors', allerror)
+                })
+        },
+
+        async sendNews({commit}, payload) {
+
+            // console.log('notify', payload);
+            let allerror = [];
+    
+            await axios
+                .post("/admin/send-news", {
+                    news: payload.news
+                })
+                .then(response => {
+                    // console.log(response);
+                })
+                .catch(error => {
+                    allerror = error.response.data.errors
                     commit('setallErrors', allerror)
                 })
         },

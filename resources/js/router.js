@@ -38,6 +38,7 @@ import OrderSummary from "./components/user/OrderSummaryComponent";
 import Order from "./components/user/OrderComponent";
 import OrderDetails from "./components/user/OrderDetailsComponent";
 import Profile from "./components/user/edit/EditProfileComponent";
+import UnsubscribeEmails from "./components/user/email/UnsubscribeEmailsComponent";
 
 //guest
 import GuestCheckAddress from "./components/guest/GuestCheckAddressComponent";
@@ -257,6 +258,12 @@ const routes = [
         path: "/member/profile",
         name: "profile",
         component: Profile
+    },
+
+    {
+        path: "/member/unsubscribe",
+        name: "unsubscribe",
+        component: UnsubscribeEmails
     },
     
 ];

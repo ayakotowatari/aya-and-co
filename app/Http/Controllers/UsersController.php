@@ -606,6 +606,36 @@ public function purchase(Request $request){
         $user->sendOrderNotify($user, $order);
 
     }
+
+    public function unsubscribe()
+    {
+        // $request->validate([
+        //     'id' => 'required',
+        // ]);
+
+        $user = Auth::user();
+
+        $user->unsubscribe = 1;
+        $user->update();
+
+        return response() -> json(['user' => $user]);
+
+    }
+
+    public function subscribe()
+    {
+        // $request->validate([
+        //     'id' => 'required',
+        // ]);
+
+        $user = Auth::user();
+
+        $user->unsubscribe = 0;
+        $user->update();
+
+        return response() -> json(['user' => $user]);
+
+    }
     /**
      * Show the form for creating a new resource.
      *

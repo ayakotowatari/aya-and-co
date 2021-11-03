@@ -132,6 +132,39 @@
 
                         <v-divider class="mb-6"></v-divider>
 
+                        <div class="mb-6">
+                            <div v-if="user.unsubscribe !== 1">
+                                <div class="item-content policy-title mb-3">
+                                    メール配信の停止
+                                </div>
+                                <div>
+                                    <v-btn
+                                        color="primary"
+                                        outlined
+                                        @click="$store.commit('setDialogUnsubscribe', true)"
+                                    >
+                                        停止する
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div class="item-title grey--text text--darken-3 mb-3">
+                                    メール配信は停止されています。
+                                </div>
+                                <div>
+                                    <v-btn
+                                        color="primary"
+                                        outlined
+                                        @click="$store.commit('setDialogSubscribe', true)"
+                                    >
+                                        メール配信の再開
+                                    </v-btn>
+                                </div>
+                            </div>
+                        </div>
+
+                        <v-divider class="mb-6"></v-divider>
+
                         <!-- <div class="mb-6">
                             <div class="item-content policy-title mb-3">
                                 クーポン
@@ -162,6 +195,14 @@
                 </v-col>
             </v-row>
         </v-container>
+        <unsubscribedialog-component
+            v-bind:user="user"
+            v-bind:dialogUnsubscribe="dialogUnsubscribe"
+        ></unsubscribedialog-component>
+        <subscribedialog-component
+            v-bind:user="user"
+            v-bind:dialogSubscribe="dialogSubscribe"
+        ></subscribedialog-component>
         <deleteuserdialog-component
             v-bind:user="user"
             v-bind:dialogDeleteUser="dialogDeleteUser"
@@ -191,6 +232,8 @@ export default {
             'isEditingAddress',
             'isEditingEmail',
             'isEditingPassword',
+            'dialogUnsubscribe',
+            'dialogSubscribe',
             'dialogDeleteUser',
         ]),
         ...mapState('coupon', [
