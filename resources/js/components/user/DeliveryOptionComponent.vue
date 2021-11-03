@@ -62,7 +62,7 @@
                         </div>
                         <div v-if="this.courier !== null">
                             <div v-if="this.courier === 3">
-                                <div class="jp-font grey--text text--darken-2">お選びいただいた配送方法では、メッセージカードはご利用になられません。</div>
+                                <div class="jp-font grey--text text--darken-2">お選びいただいた配送方法は、「選べるメッセージカード」ご利用の対象外です。</div>
                             </div>
                             <div v-if="this.courier !== 3">
                                 <div class="jp-font grey--text text--darken-2 mb24">選べるメッセージカードサービス（無料）をご利用になられますか？</div>

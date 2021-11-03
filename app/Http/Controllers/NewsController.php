@@ -154,7 +154,9 @@ class NewsController extends Controller
 
         // DD($users);
 
-        $users = User::where('unsubscribe', 0)->get();
+        $users = User::where('unsubscribe', 0)
+                    ->where('life', 1)
+                    ->get();
 
 
         Notification::send($users, new MemberNews($users, $news));
