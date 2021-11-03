@@ -20,6 +20,7 @@ import CreateProduct from "./components/admin/products/create/CreateProductCompo
 import CreateCoupon from "./components/admin/coupons/create/CreateCouponComponent";
 import CouponsList from "./components/admin/coupons/CouponsListComponent";
 import EachCoupon from "./components/admin/coupons/EachCouponComponent";
+import EmailNews from "./components/admin/emails/EmailNewsComponentTwo";
 import Sample from "./components/SampleComponent";
 
 // import HomeTwo from "./components/HomeTwoComponent";
@@ -139,6 +140,12 @@ const routes = [
         path: "/admin/each-coupon/:id" ,
         name: "each-coupon" ,
         component: EachCoupon
+    },
+
+    {
+        path: "/admin/email-news" ,
+        name: "email-news" ,
+        component: EmailNews
     },
    
    

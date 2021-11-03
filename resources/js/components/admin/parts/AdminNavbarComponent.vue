@@ -138,6 +138,7 @@ import { mapState } from 'vuex'
         { title: 'クーポンリスト', route: '/admin/coupons-list' },
       ],
       items:  [
+        {title: '会員メール送信', route: "/admin/email-news"},
         {title: '管理者登録', route: "/admin/register"},
         {title: 'アカウント編集', route: "admin/edit-account" }
       ],
